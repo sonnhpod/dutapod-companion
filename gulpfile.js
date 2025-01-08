@@ -260,7 +260,7 @@ function distribute_all_modern_js_to_vanilla_js( jsSrcFileDir, srcListFile, jsDi
 
 /**=== 4, Global tasks === */
 
-/** 3.0.1. Distribute all frontend resources **/
+/** 4.1. Distribute all frontend resources **/
 gulp.task(
     'distribute-all-frontend-resources',
     gulp.series( 
@@ -269,6 +269,9 @@ gulp.task(
     )
 );
 
+/** 4.2. Distribute all admin resources **/
+
+/** 4.3. Distribute all editor resources **/
 
 /**============================================================= **/
 /**=== 5. Troubleshotting === **/
