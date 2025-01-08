@@ -1,0 +1,75 @@
+{
+  "name": "dutapod-companion",
+  "version": "1.0.1",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "WordPress",
+    "plugin",
+    "PHP",
+    "composer",
+    "gulp",
+    "ES6",
+    "SCSS"
+  ],
+  "author": "Leon Nguyen <sonnh2109@gmail.com>",
+  "license": "GPL-3.0",
+  "description": "This is a WordPress plugin for the main WordPress DUTAPOD - store information about office supplies & educational knowledge",
+  "dependencies": {
+    "gulp": "^5.0.0",
+    "gulp-debug": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^9.2.1",
+    "babel-preset-env": "^1.7.0",
+    "babelify": "^10.0.0",
+    "bootstrap": "^5.3.3",
+    "browser-sync": "^3.0.3",
+    "browserify": "^17.0.1",
+    "browserify-shim": "^3.8.16",
+    "code-prettify": "^0.1.0",
+    "glob": "^11.0.0",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^3.0.0",
+    "gulp-notify": "^5.0.0",
+    "gulp-options": "^1.1.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^6.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglifycss": "^1.1.0",
+    "jquery": "^3.7.1",
+    "sass": "^1.83.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "babel": {
+      "presets": [
+        "@babel/preset-env"
+      ]
+    },
+    "browserify": {
+      "transform": [
+        "browserify-shim"
+      ]
+    },
+    "browser": {
+      "jquery": "./node_modules/jquery/dist/jquery.js"
+    },
+    "browserify-shim": {
+      "jquery": "$"
+    },
+    "type": "module"
+}

@@ -1,0 +1,49 @@
+{
+    "name": "sonnh/dutapod-companion",
+    "description": "This is the plugin to assist the operation of the website dutapodlab & dutapod public",
+    "type": "project",
+    "license": "GPL-3.0",
+    "autoload": {
+        "psr-4": {
+            "DutapodCompanion\\": "/",
+            "DutapodCompanion\\ApiPublic\\": "api-public/",
+            "DutapodCompanion\\Sources\\": "sources/",
+            "DutapodCompanion\\Database\\": "database/",            
+            "DutapodCompanion\\Helper\\": "helper/",
+            "DutapodCompanion\\Helper\\WpAdmin\\": "helper/wp-admin/",
+            "DutapodCompanion\\Helper\\WpEditor\\": "helper/wp-editor/",
+            "DutapodCompanion\\Helper\\WpFrontend\\": "helper/wp-frontend/",
+            "DutapodCompanion\\Includes\\": "includes/",
+            "DutapodCompanion\\Includes\\Api\\": "includes/api/",
+            "DutapodCompanion\\Includes\\Base\\": "includes/base/",
+            "DutapodCompanion\\Includes\\Content\\": "includes/content/",
+            "DutapodCompanion\\Includes\\Content\\Block\\": "includes/content/block/",
+            "DutapodCompanion\\Includes\\Content\\Carousel\\": "includes/content/carousel/",
+            "DutapodCompanion\\Includes\\Content\\Menu\\": "includes/content/menu/",
+            "DutapodCompanion\\Includes\\Content\\Widget\\": "includes/content/widget/",
+            "DutapodCompanion\\Includes\\Controller\\": "includes/controller/",
+            "DutapodCompanion\\Includes\\Controller\\ScopeAdmin\\": "includes/controller/scope-admin/",
+            "DutapodCompanion\\Includes\\Controller\\ScopeEditor\\": "includes/controller/scope-editor/",
+            "DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\": "includes/controller/scope-frontend/",
+            "DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\": "includes/controller/scope-frontend/woocommerce/",
+            "DutapodCompanion\\Includes\\Display\\": "includes/display/",
+            "DutapodCompanion\\Includes\\Display\\Page\\": "includes/display/page/",
+            "DutapodCompanion\\Includes\\Display\\Post\\": "includes/display/post/",
+            "DutapodCompanion\\Includes\\Template\\": "includes/template/",
+            "DutapodCompanion\\Includes\\Template\\ScopeAdmin\\": "includes/template/scope-admin/",
+            "DutapodCompanion\\Includes\\Template\\ScopeEditor\\": "includes/template/scope-editor/",
+            "DutapodCompanion\\Includes\\Template\\ScopeFrontend\\": "includes/template/scope-frontend/",
+            "DutapodCompanion\\Troubleshoot\\": "troubleshoot/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sonnh",
+            "email": "sonnhpod@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/dom-crawler": "^7.2",
+        "scotteh/php-dom-wrapper": "^3.0"
+    }
+}
