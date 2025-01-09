@@ -9,12 +9,14 @@ namespace DutapodCompanion\Includes;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
+# Frontend Controller
 use DutapodCompanion\Includes\Controller\ScopeFrontend\DebugTemplateController as DebugTemplateController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\CustomTemplateController as CustomTemplateController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
 # use DutapodCompanion\Includes\Controller\ScopeFrontend\WpPostDisplayController as WpPostDisplayController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WpPageDisplayController as WpPageDisplayController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\WooCommerceCustomizer as WooCommerceCustomizer;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\ShortcodeController as ShortcodeController;
 
 /** This class is dedicated to initialize all services (instances) 
  * which may be need for the plugin operation
@@ -117,6 +119,7 @@ final class Init{
             ThemeCustomizer::class,                      
             DebugTemplateController::class,
             CustomTemplateController::class,
+            ShortcodeController::class,
             WpPageDisplayController::class,
         );
     }//get_frontend_services

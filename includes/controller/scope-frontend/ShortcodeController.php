@@ -11,19 +11,16 @@ use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-use DutapodCompanion\Helper\WpPageResourceLoader as WpPageResourceLoader;
-use DutapodCompanion\Helper\WpPageFrontendDisplay as WpPageFrontendDisplay;
+use DutapodCompanion\Includes\Content\Shortcode\FrontPageFooter as FrontPageFooter;
 
-class WpPageDisplayController{
+class ShortcodeController{
+
     /** 1. Variables & constant for post properties */
 
     /** 2. Debug information */
     public Init $pluginInitiator;
     public PluginProperties $localProps;
     public PluginDebugHelper $localDebugger;
-
-    public WpPageResourceLoader $rscLoader;
-    public WpPageFrontendDisplay $displayHelper;
 
     public function __construct(){
         /** 1. Troubleshooting information */
@@ -54,17 +51,12 @@ class WpPageDisplayController{
      * - The constructor of any ResourceLoader or DisplayHelper will do the jobs
      */
     public function register(){
-        /** 1. Run the extra resource loader for WP Post type */
-        /** - This will load extra resources if matching the requirement (i.e specific post ID)*/
-        $this->rscLoader = new WpPageResourceLoader();
+        /** 1. Register the home page footer shortcode dutapod-home-page-footer */
+        $frontPageFooter = new FrontPageFooter();
+        
+        add_shortcode('dutapod-home_page_footer', [ $frontPageFooter, 'renderFrontPageFooter'] );
+        // $frontPageFooter->renderFrontPageFooter();
 
-        /** 2. Customize the output HTML of the post content */
-        /** - Add lazy load for specific HTML content */
-        $this->displayHelper = new WpPageFrontendDisplay();
     }//register
 
-
-    /** 3.2. Helper functions */
-
-}//WpPageDisplayController class definition
-
+}//ShortCodeController class definition
