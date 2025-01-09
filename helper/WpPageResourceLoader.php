@@ -123,7 +123,7 @@ class WpPageResourceLoader{
 
 
         add_action('wp_enqueue_scripts', function(){
-            if( is_front_page() && !is_admin() ){
+            if( ( is_front_page() || is_home() ) && !is_admin() ){
                 $this->enqueue_Extra_Resources_To_Front_Page();
             }
         });
