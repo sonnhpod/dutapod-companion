@@ -57,6 +57,8 @@ class ShortcodeController{
         add_shortcode('dutapod-home_page_footer', [ $frontPageFooter, 'renderFrontPageFooter'] );
         // $frontPageFooter->renderFrontPageFooter();
 
+        /** ... More shortcode to be registered */
+
     }//register
 
 }//ShortCodeController class definition

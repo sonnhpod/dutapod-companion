@@ -36,11 +36,17 @@ class WpPageResourceLoader{
     public PluginDebugHelper $localDebugger;
 
     /** 1.3. Resource path */
+    /** 1.3.1. Extra styles & scripts for all pages */
     public static $WP_PAGE_EXTRA_STYLES_PATH;
     public static $WP_PAGE_EXTRA_SCRIPTS_PATH;
 
+    /** 1.3.2. Extra styles & scripts for the front page */
     public static $WP_FRONTPAGE_STYLE_PATH;
     public static $WP_FRONTPAGE_SCRIPT_PATH;
+
+    /** 1.3.3. Extra styles & scripts for the test shortcode page */
+    public static $WP_TEST_SHORTCODE_PAGE_STYLE_PATH;
+    public static $WP_TEST_SHORTCODE_PAGE_SCRIPT_PATH;
 
     /** 2. Constructor */
     public function __construct(){
@@ -173,6 +179,9 @@ class WpPageResourceLoader{
 
     }//enqueue_Extra_Resources_To_Front_Page
 
+    /** 3.2. Load extra resources for the test shortcode page - slug "test-shortcode-page" */
+
+    /** .................... */
     /** 3.x (final) - load extra resources if general page */
 
 
