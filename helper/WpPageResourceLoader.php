@@ -117,29 +117,23 @@ class WpPageResourceLoader{
     /** 3.1. Enqueue extra resources for Front Page */
     public function load_Extra_Resources_If_Front_Page(){
 
-        // Add action OK
-        /**
-        * add_action('wp_enqueue_scripts', [$this,'register_Extra_Resources_To_Front_Page']);
-        * add_action('wp_enqueue_scripts', [$this,'enqueue_Extra_Resources_To_Front_Page']);
-        */
-        // $this->localDebugger->write_log_general( $_SERVER['REQUEST_URI'] );
-        // wp_reset_query();
-        // $this->localDebugger->write_log_general( is_front_page() );// false ???
-        // $this->localDebugger->write_log_general( is_home() );// false ???
-        // $this->localDebugger->write_log_simple( is_admin() ); // false
-
-        /**
-        if( is_front_page() && !is_admin() ){
-            add_action('wp_enqueue_scripts',[$this,'register_Extra_Resources_To_Front_Page']);
-            add_action('wp_enqueue_scripts',[$this,'enqueue_Extra_Resources_To_Front_Page']);
-        }
-        */
-
         /** Enqueue the extra styles and scripts if requesting the home page/frontpage. */
+        /** The conditional checking should be conducted at the hook "wp_enqueue_scripts" */
+        // $this->localDebugger->write_log_general( is_front_page() );// false
+
+
+        add_action('wp_enqueue_scripts', function(){
+            if( is_front_page() && !is_admin() ){
+                $this->enqueue_Extra_Resources_To_Front_Page();
+            }
+        });
+
+        /** - another OK method to check if the current requesting page is the home page
         if( '/' == $_SERVER['REQUEST_URI'] && !is_admin() ){
             add_action('wp_enqueue_scripts',[$this,'register_Extra_Resources_To_Front_Page']);
             add_action('wp_enqueue_scripts',[$this,'enqueue_Extra_Resources_To_Front_Page']);
         }
+        */      
 
     }//load_Extra_Resources_If_Front_Page
 
