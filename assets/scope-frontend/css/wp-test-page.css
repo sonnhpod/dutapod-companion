@@ -11,6 +11,8 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container {
   padding-left: 0;
   padding-right: 0;
   /** 2. Styling footer content */
+  /** 3. Dutapod bottom footer container - payment icons array */
+  /** 4. Dutapod site footer */
 }
 div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container {
   max-width: var(--wp--custom--ast-content-width-size);
@@ -73,12 +75,36 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-fo
   color: #000000;
   text-decoration: none;
 }
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container.dutapod-footer-bottom-container {
+  display: block;
+}
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container.dutapod-footer-bottom-container div.dutapod-footer__payment {
+  display: block;
+}
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container.dutapod-footer-bottom-container div.dutapod-footer__payment ul.list-payment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  list-style: none;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container.dutapod-footer-bottom-container div.dutapod-footer__payment ul.list-payment li.list-payment__item {
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
 div#dutapod-footer-outer-container.dutapod-footer-outer-container div.dutapod-site-footer {
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-top: 1em;
+  border-top: 1px solid #000000;
 }
 div#dutapod-footer-outer-container.dutapod-footer-outer-container div.dutapod-site-footer div.dutapod-footer-copyright {
   margin: 0 auto;

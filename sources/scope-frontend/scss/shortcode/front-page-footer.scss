@@ -91,6 +91,27 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
 
     }//#dutapod-footer-container
 
+    /** 3. Dutapod bottom footer container - payment icons array */
+    div#dutapod-footer-bottom-container{
+        border: 2px solid red;
+        display: block;
+
+        div.dutapod-footer__payment{
+            display: inline-block;
+
+            ul.list-payment{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end; // Arrange all the item in the end
+                list-style: none ;
+            }
+        }//div.dutapod-footer_payment
+
+    }//div#dutapod-footer-bottom-container.dutapod-footer-bottom-container
+    
+
+    /** 4. Dutapod site footer */
     div.dutapod-site-footer{
         display: flex;
         flex-direction: column;
@@ -106,3 +127,5 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
     }//footer.dutapod-site-footer
 
 }//div.dutapod-footer-outer-container
+
+

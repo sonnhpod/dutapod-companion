@@ -1,0 +1,131 @@
+div#dutapod-footer-outer-container.dutapod-footer-outer-container{
+    /** 1. Styling footer outer container */
+    max-width: 100% !important;
+    width: 100vw;
+    position:absolute;
+    left:0;
+    right:0;
+    // left: calc(-50vw + 50%);
+    border-top: 2px solid #000000;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    /** 2. Styling footer content */
+    div#dutapod-footer-container.dutapod-footer-container{
+        // max-width: 100%;
+        max-width: var(--wp--custom--ast-content-width-size);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;        
+
+        /** 1. Contact us section - 1st column */
+        div.contact-us-container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            div.info-item{
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+            }//div.info-item
+        }//div.contact-us-container
+
+        /** 2. Our company section - 2nd column */
+        div.our-company-container{
+            display: flex;
+            flex-direction: column;
+
+            ul.list-info-items{
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                margin-top: 0;
+                padding-left: 0;
+
+                li {
+                    display: block;
+                    float: left;
+                    padding-top: 0.5em;
+                    padding-bottom: 0.5em;
+
+                    a{
+                        color: #000000;
+                        text-decoration: none;
+                    }
+                }
+
+            }//ul.list-info-items
+
+        }//div.our-company-container
+
+        /** 3. Customer support section - 3rd column */
+        div.customer-support-container{
+            display: flex;
+            flex-direction: column;
+
+            ul.list-info-items{
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                margin-top: 0;
+                padding-left: 0;
+
+                li {
+                    display: block;
+                    float: left;
+                    padding-top: 0.5em;
+                    padding-bottom: 0.5em;
+
+                    a{
+                        color: #000000;
+                        text-decoration: none;
+                    }
+                }
+
+            }//ul.list-info-items
+
+        }//div.customer-support-container
+
+    }//#dutapod-footer-container
+
+    /** 3. Dutapod bottom footer container - payment icons array */
+    div.dutapod-footer-bottom-container{
+        border: 2px solid red;
+        display: block;
+
+        div.dutapod-footer__payment{
+            display: inline-block;
+
+            ul.list-payment{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end; // Arrange all the item in the end
+                list-style: none ;
+            }
+        }//div.dutapod-footer_payment
+
+    }//div#dutapod-footer-bottom-container.dutapod-footer-bottom-container
+    
+
+    /** 4. Dutapod site footer */
+    div.dutapod-site-footer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+
+        div.dutapod-footer-copyright{
+            margin:0 auto;
+            text-align: center;
+            display: inline-block;
+        }//div.dutapod-footer-copyright
+    }//footer.dutapod-site-footer
+
+}//div.dutapod-footer-outer-container
+
+

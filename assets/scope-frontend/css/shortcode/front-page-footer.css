@@ -1,17 +1,3 @@
-/** General stylings */
-section.dutapod-footer-container {
-  border-top: 2px solid #000000;
-  padding-top: 1em;
-}
-
-div#dutapod-testimonial-container {
-  border-top: 2px solid #000000;
-  padding-top: 1em;
-}
-
-/**************************************/
-/** Content styling */
-/** Footer section - injected by shortcode "dutapod-home_page_footer" **/
 div#dutapod-footer-outer-container.dutapod-footer-outer-container {
   /** 1. Styling footer outer container */
   max-width: 100% !important;
@@ -89,42 +75,29 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-fo
   color: #000000;
   text-decoration: none;
 }
-div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container.dutapod-footer-bottom-container {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container {
+  border: 2px solid red;
   display: block;
 }
-div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container.dutapod-footer-bottom-container div.dutapod-footer__payment {
-  display: block;
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container div.dutapod-footer__payment {
+  display: inline-block;
 }
-div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container.dutapod-footer-bottom-container div.dutapod-footer__payment ul.list-payment {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container div.dutapod-footer__payment ul.list-payment {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   list-style: none;
-  margin-left: 2em;
-  margin-right: 2em;
-}
-div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-bottom-container.dutapod-footer-bottom-container div.dutapod-footer__payment ul.list-payment li.list-payment__item {
-  padding-left: 0.2em;
-  padding-right: 0.2em;
 }
 div#dutapod-footer-outer-container.dutapod-footer-outer-container div.dutapod-site-footer {
-  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 1em;
-  border-top: 1px solid #000000;
 }
 div#dutapod-footer-outer-container.dutapod-footer-outer-container div.dutapod-site-footer div.dutapod-footer-copyright {
   margin: 0 auto;
   text-align: center;
   display: inline-block;
-}
-
-/** Hide the default footer of the Astra theem */
-footer#colophon.site-footer {
-  display: none !important;
 }

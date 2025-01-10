@@ -76,7 +76,7 @@ class WpPageResourceLoader{
     
         // 3.2. Load extra resource for specific pages: 
         $this->load_Extra_Resources_If_Front_Page();
-        $this->load_Extra_Resources_If_Test_Page();
+        $this->load_Extra_Resources_If_Test_Page(); // OK - temporary disable
     }//__construct 
 
     /** 2.2. Helper methods for constructor */
@@ -217,7 +217,7 @@ class WpPageResourceLoader{
 
         add_action('wp_enqueue_scripts', function(){
             if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
-                $this->enqueue_Extra_Resources_To_Front_Page();
+                $this->enqueue_Extra_Resources_To_Test_Page();
             }
         });
         

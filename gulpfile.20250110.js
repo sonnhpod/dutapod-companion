@@ -68,7 +68,7 @@ const resourcesInfo = {
         },
         frontend:{
             srcDir:'./sources/css/scope-frontend/',
-            srcListFile:'./sources/scope-frontend/scss/**/*.scss',
+            srcListFile:'./sources/scope-frontend/scss/*.scss',
             distDir:'./assets/scope-frontend/css/',
         }
     },

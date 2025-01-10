@@ -40,6 +40,7 @@
     "glob": "^11.0.0",
     "gulp-autoprefixer": "^9.0.0",
     "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-if": "^3.0.0",
     "gulp-notify": "^5.0.0",
@@ -56,20 +57,20 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "babel": {
-      "presets": [
-        "@babel/preset-env"
-      ]
-    },
-    "browserify": {
-      "transform": [
-        "browserify-shim"
-      ]
-    },
-    "browser": {
-      "jquery": "./node_modules/jquery/dist/jquery.js"
-    },
-    "browserify-shim": {
-      "jquery": "$"
-    },
-    "type": "module"
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": "$"
+  },
+  "type": "module"
 }
