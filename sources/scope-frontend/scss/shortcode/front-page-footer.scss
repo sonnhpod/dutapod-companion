@@ -19,7 +19,8 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
         margin-left: auto;
         margin-right: auto;
         margin-top: 1.5em;
-        margin-bottom: 1.5em;
+        margin-bottom: 1.5em;        
+        // border: 2px solid red;// For testing
 
         /** 1. Contact us section - 1st column */
         div.contact-us-container{
@@ -92,12 +93,12 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
     }//#dutapod-footer-container
 
     /** 3. Dutapod bottom footer container - payment icons array */
-    div#dutapod-footer-bottom-container{
-        border: 2px solid red;
+    div#dutapod-footer-bottom-container.dutapod-footer-bottom-container{
+        // border: 2px solid red;
         display: block;
 
         div.dutapod-footer__payment{
-            display: inline-block;
+            display: block;
 
             ul.list-payment{
                 display: flex;
@@ -105,7 +106,15 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
                 align-items: center;
                 justify-content: flex-end; // Arrange all the item in the end
                 list-style: none ;
-            }
+
+                margin-left:2em;
+                margin-right:2em;
+
+                li.list-payment__item{
+                    padding-left:0.2em;
+                    padding-right:0.2em;
+                }//li.list-payment__item
+            }//ul.list-payment
         }//div.dutapod-footer_payment
 
     }//div#dutapod-footer-bottom-container.dutapod-footer-bottom-container
@@ -113,11 +122,17 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
 
     /** 4. Dutapod site footer */
     div.dutapod-site-footer{
+        width: 100vw;
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+        padding-top: 1em;
+        border-top: 1px solid #000000;
 
         div.dutapod-footer-copyright{
             margin:0 auto;

@@ -64,7 +64,7 @@ class FrontPageFooter {
         ob_start();
 
         # Enqueue the corresponding separate CSS files for this shortcode
-        echo sprintf( '<link href="%s"></link>', self::$FRONT_PAGE_FOOTER_STYLE_PATH );
+        echo sprintf( '<link rel=\'stylesheet\' id=\'dutapod-home_page_footer-css\' href="%s"></link>', self::$FRONT_PAGE_FOOTER_STYLE_PATH );
 
         # Output the content of the shortcode
         require_once( self::$FRONT_PAGE_FOOTER_TEMPLATE_PATH );
