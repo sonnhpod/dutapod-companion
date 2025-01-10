@@ -26,6 +26,12 @@ class WpPageResourceLoader{
     const WP_FRONTPAGE_SCRIPT_FILENAME = 'dutapod-front-page.js';
     const WP_FRONTPAGE_SCRIPT_HANDLER = 'dutapod-front-page-script';
 
+    /** 1.1.3. Test page information */
+    const WP_TEST_PAGE_STYLE_FILENAME = 'wp-test-page.css';
+    const WP_TEST_PAGE_STYLE_HANDLER = 'wp-test-page-style';
+    const WP_TEST_PAGE_SCRIPT_FILENAME = 'wp-test-page.js';
+    const WP_TEST_PAGE_SCRIPT_HANDLER = 'wp-test-page-script';
+
     /** 1.1.2. Special pages to be used as condition */
     /** a. Post ID */
     const WP_PAGE_EXAMINED_LIST = [ 4079 ];
@@ -36,11 +42,17 @@ class WpPageResourceLoader{
     public PluginDebugHelper $localDebugger;
 
     /** 1.3. Resource path */
+    /** 1.3.1. Extra styles & scripts for all pages */
     public static $WP_PAGE_EXTRA_STYLES_PATH;
     public static $WP_PAGE_EXTRA_SCRIPTS_PATH;
 
+    /** 1.3.2. Extra styles & scripts for the front page */
     public static $WP_FRONTPAGE_STYLE_PATH;
     public static $WP_FRONTPAGE_SCRIPT_PATH;
+
+    /** 1.3.3. Extra styles & scripts for the test shortcode page */
+    public static $WP_TEST_PAGE_STYLE_PATH;
+    public static $WP_TEST_PAGE_SCRIPT_PATH;
 
     /** 2. Constructor */
     public function __construct(){
@@ -62,6 +74,7 @@ class WpPageResourceLoader{
         //add_action( 'the_post' , [$this,'load_Extra_Resources_If_Post_4079'] );//OK but not optimized    
         // Load extra resource if Front Page: 
         $this->load_Extra_Resources_If_Front_Page();
+        $this->load_Extra_Resources_If_Test_Page();
     }//__construct 
 
     /** 2.2. Helper methods for constructor */
@@ -77,6 +90,40 @@ class WpPageResourceLoader{
 
     public function setPageResourcesInfo(){
         /** 20240816 Load extra resources for a specific posts */
+        /** 1. Set the resources information for WordPress front page */
+        self::$WP_FRONTPAGE_STYLE_PATH = sprintf( 
+            '%s%s%s%s', 
+            PluginProperties::$PLUGIN_URL, 
+            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
+            PluginProperties::CSS_ROOT_DIR, 
+            self::WP_FRONTPAGE_STYLE_FILENAME
+        );
+        
+        self::$WP_FRONTPAGE_SCRIPT_PATH = sprintf( 
+            '%s%s%s%s', 
+            PluginProperties::$PLUGIN_URL, 
+            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
+            PluginProperties::JS_ROOT_DIR, 
+            self::WP_FRONTPAGE_SCRIPT_FILENAME
+        );
+
+        /** 2. Set the resources information for WordPress test page */
+        self::$WP_FRONTPAGE_STYLE_PATH = sprintf( 
+            '%s%s%s%s', 
+            PluginProperties::$PLUGIN_URL, 
+            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
+            PluginProperties::CSS_ROOT_DIR, 
+            self::WP_TEST_PAGE_STYLE_FILENAME
+        );
+        
+        self::$WP_FRONTPAGE_SCRIPT_PATH = sprintf( 
+            '%s%s%s%s', 
+            PluginProperties::$PLUGIN_URL, 
+            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
+            PluginProperties::JS_ROOT_DIR, 
+            self::WP_TEST_PAGE_SCRIPT_FILENAME
+        );
+
         /** Set the resources information - extra styles & scripts files for WP pages */
         self::$WP_PAGE_EXTRA_STYLES_PATH = sprintf( 
             '%s%s%s%s', 
@@ -94,22 +141,7 @@ class WpPageResourceLoader{
             self::WP_PAGE_EXTRA_SCRIPTS_FILENAME
         );
 
-        /** Set the resources information for WordPress front page */
-        self::$WP_FRONTPAGE_STYLE_PATH = sprintf( 
-            '%s%s%s%s', 
-            PluginProperties::$PLUGIN_URL, 
-            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
-            PluginProperties::CSS_ROOT_DIR, 
-            self::WP_FRONTPAGE_STYLE_FILENAME
-        );
         
-        self::$WP_FRONTPAGE_SCRIPT_PATH = sprintf( 
-            '%s%s%s%s', 
-            PluginProperties::$PLUGIN_URL, 
-            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
-            PluginProperties::JS_ROOT_DIR, 
-            self::WP_FRONTPAGE_SCRIPT_FILENAME
-        );
 
     }//setThemeResourcesInfo
 
@@ -173,6 +205,60 @@ class WpPageResourceLoader{
 
     }//enqueue_Extra_Resources_To_Front_Page
 
+    /** 3.2. Load extra resources for the test shortcode page - slug "test-page" */
+    public function load_Extra_Resources_If_Test_Page(){
+
+        /** Enqueue the extra styles and scripts if requesting the home page/frontpage. */
+        /** The conditional checking should be conducted at the hook "wp_enqueue_scripts" */
+        $this->localDebugger->write_log_general( $_SERVER['REQUEST_URI'] );// false
+
+
+        add_action('wp_enqueue_scripts', function(){
+            if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
+                $this->enqueue_Extra_Resources_To_Front_Page();
+            }
+        });
+        
+
+    }//load_Extra_Resources_If_Front_Page
+
+    public function register_Extra_Resources_To_Test_Page(){
+        /** 2. Enqueue extra styles & scripts  */
+        /** 2.1. Enqueue the custom styles */
+        wp_register_style( 
+            self::WP_TEST_PAGE_STYLE_HANDLER, 
+            self::$WP_TEST_PAGE_STYLE_PATH, 
+            [], '1.0.1', 'all'
+        );
+
+        /** 2.2. Enqueue the custom scripts */
+        wp_register_script( 
+            self::WP_TEST_PAGE_SCRIPT_HANDLER, 
+            self::$WP_TEST_PAGE_SCRIPT_PATH,
+            [], '1.0.1', true
+        );
+
+    }//enqueue_Extra_Resources_To_Front_Page
+
+    public function enqueue_Extra_Resources_To_Test_Page(){
+        /** 2. Enqueue extra styles & scripts  */
+        /** 2.1. Enqueue the custom styles */
+        wp_enqueue_style( 
+            self::WP_TEST_PAGE_STYLE_HANDLER, 
+            self::$WP_TEST_PAGE_STYLE_PATH, 
+            [], '1.0.1', 'all'
+        );
+
+        /** 2.2. Enqueue the custom scripts */
+        wp_enqueue_script( 
+            self::WP_TEST_PAGE_SCRIPT_HANDLER, 
+            self::$WP_TEST_PAGE_SCRIPT_PATH,
+            [], '1.0.1', true
+        );
+
+    }//enqueue_Extra_Resources_To_Front_Page
+
+    /** .................... */
     /** 3.x (final) - load extra resources if general page */
 
 
