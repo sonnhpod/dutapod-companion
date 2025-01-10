@@ -1,0 +1,81 @@
+
+/** 1. Styling footer outer container */
+div.dutapod-footer-outer-container{
+    width: 100%;
+    border-top: 2px solid #000000;
+
+}//div.dutapod-footer-outer-container
+
+
+/** 2. Styling footer content */
+div#dutapod-footer-container.dutapod-footer-container{
+
+    /** 1. Contact us section - 1st column */
+    div.contact-us-container{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        div.info-item{
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+        }//div.info-item
+    }//div.contact-us-container
+
+    /** 2. Our company section - 2nd column */
+    div.our-company-container{
+        display: flex;
+        flex-direction: column;
+
+        ul.list-info-items{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            margin-top: 0;
+            padding-left: 0;
+
+            li {
+                display: block;
+                float: left;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+
+                a{
+                    color: #000000;
+                    text-decoration: none;
+                }
+            }
+
+        }//ul.list-info-items
+
+    }//div.our-company-container
+
+    /** 3. Customer support section - 3rd column */
+    div.customer-support-container{
+        display: flex;
+        flex-direction: column;
+
+        ul.list-info-items{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            margin-top: 0;
+            padding-left: 0;
+
+            li {
+                display: block;
+                float: left;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+
+                a{
+                    color: #000000;
+                    text-decoration: none;
+                }
+            }
+
+        }//ul.list-info-items
+
+    }//div.customer-support-container
+
+}//#dutapod-footer-container
