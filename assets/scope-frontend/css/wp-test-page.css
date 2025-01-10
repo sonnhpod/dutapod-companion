@@ -73,3 +73,15 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-fo
   color: #000000;
   text-decoration: none;
 }
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div.dutapod-site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div.dutapod-site-footer div.dutapod-footer-copyright {
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+}

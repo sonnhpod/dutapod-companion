@@ -43,7 +43,7 @@ class FrontPageFooter {
         $this->localProps =  $this->pluginInitiator::$PLUGIN_PROPERTIES;
 
         /** 2. Define the front page footer template directory */
-        self::$FRONT_PAGE_FOOTER_TEMPLATE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_PATH.'includes/template/scope-frontend/page/front-page-footer.php';
+        self::$FRONT_PAGE_FOOTER_TEMPLATE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_PATH.'includes/template/scope-frontend/shortcode/front-page-footer.php';
     }//setLocalProperties
 
     /** 2.2.2. setup the custom debugger for plugin */ 
