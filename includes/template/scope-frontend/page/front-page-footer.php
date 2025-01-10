@@ -67,5 +67,10 @@
         </div><!--.row.inner-footer-container -->
         
     </div><!--#dutapod-footer-container -->
-
+    <div class="dutapod-site-footer">
+        <div class="dutapod-footer-copyright">
+            <p>Copyright © 2025 DUTA POD LAB | Powered by <a href="https://wpastra.com/" rel="nofollow noopener" target="_blank">Astra WordPress Theme</a></p>
+        </div>		
+    </div>
 </div><!--.dutapod-footer-outer-container -->
+

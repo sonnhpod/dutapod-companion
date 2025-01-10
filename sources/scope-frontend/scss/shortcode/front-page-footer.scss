@@ -1,20 +1,4 @@
 
-/** General stylings */
-section.dutapod-footer-container{
-    border-top: 2px solid #000000;
-    padding-top: 1em;
-}
-
-div#dutapod-testimonial-container{
-    border-top: 2px solid #000000;
-    padding-top: 1em;
-}
-
-/**************************************/
-/** Content styling */
-
-/** Footer section - injected by shortcode "dutapod-home_page_footer" **/
-
 
 div#dutapod-footer-outer-container.dutapod-footer-outer-container{
     /** 1. Styling footer outer container */
@@ -109,18 +93,6 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
 
     }//#dutapod-footer-container
 
-    div.dutapod-site-footer{
-        div.dutapod-footer-copyright{
-            margin:0 auto;
-        }//div.dutapod-footer-copyright
-    }//footer.dutapod-site-footer
-
 }//div.dutapod-footer-outer-container
 
 
-
-/** Hide the default footer of the Astra theem */
-
-footer#colophon.site-footer{
-    display: none !important;
-}

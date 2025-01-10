@@ -110,7 +110,7 @@ class WpPageResourceLoader{
         );
 
         /** 2. Set the resources information for WordPress test page */
-        self::$WP_FRONTPAGE_STYLE_PATH = sprintf( 
+        self::$WP_TEST_PAGE_STYLE_PATH = sprintf( 
             '%s%s%s%s', 
             PluginProperties::$PLUGIN_URL, 
             PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
@@ -118,7 +118,7 @@ class WpPageResourceLoader{
             self::WP_TEST_PAGE_STYLE_FILENAME
         );
         
-        self::$WP_FRONTPAGE_SCRIPT_PATH = sprintf( 
+        self::$WP_TEST_PAGE_SCRIPT_PATH = sprintf( 
             '%s%s%s%s', 
             PluginProperties::$PLUGIN_URL, 
             PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
@@ -271,7 +271,13 @@ class WpPageResourceLoader{
      
     public function load_CDN_Bootstrap_Resources(){
         add_action('wp_enqueue_scripts', function(){
+            // Enqueue Bootstrap for test page
             if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
+                $this->enqueue_CDN_Bootstrap_Resources();
+            }
+
+            // Enqueue Bootstrap for home page
+            if( ( is_front_page() || is_home() ) && !is_admin() ){
                 $this->enqueue_CDN_Bootstrap_Resources();
             }
         }, 1);
