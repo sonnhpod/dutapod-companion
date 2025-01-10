@@ -69,7 +69,7 @@
     </div><!--#dutapod-footer-container -->
 
     <div id="dutapod-footer-bottom-container" class="dutapod-footer-bottom-container row">
-        <div class="dutapod-footer__payment col-12 col-sm-4 offset-sm-8 col-md-4 offset-md-8 col-lg-4 offset-lg-8 col-xl-4 offset-xl-8">
+        <div class="dutapod-footer__payment col-12 col-sm-5 offset-sm-7 col-md-5 offset-md-7 col-lg-5 offset-lg-7 col-xl-5 offset-xl-7">
             <span class="visually-hidden">Payment methods</span>
             <ul class="list list-payment" role="list">
                 <li class="list-payment__item">
