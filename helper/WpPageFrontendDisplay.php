@@ -60,5 +60,7 @@ class WpPageFrontendDisplay{
         $this->localDebugger = $this->pluginInitiator::$PLUGIN_DEBUGGER;
     }//setLocalDebugger    
 
+    /** 3. Main operation of the page frontend display */
+
 
 }//WpPageFrontendDisplay class definition

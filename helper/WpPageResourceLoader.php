@@ -71,8 +71,10 @@ class WpPageResourceLoader{
 
         /** 3. Run the main functions */        
         /** Hook to the_post - right after the WP Query is executed */ 
-        //add_action( 'the_post' , [$this,'load_Extra_Resources_If_Post_4079'] );//OK but not optimized    
-        // Load extra resource if Front Page: 
+        // 3.1. Load libraries:
+        $this->load_CDN_Bootstrap_Resources();
+    
+        // 3.2. Load extra resource for specific pages: 
         $this->load_Extra_Resources_If_Front_Page();
         $this->load_Extra_Resources_If_Test_Page();
     }//__construct 
@@ -145,7 +147,7 @@ class WpPageResourceLoader{
 
     }//setThemeResourcesInfo
 
-    /** 3. Operational functions */
+    /** 3. Operational functions - load extra internal resources for pages */
     /** 3.1. Enqueue extra resources for Front Page */
     public function load_Extra_Resources_If_Front_Page(){
 
@@ -257,6 +259,39 @@ class WpPageResourceLoader{
         );
 
     }//enqueue_Extra_Resources_To_Front_Page
+
+    /** 4. Operational functions - load external resources for pages */
+    /** 4.1. Load Bootstrap framework from CND front page, test page, and all other page 
+     * https://getbootstrap.com/docs/5.3/getting-started/download/
+     * 
+     * - Applicable pages:
+     * + Front page
+     * + Test page
+    */
+     
+    public function load_CDN_Bootstrap_Resources(){
+        add_action('wp_enqueue_scripts', function(){
+            if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
+                $this->enqueue_CDN_Bootstrap_Resources();
+            }
+        });
+    }//load_CDN_Bootstrap_Resources
+
+    public function enqueue_CDN_Bootstrap_Resources(){
+        wp_enqueue_style( 
+            'bootstrap-cdn-min-css', 
+            "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css", 
+            [], '5.3.3', 'all'
+        );
+
+        /** 2.2. Enqueue the custom scripts */
+        wp_enqueue_script( 
+            'bootstrap-cdn-min-js', 
+            "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
+            [], '5.3.3', true
+        );
+    }//enqueue_CDN_Bootstrap_Resources
+
 
     /** .................... */
     /** 3.x (final) - load extra resources if general page */
