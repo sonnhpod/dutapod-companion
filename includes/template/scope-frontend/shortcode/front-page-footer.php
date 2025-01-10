@@ -3,7 +3,7 @@
     <div id="dutapod-footer-container" class="dutapod-footer-container">
         <div class="row inner-footer-container">
             <!--1. Contact us section - 1st column -->        
-            <div class="contact-us-container col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="contact-us-container col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <h3 class="block_heading">Contact Us</h3>
                 <div class="info-item address">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,7 @@
             </div><!--.contact-us-container-->
 
             <!-- 2. Our company section - 2nd column -->
-            <div class="our-company-container col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
+            <div class="our-company-container col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <h3 class="block_heading">Our Company</h3>
                 <ul class="list-info-items" >
                     <li>
@@ -44,7 +44,7 @@
             </div><!--.our-company-container-->
 
             <!-- 3. Customer support section - 3rd column -->
-            <div class="customer-support-container col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
+            <div class="customer-support-container col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <h3 class="block_heading">Customer Support</h3>
                 <ul class="list-info-items">
                     <li>
@@ -68,8 +68,8 @@
         
     </div><!--#dutapod-footer-container -->
 
-    <div id="dutapod-footer-bottom-container" class="dutapod-footer-bottom-container">
-        <div class="dutapod-footer__payment">
+    <div id="dutapod-footer-bottom-container" class="dutapod-footer-bottom-container row">
+        <div class="dutapod-footer__payment col-12 col-sm-4 offset-sm-8 col-md-4 offset-md-8 col-lg-4 offset-lg-8 col-xl-4 offset-xl-8">
             <span class="visually-hidden">Payment methods</span>
             <ul class="list list-payment" role="list">
                 <li class="list-payment__item">

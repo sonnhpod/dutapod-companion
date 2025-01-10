@@ -99,16 +99,22 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
 
         div.dutapod-footer__payment{
             display: block;
+            span{
+                width: 0;
+                display: none;
+            }
 
             ul.list-payment{
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                justify-content: flex-end; // Arrange all the item in the end
+                justify-content: flex-start; // Arrange all the item in the end
                 list-style: none ;
 
-                margin-left:2em;
-                margin-right:2em;
+                // margin-left:2em;
+                // margin-right:2em;
+                padding: 0 0.25em 0 0.25em;
+                margin: 0 0.25em 0 0.25em;
 
                 li.list-payment__item{
                     padding-left:0.2em;

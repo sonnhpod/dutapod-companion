@@ -47,7 +47,8 @@ class FrontPageFooter {
 
         /** 2. Define the front page footer template directory */
         self::$FRONT_PAGE_FOOTER_TEMPLATE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_PATH.'includes/template/scope-frontend/shortcode/front-page-footer.php';
-    
+        
+        /** Example of $PLUGIN_URL: http://vncslab.local.info/wp-content/plugins/vncslab-companion/ */
         self::$FRONT_PAGE_FOOTER_STYLE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_URL.'assets/scope-frontend/css/shortcode/front-page-footer.css';
     }//setLocalProperties
 
