@@ -210,7 +210,7 @@ class WpPageResourceLoader{
 
         /** Enqueue the extra styles and scripts if requesting the home page/frontpage. */
         /** The conditional checking should be conducted at the hook "wp_enqueue_scripts" */
-        $this->localDebugger->write_log_general( $_SERVER['REQUEST_URI'] );// false
+        //$this->localDebugger->write_log_general( $_SERVER['REQUEST_URI'] );// false
 
 
         add_action('wp_enqueue_scripts', function(){
