@@ -51,13 +51,8 @@ class WpPageResourceLoader{
     public static $WP_FRONTPAGE_SCRIPT_PATH;
 
     /** 1.3.3. Extra styles & scripts for the test shortcode page */
-<<<<<<< HEAD
     public static $WP_TEST_PAGE_STYLE_PATH;
     public static $WP_TEST_PAGE_SCRIPT_PATH;
-=======
-    public static $WP_TEST_SHORTCODE_PAGE_STYLE_PATH;
-    public static $WP_TEST_SHORTCODE_PAGE_SCRIPT_PATH;
->>>>>>> 710cbfd35810dd6147f7ebfc2263fc1fb9395e0f
 
     /** 2. Constructor */
     public function __construct(){
@@ -210,7 +205,6 @@ class WpPageResourceLoader{
 
     }//enqueue_Extra_Resources_To_Front_Page
 
-<<<<<<< HEAD
     /** 3.2. Load extra resources for the test shortcode page - slug "test-page" */
     public function load_Extra_Resources_If_Test_Page(){
 
@@ -263,9 +257,6 @@ class WpPageResourceLoader{
         );
 
     }//enqueue_Extra_Resources_To_Front_Page
-=======
-    /** 3.2. Load extra resources for the test shortcode page - slug "test-shortcode-page" */
->>>>>>> 710cbfd35810dd6147f7ebfc2263fc1fb9395e0f
 
     /** .................... */
     /** 3.x (final) - load extra resources if general page */
