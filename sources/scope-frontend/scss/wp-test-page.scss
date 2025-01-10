@@ -93,6 +93,19 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
 
     }//#dutapod-footer-container
 
-}//div.dutapod-footer-outer-container
+    div.dutapod-site-footer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
 
+        div.dutapod-footer-copyright{
+            margin:0 auto;
+            text-align: center;
+            display: inline-block;
+        }//div.dutapod-footer-copyright
+    }//footer.dutapod-site-footer
+
+}//div.dutapod-footer-outer-container
 
