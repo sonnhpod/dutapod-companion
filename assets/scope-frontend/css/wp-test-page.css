@@ -1,63 +1,75 @@
-/** 1. Styling footer outer container */
-div.dutapod-footer-outer-container {
-  width: 100%;
+div#dutapod-footer-outer-container.dutapod-footer-outer-container {
+  /** 1. Styling footer outer container */
+  max-width: 100% !important;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  right: 0;
   border-top: 2px solid #000000;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  /** 2. Styling footer content */
 }
-
-/** 2. Styling footer content */
-div#dutapod-footer-container.dutapod-footer-container {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container {
+  max-width: var(--wp--custom--ast-content-width-size);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
   /** 1. Contact us section - 1st column */
   /** 2. Our company section - 2nd column */
   /** 3. Customer support section - 3rd column */
 }
-div#dutapod-footer-container.dutapod-footer-container div.contact-us-container {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.contact-us-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-div#dutapod-footer-container.dutapod-footer-container div.contact-us-container div.info-item {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.contact-us-container div.info-item {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
-div#dutapod-footer-container.dutapod-footer-container div.our-company-container {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.our-company-container {
   display: flex;
   flex-direction: column;
 }
-div#dutapod-footer-container.dutapod-footer-container div.our-company-container ul.list-info-items {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.our-company-container ul.list-info-items {
   list-style: none;
   display: flex;
   flex-direction: column;
   margin-top: 0;
   padding-left: 0;
 }
-div#dutapod-footer-container.dutapod-footer-container div.our-company-container ul.list-info-items li {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.our-company-container ul.list-info-items li {
   display: block;
   float: left;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
-div#dutapod-footer-container.dutapod-footer-container div.our-company-container ul.list-info-items li a {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.our-company-container ul.list-info-items li a {
   color: #000000;
   text-decoration: none;
 }
-div#dutapod-footer-container.dutapod-footer-container div.customer-support-container {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.customer-support-container {
   display: flex;
   flex-direction: column;
 }
-div#dutapod-footer-container.dutapod-footer-container div.customer-support-container ul.list-info-items {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.customer-support-container ul.list-info-items {
   list-style: none;
   display: flex;
   flex-direction: column;
   margin-top: 0;
   padding-left: 0;
 }
-div#dutapod-footer-container.dutapod-footer-container div.customer-support-container ul.list-info-items li {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.customer-support-container ul.list-info-items li {
   display: block;
   float: left;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
-div#dutapod-footer-container.dutapod-footer-container div.customer-support-container ul.list-info-items li a {
+div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.customer-support-container ul.list-info-items li a {
   color: #000000;
   text-decoration: none;
 }

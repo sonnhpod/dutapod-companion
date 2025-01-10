@@ -1,5 +1,5 @@
 
-<div class="dutapod-footer-outer-container">
+<div id="dutapod-footer-outer-container" class="dutapod-footer-outer-container">
     <div id="dutapod-footer-container" class="dutapod-footer-container">
         <div class="row inner-footer-container">
             <!--1. Contact us section - 1st column -->        

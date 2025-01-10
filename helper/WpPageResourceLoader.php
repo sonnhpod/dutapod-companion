@@ -274,7 +274,7 @@ class WpPageResourceLoader{
             if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
                 $this->enqueue_CDN_Bootstrap_Resources();
             }
-        });
+        }, 1);
     }//load_CDN_Bootstrap_Resources
 
     public function enqueue_CDN_Bootstrap_Resources(){
