@@ -21,9 +21,11 @@ class FrontPageFooter {
     public PluginDebugHelper $localDebugger;
 
     const FRONT_PAGE_FOOTER_STYLE_NAME = 'front-page-footer.scss';
+    const FRONT_PAGE_FOOTER_SCRIPT_NAME = 'front-page-footer.js';
 
     public static $FRONT_PAGE_FOOTER_TEMPLATE_PATH;
     public static $FRONT_PAGE_FOOTER_STYLE_PATH;
+    public static $FRONT_PAGE_FOOTER_SCRIPT_PATH;
 
     public function __construct(){
         /** 1. Troubleshooting information */
@@ -50,6 +52,7 @@ class FrontPageFooter {
         
         /** Example of $PLUGIN_URL: http://vncslab.local.info/wp-content/plugins/vncslab-companion/ */
         self::$FRONT_PAGE_FOOTER_STYLE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_URL.'assets/scope-frontend/css/shortcode/front-page-footer.css';
+        self::$FRONT_PAGE_FOOTER_SCRIPT_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_URL.'assets/scope-frontend/js/shortcode/front-page-footer.js';
     }//setLocalProperties
 
     /** 2.2.2. setup the custom debugger for plugin */ 
@@ -69,6 +72,8 @@ class FrontPageFooter {
 
         # Output the content of the shortcode
         require_once( self::$FRONT_PAGE_FOOTER_TEMPLATE_PATH );
+
+        echo sprintf('<script src="%s" id="dutapod-home_page_footer-js"></script>', self::$FRONT_PAGE_FOOTER_SCRIPT_PATH);
 
         return ob_get_clean();
     }//renderFrontPageFooter

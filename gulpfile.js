@@ -217,6 +217,25 @@ function distribute_all_frontend_scripts( done ){
     done();
 };
 
+gulp.task( 'distribute-all-frontend-shortcode-scripts', distribute_all_frontend_shortcode_scripts );
+
+/** 3.2.1. Distribute all frontend JS ES 6 to vanilla JS */
+/** Need to specify each JS ES6 files manually */
+function distribute_all_frontend_shortcode_scripts( done ){
+
+    const shortcodeScriptSrcDir = './sources/scope-frontend/js/shortcode/';
+    const shortcodeScriptSrcListFile = './sources/scope-frontend/js/shortcode/*.js';
+    const shortcodeScriptSrcDistDir = './assets/scope-frontend/js/shortcode/';
+
+    distribute_all_modern_js_to_vanilla_js(
+        shortcodeScriptSrcDir,
+        shortcodeScriptSrcListFile,
+        shortcodeScriptSrcDistDir
+    );
+    
+    done();
+};
+
 /**=== 3.2-extra Helper functions Distribute all scripts files - JS ES6 to Vanilla JS === **/
 /** 1. Distribute a single modern JS file to vanilla JS file */
 function distribute_single_esnext_js_to_vanilla_js( jsSrcFileDir, jsSrcFileName, jsDistDir ){
@@ -265,7 +284,8 @@ gulp.task(
     'distribute-all-frontend-resources',
     gulp.series( 
         'distribute-all-frontend-styles', 
-        'distribute-all-frontend-scripts' 
+        'distribute-all-frontend-scripts',
+        'distribute-all-frontend-shortcode-scripts'
     )
 );
 
