@@ -76,7 +76,7 @@ class WpPageResourceLoader{
     
         // 3.2. Load extra resource for specific pages: 
         $this->load_Extra_Resources_If_Front_Page();
-        # $this->load_Extra_Resources_If_Test_Page(); // OK - temporary disable
+        $this->load_Extra_Resources_If_Test_Page(); // OK - temporary disable
     }//__construct 
 
     /** 2.2. Helper methods for constructor */
