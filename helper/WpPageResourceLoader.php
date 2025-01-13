@@ -298,6 +298,24 @@ class WpPageResourceLoader{
         );
     }//enqueue_CDN_Bootstrap_Resources
 
+    /** 4.2. Load Tailwind CSS framework for test page*/
+
+    public function enqueue_CDN_Tailwind_Resources(){
+        // wp_enqueue_style( 
+        //     'tailwind-cdn-min-css', 
+        //     "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css", 
+        //     [], '5.3.3', 'all'
+        // );
+
+        /** 2.2. Enqueue the custom scripts */
+        // wp_enqueue_script( 
+        //     'bootstrap-cdn-min-js', 
+        //     "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
+        //     [], '5.3.3', true
+        // );
+    }//enqueue_CDN_Bootstrap_Resources
+
+
 
     /** .................... */
     /** 3.x (final) - load extra resources if general page */

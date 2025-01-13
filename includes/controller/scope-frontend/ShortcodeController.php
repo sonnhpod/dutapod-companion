@@ -11,7 +11,9 @@ use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
+# Custom shortcode created from this plugin
 use DutapodCompanion\Includes\Content\Shortcode\FrontPageFooter as FrontPageFooter;
+use DutapodCompanion\Includes\Content\Shortcode\TestContent as TestContent;
 
 class ShortcodeController{
 
@@ -54,10 +56,13 @@ class ShortcodeController{
         /** 1. Register the home page footer shortcode dutapod-home-page-footer */
         $frontPageFooter = new FrontPageFooter();
         
-        add_shortcode('dutapod-home_page_footer', [ $frontPageFooter, 'renderFrontPageFooter'] );
+        add_shortcode('dutapod-home_page_footer', [ $frontPageFooter, 'renderFrontPageFooterShortcode'] );
         // $frontPageFooter->renderFrontPageFooter();
 
+        /** n. Test Content shortcode*/
+        $testContent = new TestContent();
         /** ... More shortcode to be registered */
+        add_shortcode('dutapod-test_content', [ $frontPageFooter, 'renderTestContentShortcode'] );
 
     }//register
 

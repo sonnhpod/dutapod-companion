@@ -11,21 +11,21 @@ use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-class FrontPageFooter {
+class TestContent{
 
-    /** 1. Variables & constant for post properties */
+/** 1. Variables & constant for post properties */
 
     /** 2. Debug information */
     public Init $pluginInitiator;
     public PluginProperties $localProps;
     public PluginDebugHelper $localDebugger;
 
-    const FRONT_PAGE_FOOTER_STYLE_NAME = 'front-page-footer.scss';
-    const FRONT_PAGE_FOOTER_SCRIPT_NAME = 'front-page-footer.js';
+    const TEST_CONTENT_STYLE_NAME = 'test-content.scss';
+    const TEST_CONTENT_SCRIPT_NAME = 'test-content.js';
 
-    public static $FRONT_PAGE_FOOTER_TEMPLATE_PATH;
-    public static $FRONT_PAGE_FOOTER_STYLE_PATH;
-    public static $FRONT_PAGE_FOOTER_SCRIPT_PATH;
+    public static $TEST_CONTENT_TEMPLATE_PATH;
+    public static $TEST_CONTENT_STYLE_PATH;
+    public static $TEST_CONTENT_SCRIPT_PATH;
 
     public function __construct(){
         /** 1. Troubleshooting information */
@@ -48,11 +48,11 @@ class FrontPageFooter {
         $this->localProps =  $this->pluginInitiator::$PLUGIN_PROPERTIES;
 
         /** 2. Define the front page footer template directory */
-        self::$FRONT_PAGE_FOOTER_TEMPLATE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_PATH.'includes/template/scope-frontend/shortcode/front-page-footer.php';
+        self::$TEST_CONTENT_TEMPLATE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_PATH.'includes/template/scope-frontend/shortcode/test-content.php';
         
         /** Example of $PLUGIN_URL: http://vncslab.local.info/wp-content/plugins/vncslab-companion/ */
-        self::$FRONT_PAGE_FOOTER_STYLE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_URL.'assets/scope-frontend/css/shortcode/front-page-footer.css';
-        self::$FRONT_PAGE_FOOTER_SCRIPT_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_URL.'assets/scope-frontend/js/shortcode/front-page-footer.js';
+        self::$TEST_CONTENT_STYLE_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_URL.'assets/scope-frontend/css/shortcode/test-content.css';
+        self::$TEST_CONTENT_SCRIPT_PATH = $this->pluginInitiator::$PLUGIN_PROPERTIES::$PLUGIN_URL.'assets/scope-frontend/js/shortcode/test-content.js';
     }//setLocalProperties
 
     /** 2.2.2. setup the custom debugger for plugin */ 
@@ -64,18 +64,19 @@ class FrontPageFooter {
 
 
     /** 3. Main operational functions */
-    public function renderFrontPageFooterShortcode(){
+    public function renderTestContentShortcode(){
         ob_start();
 
         # Enqueue the corresponding separate CSS files for this shortcode
-        echo sprintf( '<link rel=\'stylesheet\' id=\'dutapod-home_page_footer-css\' href="%s"></link>', self::$FRONT_PAGE_FOOTER_STYLE_PATH );
+        echo sprintf( '<link rel=\'stylesheet\' id=\'dutapod-test_content-css\' href="%s"></link>', self::$TEST_CONTENT_STYLE_PATH );
 
         # Output the content of the shortcode
-        require_once( self::$FRONT_PAGE_FOOTER_TEMPLATE_PATH );
+        require_once( self::$TEST_CONTENT_TEMPLATE_PATH );
 
-        echo sprintf('<script src="%s" id="dutapod-home_page_footer-js"></script>', self::$FRONT_PAGE_FOOTER_SCRIPT_PATH);
+        echo sprintf('<script src="%s" id="dutapod-test_content-js"></script>', self::$TEST_CONTENT_SCRIPT_PATH);
 
         return ob_get_clean();
     }//renderFrontPageFooter
 
-}//FrontPageFooter class definition
+
+}//TestContent
