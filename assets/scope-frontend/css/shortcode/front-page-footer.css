@@ -38,10 +38,10 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-fo
   justify-content: flex-start;
 }
 div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.contact-us-container div.info-item span {
-  padding-left: 0.25em;
+  padding-left: 0.5em;
 }
 div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.contact-us-container div.info-item a {
-  padding-left: 0.25em;
+  padding-left: 0.5em;
 }
 div#dutapod-footer-outer-container.dutapod-footer-outer-container div#dutapod-footer-container.dutapod-footer-container div.our-company-container {
   display: flex;

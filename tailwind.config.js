@@ -2,10 +2,7 @@
 export default {
   content: [
     './**/*.{html,js,php}'
-  ],
-  safelist: [
-    'grid', 'grid-cols-12', 'col-span-3', 'col-span-6', 'col-start-9'
-  ],
+  ],  
   theme: {
     extend: {},
   },
@@ -21,3 +18,8 @@ export default {
     './sources/scope-frontend/*.scss',
     './sources/scope-frontend/** '/*.scss'
 */
+
+/** Specify safe list if not compile all tailwindcss library : 
+safelist: [
+    'grid', 'grid-cols-12', 'col-span-3', 'col-span-6', 'col-start-9'
+], */
