@@ -31,6 +31,18 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
             div.info-item{
                 padding-top: 0.5em;
                 padding-bottom: 0.5em;
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: flex-start;
+
+                span {
+                    padding-left: 0.25em;
+                }
+
+                a {
+                    padding-left: 0.25em;
+                }
             }//div.info-item
         }//div.contact-us-container
 
@@ -97,31 +109,35 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
         // border: 2px solid red;
         display: block;
 
-        div.dutapod-footer__payment{
-            display: block;
-            span{
-                width: 0;
-                display: none;
-            }
+        div.dutapod-footer-bottom-inner-container{
 
-            ul.list-payment{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start; // Arrange all the item in the end
-                list-style: none ;
+            div.dutapod-footer__payment{
+                display: block;
+                span{
+                    width: 0;
+                    display: none;
+                }
+    
+                ul.list-payment{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start; // Arrange all the item in the end
+                    list-style: none ;
+    
+                    // margin-left:2em;
+                    // margin-right:2em;
+                    padding: 0 0.25em 0 0.25em;
+                    margin: 0 0.25em 0 0.25em;
+    
+                    li.list-payment__item{
+                        padding-left:0.2em;
+                        padding-right:0.2em;
+                    }//li.list-payment__item
+                }//ul.list-payment
+            }//div.dutapod-footer_payment
 
-                // margin-left:2em;
-                // margin-right:2em;
-                padding: 0 0.25em 0 0.25em;
-                margin: 0 0.25em 0 0.25em;
-
-                li.list-payment__item{
-                    padding-left:0.2em;
-                    padding-right:0.2em;
-                }//li.list-payment__item
-            }//ul.list-payment
-        }//div.dutapod-footer_payment
+        }//div.dutapod-footer-bottom-inner-container        
 
     }//div#dutapod-footer-bottom-container.dutapod-footer-bottom-container
     

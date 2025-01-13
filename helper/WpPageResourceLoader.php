@@ -83,7 +83,7 @@ class WpPageResourceLoader{
         /** 3. Run the main functions */        
         /** Hook to the_post - right after the WP Query is executed */ 
         // 3.1. Load libraries:
-        $this->load_CDN_Bootstrap_Resources();
+        // $this->load_CDN_Bootstrap_Resources(); // OK = temporary disable
     
         // 3.2. Load extra resource for specific pages: 
         $this->load_Extra_Resources_If_Front_Page();
@@ -178,6 +178,10 @@ class WpPageResourceLoader{
 
         add_action('wp_enqueue_scripts', function(){
             if( ( is_front_page() || is_home() ) && !is_admin() ){
+                // Enqueue Tailwind library
+                $this->enqueue_Tailwindcss_Resources();
+
+                // Enqueue custom CSS
                 $this->enqueue_Extra_Resources_To_Front_Page();
             }
         });
@@ -240,9 +244,10 @@ class WpPageResourceLoader{
                 // Enqueue CDN tailwind library
                 $this->enqueue_Tailwindcss_Resources();
                 // Enqueue extra resources
-                $this->enqueue_Extra_Resources_To_Test_Page();
-                
+                $this->enqueue_Extra_Resources_To_Test_Page();                
             }
+
+            
         });
         
 
@@ -348,11 +353,11 @@ class WpPageResourceLoader{
             }
 
             // Enqueue Bootstrap for home page
-            // if( ( is_front_page() || is_home() ) && !is_admin() ){
-            //     $this->enqueue_CDN_Bootstrap_Resources();
-            // }
+            if( ( is_front_page() || is_home() ) && !is_admin() ){
+                 $this->enqueue_CDN_Bootstrap_Resources();
+            }
         }, 1);
-    }//load_CDN_Bootstrap_Resources
+    }//load_CDN_Tailwind_Resources
 
     public function enqueue_CDN_Tailwind_Resources(){
         wp_enqueue_style( 
