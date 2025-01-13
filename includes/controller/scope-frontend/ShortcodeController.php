@@ -62,7 +62,7 @@ class ShortcodeController{
         /** n. Test Content shortcode*/
         $testContent = new TestContent();
         /** ... More shortcode to be registered */
-        add_shortcode('dutapod-test_content', [ $frontPageFooter, 'renderTestContentShortcode'] );
+        add_shortcode('dutapod-test_content', [ $testContent, 'renderTestContentShortcode'] );
 
     }//register
 

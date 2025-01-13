@@ -1,5 +1,5 @@
 /**
- * Package: vncslab-companion
+ * Package: dutapod-companion
  * Author: Leon Nguyen (sonnh2109@gmail.com)
 */
 
@@ -19,7 +19,8 @@ import gulpSassInstance from 'gulp-sass';
 var gulpSass = gulpSassInstance( sass );
 
 import gulpRenamer from 'gulp-rename';
-import autoPrefixer from 'gulp-autoprefixer';
+import gulpAutoPrefixer from 'gulp-autoprefixer';
+import autoPrefixer from 'autoprefixer';
 import sourceMaps from 'gulp-sourcemaps';
 import browserify from 'browserify';
 import babelify from 'babelify';
@@ -31,7 +32,13 @@ import vinylSourceStream from 'vinyl-source-stream';
 import * as glob from 'glob';
 // var glob = require('glob');
 
+// Tailwind variables
+import gulpPostCSS from 'gulp-postcss';
+import tailwindCSS from 'tailwindcss';
+
+// 
 import browserSyncInstance from 'browser-sync';
+
 var browserSync = browserSyncInstance.create();
 var browserReloader = browserSync.reload();
 
@@ -67,7 +74,7 @@ const resourcesInfo = {
             distDir:'./assets/scope-editor/css/',
         },
         frontend:{
-            srcDir:'./sources/css/scope-frontend/',
+            srcDir:'./sources/scope-frontend/scss/',
             srcListFile:'./sources/scope-frontend/scss/**/*.scss',
             distDir:'./assets/scope-frontend/css/',
         }
@@ -106,7 +113,38 @@ const resourcesInfo = {
 
 gulp.task( 'distribute-all-frontend-styles', distribute_all_frontend_styles );
 
-/**=== 3.1.1. Distribute all styles files for frontend display === **/
+/**=== 3.1.1. Distribute all prelib styles files for frontend display === **/
+
+gulp.task('distribute-prelib-tailwindcss-styles', function( done ){
+    
+    let srcStyleFile = './sources/scope-prelib/scss/tailwindcss-full.scss';
+    let distStyleDir = './assets/scope-prelib/css/';    
+
+    distribute_prelib_tailwind_styles( srcStyleFile, distStyleDir );
+
+    done();
+});
+
+/** Can use to distribute any style file with @tailwind base, components directives */
+function distribute_prelib_tailwind_styles(srcStyleFile, distStyleDir){
+    return gulp.src( srcStyleFile )
+        .pipe( gulpPlumber() )
+        .pipe( sourceMaps.init() )
+        .pipe(
+            gulpSass(
+                {
+                    includePath:['node_modules/bootstrap/scss'],
+                    errorLogToConsole: true
+                }
+            )
+            .on( 'error', console.error.bind( console ) )
+        )
+        .pipe( gulpPostCSS( [ tailwindCSS() , autoPrefixer( { cascade: false } ) ] ) )        
+        .pipe( gulp.dest( distStyleDir ) )
+        .pipe( browserSync.stream() );
+}
+
+/**=== 3.1.2. Distribute all styles files for frontend display === **/
 
 function distribute_all_frontend_styles( done ){
     /** 1. Distribute all frontend display SCSS to CSS in beauty format */
@@ -117,6 +155,7 @@ function distribute_all_frontend_styles( done ){
 
     done();
 };//distribute_all_frontend_styles
+
 
 /**=== 3.1-extra Helper functions Distribute all styles files - SCSS to CSS === **/
 /** 1. Distribute all SCSS to CSS */
@@ -137,7 +176,7 @@ function distribute_all_scss_to_css_beauty_format( scssSourceDir, cssDistDir){
             .on( 'error', console.error.bind( console ) )
         )
         .pipe(
-            autoPrefixer( { cascade: false } )
+            gulpAutoPrefixer( { cascade: false } )
         )
         .pipe( gulp.dest( cssDistDir ) )
         .pipe( browserSync.stream() );
@@ -193,7 +232,7 @@ function distribute_all_scss_to_css_minified_format( scssSourceDir, cssDistDir )
             .on( 'error', console.error.bind( console ) )
         )
         .pipe(
-            autoPrefixer( { cascasde: false } )
+            gulpAutoPrefixer( { cascasde: false } )
         )
         .pipe( gulpRenamer( { suffix: '.min' } ) )
         .pipe( gulp.dest( cssDistDir ) )
@@ -283,6 +322,7 @@ function distribute_all_modern_js_to_vanilla_js( jsSrcFileDir, srcListFile, jsDi
 gulp.task(
     'distribute-all-frontend-resources',
     gulp.series( 
+        'distribute-prelib-tailwindcss-styles',
         'distribute-all-frontend-styles', 
         'distribute-all-frontend-scripts',
         'distribute-all-frontend-shortcode-scripts'

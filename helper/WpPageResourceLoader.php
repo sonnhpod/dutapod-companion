@@ -13,7 +13,9 @@ use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 class WpPageResourceLoader{
 
     /** 1. Variable declarations */
-    /** 1.1. Constant */
+    /** Constant */
+    
+    /** 1.1. Pages, posts data */
     /** 1.1.1. Resources information */
     const WP_PAGE_EXTRA_STYLES_FILENAME = 'wp-page-extra-styles.css';
     const WP_PAGE_EXTRA_STYLES_HANDLER = 'dutapod-wp-post-extra-styles';
@@ -32,6 +34,11 @@ class WpPageResourceLoader{
     const WP_TEST_PAGE_SCRIPT_FILENAME = 'wp-test-page.js';
     const WP_TEST_PAGE_SCRIPT_HANDLER = 'wp-test-page-script';
 
+    /** 1.2. Libraries */
+    /** 1.2. TailwindCSS - build locally at WordPress plugin */
+    const TAILWINDCSS_STYLE_FILENAME = 'tailwindcss-full.css';
+    const TAILWINDCSS_STYLE_HANDLER = 'prelib-tailwindcss-style';
+
     /** 1.1.2. Special pages to be used as condition */
     /** a. Post ID */
     const WP_PAGE_EXAMINED_LIST = [ 4079 ];
@@ -42,6 +49,7 @@ class WpPageResourceLoader{
     public PluginDebugHelper $localDebugger;
 
     /** 1.3. Resource path */
+    /** 1.3. Resources path - Pages, posts data */
     /** 1.3.1. Extra styles & scripts for all pages */
     public static $WP_PAGE_EXTRA_STYLES_PATH;
     public static $WP_PAGE_EXTRA_SCRIPTS_PATH;
@@ -53,6 +61,9 @@ class WpPageResourceLoader{
     /** 1.3.3. Extra styles & scripts for the test shortcode page */
     public static $WP_TEST_PAGE_STYLE_PATH;
     public static $WP_TEST_PAGE_SCRIPT_PATH;
+
+    /** 1.4. Resources path - Libraries */
+    public static $TAILWINDCSS_STYLE_PATH;
 
     /** 2. Constructor */
     public function __construct(){
@@ -92,7 +103,16 @@ class WpPageResourceLoader{
 
     public function setPageResourcesInfo(){
         /** 20240816 Load extra resources for a specific posts */
-        /** 1. Set the resources information for WordPress front page */
+        /** 1. Set resources information for the library */
+        self::$TAILWINDCSS_STYLE_PATH = sprintf( 
+            '%s%s%s%s', 
+            PluginProperties::$PLUGIN_URL, 
+            PluginProperties::RESOURCES_PRELIB_ROOT_DIR,
+            PluginProperties::CSS_ROOT_DIR, 
+            self::TAILWINDCSS_STYLE_FILENAME
+        );
+
+        /** 2. Set the resources information for WordPress front page */
         self::$WP_FRONTPAGE_STYLE_PATH = sprintf( 
             '%s%s%s%s', 
             PluginProperties::$PLUGIN_URL, 
@@ -217,7 +237,11 @@ class WpPageResourceLoader{
 
         add_action('wp_enqueue_scripts', function(){
             if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
+                // Enqueue CDN tailwind library
+                $this->enqueue_Tailwindcss_Resources();
+                // Enqueue extra resources
                 $this->enqueue_Extra_Resources_To_Test_Page();
+                
             }
         });
         
@@ -298,22 +322,52 @@ class WpPageResourceLoader{
         );
     }//enqueue_CDN_Bootstrap_Resources
 
-    /** 4.2. Load Tailwind CSS framework for test page*/
-
-    public function enqueue_CDN_Tailwind_Resources(){
-        // wp_enqueue_style( 
-        //     'tailwind-cdn-min-css', 
-        //     "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css", 
-        //     [], '5.3.3', 'all'
-        // );
+    /** 4.2. Load Tailwind CSS framework for test page */
+    /** 4.2.1. Enqueue TailwindCSS library built locally on the WordPress plugin */
+    public function enqueue_Tailwindcss_Resources(){
+        /** 2.1. Enqueue the custom styles */
+        wp_enqueue_style( 
+            self::TAILWINDCSS_STYLE_HANDLER, 
+            self::$TAILWINDCSS_STYLE_PATH, 
+            [], '3.4.17', 'all'
+        );
 
         /** 2.2. Enqueue the custom scripts */
         // wp_enqueue_script( 
-        //     'bootstrap-cdn-min-js', 
-        //     "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
-        //     [], '5.3.3', true
+        //     self::TAILWINDCSS_SCRIPT_HANDLER, 
+        //     self::$TAILWINDCSS_SCRIPT_PATH,
+        //     [], '1.0.1', true
         // );
-    }//enqueue_CDN_Bootstrap_Resources
+    }//enqueue_Tailwindcss_Resources
+
+    public function load_CDN_Tailwind_Resources(){
+        add_action('wp_enqueue_scripts', function(){
+            // Enqueue Bootstrap for test page
+            if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
+                $this->enqueue_CDN_Tailwind_Resources();
+            }
+
+            // Enqueue Bootstrap for home page
+            // if( ( is_front_page() || is_home() ) && !is_admin() ){
+            //     $this->enqueue_CDN_Bootstrap_Resources();
+            // }
+        }, 1);
+    }//load_CDN_Bootstrap_Resources
+
+    public function enqueue_CDN_Tailwind_Resources(){
+        wp_enqueue_style( 
+            'tailwind-cdn-min-css', 
+            "https://cdn.jsdelivr.net/npm/tailwindcss@3.4.17/base.min.css", 
+            [], '3.4.17', 'all'
+        );
+
+        /** 2.2. Enqueue the custom scripts */
+        wp_enqueue_script( 
+            'bootstrap-cdn-min-js', 
+            "https://cdn.jsdelivr.net/npm/tailwindcss@3.4.17/lib/index.min.js",
+            [], '3.4.117', true
+        );
+    }//enqueue_CDN_Tailwind_Resources
 
 
 
