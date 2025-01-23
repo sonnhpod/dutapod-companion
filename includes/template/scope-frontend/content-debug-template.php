@@ -34,7 +34,7 @@ $pluginDebugger = Init::$FRONTEND_INSTANCES_LIST[ PluginDebugHelper::class ];
 
 <!-- 2. Displaying the debug page body - content that need to be debug -->
 
-<div id="body-primary" class="dutapod-component-content-area">
+<main id="body-primary" class="dutapod-component-content-area">
 
     <div id="dutapod-custom-content-wrapper-id" class="dutapod-custom-content-wrapper">
         <h3>This is the dutapod-COMPANION custom content header </h3>
@@ -57,7 +57,7 @@ $pluginDebugger = Init::$FRONTEND_INSTANCES_LIST[ PluginDebugHelper::class ];
 
     <p>========== End of debugging area ================== </p>
 
-</div><!-- #body-primary -->
+</main><!-- #body-primary -->
 
 
 <!-- 3. Displaying the debug page template footer -->

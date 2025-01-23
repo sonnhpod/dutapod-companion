@@ -37,6 +37,52 @@ div#ast-desktop-header{
     }//div.ast-main-header-wrap
 }//div#ast-desktop-header
 
+/***************************************************************/
+/** Main content of the home page */
+
+article.page{
+
+    
+    div.entry-content{
+
+        /** 1. Hero section  */
+        div.hero-section-image-container.wp-block-cover{
+
+            /** a. cover element */
+            span.wp-block-cover__background{
+                z-index: 2;
+            }//span.wp-block-cover__background
+
+            /** b. hero images */
+            img.wp-block-cover__image-background{
+                z-index: 1;
+            }//img.wp-block-cover__image-background
+
+            /** c. Image caption container */
+            div.wp-block-cover__inner-container{
+                display: block;
+                // Centrailize the hero section caption container
+                margin: 0 auto;
+                z-index: 10;
+
+                div.hero-section-caption-container{
+                    z-index: 11;
+
+                    > * {
+                        z-index: 12;
+                    }
+
+                    
+                }//div.hero-section-caption-container
+            }//div.wp-block-cover__inner-container
+        }//div.wp-block-cover
+
+
+    }//div.entry-content
+
+}//article.page
+
+
 
 /**************************************/
 /** Content styling */
@@ -186,7 +232,6 @@ div#dutapod-footer-outer-container.dutapod-footer-outer-container{
     }//footer.dutapod-site-footer
 
 }//div.dutapod-footer-outer-container
-
 
 
 

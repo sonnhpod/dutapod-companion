@@ -27,7 +27,7 @@ $pluginProperties = Init::$FRONTEND_INSTANCES_LIST[ PluginProperties::class ];
 
 <!-- 2. Displaying the debug page body - content that need to be debug -->
 
-<div id="body-primary" class="dutapod-component-content-area">
+<main id="body-primary" class="dutapod-component-content-area">
 
     <h2> The Custom Page of dutapod-companion plugin - generated from "DUTAPOD Custom Template" </h2>
 
@@ -41,7 +41,7 @@ $pluginProperties = Init::$FRONTEND_INSTANCES_LIST[ PluginProperties::class ];
         <p> Easy learn, Easy earn </p>
         <p> Try your best to overcome any difficulty in your life to get thing we want. We only live once.  </p>
     </div><!--div#dutapod-content-wrapper-id-->
-</div><!-- #body-primary -->
+</main><!-- #body-primary -->
 
 
 <!-- 3. Displaying the debug page template footer -->

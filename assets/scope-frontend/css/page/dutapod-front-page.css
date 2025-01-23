@@ -16,6 +16,34 @@ div#ast-desktop-header div.ast-main-header-wrap div.ast-primary-header-bar.ast-p
   height: auto;
 }
 
+/***************************************************************/
+/** Main content of the home page */
+article.page div.entry-content {
+  /** 1. Hero section  */
+}
+article.page div.entry-content div.hero-section-image-container.wp-block-cover {
+  /** a. cover element */
+  /** b. hero images */
+  /** c. Image caption container */
+}
+article.page div.entry-content div.hero-section-image-container.wp-block-cover span.wp-block-cover__background {
+  z-index: 2;
+}
+article.page div.entry-content div.hero-section-image-container.wp-block-cover img.wp-block-cover__image-background {
+  z-index: 1;
+}
+article.page div.entry-content div.hero-section-image-container.wp-block-cover div.wp-block-cover__inner-container {
+  display: block;
+  margin: 0 auto;
+  z-index: 10;
+}
+article.page div.entry-content div.hero-section-image-container.wp-block-cover div.wp-block-cover__inner-container div.hero-section-caption-container {
+  z-index: 11;
+}
+article.page div.entry-content div.hero-section-image-container.wp-block-cover div.wp-block-cover__inner-container div.hero-section-caption-container > * {
+  z-index: 12;
+}
+
 /**************************************/
 /** Content styling */
 /** Footer section - injected by shortcode "dutapod-home_page_footer" **/
