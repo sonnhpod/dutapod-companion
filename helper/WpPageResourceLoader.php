@@ -125,7 +125,7 @@ class WpPageResourceLoader{
             '%s%s%s%s', 
             PluginProperties::$PLUGIN_URL, 
             PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
-            PluginProperties::JS_ROOT_DIR.'post/', 
+            PluginProperties::JS_ROOT_DIR.'page/', 
             self::WP_FRONTPAGE_SCRIPT_FILENAME
         );
 
