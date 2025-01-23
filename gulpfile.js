@@ -244,6 +244,7 @@ function distribute_all_scss_to_css_minified_format( scssSourceDir, cssDistDir )
 gulp.task( 'distribute-all-frontend-scripts', distribute_all_frontend_scripts );
 
 /** 3.2.1. Distribute all frontend JS ES 6 to vanilla JS */
+/** 3.2.1.1. Distribute all frontend JS ES 6 to vanilla JS in general JS directory */
 /** Need to specify each JS ES6 files manually */
 function distribute_all_frontend_scripts( done ){
 
@@ -251,6 +252,45 @@ function distribute_all_frontend_scripts( done ){
         resourcesInfo.scripts.frontend.srcDir,
         resourcesInfo.scripts.frontend.srcListFile,
         resourcesInfo.scripts.frontend.distDir
+    );
+    
+    done();
+};
+
+gulp.task( 'distribute-all-frontend-scripts-page', distribute_all_frontend_scripts_page );
+
+/** 3.2.1.2. Distribute all frontend JS ES 6 to vanilla JS in js/page */
+function distribute_all_frontend_scripts_page( done ){
+
+    const pageScriptSrcDir = './sources/scope-frontend/js/page/';
+    const pageScriptSrcListFile = './sources/scope-frontend/js/page/*.js';
+    const pageScriptSrcDistDir = './assets/scope-frontend/js/page/';
+
+    distribute_all_modern_js_to_vanilla_js(
+        pageScriptSrcDir,
+        pageScriptSrcListFile,
+        pageScriptSrcDistDir
+    );
+    
+    done();
+};
+
+
+/** 3.2.1.3. Distribute all frontend JS ES 6 to vanilla JS in js/post */
+gulp.task( 'distribute-all-frontend-scripts-post', distribute_all_frontend_scripts_post );
+
+/** 3.2.1. Distribute all frontend JS ES 6 to vanilla JS */
+/** Need to specify each JS ES6 files manually */
+function distribute_all_frontend_scripts_post( done ){
+
+    const postScriptSrcDir = './sources/scope-frontend/js/post/';
+    const postScriptSrcListFile = './sources/scope-frontend/js/post/*.js';
+    const postScriptSrcDistDir = './assets/scope-frontend/js/post/';
+
+    distribute_all_modern_js_to_vanilla_js(
+        postScriptSrcDir,
+        postScriptSrcListFile,
+        postScriptSrcDistDir
     );
     
     done();
@@ -332,6 +372,8 @@ gulp.task(
     gulp.series( 
         'distribute-all-frontend-styles', 
         'distribute-all-frontend-scripts',
+        'distribute-all-frontend-scripts-page',
+        'distribute-all-frontend-scripts-post',
         'distribute-all-frontend-shortcode-scripts'
     )
 );
