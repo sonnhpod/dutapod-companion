@@ -74,9 +74,7 @@ class ProductPage{
             PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
             PluginProperties::JS_ROOT_DIR.'woocommerce-cpt/',  
             self::WC_PRODUCT_PAGE_SCRIPT_FILENAME
-        );
-
-        $this->localDebugger->write_log_general( self::$WC_PRODUCT_PAGE_SCRIPT_PATH );
+        );       
 
     }//set_WooCommerce_Extra_Params
     public function add_Extra_Resources_to_WC_Product_Pages(){
