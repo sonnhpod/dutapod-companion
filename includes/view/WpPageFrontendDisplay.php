@@ -4,7 +4,7 @@
  * @version 1.0.1
  */
 
-namespace DutapodCompanion\Helper;
+namespace DutapodCompanion\Includes\View;
 
 use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;

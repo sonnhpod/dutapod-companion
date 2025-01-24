@@ -34,6 +34,7 @@
             "DutapodCompanion\\Includes\\Template\\ScopeAdmin\\": "includes/template/scope-admin/",
             "DutapodCompanion\\Includes\\Template\\ScopeEditor\\": "includes/template/scope-editor/",
             "DutapodCompanion\\Includes\\Template\\ScopeFrontend\\": "includes/template/scope-frontend/",
+            "DutapodCompanion\\Includes\\View\\": "includes/view/",
             "DutapodCompanion\\Troubleshoot\\": "troubleshoot/"
         }
     },

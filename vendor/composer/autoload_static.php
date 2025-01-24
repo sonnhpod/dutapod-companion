@@ -27,6 +27,7 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         array (
             'DutapodCompanion\\Troubleshoot\\' => 30,
             'DutapodCompanion\\Sources\\' => 25,
+            'DutapodCompanion\\Includes\\View\\' => 31,
             'DutapodCompanion\\Includes\\Template\\ScopeFrontend\\' => 49,
             'DutapodCompanion\\Includes\\Template\\ScopeEditor\\' => 47,
             'DutapodCompanion\\Includes\\Template\\ScopeAdmin\\' => 46,
@@ -87,6 +88,10 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         'DutapodCompanion\\Sources\\' => 
         array (
             0 => __DIR__ . '/../..' . '/sources',
+        ),
+        'DutapodCompanion\\Includes\\View\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view',
         ),
         'DutapodCompanion\\Includes\\Template\\ScopeFrontend\\' => 
         array (

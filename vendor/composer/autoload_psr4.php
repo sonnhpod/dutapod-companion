@@ -13,6 +13,7 @@ return array(
     'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),
     'DutapodCompanion\\Troubleshoot\\' => array($baseDir . '/troubleshoot'),
     'DutapodCompanion\\Sources\\' => array($baseDir . '/sources'),
+    'DutapodCompanion\\Includes\\View\\' => array($baseDir . '/includes/view'),
     'DutapodCompanion\\Includes\\Template\\ScopeFrontend\\' => array($baseDir . '/includes/template/scope-frontend'),
     'DutapodCompanion\\Includes\\Template\\ScopeEditor\\' => array($baseDir . '/includes/template/scope-editor'),
     'DutapodCompanion\\Includes\\Template\\ScopeAdmin\\' => array($baseDir . '/includes/template/scope-admin'),

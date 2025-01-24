@@ -35,9 +35,6 @@ class WpPageResourceLoader{
     const WP_TEST_PAGE_SCRIPT_HANDLER = 'wp-test-page-script';
 
     /** 1.2. Libraries */
-    /** 1.2. TailwindCSS - build locally at WordPress plugin */
-    const TAILWINDCSS_STYLE_FILENAME = 'tailwindcss-full.css';
-    const TAILWINDCSS_STYLE_HANDLER = 'prelib-tailwindcss-style';
 
     /** 1.1.2. Special pages to be used as condition */
     /** a. Post ID */
@@ -61,9 +58,6 @@ class WpPageResourceLoader{
     /** 1.3.3. Extra styles & scripts for the test shortcode page */
     public static $WP_TEST_PAGE_STYLE_PATH;
     public static $WP_TEST_PAGE_SCRIPT_PATH;
-
-    /** 1.4. Resources path - Libraries */
-    public static $TAILWINDCSS_STYLE_PATH;
 
     /** 2. Constructor */
     public function __construct(){
@@ -104,13 +98,6 @@ class WpPageResourceLoader{
     public function setPageResourcesInfo(){
         /** 20240816 Load extra resources for a specific posts */
         /** 1. Set resources information for the library */
-        self::$TAILWINDCSS_STYLE_PATH = sprintf( 
-            '%s%s%s%s', 
-            PluginProperties::$PLUGIN_URL, 
-            PluginProperties::RESOURCES_PRELIB_ROOT_DIR,
-            PluginProperties::CSS_ROOT_DIR, 
-            self::TAILWINDCSS_STYLE_FILENAME
-        );
 
         /** 2. Set the resources information for WordPress front page */
         self::$WP_FRONTPAGE_STYLE_PATH = sprintf( 
@@ -178,8 +165,8 @@ class WpPageResourceLoader{
 
         add_action('wp_enqueue_scripts', function(){
             if( ( is_front_page() || is_home() ) && !is_admin() ){
-                // Enqueue Tailwind library
-                $this->enqueue_Tailwindcss_Resources();
+                // Enqueue Tailwind library - loaded in PrelibResourceLoader class
+                // $this->enqueue_Tailwindcss_Resources();
 
                 // Enqueue custom CSS
                 $this->enqueue_Extra_Resources_To_Front_Page();
@@ -198,36 +185,24 @@ class WpPageResourceLoader{
     public function register_Extra_Resources_To_Front_Page(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
-        wp_register_style( 
-            self::WP_FRONTPAGE_STYLE_HANDLER, 
-            self::$WP_FRONTPAGE_STYLE_PATH, 
-            [], '1.0.1', 'all'
-        );
+        $css_version =  file_exists( self::$WP_FRONTPAGE_STYLE_PATH ) ? filemtime( self::$WP_FRONTPAGE_STYLE_PATH ) : false;
+        wp_register_style( self::WP_FRONTPAGE_STYLE_HANDLER, self::$WP_FRONTPAGE_STYLE_PATH, [], $css_version, 'all' );
 
         /** 2.2. Enqueue the custom scripts */
-        wp_register_script( 
-            self::WP_FRONTPAGE_SCRIPT_HANDLER, 
-            self::$WP_FRONTPAGE_SCRIPT_PATH,
-            [], '1.0.1', true
-        );
+        $js_version = file_exists( self::$WP_FRONTPAGE_SCRIPT_PATH ) ? filemtime( self::$WP_FRONTPAGE_SCRIPT_PATH ) : false;
+        wp_register_script( self::WP_FRONTPAGE_SCRIPT_HANDLER, self::$WP_FRONTPAGE_SCRIPT_PATH, [], $js_version, true );
 
     }//enqueue_Extra_Resources_To_Front_Page
 
     public function enqueue_Extra_Resources_To_Front_Page(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
-        wp_enqueue_style( 
-            self::WP_FRONTPAGE_STYLE_HANDLER, 
-            self::$WP_FRONTPAGE_STYLE_PATH, 
-            [], '1.0.1', 'all'
-        );
+        $css_version =  file_exists( self::$WP_FRONTPAGE_STYLE_PATH ) ? filemtime( self::$WP_FRONTPAGE_STYLE_PATH ) : false;
+        wp_enqueue_style( self::WP_FRONTPAGE_STYLE_HANDLER, self::$WP_FRONTPAGE_STYLE_PATH, [], $css_version, 'all' );
 
         /** 2.2. Enqueue the custom scripts */
-        wp_enqueue_script( 
-            self::WP_FRONTPAGE_SCRIPT_HANDLER, 
-            self::$WP_FRONTPAGE_SCRIPT_PATH,
-            [], '1.0.1', true
-        );
+        $js_version = file_exists( self::$WP_FRONTPAGE_SCRIPT_PATH ) ? filemtime( self::$WP_FRONTPAGE_SCRIPT_PATH ) : false;
+        wp_enqueue_script( self::WP_FRONTPAGE_SCRIPT_HANDLER, self::$WP_FRONTPAGE_SCRIPT_PATH, [], $js_version, true );
 
     }//enqueue_Extra_Resources_To_Front_Page
 
@@ -241,8 +216,9 @@ class WpPageResourceLoader{
 
         add_action('wp_enqueue_scripts', function(){
             if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
-                // Enqueue CDN tailwind library
-                $this->enqueue_Tailwindcss_Resources();
+                // Enqueue CDN tailwind library - loaded in PrelibResourceLoader class
+                // $this->enqueue_Tailwindcss_Resources();
+
                 // Enqueue extra resources
                 $this->enqueue_Extra_Resources_To_Test_Page();                
             }
@@ -256,36 +232,24 @@ class WpPageResourceLoader{
     public function register_Extra_Resources_To_Test_Page(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
-        wp_register_style( 
-            self::WP_TEST_PAGE_STYLE_HANDLER, 
-            self::$WP_TEST_PAGE_STYLE_PATH, 
-            [], '1.0.1', 'all'
-        );
+        $css_version =  file_exists( self::$WP_TEST_PAGE_STYLE_PATH ) ? filemtime( self::$WP_TEST_PAGE_STYLE_PATH ) : false;
+        wp_register_style( self::WP_TEST_PAGE_STYLE_HANDLER, self::$WP_TEST_PAGE_STYLE_PATH, [], $css_version, 'all' );
 
         /** 2.2. Enqueue the custom scripts */
-        wp_register_script( 
-            self::WP_TEST_PAGE_SCRIPT_HANDLER, 
-            self::$WP_TEST_PAGE_SCRIPT_PATH,
-            [], '1.0.1', true
-        );
+        $js_version = file_exists( self::$WP_TEST_PAGE_SCRIPT_PATH ) ? filemtime( self::$WP_TEST_PAGE_SCRIPT_PATH ) : false;
+        wp_register_script( self::WP_TEST_PAGE_SCRIPT_HANDLER, self::$WP_TEST_PAGE_SCRIPT_PATH, [], $js_version, true );
 
     }//enqueue_Extra_Resources_To_Front_Page
 
     public function enqueue_Extra_Resources_To_Test_Page(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
-        wp_enqueue_style( 
-            self::WP_TEST_PAGE_STYLE_HANDLER, 
-            self::$WP_TEST_PAGE_STYLE_PATH, 
-            [], '1.0.1', 'all'
-        );
+        $css_version =  file_exists( self::$WP_TEST_PAGE_STYLE_PATH ) ? filemtime( self::$WP_TEST_PAGE_STYLE_PATH ) : false;
+        wp_enqueue_style( self::WP_TEST_PAGE_STYLE_HANDLER, self::$WP_TEST_PAGE_STYLE_PATH, [], $css_version, 'all' );
 
         /** 2.2. Enqueue the custom scripts */
-        wp_enqueue_script( 
-            self::WP_TEST_PAGE_SCRIPT_HANDLER, 
-            self::$WP_TEST_PAGE_SCRIPT_PATH,
-            [], '1.0.1', true
-        );
+        $js_version = file_exists( self::$WP_TEST_PAGE_SCRIPT_PATH ) ? filemtime( self::$WP_TEST_PAGE_SCRIPT_PATH ) : false;
+        wp_enqueue_script( self::WP_TEST_PAGE_SCRIPT_HANDLER, self::$WP_TEST_PAGE_SCRIPT_PATH, [], $js_version, true );
 
     }//enqueue_Extra_Resources_To_Front_Page
 
@@ -328,52 +292,6 @@ class WpPageResourceLoader{
     }//enqueue_CDN_Bootstrap_Resources
 
     /** 4.2. Load Tailwind CSS framework for test page */
-    /** 4.2.1. Enqueue TailwindCSS library built locally on the WordPress plugin */
-    public function enqueue_Tailwindcss_Resources(){
-        /** 2.1. Enqueue the custom styles */
-        wp_enqueue_style( 
-            self::TAILWINDCSS_STYLE_HANDLER, 
-            self::$TAILWINDCSS_STYLE_PATH, 
-            [], '3.4.17', 'all'
-        );
-
-        /** 2.2. Enqueue the custom scripts */
-        // wp_enqueue_script( 
-        //     self::TAILWINDCSS_SCRIPT_HANDLER, 
-        //     self::$TAILWINDCSS_SCRIPT_PATH,
-        //     [], '1.0.1', true
-        // );
-    }//enqueue_Tailwindcss_Resources
-
-    public function load_CDN_Tailwind_Resources(){
-        add_action('wp_enqueue_scripts', function(){
-            // Enqueue Bootstrap for test page
-            if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
-                $this->enqueue_CDN_Tailwind_Resources();
-            }
-
-            // Enqueue Bootstrap for home page
-            if( ( is_front_page() || is_home() ) && !is_admin() ){
-                 $this->enqueue_CDN_Bootstrap_Resources();
-            }
-        }, 1);
-    }//load_CDN_Tailwind_Resources
-
-    public function enqueue_CDN_Tailwind_Resources(){
-        wp_enqueue_style( 
-            'tailwind-cdn-min-css', 
-            "https://cdn.jsdelivr.net/npm/tailwindcss@3.4.17/base.min.css", 
-            [], '3.4.17', 'all'
-        );
-
-        /** 2.2. Enqueue the custom scripts */
-        wp_enqueue_script( 
-            'bootstrap-cdn-min-js', 
-            "https://cdn.jsdelivr.net/npm/tailwindcss@3.4.17/lib/index.min.js",
-            [], '3.4.117', true
-        );
-    }//enqueue_CDN_Tailwind_Resources
-
 
 
     /** .................... */

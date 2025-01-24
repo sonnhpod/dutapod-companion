@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'sonnh/dutapod-companion',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '1da53d5c0ae41f106d478215607999d1b9545640',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'sonnh/dutapod-companion' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '1da53d5c0ae41f106d478215607999d1b9545640',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
