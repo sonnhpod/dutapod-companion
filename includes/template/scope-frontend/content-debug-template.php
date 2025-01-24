@@ -13,6 +13,7 @@ use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerceCustomizer as WooCommerceCustomizer;
 
+use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
 
 
 global $post;
@@ -44,7 +45,7 @@ $pluginDebugger = Init::$FRONTEND_INSTANCES_LIST[ PluginDebugHelper::class ];
 
     <p>========== start the detail of the post ================== </p>
     <div id="dutapod-content-wrapper-id" class="dutapod-content-wrapper">
-        <?php // the_content(); ?>
+        <?php the_content(); ?>
 
         <?php // var_dump( WooCommerceCustomizer::$WC_CURRENT_THEME ); ?>
         <?php // echo '<pre>' . var_export( get_page_template() , true) . '</pre>'; ?>
@@ -52,8 +53,10 @@ $pluginDebugger = Init::$FRONTEND_INSTANCES_LIST[ PluginDebugHelper::class ];
     <p>========== Start of debugging area ================== </p>
     <?php // var_dump( $themeCustomizer );//OK ?>
     <?php // echo '<pre>' . var_export($wcCustomizer, true) . '</pre>';//OK ?>
+    <?php global $shortcode_tags; ?>
+    <h5>List of all registered shortcodes : </h5>
 
-
+    <?php  var_dump( ShortcodeManager::getRegisteredShortcode() ); ?>       
 
     <p>========== End of debugging area ================== </p>
 

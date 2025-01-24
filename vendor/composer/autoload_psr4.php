@@ -21,7 +21,7 @@ return array(
     'DutapodCompanion\\Includes\\Display\\Post\\' => array($baseDir . '/includes/display/post'),
     'DutapodCompanion\\Includes\\Display\\Page\\' => array($baseDir . '/includes/display/page'),
     'DutapodCompanion\\Includes\\Display\\' => array($baseDir . '/includes/display'),
-    'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => array($baseDir . '/includes/controller/scope-frontend/woocommerce'),
+    'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => array($baseDir . '/includes/controller/scope-frontend/woocommerce-cpt'),
     'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\' => array($baseDir . '/includes/controller/scope-frontend'),
     'DutapodCompanion\\Includes\\Controller\\ScopeEditor\\' => array($baseDir . '/includes/controller/scope-editor'),
     'DutapodCompanion\\Includes\\Controller\\ScopeAdmin\\' => array($baseDir . '/includes/controller/scope-admin'),

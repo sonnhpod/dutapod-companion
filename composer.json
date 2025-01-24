@@ -26,7 +26,7 @@
             "DutapodCompanion\\Includes\\Controller\\ScopeAdmin\\": "includes/controller/scope-admin/",
             "DutapodCompanion\\Includes\\Controller\\ScopeEditor\\": "includes/controller/scope-editor/",
             "DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\": "includes/controller/scope-frontend/",
-            "DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\": "includes/controller/scope-frontend/woocommerce/",
+            "DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\": "includes/controller/scope-frontend/woocommerce-cpt/",
             "DutapodCompanion\\Includes\\Display\\": "includes/display/",
             "DutapodCompanion\\Includes\\Display\\Page\\": "includes/display/page/",
             "DutapodCompanion\\Includes\\Display\\Post\\": "includes/display/post/",

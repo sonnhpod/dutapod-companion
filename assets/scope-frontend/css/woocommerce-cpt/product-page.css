@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/** Package dutapod-companion plugin - 20250124 */
+div.product-description-accordion-container.custom-product-description {
+  width: 100%;
+  margin: 1em 0 1em 0;
+}
+div.product-description-accordion-container.custom-product-description button.custom-accordion-button {
+  background-color: #007acc;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+  outline: none;
+  width: 100%;
+}
+div.product-description-accordion-container.custom-product-description button.custom-accordion-button::after {
+  content: "▼";
+  float: right;
+  transition: transform 0.3s ease;
+  transform: rotate(90deg);
+}
+div.product-description-accordion-container.custom-product-description button.custom-accordion-button.open::after {
+  content: "▼";
+  float: right;
+  transform: rotate(0deg);
+}
+div.product-description-accordion-container.custom-product-description div.custom-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: #f9f9f9;
+  padding: 0 20px;
+}
+div.product-description-accordion-container.custom-product-description div.custom-accordion-content.open {
+  max-height: 100%; /* Adjust based on content size . Initial suggested is 500px*/
+  padding: 10px 20px;
+  overflow: hidden; /* Keep overflow hidden during transitions */
+}

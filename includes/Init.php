@@ -18,6 +18,10 @@ use DutapodCompanion\Includes\Controller\ScopeFrontend\WpPageDisplayController a
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\WooCommerceCustomizer as WooCommerceCustomizer;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ShortcodeController as ShortcodeController;
 
+use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ProductPage as WcProductPage;
+
+use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
+
 /** This class is dedicated to initialize all services (instances) 
  * which may be need for the plugin operation
  * 
@@ -120,7 +124,8 @@ final class Init{
             DebugTemplateController::class,
             CustomTemplateController::class,
             ShortcodeController::class,
-            WpPageDisplayController::class,
+            WpPageDisplayController::class,            
+            WcProductPage::class,
         );
     }//get_frontend_services
 

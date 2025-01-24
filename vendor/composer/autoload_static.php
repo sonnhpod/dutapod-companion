@@ -123,7 +123,7 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         ),
         'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/woocommerce',
+            0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/woocommerce-cpt',
         ),
         'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\' => 
         array (
