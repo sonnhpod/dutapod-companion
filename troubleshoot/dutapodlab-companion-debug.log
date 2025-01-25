@@ -1,0 +1,23 @@
+2025-01-25, 09:40:15 --> Start logging variable ...  
+2025-01-25, 09:40:15 $logMessage : array(2) {
+  ["additional_information"]=>
+  array(3) {
+    ["title"]=>
+    string(17) "Detail Attributes"
+    ["priority"]=>
+    int(20)
+    ["callback"]=>
+    string(46) "woocommerce_product_additional_information_tab"
+  }
+  ["reviews"]=>
+  array(3) {
+    ["title"]=>
+    string(11) "Reviews (0)"
+    ["priority"]=>
+    int(30)
+    ["callback"]=>
+    string(17) "comments_template"
+  }
+}
+
+2025-01-25, 09:40:15 --> End of logging variable ...  

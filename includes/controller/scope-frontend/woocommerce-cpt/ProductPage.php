@@ -77,6 +77,7 @@ class ProductPage{
         );       
 
     }//set_WooCommerce_Extra_Params
+
     public function add_Extra_Resources_to_WC_Product_Pages(){
         /** 1. Add customizing activities after all plugins are loaded */
         add_action( 'after_setup_theme', array( $this, 'register_Extra_Resources_to_WC_Product_Pages'), 100 );
@@ -113,24 +114,24 @@ class ProductPage{
 
         // 2. Customize HTML content for specific elements
         // --- Many codes to customize the HTML content for specific elements goes here
-        $this->adjust_Product_Description_Position();
+        // 2.1. Add product description to the "add to cart" button:
+        $this->add_Product_Description_before_Add_To_Cart_Button();
 
+        // 2.2. Customize the structured data product:
+        $this->customize_Structured_Data_Product();
     }//register
 
 
     /***************************** Helper functions ***********************/
 
     /** 3.1. Product description */
-    public function adjust_Product_Description_Position(){
+    public function add_Product_Description_before_Add_To_Cart_Button(){
+        // 1. Add product description to the "product summary" column, before "add to cart" button:
         add_action(
             'woocommerce_before_add_to_cart_quantity',
             [ $this, 'add_Product_Description_Detail_To_Product_Summary_Section' ]
-        ); 
-
-        /* add_action(
-            'woocommerce_single_product_summary',
-            [ $this, 'add_Product_Description_Detail_To_Product_Summary_Section' ]
-        ); */
+        );         
+        
     }//adjust_Product_Description_Position
 
     public function add_Product_Description_Detail_To_Product_Summary_Section(){
@@ -154,5 +155,40 @@ class ProductPage{
             echo $detailProductDescriptionHTML;
         }
     }//add_Product_Description_Detail_To_Product_Summary_Section
+
+    public function customize_Structured_Data_Product(){
+        /** Hooks probe summary : 
+         * 1. "woocommerce_product_description_tab_title"
+         * - Display the tille of the description tag : "description"
+         * 2. "woocommerce_product_description_heading"
+         * - Display the tille of the description tag : "description"
+         * 
+         * 3. "woocommerce_product_tabs" show empty array.
+         * 
+         * 4. "woocommerce_after_single_product_summary"
+        */
+        add_filter( 'woocommerce_product_tabs' , [ $this, 'restructure_Product_Tabs_Info'], 11 );//OK
+
+    }//customize_Structured_Data_Product
+
+    public function restructure_Product_Tabs_Info( $productTabsData ){
+
+        if( !is_array( $productTabsData ) ) return $productTabsData;
+
+        // 1. Remove the product description tab.
+        if( array_key_exists( 'description', $productTabsData ) ){
+            unset( $productTabsData['description'] );
+        }
+
+        // 2. Rename the product data detail values
+        if( array_key_exists( 'additional_information', $productTabsData ) ){
+            $productTabsData['additional_information']["title"] = 'Product Attributes';
+        }       
+
+        $this->localDebugger->write_log_general( $productTabsData );
+
+        return $productTabsData;
+
+    }//reformat_Structured_Data_Product
 
 }//ProductPage
