@@ -118,7 +118,10 @@ class ProductPage{
         $this->add_Product_Description_before_Add_To_Cart_Button();
 
         // 2.2. Customize the structured data product:
-        $this->customize_Structured_Data_Product();
+        $this->restructure_Product_Tabs_Section();
+
+        // 2.3. Display the "product review" before the "related product" section:
+        $this->display_Product_Review();
     }//register
 
 
@@ -156,8 +159,8 @@ class ProductPage{
         }
     }//add_Product_Description_Detail_To_Product_Summary_Section
 
-    public function customize_Structured_Data_Product(){
-        /** Hooks probe summary : 
+    public function restructure_Product_Tabs_Section(){
+        /** Hooks probe notes : 
          * 1. "woocommerce_product_description_tab_title"
          * - Display the tille of the description tag : "description"
          * 2. "woocommerce_product_description_heading"
@@ -167,28 +170,64 @@ class ProductPage{
          * 
          * 4. "woocommerce_after_single_product_summary"
         */
+        /**
+         * 1. Remove the "product description" tab and the ""Review" tab 
+         * - The "product description" tab is moved to the "product summary" section - in the right side of the product gallery.
+         * - The "review" tab is moved behind the "Product Attributes" (Additional Information) 
+         * */ 
         add_filter( 'woocommerce_product_tabs' , [ $this, 'restructure_Product_Tabs_Info'], 11 );//OK
 
     }//customize_Structured_Data_Product
 
     public function restructure_Product_Tabs_Info( $productTabsData ){
-
+        // Guarding the operation of this callback function.
         if( !is_array( $productTabsData ) ) return $productTabsData;
 
-        // 1. Remove the product description tab.
+        // 1. Remove the "product description" tab.
         if( array_key_exists( 'description', $productTabsData ) ){
             unset( $productTabsData['description'] );
         }
 
-        // 2. Rename the product data detail values
+        // 2. Remove the "review" tab
+        if( array_key_exists( 'reviews', $productTabsData ) ){
+            unset( $productTabsData['reviews'] );
+        }
+
+        // 3. Rename the product data detail values
         if( array_key_exists( 'additional_information', $productTabsData ) ){
             $productTabsData['additional_information']["title"] = 'Product Attributes';
         }       
 
-        $this->localDebugger->write_log_general( $productTabsData );
+        // $this->localDebugger->write_log_general( $productTabsData );
 
         return $productTabsData;
 
     }//reformat_Structured_Data_Product
+
+    public function display_Product_Review(){
+        /** Hook probes 
+         * - "woocommerce_before_related_products" - does not work
+         * - "woocommerce_product_after_tabs" - OK
+        */
+        add_action('woocommerce_product_after_tabs', [$this, 'output_Product_Review_HTML']);
+
+    }//display_Product_Review
+
+    public function output_Product_Review_HTML(){
+        global $product;
+
+        // $this->localDebugger->write_log_general( $product );
+
+        // Ensure of review is enabled
+        if( ! comments_open( $product->get_id() ) ){
+            return ;
+        } 
+
+        echo '<div class="woocommerce-custom-reviews-section">';
+        echo '<h3>Product Review</h3>';
+        comments_template();
+        echo '</div><!--."woocommerce-custom-reviews-section -->';
+
+    }//output_Product_Review_HTML
 
 }//ProductPage
