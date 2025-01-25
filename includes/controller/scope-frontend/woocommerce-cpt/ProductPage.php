@@ -127,7 +127,7 @@ class ProductPage{
 
     /***************************** Helper functions ***********************/
 
-    /** 3.1. Product description */
+    /** 3.1. Add the "Product description" to the "Product Summary" section - right side of the product gallery */
     public function add_Product_Description_before_Add_To_Cart_Button(){
         // 1. Add product description to the "product summary" column, before "add to cart" button:
         add_action(
@@ -159,6 +159,7 @@ class ProductPage{
         }
     }//add_Product_Description_Detail_To_Product_Summary_Section
 
+    /** 3.2. Restructure the "product tabs" */
     public function restructure_Product_Tabs_Section(){
         /** Hooks probe notes : 
          * 1. "woocommerce_product_description_tab_title"
@@ -204,6 +205,7 @@ class ProductPage{
 
     }//reformat_Structured_Data_Product
 
+    /** 3.3. Display the "product Reviews" after the "product tabs" section. */
     public function display_Product_Review(){
         /** Hook probes 
          * - "woocommerce_before_related_products" - does not work
