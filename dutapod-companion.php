@@ -18,6 +18,7 @@
 use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Includes\Base\Deactivator as Deactivator;
 use DutapodCompanion\Includes\Init as Init;
+use DutapodCompanion\Includes\WcHelperInit as WcHelperInit;
 use DutapodCompanion\Helper\PluginClassLoader as PluginClassLoader;
 
 /** 1. Security check whether this plugin is initialized in a proper manner */
@@ -46,9 +47,9 @@ if( file_exists( dirname(__FILE__).'/vendor/autoload.php' ) ){
  * PLUGIN: sunsetpro/sunsetpro.php (plugin basename)
  * **/
 
- define('PLUGIN_PATH', plugin_dir_path(__FILE__)); //OK
- define('PLUGIN_URL', plugin_dir_url(__FILE__)); //OK
- define('PLUGIN', plugin_basename(__FILE__)); //OK
+define('PLUGIN_PATH', plugin_dir_path(__FILE__)); //OK
+define('PLUGIN_URL', plugin_dir_url(__FILE__)); //OK
+define('PLUGIN', plugin_basename(__FILE__)); //OK
 
  /** 4. Register activation hooks, deactivation hooks for the current plugin */
 register_activation_hook( __FILE__, 'activate_dutapod_companion_plugin' );
@@ -70,7 +71,7 @@ function deactivate_dutapod_companion_plugin(){
 
 /** 5. Start initialize all plugins services if exists the Init class files **/
 
-/** 5. Start initialize all plugins services if exists the Init class files **/
+/** 6. Start initialize all plugins services if exists the Init class files **/
 if( class_exists( PluginClassLoader::class ) ){
     // 2. Initialize all instances of all necessary services 
     $pluginClassLoader = new PluginClassLoader();
@@ -91,3 +92,51 @@ if( class_exists( Init::class ) ){
     // 2. Manually add PluginClassLoader to the Init::$FRONTEND_INSTANCE_LIST
     Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
 }
+
+/** 7 . Start WooCommerce Helper init */
+
+if( class_exists( WcHelperInit::class ) ){
+    // 1. Initialize all instances of all necessary services 
+    // Init::register_services();//Used to work
+    WcHelperInit::register_frontend_services();
+
+    // 2. Manually add PluginClassLoader to the Init::$FRONTEND_INSTANCE_LIST
+    // WcHelperInit::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
+}//class_exists( WcHelperInit::class )
+
+
+
+/** Add to action when WooCommerce is initialied: 
+ * woocommerce_loaded
+ * woocommerce_init
+*/
+
+/**
+$pluginInitiator = Init::$INSTANCE ?? new Init();
+$pluginDebugger = $pluginInitiator::$PLUGIN_DEBUGGER;
+add_action('plugins_loaded' , 'initialize_WooCommerce_Helper_Display', 20);
+function initialize_WooCommerce_Helper_Display(){
+    if( class_exists('WooCommcerce') ){
+        if( class_exists( WcHelperInit::class ) ){
+            // 1. Initialize all instances of all necessary services 
+            // Init::register_services();//Used to work
+            WcHelperInit::register_frontend_services();
+        
+            // 2. Manually add PluginClassLoader to the Init::$FRONTEND_INSTANCE_LIST
+            // WcHelperInit::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;            
+        }//class_exists( WcHelperInit::class )
+    } else {
+        add_action( 'admin_notices', function(){
+            $errorMessage = <<< HTML
+            <div class="dutapod-companion-error">
+                <p>
+                    <strong>This plugin </strong> requires WooCommerce to be installed and activated.
+                </p>
+            </div><!--.dutapod-companion-error-->
+            HTML;
+
+            echo $errorMessage;
+        });
+    }
+}//initialize_WooCommerce_Helper_Display
+*/

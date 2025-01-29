@@ -28,7 +28,7 @@ use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
  * 
  */
 
-final class Init{
+final class WcHelperInit{
 
     /** 1. Variable declaration */
     public static array $PLUGIN_INSTANCE_LIST;
@@ -116,19 +116,14 @@ final class Init{
      *  Stop initializing the WooCommerceCustomizer instance - WooCommerceCustomizer::class
      * 2. 2024-08-16: Load extra resources for WP Post if match requirement
      * Adding an instance WpPostDisplayController::class - temporary remove
-     * 3. 2025-01-29: Temporary move WooCommerce Customize Class to WcHelperInit
-     * - WcProductPage::class,
-     * - WcCategoryPage::class,
+     * - The plugin property and plugin debug helper is initialize before
+     * - PluginProperties::class,            
+     * - PluginDebugHelper::class,        
      */
     public static function get_frontend_services(){
-        return array(
-            PluginProperties::class,            
-            PluginDebugHelper::class,
-            ThemeCustomizer::class,                      
-            DebugTemplateController::class,
-            CustomTemplateController::class,
-            ShortcodeController::class,
-            WpPageDisplayController::class,            
+        return array(               
+            WcProductPage::class,
+            WcCategoryPage::class,
         );
     }//get_frontend_services
 

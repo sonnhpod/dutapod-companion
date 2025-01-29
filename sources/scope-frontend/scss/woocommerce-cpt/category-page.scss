@@ -1,0 +1,20 @@
+/** Package dutapod-companion plugin - 20250124 */
+
+/** Styling the single product page display */
+div.astra-shop-thumbnail-wrap{
+
+    a.woocommerce-loop-product__link{
+        overflow: hidden;
+
+        img {
+            transform: scale(1);
+            transition: transform 0.3s ease; 
+
+            &:hover{
+                transform: scale(1.5);
+                transition: transform 0.3s ease; 
+            }
+        }
+    }//a.woocommerce-loop-product__link
+
+}//div.astra-shop-thumbnail-wrap

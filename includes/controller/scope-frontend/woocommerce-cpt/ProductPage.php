@@ -79,11 +79,19 @@ class ProductPage{
     }//set_WooCommerce_Extra_Params
 
     public function add_Extra_Resources_to_WC_Product_Pages(){
+        /** 1. Check if the incoming request is single WooCommerce Product page */ 
+
         /** 1. Add customizing activities after all plugins are loaded */
-        add_action( 'after_setup_theme', array( $this, 'register_Extra_Resources_to_WC_Product_Pages'), 100 );
+        add_action( 'after_setup_theme', [ $this, 'register_Extra_Resources_to_WC_Product_Pages'], 100 );
 
         /** 1.2. Enqueue extra styles & scripts after WooCommerce & all plugins are loaded*/
-        add_action( 'woocommerce_loaded', array( $this,'enqueue_Extra_Resources_to_WC_Product_Pages' ) );
+        /** Need to use further hooks than "woocommerce_loaded":
+         * wp, template_redirect, woocommerce_before_main_content
+         */
+
+        // add_action( 'woocommerce_loaded', [ $this,'enqueue_Extra_Resources_to_WC_Product_Pages' ] );//OK at 20250129
+        add_action( 'woocommerce_before_main_content', [ $this,'enqueue_Extra_Resources_to_WC_Product_Pages' ] );
+    
     }//add_Extra_Resources_to_WC_Product_Pages
 
     public function register_Extra_Resources_to_WC_Product_Pages(){
@@ -96,19 +104,22 @@ class ProductPage{
         wp_register_script( self::WC_PRODUCT_PAGE_SCRIPT_HANDLER, self::$WC_PRODUCT_PAGE_SCRIPT_PATH, array(), $js_version, true );
     }//register_Extra_Resources_to_WC_Product_pages
 
-    public function enqueue_Extra_Resources_to_WC_Product_Pages(){
-        /** 2.1. Register the custom styles */
-        $css_version =  file_exists( self::$WC_PRODUCT_PAGE_STYLE_PATH ) ? filemtime( self::$WC_PRODUCT_PAGE_STYLE_PATH ) : false;
-        wp_enqueue_style( self::WC_PRODUCT_PAGE_STYLE_HANDLER, self::$WC_PRODUCT_PAGE_STYLE_PATH, array(), $css_version, 'all' );
+    public function enqueue_Extra_Resources_to_WC_Product_Pages(){   
+        if( is_product() ){
+            /** 2.1. Register the custom styles */
+            $css_version =  file_exists( self::$WC_PRODUCT_PAGE_STYLE_PATH ) ? filemtime( self::$WC_PRODUCT_PAGE_STYLE_PATH ) : false;
+            wp_enqueue_style( self::WC_PRODUCT_PAGE_STYLE_HANDLER, self::$WC_PRODUCT_PAGE_STYLE_PATH, array(), $css_version, 'all' );
 
-        /** 2.2. Register the custom scripts */
-        $js_version = file_exists( self::$WC_PRODUCT_PAGE_SCRIPT_PATH ) ? filemtime( self::$WC_PRODUCT_PAGE_SCRIPT_PATH ) : false;
-        wp_enqueue_script( self::WC_PRODUCT_PAGE_SCRIPT_HANDLER, self::$WC_PRODUCT_PAGE_SCRIPT_PATH, array(), $js_version, true );
+            /** 2.2. Register the custom scripts */
+            $js_version = file_exists( self::$WC_PRODUCT_PAGE_SCRIPT_PATH ) ? filemtime( self::$WC_PRODUCT_PAGE_SCRIPT_PATH ) : false;
+            wp_enqueue_script( self::WC_PRODUCT_PAGE_SCRIPT_HANDLER, self::$WC_PRODUCT_PAGE_SCRIPT_PATH, array(), $js_version, true );
+        }
+
     }//enqueue_Extra_Resources_to_WC_Product_pages
 
     /** 3. Operational functions for WooCommerce product page customizer */
     /** Key functions */
-    public function register(){
+    public function register(){      
         // 1. Enqueue extra resources for product page
         $this->add_Extra_Resources_to_WC_Product_Pages();
 
