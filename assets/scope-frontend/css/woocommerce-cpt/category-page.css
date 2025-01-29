@@ -1,13 +1,16 @@
 /** Package dutapod-companion plugin - 20250124 */
 /** Styling the single product page display */
-div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link {
+/** WooCommerce Product category outer container */
+div.ast-woocommerce-container ul.products li div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link {
   overflow: hidden;
+  display: block;
 }
-div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img {
-  transform: scale(1);
-  transition: transform 0.3s ease;
+div.ast-woocommerce-container ul.products li div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img {
+  display: block;
+  transition: transform 0.2s ease-out;
+  transform-origin: center;
+  will-change: transform, translate;
 }
-div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img:hover {
-  transform: scale(1.5);
-  transition: transform 0.3s ease;
+div.ast-woocommerce-container ul.products li div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img:hover {
+  transform: scale(1.4);
 }
