@@ -20,7 +20,7 @@ class FrontPageFooter {
     public PluginProperties $localProps;
     public PluginDebugHelper $localDebugger;
 
-    const FRONT_PAGE_FOOTER_STYLE_NAME = 'front-page-footer.scss';
+    const FRONT_PAGE_FOOTER_STYLE_NAME = 'front-page-footer.css';
     const FRONT_PAGE_FOOTER_SCRIPT_NAME = 'front-page-footer.js';
 
     public static $FRONT_PAGE_FOOTER_TEMPLATE_PATH;
