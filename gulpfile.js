@@ -317,7 +317,8 @@ function distribute_all_frontend_scripts_recursively_1( done ){
     done();
 }//distribute_all_frontend_scripts_recursively
 
-/** Method 2: utilize all defined functions */
+/** Method 2: utilize all defined functions -  */
+/** Method 2.1: Get a list of directories and subdirectories asynchronously  */
 gulp.task('distribute-all-frontend-scripts-recursively-2', distribute_all_frontend_scripts_recursively_2);
 
 
@@ -345,7 +346,7 @@ function distribute_all_frontend_scripts_recursively_2( done ){
 
         return subDirList;
         // return dirItems.filter( dirItem => dirItem.isDirectory() ).map( dirItem => dirItem.name );
-    } 
+    }     
 
     /** 1. Distribute all JS files in the outer directory */
     distribute_all_modern_js_to_vanilla_js(
@@ -393,6 +394,65 @@ function distribute_all_frontend_scripts_recursively_2( done ){
 
     done();
 }//distribute_all_frontend_scripts_recursively_2
+
+/** Method 2.2: Get a list of directories and subdirectories synchronously  */
+gulp.task('distribute-all-frontend-scripts-recursively-3', distribute_all_frontend_scripts_recursively_3);
+
+function distribute_all_frontend_scripts_recursively_3( done ){
+
+    const getAllDirectoriesSync = function( srcDir, dirList = [] ){
+        if( !fs.existsSync( srcDir ) ){ return dirList; }
+
+        let syncStatus = fs.statSync( srcDir );
+        if( !syncStatus.isDirectory() ){
+            console.warn(`Warning: Expected a directory but found a file - ${srcDir}`);
+            return dirList;
+        }
+
+        const entries = fs.readdirSync( srcDir, { withFileTypes: true } );
+
+        for( const entry of entries ){
+            const fullPathDir = path.join( srcDir, entry.name );
+
+            if( entry.isDirectory() ){
+                dirList.push( fullPathDir );
+                getAllDirectoriesSync( fullPathDir, dirList );
+            }
+        }
+
+        return dirList;
+    };//getAllDirectoriesSync
+
+    const srcSubDirList = getAllDirectoriesSync( resourcesInfo.scripts.frontend.srcDir );
+
+    /** 1. Distribute all JS files in the outer directory */
+    distribute_all_modern_js_to_vanilla_js(
+        resourcesInfo.scripts.frontend.srcDir,
+        resourcesInfo.scripts.frontend.srcListFile,
+        resourcesInfo.scripts.frontend.distDir
+    );
+
+    for( let srcDir of srcSubDirList ){        
+        let srcListFile = path.join( srcDir, '*.js' );//OK
+        // console.log(`Current srcListFile : ${srcListFile}`);
+        let distDir = srcDir.replace( /^sources[\/\\]/, 'assets\\' );// OK with hardcode
+        
+        // Append the prefix to indicate the relative directory
+        srcDir = `.\\${srcDir}\\`;
+        srcListFile = `.\\${srcListFile}`;
+        distDir = `.\\${distDir}\\`;
+
+        // Replate the default path separator (path.sep) with the path separator that gulp task can intepret: 
+        srcDir = srcDir.replaceAll('\\','\/');
+        srcListFile = srcListFile.replaceAll('\\','\/');
+        distDir = distDir.replaceAll('\\','\/');
+
+        distribute_all_modern_js_to_vanilla_js( srcDir, srcListFile, distDir );
+    }
+
+    done();
+}//distribute_all_frontend_scripts_recursively_3
+
 
 
 /**=== 3.2-extra Helper functions Distribute all scripts files - JS ES6 to Vanilla JS === **/
