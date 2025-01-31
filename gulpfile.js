@@ -467,7 +467,7 @@ gulp.task(
     'distribute-all-frontend-resources',
     gulp.series( 
         'distribute-all-frontend-styles', 
-        'distribute-all-frontend-scripts-recursively'
+        'distribute-all-frontend-scripts'
     )
 );
 
