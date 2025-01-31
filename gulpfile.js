@@ -8,10 +8,16 @@
 /**=== 1. Declare module variables ===  **/
 /**============================================================= **/
 /** Search for gulp package in nodejs directory **/
+// File system
+import { readdir } from 'fs';
+import fs from 'fs';
+import path from 'path';
+const fsPromise = fs.promises;
 
-
+// gulp task
 import gulp from 'gulp';
 import gulpBabel from 'gulp-babel';
+import gulpCached from 'gulp-cached';
 import gulpDebug from 'gulp-debug';
 import * as sass from 'sass';
 
@@ -21,7 +27,8 @@ var gulpSass = gulpSassInstance( sass );
 import gulpRenamer from 'gulp-rename';
 import gulpAutoPrefixer from 'gulp-autoprefixer';
 import autoPrefixer from 'autoprefixer';
-import sourceMaps from 'gulp-sourcemaps';
+// import sourceMaps from 'gulp-sourcemaps';
+import gulpSourceMaps from 'gulp-sourcemaps';
 import browserify from 'browserify';
 import babelify from 'babelify';
 import vinylSource from 'vinyl-source-stream';
@@ -129,7 +136,7 @@ gulp.task('distribute-prelib-tailwindcss-styles', function( done ){
 function distribute_prelib_tailwind_styles(srcStyleFile, distStyleDir){
     return gulp.src( srcStyleFile )
         .pipe( gulpPlumber() )
-        .pipe( sourceMaps.init() )
+        .pipe( gulpSourceMaps.init() )
         .pipe(
             gulpSass(
                 {
@@ -161,11 +168,11 @@ function distribute_all_frontend_styles( done ){
 /** 1. Distribute all SCSS to CSS */
 function distribute_all_scss_to_css_beauty_format( scssSourceDir, cssDistDir){
     /**
-     * Temporary remove the ".pipe( sourceMaps.write('./') )" before gulp.dest
+     * Temporary remove the ".pipe( gulpSourceMaps.write('./') )" before gulp.dest
     */
     return gulp.src( scssSourceDir )
         .pipe( gulpPlumber() )
-        .pipe( sourceMaps.init() )
+        .pipe( gulpSourceMaps.init() )
         .pipe(
             gulpSass(
                 {
@@ -186,11 +193,11 @@ function distribute_all_scss_to_css_beauty_format( scssSourceDir, cssDistDir){
 /** 2. Distribute single file SCSS to CSS */
 function distribute_single_scss_to_css_beauty_format( scssSrcFilePath, cssDistDir ){
     /**
-     * Temporary remove the ".pipe( sourceMaps.write('./') )" before gulp.dest
+     * Temporary remove the ".pipe( gulpSourceMaps.write('./') )" before gulp.dest
     */
     return gulp.src( scssSrcFilePath )
         .pipe( gulpPlumber() )
-        .pipe( sourceMaps.init() )
+        .pipe( gulpSourceMaps.init() )
         .pipe(
             gulpSass(
                 {
@@ -216,11 +223,11 @@ function distribute_single_scss_to_css_beauty_format( scssSrcFilePath, cssDistDi
 /** 3. Distribute all SCSS to minified CSS */
 function distribute_all_scss_to_css_minified_format( scssSourceDir, cssDistDir ){
     /**
-     * Temporary remove the ".pipe( sourceMaps.write('./') )" before gulp.dest
+     * Temporary remove the ".pipe( gulpSourceMaps.write('./') )" before gulp.dest
     */
     return gulp.src( scssSourceDir )
         .pipe( gulpPlumber() )
-        .pipe( sourceMaps.init() )
+        .pipe( gulpSourceMaps.init() )
         .pipe(
             gulpSass(
                 {
@@ -240,12 +247,16 @@ function distribute_all_scss_to_css_minified_format( scssSourceDir, cssDistDir )
 }//distribute_all_scss_to_css_minified_format
 
 
-/**=== 3.2. Distribute all script files - JS ES6 to Vanilla JS === **/
-gulp.task( 'distribute-all-frontend-scripts', distribute_all_frontend_scripts );
 
+/**=== 3.2. Distribute all script files - JS ES6 to Vanilla JS === **/
+
+gulp.task( 'distribute-all-frontend-scripts', distribute_all_frontend_scripts_recursively_2 );
 /** 3.2.1. Distribute all frontend JS ES 6 to vanilla JS */
 /** 3.2.1.1. Distribute all frontend JS ES 6 to vanilla JS in general JS directory */
 /** Need to specify each JS ES6 files manually */
+/*
+gulp.task( 'distribute-all-frontend-scripts', distribute_all_frontend_scripts );
+
 function distribute_all_frontend_scripts( done ){
 
     distribute_all_modern_js_to_vanilla_js(
@@ -256,89 +267,139 @@ function distribute_all_frontend_scripts( done ){
     
     done();
 };
+*/
 
-gulp.task( 'distribute-all-frontend-scripts-page', distribute_all_frontend_scripts_page );
 
-/** 3.2.1.2. Distribute all frontend JS ES 6 to vanilla JS in js/page */
-function distribute_all_frontend_scripts_page( done ){
+/** 3.2.0. Distribute all script files in a directory recursively */
+/** Method 1 - Using wildcard source directory */
+gulp.task('distribute-all-frontend-scripts-recursively-1', distribute_all_frontend_scripts_recursively_1);
 
-    const pageScriptSrcDir = './sources/scope-frontend/js/page/';
-    const pageScriptSrcListFile = './sources/scope-frontend/js/page/*.js';
-    const pageScriptSrcDistDir = './assets/scope-frontend/js/page/';
+function distribute_all_frontend_scripts_recursively_1( done ){
+    let srcListFile = './sources/scope-frontend/js/**/*.js';
+    let distDir = './assets/scope-frontend/js/';
 
-    distribute_all_modern_js_to_vanilla_js(
-        pageScriptSrcDir,
-        pageScriptSrcListFile,
-        pageScriptSrcDistDir
-    );
-    
+    /* 1st way to instant call anonymous function to compile JS recursively */
+    /*
+    ( function( srcListFile, distDir  ){
+        return gulp.src( srcListFile )
+            .pipe( gulpSourceMaps.init() )          // Initialize source maps
+            .pipe( gulpCached('js') )               // Cache processed files
+            .pipe( gulpBabel({ presets:['@babel/preset-env'] }) )   // transpile ES6+ to ES5
+            .pipe( gulpSourceMaps.write('.') )      // Write source maps
+            .pipe( gulp.dest( distDir ) );      //Output compiled files
+    }( srcListFile, distDir ) );
+
+    // .pipe( uglify() ) // possible to add to minify the JS compilation
+    // .pipe( gulpSourceMaps.init( { loadMaps: true } ) )
+    */
+
+    /* 2nd way to instant call anonymous function to compile JS recursively */
+    // Define variable function to compile JS recursively
+    /*
+    const compileJsRecursively = function( srcListFile, distDir  ){
+        return gulp.src( srcListFile )
+            .pipe( gulpSourceMaps.init() )          // Initialize source maps
+            .pipe( gulpCached('js') )               // Cache processed files
+            .pipe( gulpBabel({ presets:['@babel/preset-env'] }) )   // transpile ES6+ to ES5
+            .pipe( gulpSourceMaps.write({ addComment: true, includeContent: true }) )      // Write source maps
+            .pipe( gulp.dest( distDir ) );      //Output compiled files
+    }( srcListFile, distDir );
+    */
+    const compileJsRecursively = function( srcListFile, distDir  ){
+        return gulp.src( srcListFile )
+            .pipe( gulpSourceMaps.init() )          // Initialize source maps
+            .pipe( gulpCached('js') )               // Cache processed files
+            .pipe( gulpBabel({ presets:['@babel/preset-env'] }) )   // transpile ES6+ to ES5
+            .pipe( gulpSourceMaps.init( { loadMaps: true } ) )      // Write source maps
+            .pipe( gulp.dest( distDir ) );      //Output compiled files
+    }( srcListFile, distDir );
+
     done();
-};
+}//distribute_all_frontend_scripts_recursively
+
+/** Method 2: utilize all defined functions */
+gulp.task('distribute-all-frontend-scripts-recursively-2', distribute_all_frontend_scripts_recursively_2);
 
 
-/** 3.2.1.3. Distribute all frontend JS ES 6 to vanilla JS in js/post */
-gulp.task( 'distribute-all-frontend-scripts-post', distribute_all_frontend_scripts_post );
+/** root directory: resourcesInfo.scripts.frontend.srcDir 
+ * - Need to build for each sub directory founded:
+ * + srcDir (i.e: "./sources/scope-frontend/js/" )
+ * + srcListFile (i.e: "./sources/scope-frontend/js/*.js" )
+ * + distDir (i.e: "./assets/scope-frontend/js/" )
+*/
+function distribute_all_frontend_scripts_recursively_2( done ){
 
-/** 3.2.1. Distribute all frontend JS ES 6 to vanilla JS */
-/** Need to specify each JS ES6 files manually */
-function distribute_all_frontend_scripts_post( done ){
+    const getAllSubDirectories = async function( srcDir ){
+        let subDirList = [];
+        let dirItems = await fsPromise.readdir( srcDir, {withFileTypes: true} );
 
-    const postScriptSrcDir = './sources/scope-frontend/js/post/';
-    const postScriptSrcListFile = './sources/scope-frontend/js/post/*.js';
-    const postScriptSrcDistDir = './assets/scope-frontend/js/post/';
+        for( let dirItem of dirItems ){
+            if( dirItem.isDirectory() ){
+                let fullPathDirectory = path.join( srcDir, dirItem.name );
+                subDirList.push( fullPathDirectory );
+                // Recursively get sub directories inside this directory
+                const nestedSubDirectories = await getAllSubDirectories( fullPathDirectory );
+                subDirList = subDirList.concat( nestedSubDirectories );
+            }
+        }
 
+        return subDirList;
+        // return dirItems.filter( dirItem => dirItem.isDirectory() ).map( dirItem => dirItem.name );
+    } 
+
+    /** 1. Distribute all JS files in the outer directory */
     distribute_all_modern_js_to_vanilla_js(
-        postScriptSrcDir,
-        postScriptSrcListFile,
-        postScriptSrcDistDir
+        resourcesInfo.scripts.frontend.srcDir,
+        resourcesInfo.scripts.frontend.srcListFile,
+        resourcesInfo.scripts.frontend.distDir
     );
-    
+
+    /** 2. Iterate through each sub directory, and distribute all JS files */
+    getAllSubDirectories( resourcesInfo.scripts.frontend.srcDir )
+        .then( subDirectories => ( 
+            function( subDirectories ){ 
+                    const subDirList = Object.values( subDirectories );// OK
+
+                    // console.log( subDirList );
+                    for( let [index, subDir] of Object.entries( subDirectories ) ){
+                        let srcDir = subDir;//OK
+                        let srcListFile = path.join( subDir, '*.js' );//OK
+                        // console.log(`Current srcListFile : ${srcListFile}`);
+                        let distDir = srcDir.replace( /^sources[\/\\]/, 'assets\\' );// OK with hardcode
+                        // let distDir = srcDir.replace( `/^sources[\/\${path.sep}]/`, `assets\${path.sep}` );
+                        // Append the prefix to indicate the relative directory
+                        srcDir = `.\\${srcDir}\\`;
+                        srcListFile = `.\\${srcListFile}`;
+                        distDir = `.\\${distDir}\\`;
+
+                        // Replate the default path separator (path.sep) with the path separator that gulp task can intepret: 
+                        srcDir = srcDir.replaceAll('\\','\/');
+                        srcListFile = srcListFile.replaceAll('\\','\/');
+                        distDir = distDir.replaceAll('\\','\/');
+
+                        distribute_all_modern_js_to_vanilla_js( srcDir, srcListFile, distDir );
+                    }
+            
+                }
+            )( subDirectories ) 
+        )
+        .catch( err => console.error( err ) );
+
+    /*
+    getAllSubDirectories( resourcesInfo.scripts.frontend.srcDir )
+        .then( subDirectory => console.log( subDirectory ) )
+        .catch( err => console.error( err ) );
+    */
+
     done();
-};
+}//distribute_all_frontend_scripts_recursively_2
 
-gulp.task( 'distribute-all-frontend-shortcode-scripts', distribute_all_frontend_shortcode_scripts );
-
-/** 3.2.1. Distribute all frontend JS ES 6 to vanilla JS */
-/** Need to specify each JS ES6 files manually */
-function distribute_all_frontend_shortcode_scripts( done ){
-
-    const shortcodeScriptSrcDir = './sources/scope-frontend/js/shortcode/';
-    const shortcodeScriptSrcListFile = './sources/scope-frontend/js/shortcode/*.js';
-    const shortcodeScriptSrcDistDir = './assets/scope-frontend/js/shortcode/';
-
-    distribute_all_modern_js_to_vanilla_js(
-        shortcodeScriptSrcDir,
-        shortcodeScriptSrcListFile,
-        shortcodeScriptSrcDistDir
-    );
-    
-    done();
-};
-
-gulp.task( 'distribute-all-frontend-woocommerce-scripts', distribute_all_frontend_woocommerce_scripts );
-
-/** 3.2.1. Distribute all frontend JS ES 6 to vanilla JS */
-/** Need to specify each JS ES6 files manually */
-function distribute_all_frontend_woocommerce_scripts( done ){
-
-    const woocommerceScriptSrcDir = './sources/scope-frontend/js/woocommerce-cpt/';
-    const woocommerceScriptSrcListFile = './sources/scope-frontend/js/woocommerce-cpt/*.js';
-    const woocommerceScriptSrcDistDir = './assets/scope-frontend/js/woocommerce-cpt/';
-
-    distribute_all_modern_js_to_vanilla_js(
-        woocommerceScriptSrcDir,
-        woocommerceScriptSrcListFile,
-        woocommerceScriptSrcDistDir
-    );
-    
-    done();
-};
 
 /**=== 3.2-extra Helper functions Distribute all scripts files - JS ES6 to Vanilla JS === **/
 /** 1. Distribute a single modern JS file to vanilla JS file */
 function distribute_single_esnext_js_to_vanilla_js( jsSrcFileDir, jsSrcFileName, jsDistDir ){
     /**
-     * Temporary remove the ".pipe( sourceMaps.write('./') )" before gulp.dest
+     * Temporary remove the ".pipe( gulpSourceMaps.write('./') )" before gulp.dest
     */
 
     let jsFileAbsPath = `${jsSrcFileDir}${jsSrcFileName}`;
@@ -351,7 +412,7 @@ function distribute_single_esnext_js_to_vanilla_js( jsSrcFileDir, jsSrcFileName,
         .pipe( gulpPlumber() )
         .pipe( gulpRenamer( { extname: ".js"} ) )
         .pipe( vinylBuffer() )
-        .pipe( sourceMaps.init( { loadMaps: true } ) )
+        .pipe( gulpSourceMaps.init( { loadMaps: true } ) )
         .pipe( gulp.dest( jsDistDir ) )
         .pipe( browserSync.stream() );
 }//distribute_single_modern_js_to_vanilla_js
@@ -386,6 +447,9 @@ gulp.task(
 );
 
 /** 4.2. Distribute all frontend resources **/
+
+
+/*
 gulp.task(
     'distribute-all-frontend-resources',
     gulp.series( 
@@ -395,6 +459,15 @@ gulp.task(
         'distribute-all-frontend-scripts-post',
         'distribute-all-frontend-shortcode-scripts',
         'distribute-all-frontend-woocommerce-scripts'
+    )
+);
+*/
+
+gulp.task(
+    'distribute-all-frontend-resources',
+    gulp.series( 
+        'distribute-all-frontend-styles', 
+        'distribute-all-frontend-scripts-recursively'
     )
 );
 
