@@ -10,17 +10,17 @@ use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-class CategoryPage{
+class ShopPage{
 
     /** 1. Define variables & constant */
-    const WC_CATEGORY_PAGE_STYLE_FILENAME = 'category-page.css';
-    const WC_CATEGORY_PAGE_STYLE_HANDLER = 'wc-category-page-style';
+    const WC_SHOP_PAGE_STYLE_FILENAME = 'shop-page.css';
+    const WC_SHOP_PAGE_STYLE_HANDLER = 'wc-custom-shop-page-style';
 
-    const WC_CATEGORY_PAGE_SCRIPT_FILENAME = 'category-page.js';
-    const WC_CATEGORY_PAGE_SCRIPT_HANDLER = 'wc-category-page-script';
+    const WC_SHOP_PAGE_SCRIPT_FILENAME = 'shop-page.js';
+    const WC_SHOP_PAGE_SCRIPT_HANDLER = 'wc-custom-shop-page-script';
 
-    public static $WC_CATEGORY_PAGE_STYLE_PATH;
-    public static $WC_CATEGORY_PAGE_SCRIPT_PATH;
+    public static $WC_SHOP_PAGE_STYLE_PATH;
+    public static $WC_SHOP_PAGE_SCRIPT_PATH;
 
     /** 1.2. Debugging variables */
     public Init $pluginInitiator;
@@ -58,25 +58,25 @@ class CategoryPage{
     /** 2.2.3. Setup extra WooCommerce parameters */
     public function set_WooCommerce_Extra_Params(){
         /** 1.2. Extra styles & scripts */
-        self::$WC_CATEGORY_PAGE_STYLE_PATH = sprintf( 
+        self::$WC_SHOP_PAGE_STYLE_PATH = sprintf( 
             '%s%s%s%s', 
             PluginProperties::$PLUGIN_URL, 
             PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
             PluginProperties::CSS_ROOT_DIR.'woocommerce-cpt/', 
-            self::WC_CATEGORY_PAGE_STYLE_FILENAME
+            self::WC_SHOP_PAGE_STYLE_FILENAME
         );
         
-        self::$WC_CATEGORY_PAGE_SCRIPT_PATH = sprintf( 
+        self::$WC_SHOP_PAGE_SCRIPT_PATH = sprintf( 
             '%s%s%s%s', 
             PluginProperties::$PLUGIN_URL, 
             PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
             PluginProperties::JS_ROOT_DIR.'woocommerce-cpt/',  
-            self::WC_CATEGORY_PAGE_SCRIPT_FILENAME
+            self::WC_SHOP_PAGE_SCRIPT_FILENAME
         );       
 
     }//set_WooCommerce_Extra_Params
 
-    public function add_Extra_Resources_to_WC_Category_Pages(){
+    public function add_Extra_Resources_to_WC_Shop_Page(){
         /** 1. Add customizing activities after all plugins are loaded */
         add_action( 'after_setup_theme', [ $this, 'register_Extra_Resources_to_WC_Category_Pages'], 100 );
 
@@ -91,24 +91,24 @@ class CategoryPage{
 
     public function register_Extra_Resources_to_WC_Category_Pages(){
         /** 2.1. Register the custom styles */
-        $css_version =  file_exists( self::$WC_CATEGORY_PAGE_STYLE_PATH ) ? filemtime( self::$WC_CATEGORY_PAGE_STYLE_PATH ) : false;
-        wp_register_style( self::WC_CATEGORY_PAGE_STYLE_HANDLER, self::$WC_CATEGORY_PAGE_STYLE_PATH, array(), $css_version, 'all' );
+        $css_version =  file_exists( self::$WC_SHOP_PAGE_STYLE_PATH ) ? filemtime( self::$WC_SHOP_PAGE_STYLE_PATH ) : false;
+        wp_register_style( self::WC_SHOP_PAGE_STYLE_HANDLER, self::$WC_SHOP_PAGE_STYLE_PATH, array(), $css_version, 'all' );
 
         /** 2.2. Register the custom scripts */
-        $js_version = file_exists( self::$WC_CATEGORY_PAGE_SCRIPT_PATH ) ? filemtime( self::$WC_CATEGORY_PAGE_SCRIPT_PATH ) : false;
-        wp_register_script( self::WC_CATEGORY_PAGE_SCRIPT_HANDLER, self::$WC_CATEGORY_PAGE_SCRIPT_PATH, array(), $js_version, true );
+        $js_version = file_exists( self::$WC_SHOP_PAGE_SCRIPT_PATH ) ? filemtime( self::$WC_SHOP_PAGE_SCRIPT_PATH ) : false;
+        wp_register_script( self::WC_SHOP_PAGE_SCRIPT_HANDLER, self::$WC_SHOP_PAGE_SCRIPT_PATH, array(), $js_version, true );
     }//register_Extra_Resources_to_WC_Product_pages
 
     public function enqueue_Extra_Resources_to_WC_Category_Pages(){
 
-        if( is_product_category() ){
+        if( is_shop() ){
             /** 2.1. Register the custom styles */
-            $css_version =  file_exists( self::$WC_CATEGORY_PAGE_STYLE_PATH ) ? filemtime( self::$WC_CATEGORY_PAGE_STYLE_PATH ) : false;
-            wp_enqueue_style( self::WC_CATEGORY_PAGE_STYLE_HANDLER, self::$WC_CATEGORY_PAGE_STYLE_PATH, array(), $css_version, 'all' );
+            $css_version =  file_exists( self::$WC_SHOP_PAGE_STYLE_PATH ) ? filemtime( self::$WC_SHOP_PAGE_STYLE_PATH ) : false;
+            wp_enqueue_style( self::WC_SHOP_PAGE_STYLE_HANDLER, self::$WC_SHOP_PAGE_STYLE_PATH, array(), $css_version, 'all' );
 
             /** 2.2. Register the custom scripts */
-            $js_version = file_exists( self::$WC_CATEGORY_PAGE_SCRIPT_PATH ) ? filemtime( self::$WC_CATEGORY_PAGE_SCRIPT_PATH ) : false;
-            wp_enqueue_script( self::WC_CATEGORY_PAGE_SCRIPT_HANDLER, self::$WC_CATEGORY_PAGE_SCRIPT_PATH, array(), $js_version, true );
+            $js_version = file_exists( self::$WC_SHOP_PAGE_SCRIPT_PATH ) ? filemtime( self::$WC_SHOP_PAGE_SCRIPT_PATH ) : false;
+            wp_enqueue_script( self::WC_SHOP_PAGE_SCRIPT_HANDLER, self::$WC_SHOP_PAGE_SCRIPT_PATH, array(), $js_version, true );
         }
        
     }//enqueue_Extra_Resources_to_WC_Product_pages
@@ -118,7 +118,7 @@ class CategoryPage{
     /** Key functions */
     public function register(){
         // 1. Enqueue extra resources for product page
-        $this->add_Extra_Resources_to_WC_Category_Pages();
+        $this->add_Extra_Resources_to_WC_Shop_Page();
 
         // 2. Customize HTML content for specific elements
         // --- Many codes to customize the HTML content for specific elements goes here
@@ -126,4 +126,4 @@ class CategoryPage{
     }//register
 
 
-}//CategoryPage class definition
+}//ShopPage class definition

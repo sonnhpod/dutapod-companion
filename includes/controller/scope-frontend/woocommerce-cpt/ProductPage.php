@@ -14,10 +14,10 @@ use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeC
 class ProductPage{
     /** 1. Define variables & constant */
     const WC_PRODUCT_PAGE_STYLE_FILENAME = 'product-page.css';
-    const WC_PRODUCT_PAGE_STYLE_HANDLER = 'wc-custom-product-page-style';
+    const WC_PRODUCT_PAGE_STYLE_HANDLER = 'wc-product-page-style';
 
     const WC_PRODUCT_PAGE_SCRIPT_FILENAME = 'product-page.js';
-    const WC_PRODUCT_PAGE_SCRIPT_HANDLER = 'wc-custom-product-page-script';
+    const WC_PRODUCT_PAGE_SCRIPT_HANDLER = 'wc-product-page-script';
 
     public static $WC_PRODUCT_PAGE_STYLE_PATH;
     public static $WC_PRODUCT_PAGE_SCRIPT_PATH;
