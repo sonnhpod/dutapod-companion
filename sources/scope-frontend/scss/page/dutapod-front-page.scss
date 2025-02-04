@@ -51,7 +51,52 @@ article.page{
             }//div.wp-block-cover__inner-container
         }//div.wp-block-cover
 
+        /** 2. Best selling products section  */
+        /*
+        div.wc-best-selling-products-sc-container{
+            max-width: 100%;
+            margin-left: 'calc( - 50vw + 50% )';
+            margin-right: 'calc( - 50vw + 50% )';
+        }//.wc-best-selling-products-sc-container
+        */
 
+        /** 3. Most popular products section  */
+
+        /** 2 and 3 - styling zoom in animation effect */
+        div.woocommerce.columns-4{
+
+            ul.products.columns-4{
+
+                li.product{
+                    // border: 2px solid red;
+
+                    div.astra-shop-thumbnail-wrap{
+
+                        a.woocommerce-loop-product__link{
+                            overflow: hidden;
+                            display: block;
+                            // position: relative;
+                            
+                            img {
+                                display: block;
+                                // position: absolute;
+                                transition: transform 0.2s ease-out;
+                                transform-origin: center;
+                                // transform-origin: 0 0;
+                                will-change: transform, translate;
+        
+                                &:hover{
+                                    transform: scale(1.4);
+                                }
+                            }
+                            
+                        }//a.woocommerce-loop-product__link
+
+                    }//div.astra-shop-thumbnail-wrap
+                }//li.product
+            }//ul.products.columns-4
+
+        }//div.woocommerce.columns-4
     }//div.entry-content
 
 }//article.page

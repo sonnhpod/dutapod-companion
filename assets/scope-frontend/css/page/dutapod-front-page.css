@@ -13,6 +13,16 @@ div#dutapod-testimonial-container {
 /** Main content of the home page */
 article.page div.entry-content {
   /** 1. Hero section  */
+  /** 2. Best selling products section  */
+  /*
+  div.wc-best-selling-products-sc-container{
+      max-width: 100%;
+      margin-left: 'calc( - 50vw + 50% )';
+      margin-right: 'calc( - 50vw + 50% )';
+  }//.wc-best-selling-products-sc-container
+  */
+  /** 3. Most popular products section  */
+  /** 2 and 3 - styling zoom in animation effect */
 }
 article.page div.entry-content div.hero-section-image-container.wp-block-cover {
   /** a. cover element */
@@ -35,6 +45,19 @@ article.page div.entry-content div.hero-section-image-container.wp-block-cover d
 }
 article.page div.entry-content div.hero-section-image-container.wp-block-cover div.wp-block-cover__inner-container div.hero-section-caption-container > * {
   z-index: 12;
+}
+article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link {
+  overflow: hidden;
+  display: block;
+}
+article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img {
+  display: block;
+  transition: transform 0.2s ease-out;
+  transform-origin: center;
+  will-change: transform, translate;
+}
+article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img:hover {
+  transform: scale(1.4);
 }
 
 /**************************************/

@@ -20,6 +20,7 @@ use DutapodCompanion\Includes\Controller\ScopeFrontend\ShortcodeController as Sh
 
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ProductPage as WcProductPage;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CategoryPage as WcCategoryPage;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\Shortcode as WcShortcode;
 
 use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
 
@@ -124,6 +125,7 @@ final class WcHelperInit{
         return array(               
             WcProductPage::class,
             WcCategoryPage::class,
+            WcShortcode::class,
         );
     }//get_frontend_services
 
