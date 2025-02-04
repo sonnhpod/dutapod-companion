@@ -1,10 +1,6 @@
+/** Package dutapod-companion */
 /** General stylings */
 section.dutapod-footer-container {
-  border-top: 2px solid #000000;
-  padding-top: 1em;
-}
-
-div#dutapod-testimonial-container {
   border-top: 2px solid #000000;
   padding-top: 1em;
 }
@@ -23,6 +19,7 @@ article.page div.entry-content {
   */
   /** 3. Most popular products section  */
   /** 2 and 3 - styling zoom in animation effect */
+  /** 4. Testimonial sections */
 }
 article.page div.entry-content div.hero-section-image-container.wp-block-cover {
   /** a. cover element */
@@ -58,6 +55,24 @@ article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 l
 }
 article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img:hover {
   transform: scale(1.4);
+}
+article.page div.entry-content div.dutapod-testimonial-container {
+  border-top: 2px solid #000000;
+  padding-top: 1em;
+  /** 4.1. Testimonial heading */
+  /** 4.2. Testimonial contents */
+}
+article.page div.entry-content div.dutapod-testimonial-container h3.wp-block-heading {
+  width: 100%;
+  max-width: 100vw;
+  margin: 1em 2em 1em 2em;
+  padding: 1em 2em 1em 2em;
+}
+article.page div.entry-content div.dutapod-testimonial-container div.wp-block-columns {
+  width: 100%;
+  max-width: 100vw;
+  margin: 1em 2em 1em 2em;
+  padding: 1em 2em 1em 2em;
 }
 
 /**************************************/
