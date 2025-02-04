@@ -1,10 +1,15 @@
 /** Header section */
 /** 1. Styling the header navigation menu - The Miracle Spirit long logo*/
-div#ast-desktop-header div.ast-main-header-wrap div.ast-primary-header-bar.ast-primary-header div.site-primary-header-wrap div.ast-builder-grid-row div.site-header-section div.ast-builder-layout-element.ast-header-html-1 div.ast-header-html div.ast-builder-html-element p img {
+div#ast-desktop-header div.ast-main-header-wrap div.ast-primary-header-bar.ast-primary-header div.site-primary-header-wrap div.ast-builder-grid-row div.site-header-section div.ast-builder-layout-element.ast-header-html-1 div.ast-header-html div.ast-builder-html-element p a img {
   width: 15em;
   height: auto;
 }
 
+/** 
+<a href="http://dutapodlab.local.info/" class="company-logo-reference">
+<img src="http://dutapodlab.local.info/wp-content/uploads/2025/01/logo-longtext-transparent.png"> 
+</a>
+*/
 /** Hide the default footer of the Astra theem */
 footer#colophon.site-footer {
   display: none !important;

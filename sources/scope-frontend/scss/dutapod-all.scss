@@ -11,10 +11,12 @@ div#ast-desktop-header{
                             div.ast-header-html{
                                 div.ast-builder-html-element{
                                     p {
-                                        img{
-                                            width: 15em;
-                                            height: auto;
-                                        }//img
+                                        a{
+                                            img{
+                                                width: 15em;
+                                                height: auto;
+                                            }//img
+                                        }//a                                        
                                     }//p
                                 }//div.ast-builder-html-element
                             }//div.ast-header-html
@@ -26,7 +28,11 @@ div#ast-desktop-header{
     }//div.ast-main-header-wrap
 }//div#ast-desktop-header
 
-
+/** 
+<a href="http://dutapodlab.local.info/" class="company-logo-reference">
+<img src="http://dutapodlab.local.info/wp-content/uploads/2025/01/logo-longtext-transparent.png"> 
+</a>
+*/
 
 
 /** Hide the default footer of the Astra theem */
