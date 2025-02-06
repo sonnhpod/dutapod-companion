@@ -1,0 +1,231 @@
+/**
+*    @Package sunsetprotheme
+* * Need to test the code in the actual position before import. (file sunsetpro.scss)
+**/
+
+@import './mixins';
+
+.sunsetpro-facebook{
+    content:url('../../../assets/icons/sunsetpro-facebook.svg');
+    width:2em;
+    height:2em;
+    background-color:transparent;
+}
+
+/* .sunsetpro-google-plus{
+    content:url('../../../assets/icons/sunsetpro-google-plus.svg');
+    width:2em;
+    height:2em;
+    background-color:transparent;
+}
+ */
+ 
+.sunsetpro-gplus{
+    content:url('../../../assets/icons/sunsetpro-google-plus.svg');
+    width:2em;
+    height:2em;
+    background-color:transparent;
+}
+
+.sunsetpro-twitter{
+    content:url('../../../assets/icons/sunsetpro-twitter.svg');
+    width:2em;
+    height:2em;
+    background-color:transparent;
+}
+
+
+.sunsetpro-icon{
+    content:url('../../../assets/fontslocal/logo.svg');
+    width:2em;
+    height:2em;
+    background-color:transparent;
+}
+
+.sunsetpro-logo{
+    content:url('../../../assets/fontslocal/logo.svg');
+    width:2em;
+    height:2em;
+    background-color:transparent;
+}
+
+
+
+/* Local Left arrow file */
+.sunsetpro-local-chevron-left{
+    content: url('../../../assets/fonts/sunsetpro-local-chevron-left.svg');
+    width: 2em; // 32px is OK
+    height: 2em;
+    background-color:transparent;
+    //color: #ffffff;
+    //filter: $filterWhiteValueWithBlackShadow;
+}
+   
+.sunsetpro-local-chevron-left::before{
+    //noinspection CssUnknownTarget
+    content: url('../../../assets/fonts/sunsetpro-local-chevron-left.svg');
+    // background: url('../../../assets/fonts/sunsetpro-local-chevron-left.svg') 0 0 no-repeat;
+    // content: '';
+    width: 2em; // 32px is OK
+    height: 2em;
+    padding: 0;
+    background-color:transparent;
+    //color: #ffffff;
+    //filter: $filterWhiteValueWithBlackShadow;
+}
+   
+/* Local right arrow file */
+.sunsetpro-local-chevron-right{
+    content: url('../../../assets/fonts/sunsetpro-local-chevron-right.svg');
+    width: 2em;
+    height: 2em;
+    background-color:transparent;
+    //color: #ffffff;
+    //filter: $filterWhiteValueWithBlackShadow;
+}
+   
+.sunsetpro-local-chevron-right::before{
+    //noinspection CssUnknownTarget
+    content: url('../../../assets/fonts/sunsetpro-local-chevron-right.svg');
+    // background: url('../../../assets/fonts/sunsetpro-local-chevron-right.svg') 0 0 no-repeat;
+    // content: '';
+    width: 2em;
+    height: 2em;
+    padding: 0;
+    background-color:transparent;
+    //color: #ffffff;
+    //filter: $filterWhiteValueWithBlackShadow;
+}
+
+
+// Mobile menu properties
+.sunsetpro-menu{
+    content:url('../../../assets/fontslocal/menu.svg');
+    width:2em;
+    height:2em;
+    background-color:transparent;
+}
+
+.sunsetpro-menu-close{
+    content:url('../../../assets/fontslocal/close.svg');
+    width:2em;
+    height:2em;
+    background-color:transparent;
+}
+
+/* @mixin transitionEaseInOut( $attr, $time) {
+    -webkit-transition: $attr $time ease-in-out !important;
+    -moz-transition: $attr $time ease-in-out !important;
+    -ms-transition: $attr $time ease-in-out !important;
+    -o-transition: $attr $time ease-in-out !important;
+    transition: $attr $time ease-in-out !important;
+};//transitionEaseInOut */
+
+
+/* @keyframes sunset_reveal_mobile_menu_effect{
+    from {
+        content:url('../../../assets/fontslocal/menu.svg');
+        @include transitionEaseInOut( content, 320ms );
+    }
+    to {
+        content:url('../../../assets/fontslocal/close.svg');
+        @include transitionEaseInOut( content, 320ms );
+    }
+};//sunset_reveal_mobile_menu_effect */
+
+/* @mixin sunset_reveal_mobile_menu_animation($time){
+    @keyframes sunset_reveal_mobile_menu_effect{
+        0% {
+            content:url('../../../assets/fontslocal/menu.svg');
+            @include transitionEaseInOut( content, $time );
+            // @include transform( translateX(-100%) scale(1, 1) );
+            @include transform( translateX(-100%) );
+            @include transitionEaseInOut( -webkit-transform, $time);
+            @include transitionEaseInOut( -moz-transform, $time);
+            @include transitionEaseInOut( -ms-transform, $time);
+            @include transitionEaseInOut( -o-transform, $time);
+            @include transitionEaseInOut( transform, $time);
+        }
+
+        50%{
+            content:url('../../../assets/fontslocal/menu.svg');           
+            @include transitionEaseInOut( content, $time );
+            // @include transform( translateX(-50%) scale(0, 0) );
+            @include transform( translateX(-50%) );
+            @include transitionEaseInOut( -webkit-transform, $time);
+            @include transitionEaseInOut( -moz-transform, $time);
+            @include transitionEaseInOut( -ms-transform, $time);
+            @include transitionEaseInOut( -o-transform, $time);
+            @include transitionEaseInOut( transform, $time);
+        }
+
+        100% {            
+            content:url('../../../assets/fontslocal/close.svg');
+            @include transitionEaseInOut( content, $time );
+            // @include transform( translateX(0) scale(1, 1) );
+            @include transform( translateX(0) );
+            @include transitionEaseInOut( -webkit-transform, $time);
+            @include transitionEaseInOut( -moz-transform, $time);
+            @include transitionEaseInOut( -ms-transform, $time);
+            @include transitionEaseInOut( -o-transform, $time);
+            @include transitionEaseInOut( transform, $time);
+        }
+    };//sunset_reveal_mobile_menu_effect
+
+    animation: sunset_reveal_mobile_menu_effect $time ease-in-out;
+};//sunset_reveal_mobile_menu_animation */
+
+/* @keyframes sunset_hide_mobile_menu_effect{
+    from {
+        content:url('../../../assets/fontslocal/close.svg');
+        @include transitionEaseInOut( content, 320ms );
+    }
+
+    to {
+        content:url('../../../assets/fontslocal/menu.svg');
+        @include transitionEaseInOut( content, 320ms );
+    }
+};//sunset_hide_mobile_menu_effect */
+
+/* @mixin sunset_hide_mobile_menu_animation($time){
+    @keyframes sunset_hide_mobile_menu_effect{
+        0% {
+            content:url('../../../assets/fontslocal/close.svg');
+            @include transitionEaseInOut( content, $time );
+            // @include transform( translateX(0) scale(1, 1) );
+            @include transform( translateX(0) );
+            @include transitionEaseInOut( -webkit-transform, $time);
+            @include transitionEaseInOut( -moz-transform, $time);
+            @include transitionEaseInOut( -ms-transform, $time);
+            @include transitionEaseInOut( -o-transform, $time);
+            @include transitionEaseInOut( transform, $time);
+        }
+
+        50%{
+            content:url('../../../assets/fontslocal/close.svg');           
+            @include transitionEaseInOut( content, $time );
+            // @include transform( translateX(-50%) scale(0, 0) );
+            @include transform( translateX(-50%) );
+            @include transitionEaseInOut( -webkit-transform, $time);
+            @include transitionEaseInOut( -moz-transform, $time);
+            @include transitionEaseInOut( -ms-transform, $time);
+            @include transitionEaseInOut( -o-transform, $time);
+            @include transitionEaseInOut( transform, $time);
+        }
+    
+        100% {
+            content:url('../../../assets/fontslocal/menu.svg');
+            @include transitionEaseInOut( content, $time );
+            // @include transform( translateX(-100%) scale(1, 1) );
+            @include transform( translateX(-100%) );
+            @include transitionEaseInOut( -webkit-transform, $time);
+            @include transitionEaseInOut( -moz-transform, $time);
+            @include transitionEaseInOut( -ms-transform, $time);
+            @include transitionEaseInOut( -o-transform, $time);
+            @include transitionEaseInOut( transform, $time);
+        }
+    };//sunset_hide_mobile_menu_effect
+
+    animation: sunset_hide_mobile_menu_effect $time ease-in-out;
+};//sunset_hide_mobile_menu_animation */
+
