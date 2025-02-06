@@ -22,5 +22,5 @@ div.ast-woocommerce-container ul.products li.product div.astra-shop-thumbnail-wr
   will-change: transform, translate;
 }
 div.ast-woocommerce-container ul.products li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img:hover {
-  transform: scale(1.4);
+  transform: scale(1.2);
 }
