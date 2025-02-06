@@ -78,7 +78,7 @@ class ShopPage{
 
     public function add_Extra_Resources_to_WC_Shop_Page(){
         /** 1. Add customizing activities after all plugins are loaded */
-        add_action( 'after_setup_theme', [ $this, 'register_Extra_Resources_to_WC_Category_Pages'], 100 );
+        add_action( 'after_setup_theme', [ $this, 'register_Extra_Resources_to_WC_Shop_Page'], 100 );
 
         /** 1.2. Enqueue extra styles & scripts after WooCommerce & all plugins are loaded*/
         /** Need to use further hooks than "woocommerce_loaded":
@@ -86,10 +86,10 @@ class ShopPage{
          */
 
         // add_action( 'woocommerce_loaded', [ $this,'enqueue_Extra_Resources_to_WC_Category_Pages' ] );//OK up to 20250129
-        add_action( 'woocommerce_before_main_content', [ $this,'enqueue_Extra_Resources_to_WC_Category_Pages' ] );
+        add_action( 'woocommerce_before_main_content', [ $this,'enqueue_Extra_Resources_to_WC_Shop_Page' ] );
     }//add_Extra_Resources_to_WC_Product_Pages
 
-    public function register_Extra_Resources_to_WC_Category_Pages(){
+    public function register_Extra_Resources_to_WC_Shop_Page(){
         /** 2.1. Register the custom styles */
         $css_version =  file_exists( self::$WC_SHOP_PAGE_STYLE_PATH ) ? filemtime( self::$WC_SHOP_PAGE_STYLE_PATH ) : false;
         wp_register_style( self::WC_SHOP_PAGE_STYLE_HANDLER, self::$WC_SHOP_PAGE_STYLE_PATH, array(), $css_version, 'all' );
@@ -99,7 +99,7 @@ class ShopPage{
         wp_register_script( self::WC_SHOP_PAGE_SCRIPT_HANDLER, self::$WC_SHOP_PAGE_SCRIPT_PATH, array(), $js_version, true );
     }//register_Extra_Resources_to_WC_Product_pages
 
-    public function enqueue_Extra_Resources_to_WC_Category_Pages(){
+    public function enqueue_Extra_Resources_to_WC_Shop_Page(){
 
         if( is_shop() ){
             /** 2.1. Register the custom styles */
