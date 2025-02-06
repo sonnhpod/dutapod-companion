@@ -6,7 +6,16 @@
 div.ast-woocommerce-container{
 
     ul.products{
+
+        /** 1. Single product display  */
         li.product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            /** 1.1. Product thumbnail image display  */
+
             div.astra-shop-thumbnail-wrap{
 
                 a.woocommerce-loop-product__link{

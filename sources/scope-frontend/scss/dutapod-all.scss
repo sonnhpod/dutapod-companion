@@ -39,6 +39,7 @@ div#ast-desktop-header{
 
 @media screen and (max-width: variables.$max-sm-width) {
 
+    /** 1. Footer menu items */
     div.dutapod-footer-container{
 
         div.inner-footer-container{
@@ -50,7 +51,18 @@ div#ast-desktop-header{
         }//div.inner-footer-container
 
     }//div.dutapod-footer-container
-}
+
+    /** 2. Payment menu items*/
+    div.dutapod-footer-bottom-container{
+        div.dutapod-footer-bottom-inner-container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+        }//div.dutapod-footer-bottom-inner-container
+    }//div.dutapod-footer-bottom-container
+    
+}//@media screen and (max-width: variables.$max-sm-width)
 
 /** Hide the default footer of the Astra theem */
 

@@ -43,6 +43,12 @@ article.page div.entry-content div.hero-section-image-container.wp-block-cover d
 article.page div.entry-content div.hero-section-image-container.wp-block-cover div.wp-block-cover__inner-container div.hero-section-caption-container > * {
   z-index: 12;
 }
+article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link {
   overflow: hidden;
   display: block;
