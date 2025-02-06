@@ -7,7 +7,7 @@ Devsunset variables
 -----------------------
 */
 
-@import 'colorize';
+@use 'colorize' as colorize;
 
 $themeRootUri : 'http://vnlabwin.local.info/wp-content/plugins/sunsetpro/';
 $fontsRscRelativePath: 'assets/fontslocal/';
@@ -27,13 +27,13 @@ $defaultArticleWidth: 80vw;
 /* Common properties*/
 $defaultBackgroundColor: rgb(255, 255, 255, 0.1);
 /* Menu item Dropdown icon */
-$showSubmenuIcon: url('../../../assets/icons/sunsetpro-triple-arrows-down-16x16.svg');
-$showSubmenuIconWidth:1em;
-$showSubmenuIconHeight:1em;
+// $showSubmenuIcon: url('../../../assets/icons/sunsetpro-triple-arrows-down-16x16.svg');
+// $showSubmenuIconWidth:1em;
+// $showSubmenuIconHeight:1em;
 
-$hideSubmenuIcon: url('../../../assets/icons/sunsetpro-arrow-down-27x16.svg');
-$hideSubmenuIconWidth:1.5em;
-$hideSubmenuIconHeight:1.5em;
+// $hideSubmenuIcon: url('../../../assets/icons/sunsetpro-arrow-down-27x16.svg');
+// $hideSubmenuIconWidth:1.5em;
+// $hideSubmenuIconHeight:1.5em;
 
 /* Menu items metadata*/
 $defaultArticleHeight: 28em;
@@ -50,7 +50,7 @@ $input-field-underline-color: #cbcbcb;
 
 /* Border information */
 $borderWidth: 1px;
-$borderColor: $light-white;
+$borderColor: colorize.$light-white;
 
 /*** Screen width. Apply for styling according to the display screern size
 * Referential source to design size : https://getbootstrap.com/docs/5.3/layout/grid/

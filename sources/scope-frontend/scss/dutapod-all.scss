@@ -1,3 +1,6 @@
+/** Package dutapod-companion */
+@use '../../bases/variables' as variables;
+// @use '../../bases/variables' as *;
 
 /** Header section */
 /** 1. Styling the header navigation menu - The Miracle Spirit long logo*/
@@ -34,6 +37,20 @@ div#ast-desktop-header{
 </a>
 */
 
+@media screen and (max-width: variables.$max-sm-width) {
+
+    div.dutapod-footer-container{
+
+        div.inner-footer-container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+
+        }//div.inner-footer-container
+
+    }//div.dutapod-footer-container
+}
 
 /** Hide the default footer of the Astra theem */
 

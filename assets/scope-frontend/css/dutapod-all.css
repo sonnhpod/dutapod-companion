@@ -1,3 +1,41 @@
+/** Package dutapod-companion */
+/*
+*   @Package devsunsettheme
+* * Need to test the code in the actual position before import. (file devsunset.scss)
+**/
+/*
+Devsunset variables
+-----------------------
+*/
+/**
+*    @Package sunsetpro plugin
+* * Need to test the code in the actual position before import. (file sunsetpro.scss)
+**/
+/* Color code */
+/*Filter color*/
+.colorize-white {
+  filter: invert(97%) sepia(0%) saturate(7486%) hue-rotate(14deg) brightness(102%) contrast(101%);
+}
+
+.colorize-white-with-black-shadow {
+  filter: invert(97%) sepia(0%) saturate(7486%) hue-rotate(14deg) brightness(102%) contrast(101%)drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.8));
+}
+
+.colorize-black {
+  filter: invert(0%) sepia(0%) saturate(7484%) hue-rotate(305deg) brightness(89%) contrast(100%);
+}
+
+/* article formats */
+/* Main header navigation menu */
+/* Common properties*/
+/* Menu item Dropdown icon */
+/* Menu items metadata*/
+/* Form control */
+/* Border information */
+/*** Screen width. Apply for styling according to the display screern size
+* Referential source to design size : https://getbootstrap.com/docs/5.3/layout/grid/
+*
+***/
 /** Header section */
 /** 1. Styling the header navigation menu - The Miracle Spirit long logo*/
 div#ast-desktop-header div.ast-main-header-wrap div.ast-primary-header-bar.ast-primary-header div.site-primary-header-wrap div.ast-builder-grid-row div.site-header-section div.ast-builder-layout-element.ast-header-html-1 div.ast-header-html div.ast-builder-html-element p a img {
@@ -10,6 +48,14 @@ div#ast-desktop-header div.ast-main-header-wrap div.ast-primary-header-bar.ast-p
 <img src="http://dutapodlab.local.info/wp-content/uploads/2025/01/logo-longtext-transparent.png"> 
 </a>
 */
+@media screen and (max-width: 767px) {
+  div.dutapod-footer-container div.inner-footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+}
 /** Hide the default footer of the Astra theem */
 footer#colophon.site-footer {
   display: none !important;
