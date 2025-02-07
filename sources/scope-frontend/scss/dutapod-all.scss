@@ -42,7 +42,7 @@ div#ast-desktop-header{
     /** 1. Footer menu items */
     div.dutapod-footer-container{
 
-        div.inner-footer-container{
+        div.inner-footer-container.grid.grid-cols-12{
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -54,7 +54,7 @@ div#ast-desktop-header{
 
     /** 2. Payment menu items*/
     div.dutapod-footer-bottom-container{
-        div.dutapod-footer-bottom-inner-container{
+        div.dutapod-footer-bottom-inner-container.grid.grid-cols-12{
             display: flex;
             flex-direction: column;
             align-items: flex-start;
