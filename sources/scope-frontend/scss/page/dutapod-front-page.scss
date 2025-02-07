@@ -130,7 +130,23 @@ article.page{
 /**************************************/
 /** Content styling */
 
+/** 2. Astra scroll top button */
+div#ast-scroll-top{
+    span.ast-icon.icon-arrow{
+        width: 100%;
+        height: 100%;
+        display: block;
 
+        svg.ast-arrow-svg{
+            // width: 100%;
+            height: 80%;
+            transform: rotate( 180deg);
+            margin: 0 auto;
+            text-align: center;
+
+        }//svg.ast-arrow-svg
+    }//span.ast-icon.icon-arrow
+}//div#ast-scroll-top
 
 
 /** Hide the default footer of the Astra theem */

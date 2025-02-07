@@ -83,6 +83,19 @@ article.page div.entry-content div.dutapod-testimonial-container div.wp-block-co
 
 /**************************************/
 /** Content styling */
+/** 2. Astra scroll top button */
+div#ast-scroll-top span.ast-icon.icon-arrow {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+div#ast-scroll-top span.ast-icon.icon-arrow svg.ast-arrow-svg {
+  height: 80%;
+  transform: rotate(180deg);
+  margin: 0 auto;
+  text-align: center;
+}
+
 /** Hide the default footer of the Astra theem */
 footer#colophon.site-footer {
   display: none !important;
