@@ -1,4 +1,7 @@
 /** Package dutapod-companion */
+
+@use '../../../bases/variables' as variables;
+
 /** General stylings */
 section.dutapod-footer-container{
     border-top: 2px solid #000000;
@@ -11,7 +14,6 @@ section.dutapod-footer-container{
 /** Main content of the home page */
 
 article.page{
-
     
     div.entry-content{
 
@@ -98,12 +100,12 @@ article.page{
 
         }//div.woocommerce.columns-4
 
-        /** 4. Testimonial sections */
-        div.dutapod-testimonial-container{
+        /** 4. Testimonial sections - old */
+        /* div.dutapod-testimonial-container{
             border-top: 2px solid #000000;
             padding-top: 1em;
 
-            /** 4.1. Testimonial heading */
+            // 4.1. Testimonial heading
             h3.wp-block-heading{
                 width: 100%;
                 max-width: 100vw;
@@ -111,7 +113,7 @@ article.page{
                 padding: 1em 2em 1em 2em;
             }//h3.wp-block-heading
 
-            /** 4.2. Testimonial contents */
+            // 4.2. Testimonial contents 
             div.wp-block-columns{
                 width: 100%;
                 max-width: 100vw;
@@ -119,13 +121,22 @@ article.page{
                 padding: 1em 2em 1em 2em;
             }//div.wp-block-columns
             
-        }//div.dutapod-testimonial-container
+        }//div.dutapod-testimonial-container */      
 
     }//div.entry-content
 
 }//article.page
 
 
+/** Testimonial section */
+
+@media( min-width: variables.$min-md-width ){
+    div#sp-testimonial-free-wrapper-999{
+        width: 90vw;
+        max-width: 90vw;
+        // margin-left: -5vw;
+    }//div#sp-testimonial-free-wrapper-999
+}
 
 /**************************************/
 /** Content styling */

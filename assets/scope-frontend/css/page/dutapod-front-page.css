@@ -1,4 +1,41 @@
 /** Package dutapod-companion */
+/*
+*   @Package devsunsettheme
+* * Need to test the code in the actual position before import. (file devsunset.scss)
+**/
+/*
+Devsunset variables
+-----------------------
+*/
+/**
+*    @Package sunsetpro plugin
+* * Need to test the code in the actual position before import. (file sunsetpro.scss)
+**/
+/* Color code */
+/*Filter color*/
+.colorize-white {
+  filter: invert(97%) sepia(0%) saturate(7486%) hue-rotate(14deg) brightness(102%) contrast(101%);
+}
+
+.colorize-white-with-black-shadow {
+  filter: invert(97%) sepia(0%) saturate(7486%) hue-rotate(14deg) brightness(102%) contrast(101%)drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.8));
+}
+
+.colorize-black {
+  filter: invert(0%) sepia(0%) saturate(7484%) hue-rotate(305deg) brightness(89%) contrast(100%);
+}
+
+/* article formats */
+/* Main header navigation menu */
+/* Common properties*/
+/* Menu item Dropdown icon */
+/* Menu items metadata*/
+/* Form control */
+/* Border information */
+/*** Screen width. Apply for styling according to the display screern size
+* Referential source to design size : https://getbootstrap.com/docs/5.3/layout/grid/
+*
+***/
 /** General stylings */
 section.dutapod-footer-container {
   border-top: 2px solid #000000;
@@ -19,7 +56,28 @@ article.page div.entry-content {
   */
   /** 3. Most popular products section  */
   /** 2 and 3 - styling zoom in animation effect */
-  /** 4. Testimonial sections */
+  /** 4. Testimonial sections - old */
+  /* div.dutapod-testimonial-container{
+      border-top: 2px solid #000000;
+      padding-top: 1em;
+
+      // 4.1. Testimonial heading
+      h3.wp-block-heading{
+          width: 100%;
+          max-width: 100vw;
+          margin: 1em 2em 1em 2em;
+          padding: 1em 2em 1em 2em;
+      }//h3.wp-block-heading
+
+      // 4.2. Testimonial contents 
+      div.wp-block-columns{
+          width: 100%;
+          max-width: 100vw;
+          margin: 1em 2em 1em 2em;
+          padding: 1em 2em 1em 2em;
+      }//div.wp-block-columns
+
+  }//div.dutapod-testimonial-container */
 }
 article.page div.entry-content div.hero-section-image-container.wp-block-cover {
   /** a. cover element */
@@ -62,25 +120,14 @@ article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 l
 article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img:hover {
   transform: scale(1.2);
 }
-article.page div.entry-content div.dutapod-testimonial-container {
-  border-top: 2px solid #000000;
-  padding-top: 1em;
-  /** 4.1. Testimonial heading */
-  /** 4.2. Testimonial contents */
-}
-article.page div.entry-content div.dutapod-testimonial-container h3.wp-block-heading {
-  width: 100%;
-  max-width: 100vw;
-  margin: 1em 2em 1em 2em;
-  padding: 1em 2em 1em 2em;
-}
-article.page div.entry-content div.dutapod-testimonial-container div.wp-block-columns {
-  width: 100%;
-  max-width: 100vw;
-  margin: 1em 2em 1em 2em;
-  padding: 1em 2em 1em 2em;
-}
 
+/** Testimonial section */
+@media (min-width: 576px) {
+  div#sp-testimonial-free-wrapper-999 {
+    width: 90vw;
+    max-width: 90vw;
+  }
+}
 /**************************************/
 /** Content styling */
 /** 2. Astra scroll top button */
