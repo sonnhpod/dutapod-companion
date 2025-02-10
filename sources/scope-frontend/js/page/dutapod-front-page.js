@@ -67,11 +67,14 @@ document.addEventListener( 'DOMContentLoaded', function(){
     if( window.screen.width < maxXsScreenWidth ){
         const heroSection = document.getElementById( heroSectionID );
 
-        let heroSectionMarginLeft = heroSection.style.marginLeft;
-        heroSectionMarginLeft = heroSectionMarginLeft.substring(0 , heroSectionMarginLeft.length - 2 );
+        let originalHeroSectionMarginLeft = heroSection.style.marginLeft;
+        originalHeroSectionMarginLeft = originalHeroSectionMarginLeft.substring(0 , originalHeroSectionMarginLeft.length - 2 );
 
-        //let 
+        // let updateHeroSectionMarginLeft = parseFloat(astContentContainerMarginLeft) + parseFloat(originalHeroSectionMarginLeft);
+        // updateHeroSectionMarginLeft *= -1; 
 
+        // heroSection.style.marginLeft = `${updateHeroSectionMarginLeft}px`;
+        
         // astContentContainerMarginLeft
         // div.hero-section-image-id - heroSectionMarginLeft
     }
