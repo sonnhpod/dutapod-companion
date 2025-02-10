@@ -122,10 +122,15 @@ article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 l
 }
 
 /** Testimonial section */
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   div#sp-testimonial-free-wrapper-999 {
     width: 90vw;
     max-width: 90vw;
+  }
+}
+@media (max-width: 575px) {
+  div.ast-scroll-top {
+    display: none;
   }
 }
 /**************************************/

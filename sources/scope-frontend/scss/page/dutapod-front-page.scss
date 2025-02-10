@@ -138,6 +138,14 @@ article.page{
     }//div#sp-testimonial-free-wrapper-999
 }
 
+@media( max-width: variables.$max-xs-width ){
+    
+    div.ast-scroll-top{
+        display: none;
+    }
+}
+
+
 /**************************************/
 /** Content styling */
 

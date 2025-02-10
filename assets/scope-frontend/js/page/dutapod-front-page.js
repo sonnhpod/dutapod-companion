@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var astContentContainerPaddingRight = astraContentContainerStyleData.paddingRight;
 
   /** 1. Add negative margin value to widen the size of the testimonial section - with the screen size >= md width */
-  if (window.screen.width > minSmScreenWidth) {
+  if (window.screen.width > minMdScreenWidth) {
     var testimonialSection = document.getElementById(testimonialSectionID);
     var testimonialSectionWidth = testimonialSection.offsetWidth; // get testimonial Section 90vw width in pixel    
 
