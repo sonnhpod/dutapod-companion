@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var outermostContentContainerSelector = "div#content.site-content";
   var astraContentContainerSelector = "".concat(outermostContentContainerSelector, " > div.ast-container");
   var contentAreaContainerSelector = "".concat(astraContentContainerSelector, " > div#primary.content-area");
+  var heroSectionSelector = "".concat(contentAreaContainerSelector, " > main#main > article.page > div.entry-content > div.hero-section-image-container");
   var testimonialSectionID = "sp-testimonial-free-wrapper-999";
+  var heroSectionID = "hero-section-image-id";
   var astraContentContainer = document.querySelector(astraContentContainerSelector);
   var contentAreaContainer = document.querySelector(contentAreaContainerSelector);
   var astraContentContainerStyleData = window.getComputedStyle(astraContentContainer);
@@ -25,9 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // const astContentContainerMarginRight = astraContentContainerStyleData.getPropertyValue('margin-right');//OK - 126.667px. Expect 437.22px
 
   var astContentContainerMarginLeft = astraContentContainerStyleData.marginLeft; //OK. Got 437.22px
-  var astContentContainerMarginRight = astraContentContainerStyleData.marginRight; //OK. Got 437.22px
-
   astContentContainerMarginLeft = astContentContainerMarginLeft.substring(0, astContentContainerMarginLeft.length - 2); //437.22 in string format
+
+  var astContentContainerMarginRight = astraContentContainerStyleData.marginRight; //OK. Got 437.22px
+  astContentContainerMarginRight = astContentContainerMarginRight.substring(0, astContentContainerMarginRight.length - 2); //437.22 in string format
 
   // const astContentContainerPaddingLeft = astraContentContainerStyleData.getPropertyValue('padding-left');//OK - 20px
   // const astContentContainerPaddingRight = astraContentContainerStyleData.getPropertyValue('padding-right');//OK - 20px
@@ -36,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
   astContentContainerPaddingLeft = astContentContainerPaddingLeft.substring(0, astContentContainerPaddingLeft.length - 2); // 20 in string format
 
   var astContentContainerPaddingRight = astraContentContainerStyleData.paddingRight;
+  astContentContainerPaddingRight = astContentContainerPaddingRight.substring(0, astContentContainerPaddingRight.length - 2); // 20 in string format
 
   /** 1. Add negative margin value to widen the size of the testimonial section - with the screen size >= md width */
   if (window.screen.width > minMdScreenWidth) {
@@ -50,6 +54,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // Set negative margin left value 
     // testimonialSection.style.marginLeft = `-${testimonialSectionMarginLeft}px`;
     testimonialSection.style.marginLeft = "".concat(testimonialSectionMarginLeft, "px");
+  }
+  if (window.screen.width < maxXsScreenWidth) {
+    // const heroSection = document.getElementById( heroSectionID );
+    var heroSection = document.querySelector(heroSectionSelector); //OK      
+
+    var heroSectionData = window.getComputedStyle(heroSection);
+    var originalHeroSectionMarginLeft = heroSectionData.marginLeft; // Expect 24px
+
+    originalHeroSectionMarginLeft = originalHeroSectionMarginLeft.substring(0, originalHeroSectionMarginLeft.length - 2);
+
+    // let updateHeroSectionMarginLeft = parseFloat(astContentContainerPaddingLeft) + parseFloat(originalHeroSectionMarginLeft);
+    var updateHeroSectionMarginLeft = parseFloat(astContentContainerPaddingLeft) + parseFloat(astContentContainerMarginLeft);
+    updateHeroSectionMarginLeft *= -1;
+    heroSection.style.marginLeft = "".concat(updateHeroSectionMarginLeft, "px");
+
+    // astContentContainerMarginLeft
+    // div.hero-section-image-id - heroSectionMarginLeft
   }
 
   // console.log(`astContentContainerMarginLeft : ${astContentContainerMarginLeft}`);

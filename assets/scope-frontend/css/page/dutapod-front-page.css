@@ -129,6 +129,10 @@ article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 l
   }
 }
 @media (max-width: 575px) {
+  article.page div.entry-content div#hero-section-image-id.hero-section-image-container {
+    width: 100vw;
+    max-width: 100vw;
+  }
   div.ast-scroll-top {
     display: none;
   }

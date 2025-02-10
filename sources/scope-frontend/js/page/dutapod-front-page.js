@@ -35,6 +35,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
     
     let astContentContainerMarginLeft = astraContentContainerStyleData.marginLeft;//OK. Got 437.22px
     astContentContainerMarginLeft = astContentContainerMarginLeft.substring(0, astContentContainerMarginLeft.length - 2 );//437.22 in string format
+
     let astContentContainerMarginRight = astraContentContainerStyleData.marginRight;//OK. Got 437.22px
     astContentContainerMarginRight = astContentContainerMarginRight.substring(0, astContentContainerMarginRight.length - 2 );//437.22 in string format
 
@@ -65,16 +66,21 @@ document.addEventListener( 'DOMContentLoaded', function(){
     }    
 
     if( window.screen.width < maxXsScreenWidth ){
-        const heroSection = document.getElementById( heroSectionID );
+        // const heroSection = document.getElementById( heroSectionID );
+        const heroSection = document.querySelector( heroSectionSelector ); //OK      
+        
+        const heroSectionData = window.getComputedStyle( heroSection );
 
-        let originalHeroSectionMarginLeft = heroSection.style.marginLeft;
+        let originalHeroSectionMarginLeft = heroSectionData.marginLeft; // Expect 24px
+
         originalHeroSectionMarginLeft = originalHeroSectionMarginLeft.substring(0 , originalHeroSectionMarginLeft.length - 2 );
 
-        // let updateHeroSectionMarginLeft = parseFloat(astContentContainerMarginLeft) + parseFloat(originalHeroSectionMarginLeft);
-        // updateHeroSectionMarginLeft *= -1; 
+        // let updateHeroSectionMarginLeft = parseFloat(astContentContainerPaddingLeft) + parseFloat(originalHeroSectionMarginLeft);
+        let updateHeroSectionMarginLeft = parseFloat(astContentContainerPaddingLeft) + parseFloat(astContentContainerMarginLeft);
+        updateHeroSectionMarginLeft *= -1; 
 
-        // heroSection.style.marginLeft = `${updateHeroSectionMarginLeft}px`;
-        
+        heroSection.style.marginLeft = `${updateHeroSectionMarginLeft}px`;
+
         // astContentContainerMarginLeft
         // div.hero-section-image-id - heroSectionMarginLeft
     }

@@ -139,7 +139,22 @@ article.page{
 }
 
 @media( max-width: variables.$max-xs-width ){
+    // 1. Article content
+    article.page{
     
+        div.entry-content{
+    
+            // 1.1. Hero section
+            div#hero-section-image-id.hero-section-image-container{
+                width: 100vw;
+                max-width: 100vw;
+            }//div.hero-section-image-container.wp-block-cover
+
+        }//div.entry-content
+    }//article.page
+
+
+    // 2. Disable the scroll top button
     div.ast-scroll-top{
         display: none;
     }
