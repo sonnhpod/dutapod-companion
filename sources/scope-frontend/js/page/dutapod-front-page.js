@@ -65,6 +65,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
         testimonialSection.style.marginLeft = `${testimonialSectionMarginLeft}px`;
     }    
 
+    /** 2. Reposition the hero section in the mobile display */
     if( window.screen.width < maxXsScreenWidth ){
         // const heroSection = document.getElementById( heroSectionID );
         const heroSection = document.querySelector( heroSectionSelector ); //OK      
@@ -85,6 +86,52 @@ document.addEventListener( 'DOMContentLoaded', function(){
         // div.hero-section-image-id - heroSectionMarginLeft
     }
 
+    /** 3. Lazy load the best_selling_products shortcode */
+    let lazyBestSellingProductsLoaded = false;
+
+    const bestSellingProductsSection = document.getElementById( 'best-selling-products-lazy-load-container-id' );
+
+    if( ! bestSellingProductsSection ) return;
+
+    const bsProductsSectionObserver = new IntersectionObserver( ( entries, observer ) => {
+        entries.forEach( entry => {
+            if( entry.isIntersecting && ! lazyBestSellingProductsLoaded ){
+                lazyBestSellingProductsLoaded = true;
+
+                // Show a loading indicator
+                // bestSellingProductsSection.innerHTML = `<div class="loading-spinner">Loading products ...</div>`;
+
+                // Fetch best selling products data via AJAX
+                // return response OK. Contain dedicated data
+                fetch( woocommerce_params.ajax_url + "?action=load_lazy_best_selling_products" )
+                    .then( response => response.json())
+                    .then( responseData => {
+                        // responseData is OK
+                        if( responseData.success ){
+                            // bestSellingProductsSection.innerHTML = responseData.data.html;//OK
+                            bestSellingProductsSection.innerHTML = `<div class="lazy-load-best-selling-products-outer-container">${responseData.data.html}</div>`;
+
+                            // Ensure the fade-in effect is applied after DOM update
+                            requestAnimationFrame( () => {
+                                const bestSellingProductsOuterContainer = document.querySelector( 'div.lazy-load-best-selling-products-outer-container' );
+                                bestSellingProductsOuterContainer.classList.add('fade-in');
+                            } );
+                        } else {
+                            bestSellingProductsSection.innerHTML = `<p>Error loading products. There is no data success </p>`;
+                        }
+                    })
+                    .catch( error => {
+                        bestSellingProductsSection.innerHTML = `<p>Error loading products at Fetch API Catch statement ! ... </p>`;
+                        console.error('Detail error message is :');
+                        console.error( error );
+                    });
+                
+                observer.unobserve( bestSellingProductsSection );
+            }
+        });
+    }, { threshold: 0.2 } ); //Trigger when 20% of the section is visible
+
+    bsProductsSectionObserver.observe( bestSellingProductsSection );
     // console.log(`astContentContainerMarginLeft : ${astContentContainerMarginLeft}`);
     // console.log(`astContentContainerMarginRight : ${astContentContainerMarginRight}`);
     // console.log(`astContentContainerPaddingLeft : ${astContentContainerPaddingLeft}`);

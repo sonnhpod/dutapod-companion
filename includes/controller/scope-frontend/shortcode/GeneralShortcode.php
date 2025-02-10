@@ -15,7 +15,7 @@ use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 use DutapodCompanion\Includes\Content\Shortcode\FrontPageFooter as FrontPageFooter;
 use DutapodCompanion\Includes\Content\Shortcode\TestContent as TestContent;
 
-class ShortcodeController{
+class GeneralShortcode{
 
     /** 1. Variables & constant for post properties */
 
@@ -66,4 +66,4 @@ class ShortcodeController{
 
     }//register
 
-}//ShortCodeController class definition
+}//GeneralShortcode class definition

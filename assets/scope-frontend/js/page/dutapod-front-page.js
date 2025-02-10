@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // testimonialSection.style.marginLeft = `-${testimonialSectionMarginLeft}px`;
     testimonialSection.style.marginLeft = "".concat(testimonialSectionMarginLeft, "px");
   }
+
+  /** 2. Reposition the hero section in the mobile display */
   if (window.screen.width < maxXsScreenWidth) {
     // const heroSection = document.getElementById( heroSectionID );
     var heroSection = document.querySelector(heroSectionSelector); //OK      
@@ -73,6 +75,49 @@ document.addEventListener('DOMContentLoaded', function () {
     // div.hero-section-image-id - heroSectionMarginLeft
   }
 
+  /** 3. Lazy load the best_selling_products shortcode */
+  var lazyBestSellingProductsLoaded = false;
+  var bestSellingProductsSection = document.getElementById('best-selling-products-lazy-load-container-id');
+  if (!bestSellingProductsSection) return;
+  var bsProductsSectionObserver = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting && !lazyBestSellingProductsLoaded) {
+        lazyBestSellingProductsLoaded = true;
+
+        // Show a loading indicator
+        // bestSellingProductsSection.innerHTML = `<div class="loading-spinner">Loading products ...</div>`;
+
+        // Fetch best selling products data via AJAX
+        // return response OK. Contain dedicated data
+        fetch(woocommerce_params.ajax_url + "?action=load_lazy_best_selling_products").then(function (response) {
+          return response.json();
+        }).then(function (responseData) {
+          // responseData is OK
+          if (responseData.success) {
+            // bestSellingProductsSection.innerHTML = responseData.data.html;//OK
+            bestSellingProductsSection.innerHTML = "<div class=\"lazy-load-best-selling-products-outer-container\">".concat(responseData.data.html, "</div>");
+
+            // Ensure the fade-in effect is applied after DOM update
+            requestAnimationFrame(function () {
+              var bestSellingProductsOuterContainer = document.querySelector('div.lazy-load-best-selling-products-outer-container');
+              bestSellingProductsOuterContainer.classList.add('fade-in');
+            });
+          } else {
+            bestSellingProductsSection.innerHTML = "<p>Error loading products. There is no data success </p>";
+          }
+        })["catch"](function (error) {
+          bestSellingProductsSection.innerHTML = "<p>Error loading products at Fetch API Catch statement ! ... </p>";
+          console.error('Detail error message is :');
+          console.error(error);
+        });
+        observer.unobserve(bestSellingProductsSection);
+      }
+    });
+  }, {
+    threshold: 0.2
+  }); //Trigger when 20% of the section is visible
+
+  bsProductsSectionObserver.observe(bestSellingProductsSection);
   // console.log(`astContentContainerMarginLeft : ${astContentContainerMarginLeft}`);
   // console.log(`astContentContainerMarginRight : ${astContentContainerMarginRight}`);
   // console.log(`astContentContainerPaddingLeft : ${astContentContainerPaddingLeft}`);

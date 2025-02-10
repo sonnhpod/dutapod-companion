@@ -101,6 +101,15 @@ article.page div.entry-content div.hero-section-image-container.wp-block-cover d
 article.page div.entry-content div.hero-section-image-container.wp-block-cover div.wp-block-cover__inner-container div.hero-section-caption-container > * {
   z-index: 12;
 }
+article.page div.entry-content div.lazy-load-best-selling-products-outer-container {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+article.page div.entry-content div.lazy-load-best-selling-products-outer-container.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
 article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product {
   display: flex;
   flex-direction: column;

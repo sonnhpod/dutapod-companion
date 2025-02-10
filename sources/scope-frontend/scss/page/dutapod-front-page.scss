@@ -58,6 +58,22 @@ article.page{
         }//.wc-best-selling-products-sc-container
         */
 
+        div.lazy-load-best-selling-products-outer-container{            
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+            &.fade-in{
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            // div#best-selling-products-lazy-load-container-id{
+            //} //div#best-selling-products-lazy-load-container-id
+        }//.lazy-load-best-selling-products-outer-container
+
+        
+
         /** 3. Most popular products section  */
 
         /** 2 and 3 - styling zoom in animation effect */

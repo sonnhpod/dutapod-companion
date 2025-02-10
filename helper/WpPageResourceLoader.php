@@ -23,10 +23,6 @@ class WpPageResourceLoader{
     const WP_PAGE_EXTRA_SCRIPTS_HANDLER = 'dutapod-wp-post-extra-scripts';
 
     /** 1.1.2. Front page information : */
-    const WP_FRONTPAGE_STYLE_FILENAME = 'dutapod-front-page.css';
-    const WP_FRONTPAGE_STYLE_HANDLER = 'dutapod-front-page-style';
-    const WP_FRONTPAGE_SCRIPT_FILENAME = 'dutapod-front-page.js';
-    const WP_FRONTPAGE_SCRIPT_HANDLER = 'dutapod-front-page-script';
 
     /** 1.1.3. Test page information */
     const WP_TEST_PAGE_STYLE_FILENAME = 'wp-test-page.css';
@@ -52,8 +48,6 @@ class WpPageResourceLoader{
     public static $WP_PAGE_EXTRA_SCRIPTS_PATH;
 
     /** 1.3.2. Extra styles & scripts for the front page */
-    public static $WP_FRONTPAGE_STYLE_PATH;
-    public static $WP_FRONTPAGE_SCRIPT_PATH;
 
     /** 1.3.3. Extra styles & scripts for the test shortcode page */
     public static $WP_TEST_PAGE_STYLE_PATH;
@@ -79,8 +73,7 @@ class WpPageResourceLoader{
         // 3.1. Load libraries:
         // $this->load_CDN_Bootstrap_Resources(); // OK = temporary disable
     
-        // 3.2. Load extra resource for specific pages: 
-        $this->load_Extra_Resources_If_Front_Page();
+        // 3.2. Load extra resource for specific pages:        
         $this->load_Extra_Resources_If_Test_Page(); // OK - temporary disable
     }//__construct 
 
@@ -98,23 +91,6 @@ class WpPageResourceLoader{
     public function setPageResourcesInfo(){
         /** 20240816 Load extra resources for a specific posts */
         /** 1. Set resources information for the library */
-
-        /** 2. Set the resources information for WordPress front page */
-        self::$WP_FRONTPAGE_STYLE_PATH = sprintf( 
-            '%s%s%s%s', 
-            PluginProperties::$PLUGIN_URL, 
-            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
-            PluginProperties::CSS_ROOT_DIR.'page/', 
-            self::WP_FRONTPAGE_STYLE_FILENAME
-        );
-        
-        self::$WP_FRONTPAGE_SCRIPT_PATH = sprintf( 
-            '%s%s%s%s', 
-            PluginProperties::$PLUGIN_URL, 
-            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
-            PluginProperties::JS_ROOT_DIR.'page/', 
-            self::WP_FRONTPAGE_SCRIPT_FILENAME
-        );
 
         /** 2. Set the resources information for WordPress test page */
         self::$WP_TEST_PAGE_STYLE_PATH = sprintf( 
@@ -156,55 +132,6 @@ class WpPageResourceLoader{
 
     /** 3. Operational functions - load extra internal resources for pages */
     /** 3.1. Enqueue extra resources for Front Page */
-    public function load_Extra_Resources_If_Front_Page(){
-
-        /** Enqueue the extra styles and scripts if requesting the home page/frontpage. */
-        /** The conditional checking should be conducted at the hook "wp_enqueue_scripts" */
-        // $this->localDebugger->write_log_general( is_front_page() );// false
-
-
-        add_action('wp_enqueue_scripts', function(){
-            if( ( is_front_page() || is_home() ) && !is_admin() ){
-                // Enqueue Tailwind library - loaded in PrelibResourceLoader class
-                // $this->enqueue_Tailwindcss_Resources();
-
-                // Enqueue custom CSS
-                $this->enqueue_Extra_Resources_To_Front_Page();
-            }
-        });
-
-        /** - another OK method to check if the current requesting page is the home page
-        if( '/' == $_SERVER['REQUEST_URI'] && !is_admin() ){
-            add_action('wp_enqueue_scripts',[$this,'register_Extra_Resources_To_Front_Page']);
-            add_action('wp_enqueue_scripts',[$this,'enqueue_Extra_Resources_To_Front_Page']);
-        }
-        */      
-
-    }//load_Extra_Resources_If_Front_Page
-
-    public function register_Extra_Resources_To_Front_Page(){
-        /** 2. Enqueue extra styles & scripts  */
-        /** 2.1. Enqueue the custom styles */
-        $css_version =  file_exists( self::$WP_FRONTPAGE_STYLE_PATH ) ? filemtime( self::$WP_FRONTPAGE_STYLE_PATH ) : false;
-        wp_register_style( self::WP_FRONTPAGE_STYLE_HANDLER, self::$WP_FRONTPAGE_STYLE_PATH, [], $css_version, 'all' );
-
-        /** 2.2. Enqueue the custom scripts */
-        $js_version = file_exists( self::$WP_FRONTPAGE_SCRIPT_PATH ) ? filemtime( self::$WP_FRONTPAGE_SCRIPT_PATH ) : false;
-        wp_register_script( self::WP_FRONTPAGE_SCRIPT_HANDLER, self::$WP_FRONTPAGE_SCRIPT_PATH, [], $js_version, true );
-
-    }//enqueue_Extra_Resources_To_Front_Page
-
-    public function enqueue_Extra_Resources_To_Front_Page(){
-        /** 2. Enqueue extra styles & scripts  */
-        /** 2.1. Enqueue the custom styles */
-        $css_version =  file_exists( self::$WP_FRONTPAGE_STYLE_PATH ) ? filemtime( self::$WP_FRONTPAGE_STYLE_PATH ) : false;
-        wp_enqueue_style( self::WP_FRONTPAGE_STYLE_HANDLER, self::$WP_FRONTPAGE_STYLE_PATH, [], $css_version, 'all' );
-
-        /** 2.2. Enqueue the custom scripts */
-        $js_version = file_exists( self::$WP_FRONTPAGE_SCRIPT_PATH ) ? filemtime( self::$WP_FRONTPAGE_SCRIPT_PATH ) : false;
-        wp_enqueue_script( self::WP_FRONTPAGE_SCRIPT_HANDLER, self::$WP_FRONTPAGE_SCRIPT_PATH, [], $js_version, true );
-
-    }//enqueue_Extra_Resources_To_Front_Page
 
     /** 3.2. Load extra resources for the test shortcode page - slug "test-page" */
     public function load_Extra_Resources_If_Test_Page(){

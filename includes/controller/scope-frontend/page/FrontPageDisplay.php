@@ -13,6 +13,15 @@ use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 class FrontPageDisplay{
 
     /** 1. Variables & constant for post properties */
+    /** 1.1.2. Front page information : */
+    const WP_FRONTPAGE_STYLE_FILENAME = 'dutapod-front-page.css';
+    const WP_FRONTPAGE_STYLE_HANDLER = 'dutapod-front-page-style';
+    const WP_FRONTPAGE_SCRIPT_FILENAME = 'dutapod-front-page.js';
+    const WP_FRONTPAGE_SCRIPT_HANDLER = 'dutapod-front-page-script';
+
+    /** Extra styles & scripts for the front page */
+    public static $WP_FRONTPAGE_STYLE_PATH;
+    public static $WP_FRONTPAGE_SCRIPT_PATH;
 
     /** 2. Debug information */
     public Init $pluginInitiator;
@@ -29,6 +38,13 @@ class FrontPageDisplay{
 
         // 3. Setup local debuggger
         $this->set_Local_Debugger();
+
+        /** 2. Setup local properties */
+        $this->setPageResourcesInfo();
+
+        /** 3. Run the main functions */     
+        // 3.2. Load extra resource for specific pages: 
+        $this->load_Extra_Resources_If_Front_Page();
     }//__construct
 
     /** 2.2. Helper methods for constructors */
@@ -42,6 +58,27 @@ class FrontPageDisplay{
         $this->localDebugger = $this->pluginInitiator::$PLUGIN_DEBUGGER;
     }//setLocalDebugger
 
+    public function setPageResourcesInfo(){
+        /** 1. Set the resources information for WordPress front page */
+        self::$WP_FRONTPAGE_STYLE_PATH = sprintf( 
+            '%s%s%s%s', 
+            PluginProperties::$PLUGIN_URL, 
+            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
+            PluginProperties::CSS_ROOT_DIR.'page/', 
+            self::WP_FRONTPAGE_STYLE_FILENAME
+        );
+
+        self::$WP_FRONTPAGE_SCRIPT_PATH = sprintf( 
+            '%s%s%s%s', 
+            PluginProperties::$PLUGIN_URL, 
+            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
+            PluginProperties::JS_ROOT_DIR.'page/', 
+            self::WP_FRONTPAGE_SCRIPT_FILENAME
+        );
+
+
+    }//setPageResourcesInfo
+
     /** 3. Operational function */
     /** 3.1. Main operational functions */
     /** - Decide the operation of WpPostDisplayController.
@@ -50,11 +87,52 @@ class FrontPageDisplay{
     public function register(){
         /** 1. AJAX handler Lazy load the best selling product shortcode to 
          * container "div#best-selling-products-lazy-load-container-id.best-selling-products-lazy-load-container" */
-       
+        add_action('wp_ajax_load_lazy_best_selling_products', [$this,'lazy_Load_WC_Best_Selling_Products_Section']);
+        add_action('wp_ajax_nopriv_load_lazy_best_selling_products', [$this,'lazy_Load_WC_Best_Selling_Products_Section']);
     }//register
 
 
     /** 3.2. Helper functions */
+    /** 3.2.1. Enqueue extra resources for Front Page */
+    public function load_Extra_Resources_If_Front_Page(){
+        add_action('wp_enqueue_scripts', function(){
+            if( ( is_front_page() || is_home() ) && !is_admin() ){
+                // Enqueue Tailwind library - loaded in PrelibResourceLoader class
+                // $this->enqueue_Tailwindcss_Resources();
+
+                // Enqueue custom CSS
+                $this->enqueue_Extra_Resources_To_Front_Page();
+            }
+        });       
+    }//load_Extra_Resources_If_Front_Page
+
+    public function register_Extra_Resources_To_Front_Page(){
+        /** 2. Enqueue extra styles & scripts  */
+        /** 2.1. Enqueue the custom styles */
+        $css_version =  file_exists( self::$WP_FRONTPAGE_STYLE_PATH ) ? filemtime( self::$WP_FRONTPAGE_STYLE_PATH ) : false;
+        wp_register_style( self::WP_FRONTPAGE_STYLE_HANDLER, self::$WP_FRONTPAGE_STYLE_PATH, [], $css_version, 'all' );
+
+        /** 2.2. Enqueue the custom scripts */
+        $js_version = file_exists( self::$WP_FRONTPAGE_SCRIPT_PATH ) ? filemtime( self::$WP_FRONTPAGE_SCRIPT_PATH ) : false;
+        wp_register_script( self::WP_FRONTPAGE_SCRIPT_HANDLER, self::$WP_FRONTPAGE_SCRIPT_PATH, [], $js_version, true );
+
+    }//enqueue_Extra_Resources_To_Front_Page
+
+    public function enqueue_Extra_Resources_To_Front_Page(){
+        /** 2. Enqueue extra styles & scripts  */
+        /** 2.1. Enqueue the custom styles */
+        $css_version =  file_exists( self::$WP_FRONTPAGE_STYLE_PATH ) ? filemtime( self::$WP_FRONTPAGE_STYLE_PATH ) : false;
+        wp_enqueue_style( self::WP_FRONTPAGE_STYLE_HANDLER, self::$WP_FRONTPAGE_STYLE_PATH, [], $css_version, 'all' );
+
+        /** 2.2. Enqueue the custom scripts */
+        $js_version = file_exists( self::$WP_FRONTPAGE_SCRIPT_PATH ) ? filemtime( self::$WP_FRONTPAGE_SCRIPT_PATH ) : false;
+        wp_enqueue_script( self::WP_FRONTPAGE_SCRIPT_HANDLER, self::$WP_FRONTPAGE_SCRIPT_PATH, [], $js_version, true );
+
+        /**  2.2.2. Localize this additional front page script */
+        wp_localize_script( self::WP_FRONTPAGE_SCRIPT_HANDLER, 'woocommerce_params', [ 'ajax_url' => admin_url('admin-ajax.php') ] );
+    }//enqueue_Extra_Resources_To_Front_Page
+
+    /** 3.2.2. Enqueue extra resources for Front Page */
 
     function lazy_Load_WC_Best_Selling_Products_Section(){
         // Ensure WooCommerce is active
@@ -62,7 +140,18 @@ class FrontPageDisplay{
             wp_send_json_error(['message' => 'WooCommerce not active']);
         }
 
-        
+        $shortcodeDisplay = '[best_selling_products columns="4" limit="4" paginate="true"]';
+
+        $productsHTML = do_shortcode( $shortcodeDisplay );
+
+        // $responseHTML = '<div class="wc-products-sc-container">' . $productsHTML . '</div>';
+        $responseHTML = <<<HTML
+        <div class="wc-products-sc-container">
+            {$productsHTML}
+        </div><!--.wc-products-sc-container-->
+        HTML;
+
+        wp_send_json_success( ['html' => $responseHTML] );
     }//lazy_Load_WC_Best_Selling_Products_Section
 
 
