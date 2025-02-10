@@ -36,6 +36,10 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
             'DutapodCompanion\\Includes\\Display\\Page\\' => 39,
             'DutapodCompanion\\Includes\\Display\\' => 34,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => 63,
+            'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Shortcode\\' => 61,
+            'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Post\\' => 56,
+            'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Page\\' => 56,
+            'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Category\\' => 60,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\' => 51,
             'DutapodCompanion\\Includes\\Controller\\ScopeEditor\\' => 49,
             'DutapodCompanion\\Includes\\Controller\\ScopeAdmin\\' => 48,
@@ -124,6 +128,22 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/woocommerce-cpt',
+        ),
+        'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Shortcode\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/shortcode',
+        ),
+        'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Post\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/post',
+        ),
+        'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Page\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/page',
+        ),
+        'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Category\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/category',
         ),
         'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\' => 
         array (

@@ -1,28 +1,33 @@
 <?php 
 /**
- * @package vncslab-companion
+ * @package dutapod-companion
  * @version 1.0.1
  */
 
-namespace DutapodCompanion\Includes\Controller\ScopeFrontend;
+namespace DutapodCompanion\Includes\Controller\ScopeFrontend\Page;
 
 use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
+use DutapodCompanion\Helper\PrelibResourceLoader as PrelibResourceLoader;
+use DutapodCompanion\Helper\WpPageResourceLoader as WpPageResourceLoader;
+use DutapodCompanion\Helper\WpResourceLoader as WpResourceLoader;
+use DutapodCompanion\Includes\View\WpPageFrontendDisplay as WpPageFrontendDisplay;
 
-# Custom shortcode created from this plugin
-use DutapodCompanion\Includes\Content\Shortcode\FrontPageFooter as FrontPageFooter;
-use DutapodCompanion\Includes\Content\Shortcode\TestContent as TestContent;
-
-class ShortcodeController{
-
+class GeneralWpPageDisplay{
     /** 1. Variables & constant for post properties */
 
     /** 2. Debug information */
     public Init $pluginInitiator;
     public PluginProperties $localProps;
     public PluginDebugHelper $localDebugger;
+
+    public PrelibResourceLoader $prelibRscLoader;
+    public WpResourceLoader $rscLoader;
+    public WpPageResourceLoader $pageRscLoader;
+
+    public WpPageFrontendDisplay $displayHelper;
 
     public function __construct(){
         /** 1. Troubleshooting information */
@@ -53,17 +58,23 @@ class ShortcodeController{
      * - The constructor of any ResourceLoader or DisplayHelper will do the jobs
      */
     public function register(){
-        /** 1. Register the home page footer shortcode dutapod-home-page-footer */
-        $frontPageFooter = new FrontPageFooter();
+        /** 1. Load prerequisite library for specific pages (TailwindCSS, Bootstrap ...) */
+        $this->prelibRscLoader = new PrelibResourceLoader();
+
+        /** 1. Load extra resources for every pages (post, page, product, product category ...) */
+        $this->rscLoader = new WpResourceLoader();
         
-        add_shortcode('dutapod-home_page_footer', [ $frontPageFooter, 'renderFrontPageFooterShortcode'] );
-        // $frontPageFooter->renderFrontPageFooter();
+        /** 2. Run the extra resource loader for WP Post type */
+        /** - This will load extra resources if matching the requirement (i.e specific post ID)*/
+        $this->pageRscLoader = new WpPageResourceLoader();
 
-        /** n. Test Content shortcode*/
-        $testContent = new TestContent();
-        /** ... More shortcode to be registered */
-        add_shortcode('dutapod-test_content', [ $testContent, 'renderTestContentShortcode'] );
-
+        /** 3. Customize the output HTML of the post content */
+        /** - Add lazy load for specific HTML content */
+        $this->displayHelper = new WpPageFrontendDisplay();
     }//register
 
-}//ShortCodeController class definition
+
+    /** 3.2. Helper functions */
+
+}//WpPageDisplayController class definition
+

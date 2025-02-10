@@ -1,33 +1,23 @@
 <?php 
 /**
- * @package vncslab-companion
+ * @package dutapod-companion
  * @version 1.0.1
  */
 
-namespace DutapodCompanion\Includes\Controller\ScopeFrontend;
+ namespace DutapodCompanion\Includes\Controller\ScopeFrontend\Page;
 
 use DutapodCompanion\Includes\Init as Init;
-use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
-use DutapodCompanion\Helper\PrelibResourceLoader as PrelibResourceLoader;
-use DutapodCompanion\Helper\WpPageResourceLoader as WpPageResourceLoader;
-use DutapodCompanion\Helper\WpResourceLoader as WpResourceLoader;
-use DutapodCompanion\Includes\View\WpPageFrontendDisplay as WpPageFrontendDisplay;
 
-class WpPageDisplayController{
+class FrontPageDisplay{
+
     /** 1. Variables & constant for post properties */
 
     /** 2. Debug information */
     public Init $pluginInitiator;
     public PluginProperties $localProps;
     public PluginDebugHelper $localDebugger;
-
-    public PrelibResourceLoader $prelibRscLoader;
-    public WpResourceLoader $rscLoader;
-    public WpPageResourceLoader $pageRscLoader;
-
-    public WpPageFrontendDisplay $displayHelper;
 
     public function __construct(){
         /** 1. Troubleshooting information */
@@ -58,23 +48,22 @@ class WpPageDisplayController{
      * - The constructor of any ResourceLoader or DisplayHelper will do the jobs
      */
     public function register(){
-        /** 1. Load prerequisite library for specific pages (TailwindCSS, Bootstrap ...) */
-        $this->prelibRscLoader = new PrelibResourceLoader();
-
-        /** 1. Load extra resources for every pages (post, page, product, product category ...) */
-        $this->rscLoader = new WpResourceLoader();
-        
-        /** 2. Run the extra resource loader for WP Post type */
-        /** - This will load extra resources if matching the requirement (i.e specific post ID)*/
-        $this->pageRscLoader = new WpPageResourceLoader();
-
-        /** 3. Customize the output HTML of the post content */
-        /** - Add lazy load for specific HTML content */
-        $this->displayHelper = new WpPageFrontendDisplay();
+        /** 1. AJAX handler Lazy load the best selling product shortcode to 
+         * container "div#best-selling-products-lazy-load-container-id.best-selling-products-lazy-load-container" */
+       
     }//register
 
 
     /** 3.2. Helper functions */
 
-}//WpPageDisplayController class definition
+    function lazy_Load_WC_Best_Selling_Products_Section(){
+        // Ensure WooCommerce is active
+        if( ! class_exists( 'WooCommerce' ) ){
+            wp_send_json_error(['message' => 'WooCommerce not active']);
+        }
 
+        
+    }//lazy_Load_WC_Best_Selling_Products_Section
+
+
+}//FrontPageDisplay class definition

@@ -14,9 +14,9 @@ use DutapodCompanion\Includes\Controller\ScopeFrontend\DebugTemplateController a
 use DutapodCompanion\Includes\Controller\ScopeFrontend\CustomTemplateController as CustomTemplateController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
 # use DutapodCompanion\Includes\Controller\ScopeFrontend\WpPostDisplayController as WpPostDisplayController;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\WpPageDisplayController as WpPageDisplayController;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\GeneralWpPageDisplay as GeneralWpPageDisplay;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\WooCommerceCustomizer as WooCommerceCustomizer;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\ShortcodeController as ShortcodeController;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\Shortcode\ShortcodeController as ShortcodeController;
 
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ProductPage as WcProductPage;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CategoryPage as WcCategoryPage;
@@ -128,7 +128,7 @@ final class Init{
             DebugTemplateController::class,
             CustomTemplateController::class,
             ShortcodeController::class,
-            WpPageDisplayController::class,            
+            GeneralWpPageDisplay::class,            
         );
     }//get_frontend_services
 
