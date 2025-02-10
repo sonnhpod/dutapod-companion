@@ -82,7 +82,8 @@ class ProductPage{
         /** 1. Check if the incoming request is single WooCommerce Product page */ 
 
         /** 1. Add customizing activities after all plugins are loaded */
-        add_action( 'after_setup_theme', [ $this, 'register_Extra_Resources_to_WC_Product_Pages'], 100 );
+        // add_action( 'after_setup_theme', [ $this, 'register_Extra_Resources_to_WC_Product_Pages'], 100 );//OK
+        // $this->register_Extra_Resources_to_WC_Product_Pages();
 
         /** 1.2. Enqueue extra styles & scripts after WooCommerce & all plugins are loaded*/
         /** Need to use further hooks than "woocommerce_loaded":
@@ -90,8 +91,8 @@ class ProductPage{
          */
 
         // add_action( 'woocommerce_loaded', [ $this,'enqueue_Extra_Resources_to_WC_Product_Pages' ] );//OK at 20250129
-        add_action( 'woocommerce_before_main_content', [ $this,'enqueue_Extra_Resources_to_WC_Product_Pages' ] );
-    
+        // add_action( 'woocommerce_before_main_content', [ $this,'enqueue_Extra_Resources_to_WC_Product_Pages' ] );//OK
+        add_action( 'wp_enqueue_scripts', [ $this,'enqueue_Extra_Resources_to_WC_Product_Pages' ] );
     }//add_Extra_Resources_to_WC_Product_Pages
 
     public function register_Extra_Resources_to_WC_Product_Pages(){

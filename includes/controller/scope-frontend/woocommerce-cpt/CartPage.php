@@ -78,7 +78,9 @@ class CartPage{
 
     public function add_Extra_Resources_to_WC_Cart_Page(){
         /** 1. Add customizing activities after all plugins are loaded */
-        add_action( 'after_setup_theme', [ $this, 'register_Extra_Resources_to_WC_Cart_Page'], 100 );
+        // Hook after_setup_theme seems invalid
+        // add_action( 'after_setup_theme', [ $this, 'register_Extra_Resources_to_WC_Cart_Page'], 100 );//OK
+        // $this->register_Extra_Resources_to_WC_Cart_Page();
 
         /** 1.2. Enqueue extra styles & scripts after WooCommerce & all plugins are loaded*/
         /** Need to use further hooks than "woocommerce_loaded":
@@ -86,7 +88,8 @@ class CartPage{
          */
 
         // Can't use the hook "woocommerce_before_main_content". Need to use "template_redirect":
-        add_action( 'template_redirect', [ $this,'enqueue_Extra_Resources_to_WC_Cart_Page' ] );
+        // add_action( 'template_redirect', [ $this,'enqueue_Extra_Resources_to_WC_Cart_Page' ] );//OK
+        add_action( 'wp_enqueue_scripts', [ $this,'enqueue_Extra_Resources_to_WC_Cart_Page' ] );
     }//add_Extra_Resources_to_WC_Product_Pages
 
     public function register_Extra_Resources_to_WC_Cart_Page(){
