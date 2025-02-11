@@ -49,28 +49,55 @@ article.page{
             }//div.wp-block-cover__inner-container
         }//div.wp-block-cover
 
-        /** 2. Best selling products section  */
-        /*
-        div.wc-best-selling-products-sc-container{
-            max-width: 100%;
-            margin-left: 'calc( - 50vw + 50% )';
-            margin-right: 'calc( - 50vw + 50% )';
-        }//.wc-best-selling-products-sc-container
-        */
+        /** 2. Best selling products section  */       
+        div#best-selling-products-lazy-load-container-id{
 
-        div.lazy-load-best-selling-products-outer-container{            
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            div.lazy-load-best-selling-products-inner-container{          
+                
+                // WC Product container
+                div.woocommerce{    
 
-            &.fade-in{
-                opacity: 1;
-                transform: translateY(0);
-            }
+                    // Product list 
+                    ul.products{
 
-            // div#best-selling-products-lazy-load-container-id{
-            //} //div#best-selling-products-lazy-load-container-id
-        }//.lazy-load-best-selling-products-outer-container
+                        li.product{
+                            opacity: 0;
+                            transform: translateY(-40px);
+                            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+                            &.fade-in{
+                                opacity: 1;
+                                transform: translateY(0);
+            
+                                &:nth-child(1){
+                                    transition-delay: 0s;
+                                }
+    
+                                &:nth-child(2){
+                                    transition-delay: 0.2s;
+                                }
+    
+                                &:nth-child(3){
+                                    transition-delay: 0.4s;
+                                }
+    
+                                &:nth-child(4){
+                                    transition-delay: 0.6s;
+                                }
+                            }//&.fade-in
+
+                            
+                        }//li.product
+                       
+                    }//ul.products
+
+                }//div.woocommerce
+                
+            }//.lazy-load-best-selling-products-outer-container
+
+        } //div#best-selling-products-lazy-load-container-id
+
+        
 
         
 

@@ -143,15 +143,14 @@ class FrontPageDisplay{
         $shortcodeDisplay = '[best_selling_products columns="4" limit="4" paginate="true"]';
 
         $productsHTML = do_shortcode( $shortcodeDisplay );
-
-        // $responseHTML = '<div class="wc-products-sc-container">' . $productsHTML . '</div>';
-        $responseHTML = <<<HTML
+        
+        /* $responseHTML = <<<HTML
         <div class="wc-products-sc-container">
             {$productsHTML}
         </div><!--.wc-products-sc-container-->
-        HTML;
+        HTML; */
 
-        wp_send_json_success( ['html' => $responseHTML] );
+        wp_send_json_success( ['html' => $productsHTML] );
     }//lazy_Load_WC_Best_Selling_Products_Section
 
 

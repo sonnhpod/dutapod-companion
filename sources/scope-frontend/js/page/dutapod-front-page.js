@@ -20,7 +20,10 @@ document.addEventListener( 'DOMContentLoaded', function(){
     const astraContentContainerSelector = `${outermostContentContainerSelector} > div.ast-container`;
     const contentAreaContainerSelector = `${astraContentContainerSelector} > div#primary.content-area`;
 
-    const heroSectionSelector = `${contentAreaContainerSelector} > main#main > article.page > div.entry-content > div.hero-section-image-container`;
+    const entryContentContainerSelector = `${contentAreaContainerSelector} > main#main > article.page > div.entry-content`;
+
+    const heroSectionSelector = `${entryContentContainerSelector}  > div.hero-section-image-container`;
+    const bestSellingProductsSectionSelector = `${entryContentContainerSelector} > div.best-selling-products-lazy-load-container`;
 
     const testimonialSectionID = `sp-testimonial-free-wrapper-999`;
     const heroSectionID = `hero-section-image-id`;
@@ -109,13 +112,20 @@ document.addEventListener( 'DOMContentLoaded', function(){
                         // responseData is OK
                         if( responseData.success ){
                             // bestSellingProductsSection.innerHTML = responseData.data.html;//OK
-                            bestSellingProductsSection.innerHTML = `<div class="lazy-load-best-selling-products-outer-container">${responseData.data.html}</div>`;
+                            bestSellingProductsSection.innerHTML = `<div class="lazy-load-best-selling-products-inner-container">${responseData.data.html}</div>`;
 
                             // Ensure the fade-in effect is applied after DOM update
-                            requestAnimationFrame( () => {
-                                const bestSellingProductsOuterContainer = document.querySelector( 'div.lazy-load-best-selling-products-outer-container' );
-                                bestSellingProductsOuterContainer.classList.add('fade-in');
-                            } );
+                            // requestAnimationFrame( () => {
+                            //     const bestSellingProductsInnerContainer = document.querySelector( 'div.lazy-load-best-selling-products-inner-container' );
+                            //     bestSellingProductsInnerContainer.classList.add('fade-in');
+                            // } );                           
+
+                            setTimeout( () => {
+                                const bestSellingProductsRelativeSelector = `div.lazy-load-best-selling-products-inner-container > div.woocommerce > ul.products > li.product`;
+                                const bestSellingProducts = document.querySelectorAll( `${bestSellingProductsSectionSelector} > ${bestSellingProductsRelativeSelector}` );
+                                bestSellingProducts.forEach( product => product.classList.add('fade-in'));                                
+                                
+                            }, 50); 
                         } else {
                             bestSellingProductsSection.innerHTML = `<p>Error loading products. There is no data success </p>`;
                         }
@@ -129,7 +139,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
                 observer.unobserve( bestSellingProductsSection );
             }
         });
-    }, { threshold: 0.2 } ); //Trigger when 20% of the section is visible
+    }, { threshold: 0.5, rootMargin: '0px 0px -25% 0px' } ); //Trigger when 50% of the section reach 50%  of the view port baseline
 
     bsProductsSectionObserver.observe( bestSellingProductsSection );
     // console.log(`astContentContainerMarginLeft : ${astContentContainerMarginLeft}`);

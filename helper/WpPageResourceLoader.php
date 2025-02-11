@@ -148,9 +148,7 @@ class WpPageResourceLoader{
 
                 // Enqueue extra resources
                 $this->enqueue_Extra_Resources_To_Test_Page();                
-            }
-
-            
+            }            
         });
         
 

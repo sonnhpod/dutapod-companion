@@ -47,13 +47,6 @@ section.dutapod-footer-container {
 article.page div.entry-content {
   /** 1. Hero section  */
   /** 2. Best selling products section  */
-  /*
-  div.wc-best-selling-products-sc-container{
-      max-width: 100%;
-      margin-left: 'calc( - 50vw + 50% )';
-      margin-right: 'calc( - 50vw + 50% )';
-  }//.wc-best-selling-products-sc-container
-  */
   /** 3. Most popular products section  */
   /** 2 and 3 - styling zoom in animation effect */
   /** 4. Testimonial sections - old */
@@ -101,14 +94,26 @@ article.page div.entry-content div.hero-section-image-container.wp-block-cover d
 article.page div.entry-content div.hero-section-image-container.wp-block-cover div.wp-block-cover__inner-container div.hero-section-caption-container > * {
   z-index: 12;
 }
-article.page div.entry-content div.lazy-load-best-selling-products-outer-container {
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(-40px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-article.page div.entry-content div.lazy-load-best-selling-products-outer-container.fade-in {
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product.fade-in {
   opacity: 1;
   transform: translateY(0);
+}
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product.fade-in:nth-child(1) {
+  transition-delay: 0s;
+}
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product.fade-in:nth-child(2) {
+  transition-delay: 0.2s;
+}
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product.fade-in:nth-child(3) {
+  transition-delay: 0.4s;
+}
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product.fade-in:nth-child(4) {
+  transition-delay: 0.6s;
 }
 article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product {
   display: flex;
