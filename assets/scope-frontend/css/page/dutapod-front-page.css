@@ -115,6 +115,19 @@ article.page div.entry-content div#best-selling-products-lazy-load-container-id 
 article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product.fade-in:nth-child(4) {
   transition-delay: 0.6s;
 }
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product a.woocommerce-loop-product__link {
+  overflow: hidden;
+  display: block;
+}
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product a.woocommerce-loop-product__link img.attachment-woocommerce_thumbnail {
+  display: block;
+  transition: transform 0.2s ease-out;
+  transform-origin: center;
+  will-change: transform, translate;
+}
+article.page div.entry-content div#best-selling-products-lazy-load-container-id div.lazy-load-best-selling-products-inner-container div.woocommerce ul.products li.product a.woocommerce-loop-product__link img.attachment-woocommerce_thumbnail:hover {
+  transform: scale(1.2);
+}
 article.page div.entry-content div.woocommerce.columns-4 ul.products.columns-4 li.product {
   display: flex;
   flex-direction: column;

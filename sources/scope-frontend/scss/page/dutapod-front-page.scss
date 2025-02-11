@@ -86,7 +86,24 @@ article.page{
                                 }
                             }//&.fade-in
 
-                            
+                            // Image preview
+                            a.woocommerce-loop-product__link{
+                                overflow: hidden;
+                                display: block;
+
+                                img.attachment-woocommerce_thumbnail{
+                                    display: block;                               
+                                    transition: transform 0.2s ease-out;
+                                    transform-origin: center;                                
+                                    will-change: transform, translate;
+            
+                                    &:hover{
+                                        transform: scale(1.2);
+                                    }
+
+                                }//img.attachment-woocommerce_thumbnail
+
+                            }//a.woocommerce-loop-product__link
                         }//li.product
                        
                     }//ul.products
