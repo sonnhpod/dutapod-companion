@@ -79,7 +79,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
         setTimeout( () => {
             const testimonialItemsInnerContainerCssObj = window.getComputedStyle( testimonialItemsInnerContainer );//OK. Got valid computed style in CSS object
 
-            let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height;
+            let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height;// Got the right value here: 440.087px
             // console.log(`testimonialItemsInnerContainerHeight : ${testimonialItemsInnerContainerHeight}`);
 
             testimonialItems.forEach( item => item.style.height = testimonialItemsInnerContainerHeight );

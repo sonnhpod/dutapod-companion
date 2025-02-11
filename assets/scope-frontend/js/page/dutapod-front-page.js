@@ -66,23 +66,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var testimonialItemsInnerContainer = testimonialSection.querySelector("div.sp-testimonial-free-section > div.swiper-wrapper"); //OK
     var testimonialItems = testimonialSection.querySelectorAll("div.sp-testimonial-free-section > div.swiper-wrapper > div.sp-testimonial-item");
 
-    // Implement a delay to ensure all DOM are fully loaded
+    // Implement a delay to ensure all DOM are fully loaded and rendered by other scripts
     setTimeout(function () {
       var testimonialItemsInnerContainerCssObj = window.getComputedStyle(testimonialItemsInnerContainer); //OK. Got valid computed style in CSS object
 
-      var testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height;
+      var testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height; // Got the right value here: 440.087px
       // console.log(`testimonialItemsInnerContainerHeight : ${testimonialItemsInnerContainerHeight}`);
 
       testimonialItems.forEach(function (item) {
         return item.style.height = testimonialItemsInnerContainerHeight;
       });
     }, 100);
-
-    // let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height;// 346.076px. Expect 424.097px
-    // let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.getPropertyValue('height');// 346.076px. Expect 424.097px        
-    // let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerRect.height; // 346.076px       
-
-    // hardcode testimonialItemsInnerContainerHeight height with 424.097px
   }
 
   /** 2. Reposition the hero section in the mobile display */
