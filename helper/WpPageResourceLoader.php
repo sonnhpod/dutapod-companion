@@ -24,12 +24,6 @@ class WpPageResourceLoader{
 
     /** 1.1.2. Front page information : */
 
-    /** 1.1.3. Test page information */
-    const WP_TEST_PAGE_STYLE_FILENAME = 'wp-test-page.css';
-    const WP_TEST_PAGE_STYLE_HANDLER = 'wp-test-page-style';
-    const WP_TEST_PAGE_SCRIPT_FILENAME = 'wp-test-page.js';
-    const WP_TEST_PAGE_SCRIPT_HANDLER = 'wp-test-page-script';
-
     /** 1.2. Libraries */
 
     /** 1.1.2. Special pages to be used as condition */
@@ -71,10 +65,7 @@ class WpPageResourceLoader{
         /** 3. Run the main functions */        
         /** Hook to the_post - right after the WP Query is executed */ 
         // 3.1. Load libraries:
-        // $this->load_CDN_Bootstrap_Resources(); // OK = temporary disable
-    
-        // 3.2. Load extra resource for specific pages:        
-        $this->load_Extra_Resources_If_Test_Page(); // OK - temporary disable
+        // $this->load_CDN_Bootstrap_Resources(); // OK = temporary disable   
     }//__construct 
 
     /** 2.2. Helper methods for constructor */
@@ -92,23 +83,6 @@ class WpPageResourceLoader{
         /** 20240816 Load extra resources for a specific posts */
         /** 1. Set resources information for the library */
 
-        /** 2. Set the resources information for WordPress test page */
-        self::$WP_TEST_PAGE_STYLE_PATH = sprintf( 
-            '%s%s%s%s', 
-            PluginProperties::$PLUGIN_URL, 
-            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
-            PluginProperties::CSS_ROOT_DIR, 
-            self::WP_TEST_PAGE_STYLE_FILENAME
-        );
-        
-        self::$WP_TEST_PAGE_SCRIPT_PATH = sprintf( 
-            '%s%s%s%s', 
-            PluginProperties::$PLUGIN_URL, 
-            PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
-            PluginProperties::JS_ROOT_DIR, 
-            self::WP_TEST_PAGE_SCRIPT_FILENAME
-        );
-
         /** Set the resources information - extra styles & scripts files for WP pages */
         self::$WP_PAGE_EXTRA_STYLES_PATH = sprintf( 
             '%s%s%s%s', 
@@ -124,59 +98,12 @@ class WpPageResourceLoader{
             PluginProperties::RESOURCES_FRONTEND_ROOT_DIR,
             PluginProperties::JS_ROOT_DIR, 
             self::WP_PAGE_EXTRA_SCRIPTS_FILENAME
-        );
+        );        
 
-        
-
-    }//setThemeResourcesInfo
+    }//setPageResourcesInfo
 
     /** 3. Operational functions - load extra internal resources for pages */
-    /** 3.1. Enqueue extra resources for Front Page */
-
-    /** 3.2. Load extra resources for the test shortcode page - slug "test-page" */
-    public function load_Extra_Resources_If_Test_Page(){
-
-        /** Enqueue the extra styles and scripts if requesting the home page/frontpage. */
-        /** The conditional checking should be conducted at the hook "wp_enqueue_scripts" */
-        //$this->localDebugger->write_log_general( $_SERVER['REQUEST_URI'] );// false
-
-
-        add_action('wp_enqueue_scripts', function(){
-            if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
-                // Enqueue CDN tailwind library - loaded in PrelibResourceLoader class
-                // $this->enqueue_Tailwindcss_Resources();
-
-                // Enqueue extra resources
-                $this->enqueue_Extra_Resources_To_Test_Page();                
-            }            
-        });
-        
-
-    }//load_Extra_Resources_If_Front_Page
-
-    public function register_Extra_Resources_To_Test_Page(){
-        /** 2. Enqueue extra styles & scripts  */
-        /** 2.1. Enqueue the custom styles */
-        $css_version =  file_exists( self::$WP_TEST_PAGE_STYLE_PATH ) ? filemtime( self::$WP_TEST_PAGE_STYLE_PATH ) : false;
-        wp_register_style( self::WP_TEST_PAGE_STYLE_HANDLER, self::$WP_TEST_PAGE_STYLE_PATH, [], $css_version, 'all' );
-
-        /** 2.2. Enqueue the custom scripts */
-        $js_version = file_exists( self::$WP_TEST_PAGE_SCRIPT_PATH ) ? filemtime( self::$WP_TEST_PAGE_SCRIPT_PATH ) : false;
-        wp_register_script( self::WP_TEST_PAGE_SCRIPT_HANDLER, self::$WP_TEST_PAGE_SCRIPT_PATH, [], $js_version, true );
-
-    }//enqueue_Extra_Resources_To_Front_Page
-
-    public function enqueue_Extra_Resources_To_Test_Page(){
-        /** 2. Enqueue extra styles & scripts  */
-        /** 2.1. Enqueue the custom styles */
-        $css_version =  file_exists( self::$WP_TEST_PAGE_STYLE_PATH ) ? filemtime( self::$WP_TEST_PAGE_STYLE_PATH ) : false;
-        wp_enqueue_style( self::WP_TEST_PAGE_STYLE_HANDLER, self::$WP_TEST_PAGE_STYLE_PATH, [], $css_version, 'all' );
-
-        /** 2.2. Enqueue the custom scripts */
-        $js_version = file_exists( self::$WP_TEST_PAGE_SCRIPT_PATH ) ? filemtime( self::$WP_TEST_PAGE_SCRIPT_PATH ) : false;
-        wp_enqueue_script( self::WP_TEST_PAGE_SCRIPT_HANDLER, self::$WP_TEST_PAGE_SCRIPT_PATH, [], $js_version, true );
-
-    }//enqueue_Extra_Resources_To_Front_Page
+    /** 3.1. Enqueue extra resources for Front Page */    
 
     /** 4. Operational functions - load external resources for pages */
     /** 4.1. Load Bootstrap framework from CND front page, test page, and all other page 
