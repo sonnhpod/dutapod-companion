@@ -103,7 +103,7 @@ class FrontPageDisplay{
                 // Enqueue custom CSS
                 $this->enqueue_Extra_Resources_To_Front_Page();
             }
-        });       
+        }, PHP_INT_MAX);       
     }//load_Extra_Resources_If_Front_Page
 
     public function register_Extra_Resources_To_Front_Page(){

@@ -1,4 +1,5 @@
 document.addEventListener( 'DOMContentLoaded', function(){
+    // 1. Genera variables
     // Screen sizes variables - in pixel value
     const minXxlScreenWidth = 1400;
 
@@ -16,6 +17,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 
     const maxXsScreenWidth = 575;
 
+    // 2. Content selector variables
     const outermostContentContainerSelector = `div#content.site-content`;
     const astraContentContainerSelector = `${outermostContentContainerSelector} > div.ast-container`;
     const contentAreaContainerSelector = `${astraContentContainerSelector} > div#primary.content-area`;
@@ -53,7 +55,8 @@ document.addEventListener( 'DOMContentLoaded', function(){
     astContentContainerPaddingRight = astContentContainerPaddingRight.substring(0, astContentContainerPaddingRight.length - 2 );// 20 in string format
 
      /** 1. Add negative margin value to widen the size of the testimonial section - with the screen size >= md width */
-    if( window.screen.width > minMdScreenWidth ){       
+    if( window.screen.width > minMdScreenWidth ){      
+        // 1. Recalculate the margin to centralize the testimonial section 
         const testimonialSection = document.getElementById( testimonialSectionID );
 
         let testimonialSectionWidth = testimonialSection.offsetWidth; // get testimonial Section 90vw width in pixel    
@@ -66,6 +69,21 @@ document.addEventListener( 'DOMContentLoaded', function(){
         // Set negative margin left value 
         // testimonialSection.style.marginLeft = `-${testimonialSectionMarginLeft}px`;
         testimonialSection.style.marginLeft = `${testimonialSectionMarginLeft}px`;
+
+        // 2. Update sp-testimonial height
+        const testimonialItemsWrapper = testimonialSection.querySelector(`div.sp-testimonial-free-section`);
+        const testimonialItemsInnerContainer = testimonialSection.querySelector(`div.sp-testimonial-free-section > div.swiper-wrapper`);//OK
+        const testimonialItems = testimonialSection.querySelectorAll(`div.sp-testimonial-free-section > div.swiper-wrapper > div.sp-testimonial-item`);  
+        
+        // Implement a delay to ensure all DOM are fully loaded and rendered by other scripts
+        setTimeout( () => {
+            const testimonialItemsInnerContainerCssObj = window.getComputedStyle( testimonialItemsInnerContainer );//OK. Got valid computed style in CSS object
+
+            let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height;
+            // console.log(`testimonialItemsInnerContainerHeight : ${testimonialItemsInnerContainerHeight}`);
+
+            testimonialItems.forEach( item => item.style.height = testimonialItemsInnerContainerHeight );
+        }, 100);  
     }    
 
     /** 2. Reposition the hero section in the mobile display */

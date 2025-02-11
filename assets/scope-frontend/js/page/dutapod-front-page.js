@@ -2,6 +2,7 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', function () {
+  // 1. Genera variables
   // Screen sizes variables - in pixel value
   var minXxlScreenWidth = 1400;
   var maxXlScreenWidth = 1399;
@@ -13,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var maxSmScreenWidth = 767;
   var minSmScreenWidth = 576;
   var maxXsScreenWidth = 575;
+
+  // 2. Content selector variables
   var outermostContentContainerSelector = "div#content.site-content";
   var astraContentContainerSelector = "".concat(outermostContentContainerSelector, " > div.ast-container");
   var contentAreaContainerSelector = "".concat(astraContentContainerSelector, " > div#primary.content-area");
@@ -45,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /** 1. Add negative margin value to widen the size of the testimonial section - with the screen size >= md width */
   if (window.screen.width > minMdScreenWidth) {
+    // 1. Recalculate the margin to centralize the testimonial section 
     var testimonialSection = document.getElementById(testimonialSectionID);
     var testimonialSectionWidth = testimonialSection.offsetWidth; // get testimonial Section 90vw width in pixel    
 
@@ -56,6 +60,29 @@ document.addEventListener('DOMContentLoaded', function () {
     // Set negative margin left value 
     // testimonialSection.style.marginLeft = `-${testimonialSectionMarginLeft}px`;
     testimonialSection.style.marginLeft = "".concat(testimonialSectionMarginLeft, "px");
+
+    // 2. Update sp-testimonial height
+    var testimonialItemsWrapper = testimonialSection.querySelector("div.sp-testimonial-free-section");
+    var testimonialItemsInnerContainer = testimonialSection.querySelector("div.sp-testimonial-free-section > div.swiper-wrapper"); //OK
+    var testimonialItems = testimonialSection.querySelectorAll("div.sp-testimonial-free-section > div.swiper-wrapper > div.sp-testimonial-item");
+
+    // Implement a delay to ensure all DOM are fully loaded
+    setTimeout(function () {
+      var testimonialItemsInnerContainerCssObj = window.getComputedStyle(testimonialItemsInnerContainer); //OK. Got valid computed style in CSS object
+
+      var testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height;
+      // console.log(`testimonialItemsInnerContainerHeight : ${testimonialItemsInnerContainerHeight}`);
+
+      testimonialItems.forEach(function (item) {
+        return item.style.height = testimonialItemsInnerContainerHeight;
+      });
+    }, 100);
+
+    // let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height;// 346.076px. Expect 424.097px
+    // let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.getPropertyValue('height');// 346.076px. Expect 424.097px        
+    // let testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerRect.height; // 346.076px       
+
+    // hardcode testimonialItemsInnerContainerHeight height with 424.097px
   }
 
   /** 2. Reposition the hero section in the mobile display */
