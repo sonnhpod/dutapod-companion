@@ -53,7 +53,7 @@ class WcShortcode{
     public function register(){
         // 1. Enqueue extra resources for product page
         $this->customize_Products_Shortcode();
-        $this->customize_Best_Selling_Products_Shortcode();
+        // $this->customize_Best_Selling_Products_Shortcode();
 
         // 2. Customize HTML content for specific elements
         // --- Many codes to customize the HTML content for specific elements goes here
@@ -88,6 +88,7 @@ class WcShortcode{
     }//wrap_wc_products_shortcode
 
     /** 4.2.1. "best_selling_products" shortcode */
+    /*
     public function customize_Best_Selling_Products_Shortcode(){
         add_shortcode( 'custom_wc_best_selling_products', [$this, 'wrap_best_selling_products_shortcode'] );
 
@@ -107,5 +108,6 @@ class WcShortcode{
         // Wrap the output in a custom div
         return '<div class="wc-best-selling-products-sc-container">' . $output . '</div>';
     }//wrap_best_selling_products_shortcode
+    */
 
 }//Shortcode
