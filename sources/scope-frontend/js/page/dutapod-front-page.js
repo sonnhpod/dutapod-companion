@@ -33,6 +33,8 @@ document.addEventListener( 'DOMContentLoaded', function(){
     const astraContentContainer = document.querySelector( astraContentContainerSelector );
     const contentAreaContainer = document.querySelector( contentAreaContainerSelector );
 
+    const astraScrollTopBtn = document.getElementById('ast-scroll-top');
+
     const astraContentContainerStyleData = window.getComputedStyle( astraContentContainer );
     
     // const astContentContainerMarginLeft = astraContentContainerStyleData.getPropertyValue('margin-left');//OK - 126.667px. Expect 437.22px
@@ -105,6 +107,8 @@ document.addEventListener( 'DOMContentLoaded', function(){
 
         // astContentContainerMarginLeft
         // div.hero-section-image-id - heroSectionMarginLeft
+        // Disable the astra scroll top button in mobile screen
+        astraScrollTopBtn.style.display = 'none';
     }
 
     /** 3. Lazy load the best_selling_products shortcode */
