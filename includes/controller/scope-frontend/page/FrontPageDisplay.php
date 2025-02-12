@@ -140,7 +140,8 @@ class FrontPageDisplay{
             wp_send_json_error(['message' => 'WooCommerce not active']);
         }
 
-        $shortcodeDisplay = '[best_selling_products columns="4" limit="4" paginate="true"]';
+        // $shortcodeDisplay = '[best_selling_products columns="4" limit="4" paginate="true"]';
+        $shortcodeDisplay = '[products tag="best-selling" columns="4" limit="4" paginate="true"]';
 
         $productsHTML = do_shortcode( $shortcodeDisplay );
         
