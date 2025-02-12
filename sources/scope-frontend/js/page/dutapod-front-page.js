@@ -159,6 +159,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
         });
     }, { threshold: 0.5, rootMargin: '0px 0px -25% 0px' } ); //Trigger when 50% of the section reach 50%  of the view port baseline
 
+    // Start observing the bestSellingProductsSection
     bsProductsSectionObserver.observe( bestSellingProductsSection );
     // console.log(`astContentContainerMarginLeft : ${astContentContainerMarginLeft}`);
     // console.log(`astContentContainerMarginRight : ${astContentContainerMarginRight}`);
