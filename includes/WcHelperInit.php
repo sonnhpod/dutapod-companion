@@ -20,6 +20,7 @@ use DutapodCompanion\Includes\Controller\ScopeFrontend\ShortcodeController as Sh
 
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ProductPage as WcProductPage;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CategoryPage as WcCategoryPage;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\TagPage as WcTagPage;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ShopPage as WcShopPage;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CartPage as WcCartPage;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CheckoutPage as WcCheckoutPage;
@@ -128,6 +129,7 @@ final class WcHelperInit{
         return array(               
             WcProductPage::class,
             WcCategoryPage::class,
+            WcTagPage::class,
             WcShopPage::class,
             WcCartPage::class,
             WcCheckoutPage::class,

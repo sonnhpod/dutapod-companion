@@ -1,0 +1,45 @@
+/** Package dutapod-companion plugin - 20250124 */
+
+/** Styling the single product page display */
+
+/** WooCommerce Product category outer container */
+div.ast-woocommerce-container{
+
+    ul.products{
+
+        /** 1. Single product display  */
+        li.product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            /** 1.1. Product thumbnail image display  */
+
+            div.astra-shop-thumbnail-wrap{
+
+                a.woocommerce-loop-product__link{
+                    overflow: hidden;
+                    display: block;
+                    // position: relative;
+                    
+                    img {
+                        display: block;
+                        // position: absolute;
+                        transition: transform 0.2s ease-out;
+                        transform-origin: center;
+                        // transform-origin: 0 0;
+                        will-change: transform, translate;
+
+                        &:hover{
+                            transform: scale(1.2);
+                        }
+                    }
+                    
+                }//a.woocommerce-loop-product__link
+            
+            }//div.astra-shop-thumbnail-wrap
+        }//li
+    }//ul.products
+
+}//div.ast-woocommerce-container
