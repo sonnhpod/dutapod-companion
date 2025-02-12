@@ -112,9 +112,14 @@ document.addEventListener( 'DOMContentLoaded', function(){
 
     const bestSellingProductsSection = document.getElementById( 'best-selling-products-lazy-load-container-id' );
 
+    let observerActive = true;
+
     if( ! bestSellingProductsSection ) return;
 
     const bsProductsSectionObserver = new IntersectionObserver( ( entries, observer ) => {
+        // Prevent observer from running when pagination is active
+        if (!observerActive) return; 
+
         entries.forEach( entry => {
             if( entry.isIntersecting && ! lazyBestSellingProductsLoaded ){
                 lazyBestSellingProductsLoaded = true;
@@ -155,12 +160,15 @@ document.addEventListener( 'DOMContentLoaded', function(){
                     });
                 
                 observer.unobserve( bestSellingProductsSection );
+                observerActive = false;
             }
         });
     }, { threshold: 0.5, rootMargin: '0px 0px -25% 0px' } ); //Trigger when 50% of the section reach 50%  of the view port baseline
 
     // Start observing the bestSellingProductsSection
     bsProductsSectionObserver.observe( bestSellingProductsSection );
+
+    // const bsProductSectionNavigation = bestSellingProductsSection.querySelector('div.lazy-load-best-selling-products-inner-container > nav.woocommerce-pagination > ul.page-numbers');
     // console.log(`astContentContainerMarginLeft : ${astContentContainerMarginLeft}`);
     // console.log(`astContentContainerMarginRight : ${astContentContainerMarginRight}`);
     // console.log(`astContentContainerPaddingLeft : ${astContentContainerPaddingLeft}`);

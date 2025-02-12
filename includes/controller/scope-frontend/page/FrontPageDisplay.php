@@ -140,8 +140,9 @@ class FrontPageDisplay{
             wp_send_json_error(['message' => 'WooCommerce not active']);
         }
 
-        // $shortcodeDisplay = '[best_selling_products columns="4" limit="4" paginate="true"]';
-        $shortcodeDisplay = '[products tag="best-selling" columns="4" limit="4" paginate="true"]';
+        // $shortcodeDisplay = '[best_selling_products columns="4" limit="4" paginate="true"]';// Error: display all pages
+        // $shortcodeDisplay = '[products tag="best-selling" columns="4" limit="4" paginate="true"]';// Error with pagination
+        $shortcodeDisplay = '[products tag="featured-product" columns="4" limit="4" paginate="false"]';
 
         $productsHTML = do_shortcode( $shortcodeDisplay );
         

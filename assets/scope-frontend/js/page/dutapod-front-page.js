@@ -101,8 +101,11 @@ document.addEventListener('DOMContentLoaded', function () {
   /** 3. Lazy load the best_selling_products shortcode */
   var lazyBestSellingProductsLoaded = false;
   var bestSellingProductsSection = document.getElementById('best-selling-products-lazy-load-container-id');
+  var observerActive = true;
   if (!bestSellingProductsSection) return;
   var bsProductsSectionObserver = new IntersectionObserver(function (entries, observer) {
+    // Prevent observer from running when pagination is active
+    if (!observerActive) return;
     entries.forEach(function (entry) {
       if (entry.isIntersecting && !lazyBestSellingProductsLoaded) {
         lazyBestSellingProductsLoaded = true;
@@ -142,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error(error);
         });
         observer.unobserve(bestSellingProductsSection);
+        observerActive = false;
       }
     });
   }, {
@@ -151,6 +155,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Start observing the bestSellingProductsSection
   bsProductsSectionObserver.observe(bestSellingProductsSection);
+
+  // const bsProductSectionNavigation = bestSellingProductsSection.querySelector('div.lazy-load-best-selling-products-inner-container > nav.woocommerce-pagination > ul.page-numbers');
   // console.log(`astContentContainerMarginLeft : ${astContentContainerMarginLeft}`);
   // console.log(`astContentContainerMarginRight : ${astContentContainerMarginRight}`);
   // console.log(`astContentContainerPaddingLeft : ${astContentContainerPaddingLeft}`);
