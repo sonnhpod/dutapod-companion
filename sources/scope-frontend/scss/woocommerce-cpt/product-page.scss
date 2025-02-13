@@ -65,3 +65,45 @@ div.woocommerce-custom-reviews-section{
     }
 }//div.woocommerce-custom-reviews-section
   
+// Related products
+section.related.products{
+
+    /** 1. Single product display  */
+    ul.products{
+
+        li.product{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            /** 1.1. Product thumbnail image display  */
+            div.astra-shop-thumbnail-wrap{
+
+                a.woocommerce-loop-product__link{
+                    overflow: hidden;
+                    display: block;
+                    // position: relative;
+                    
+                    img {
+                        display: block;
+                        // position: absolute;
+                        transition: transform 0.2s ease-out;
+                        transform-origin: center;
+                        // transform-origin: 0 0;
+                        will-change: transform, translate;
+
+                        &:hover{
+                            transform: scale(1.2);
+                        }
+                    }
+                    
+                }//a.woocommerce-loop-product__link
+            
+            }//div.astra-shop-thumbnail-wrap
+
+        }//li.product
+
+    }//ul.products
+
+}//section.related.products

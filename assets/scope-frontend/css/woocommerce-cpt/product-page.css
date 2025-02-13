@@ -51,3 +51,27 @@ div.woocommerce-custom-reviews-section h3 {
   font-size: 24px;
   font-weight: bold;
 }
+
+section.related.products {
+  /** 1. Single product display  */
+}
+section.related.products ul.products li.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /** 1.1. Product thumbnail image display  */
+}
+section.related.products ul.products li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link {
+  overflow: hidden;
+  display: block;
+}
+section.related.products ul.products li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img {
+  display: block;
+  transition: transform 0.2s ease-out;
+  transform-origin: center;
+  will-change: transform, translate;
+}
+section.related.products ul.products li.product div.astra-shop-thumbnail-wrap a.woocommerce-loop-product__link img:hover {
+  transform: scale(1.2);
+}

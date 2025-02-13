@@ -90,6 +90,7 @@ document.addEventListener( 'DOMContentLoaded', function(){
 
     /** 2. Reposition the hero section in the mobile display */
     if( window.screen.width < maxXsScreenWidth ){
+        // 1. 
         // const heroSection = document.getElementById( heroSectionID );
         const heroSection = document.querySelector( heroSectionSelector ); //OK      
         
@@ -105,10 +106,13 @@ document.addEventListener( 'DOMContentLoaded', function(){
 
         heroSection.style.marginLeft = `${updateHeroSectionMarginLeft}px`;
 
+        // 2. Disable the Astra scroll top button:
         // astContentContainerMarginLeft
         // div.hero-section-image-id - heroSectionMarginLeft
         // Disable the astra scroll top button in mobile screen
         astraScrollTopBtn.style.display = 'none';
+        console.log( 'astraScrollTopBtn :' );
+        console.log( astraScrollTopBtn );
     }
 
     /** 3. Lazy load the best_selling_products shortcode */
