@@ -36,6 +36,7 @@ div.product-description-accordion-container.custom-product-description div.custo
 div.product-description-accordion-container.custom-product-description div.custom-accordion-content.open {
   max-height: 100%; /* Adjust based on content size . Initial suggested is 500px*/
   padding: 10px 20px;
+  transition: max-height 0.3s ease-out;
   overflow: hidden; /* Keep overflow hidden during transitions */
 }
 
