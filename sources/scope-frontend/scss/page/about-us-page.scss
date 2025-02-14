@@ -1,0 +1,48 @@
+
+
+// Contact form 
+div#wpforms-1018{
+
+    form.wpforms-form{
+
+        div.wpforms-field-container{
+
+            // 1. Field name
+            div.dutapod-general-form.field-name{
+                fieldset{
+                    div.wpforms-field-row{
+                        max-width: 100%;
+                    }
+                }
+            }//div.dutapod-general-form.field-name
+
+            // 2. Email
+            div.dutapod-general-form.field-email{
+
+                input.wpforms-field-medium{
+                    max-width: 100%;
+                }//input.wpforms-field-medium
+
+            }//div.dutapod-general-form.field-email
+
+            // 3. Company field
+            div.dutapod-general-form.field-company{
+
+                input.wpforms-field-medium{
+                    max-width: 100%;
+                }//input.wpforms-field-medium
+
+            }//div.dutapod-general-form.field-company
+
+            // 4. Phone number field
+
+            div.dutapod-general-form.field-phone-number{
+                input.wpforms-field-medium{
+                    max-width: 100%;
+                }//input.wpforms-field-medium
+            }//div.dutapod-general-form.field-phone-number
+
+        }//div.wpforms-field-container
+    }//form.wpforms-form
+
+}//div#wpforms-1018
