@@ -1,19 +1,37 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.minXxlScreenWidth = exports.minXlScreenWidth = exports.minSmScreenWidth = exports.minMdScreenWidth = exports.minLgScreenWidth = exports.maxXsScreenWidth = exports.maxXlScreenWidth = exports.maxSmScreenWidth = exports.maxMdScreenWidth = exports.maxLgScreenWidth = void 0;
+// Screen sizes variables - in pixel value
+var minXxlScreenWidth = exports.minXxlScreenWidth = 1400;
+var maxXlScreenWidth = exports.maxXlScreenWidth = 1399;
+var minXlScreenWidth = exports.minXlScreenWidth = 1200;
+var maxLgScreenWidth = exports.maxLgScreenWidth = 1199;
+var minLgScreenWidth = exports.minLgScreenWidth = 992;
+var maxMdScreenWidth = exports.maxMdScreenWidth = 991;
+var minMdScreenWidth = exports.minMdScreenWidth = 768;
+var maxSmScreenWidth = exports.maxSmScreenWidth = 767;
+var minSmScreenWidth = exports.minSmScreenWidth = 576;
+var maxXsScreenWidth = exports.maxXsScreenWidth = 575;
+
+},{}],2:[function(require,module,exports){
+"use strict";
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+var _variables = _interopRequireWildcard(require("../../../bases/js/_variables.js"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+/** Package dutapod-companion */
+
+/** 1. Add functions when the HTML document is fully loaded and parsed, but before external stylesheet, images, iframes are loaded
+ * - This stage is ealier than window.onload ( window.addEventListener('load', function({ // callback function goes here } ) ) )
+ */
 document.addEventListener('DOMContentLoaded', function () {
   // 1. Genera variables
-  // Screen sizes variables - in pixel value
-  var minXxlScreenWidth = 1400;
-  var maxXlScreenWidth = 1399;
-  var minXlScreenWidth = 1200;
-  var maxLgScreenWidth = 1199;
-  var minLgScreenWidth = 992;
-  var maxMdScreenWidth = 991;
-  var minMdScreenWidth = 768;
-  var maxSmScreenWidth = 767;
-  var minSmScreenWidth = 576;
-  var maxXsScreenWidth = 575;
+  // Screen sizes variables - in pixel value -import from _variables module - 'bases' directory
 
   // 2. Content selector variables
   var outermostContentContainerSelector = "div#content.site-content";
@@ -48,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
   astContentContainerPaddingRight = astContentContainerPaddingRight.substring(0, astContentContainerPaddingRight.length - 2); // 20 in string format
 
   /** 1. Add negative margin value to widen the size of the testimonial section - with the screen size >= md width */
-  if (window.screen.width > minMdScreenWidth) {
+  if (window.screen.width > _variables.minMdScreenWidth) {
     // 1. Recalculate the margin to centralize the testimonial section 
     var testimonialSection = document.getElementById(testimonialSectionID);
     var testimonialSectionWidth = testimonialSection.offsetWidth; // get testimonial Section 90vw width in pixel    
@@ -62,26 +80,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // testimonialSection.style.marginLeft = `-${testimonialSectionMarginLeft}px`;
     testimonialSection.style.marginLeft = "".concat(testimonialSectionMarginLeft, "px");
 
-    // 2. Update sp-testimonial height
-    var testimonialItemsWrapper = testimonialSection.querySelector("div.sp-testimonial-free-section");
-    var testimonialItemsInnerContainer = testimonialSection.querySelector("div.sp-testimonial-free-section > div.swiper-wrapper"); //OK
-    var testimonialItems = testimonialSection.querySelectorAll("div.sp-testimonial-free-section > div.swiper-wrapper > div.sp-testimonial-item");
-
-    // Implement a delay to ensure all DOM are fully loaded and rendered by other scripts
-    setTimeout(function () {
-      var testimonialItemsInnerContainerCssObj = window.getComputedStyle(testimonialItemsInnerContainer); //OK. Got valid computed style in CSS object
-
-      var testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height; // Got the right value here: 440.087px
-      // console.log(`testimonialItemsInnerContainerHeight : ${testimonialItemsInnerContainerHeight}`);
-
-      testimonialItems.forEach(function (item) {
-        return item.style.height = testimonialItemsInnerContainerHeight;
-      });
-    }, 100);
+    // 2. Update sp-testimonial height - move to a function that bound to 'load' event.        
   }
 
   /** 2. Reposition the hero section in the mobile display */
-  if (window.screen.width < maxXsScreenWidth) {
+  if (window.screen.width < _variables.maxXsScreenWidth) {
     // 1. 
     // const heroSection = document.getElementById( heroSectionID );
     var heroSection = document.querySelector(heroSectionSelector); //OK      
@@ -101,8 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // div.hero-section-image-id - heroSectionMarginLeft
     // Disable the astra scroll top button in mobile screen
     astraScrollTopBtn.style.display = 'none';
-    console.log('astraScrollTopBtn :');
-    console.log(astraScrollTopBtn);
+    // console.log( 'astraScrollTopBtn :' );
+    // console.log( astraScrollTopBtn );
   }
 
   /** 3. Lazy load the best_selling_products shortcode */
@@ -170,4 +173,45 @@ document.addEventListener('DOMContentLoaded', function () {
   // console.log(`astContentContainerPaddingRight : ${astContentContainerPaddingRight}`);
 });
 
-},{}]},{},[1]);
+/** 2. Ensure all page assets (images, styles, iframes) are fully loaded before execution
+ * - This stage is later than document.addEventListener('DOMContentLoaded', function(){ //callback function goes here });
+ */
+
+window.addEventListener('load', function () {
+  // 1. Genera variables
+  // Screen sizes variables - in pixel value
+  var outermostContentContainerSelector = "div#content.site-content";
+  var astraContentContainerSelector = "".concat(outermostContentContainerSelector, " > div.ast-container");
+  var contentAreaContainerSelector = "".concat(astraContentContainerSelector, " > div#primary.content-area");
+  var entryContentContainerSelector = "".concat(contentAreaContainerSelector, " > main#main > article.page > div.entry-content");
+  var testimonialSectionID = "sp-testimonial-free-wrapper-999";
+  if (window.screen.width > _variables.minMdScreenWidth) {
+    // 1. Update sp-testimonial height - after all other scripts from testimonial plugins completed
+    // Implement a delay again to ensure all DOM are fully loaded and rendered by other scripts
+    setTimeout(function () {
+      var testimonialSection = document.getElementById(testimonialSectionID);
+
+      // 2. Update sp-testimonial height
+      var testimonialItemsWrapper = testimonialSection.querySelector("div.sp-testimonial-free-section");
+      var testimonialItemsInnerContainer = testimonialSection.querySelector("div.sp-testimonial-free-section > div.swiper-wrapper"); //OK
+      var testimonialItems = testimonialSection.querySelectorAll("div.sp-testimonial-free-section > div.swiper-wrapper > div.sp-testimonial-item");
+      var testimonialItemsInnerContainerCssObj = window.getComputedStyle(testimonialItemsInnerContainer); //OK. Got valid computed style in CSS object
+
+      var testimonialItemsInnerContainerHeight = testimonialItemsInnerContainerCssObj.height; // Got the right value here: 440.087px
+
+      testimonialItems.forEach(function (item) {
+        return item.style.height = testimonialItemsInnerContainerHeight;
+      }); // OK but not fully resize all height    
+
+      // if( window.requestIdleCallback ){
+      //     requestIdleCallback( () => { 
+      //         console.log('requestIdleCallback existed !');
+      //     });
+      // }
+    }, 100);
+
+    // setTimeout( () => {        }, 100);             
+  } //End of window.screen.width > minMdScreenWidth    
+});
+
+},{"../../../bases/js/_variables.js":1}]},{},[2]);
