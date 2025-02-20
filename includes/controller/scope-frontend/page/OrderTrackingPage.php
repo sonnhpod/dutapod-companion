@@ -124,6 +124,8 @@ class OrderTrackingPage{
     /* 4. Main operational function */
     public function register(){
         //Inject the custom page template here 
+        $orderTrackingPageTemplate = new OrderTrackingPageTemplate();
+        $orderTrackingPageTemplate->register();
 
     }//register
 

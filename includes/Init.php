@@ -124,6 +124,8 @@ final class Init{
      * 3. 2025-01-29: Temporary move WooCommerce Customize Class to WcHelperInit
      * - WcProductPage::class,
      * - WcCategoryPage::class,
+     * 
+     *  OrderTrackingPageTemplate::class - register in the OrderTrackingPage
      */
     public static function get_frontend_services(){
         return array(
@@ -135,8 +137,7 @@ final class Init{
             GeneralShortcode::class,
             GeneralWpPageDisplay::class,
             FrontPageDisplay::class,     
-            OrderTrackingPage::class,
-            OrderTrackingPageTemplate::class,
+            OrderTrackingPage::class,           
             AboutUsPage::class,
             TestPageDisplay::class
         );
