@@ -19,6 +19,8 @@ class TestPageDisplay{
     const WP_TEST_PAGE_SCRIPT_FILENAME = 'wp-test-page.js';
     const WP_TEST_PAGE_SCRIPT_HANDLER = 'wp-test-page-script';
 
+    const URL_MATCHING_PATTERN = '#^(/index\.php)?/test-page/?#';
+
     /** 1.3.3. Extra styles & scripts for the test shortcode page */
     public static $WP_TEST_PAGE_STYLE_PATH;
     public static $WP_TEST_PAGE_SCRIPT_PATH;
@@ -103,7 +105,7 @@ class TestPageDisplay{
         //$this->localDebugger->write_log_general( $_SERVER['REQUEST_URI'] );// false
 
 
-        add_action('wp_enqueue_scripts', function(){
+        /* add_action('wp_enqueue_scripts', function(){
             if( ( '/test-page/' == $_SERVER['REQUEST_URI'] || '/index.php/test-page/' == $_SERVER['REQUEST_URI'] ) && !is_admin() ){
                 // Enqueue CDN tailwind library - loaded in PrelibResourceLoader class
                 // $this->enqueue_Tailwindcss_Resources();
@@ -111,8 +113,15 @@ class TestPageDisplay{
                 // Enqueue extra resources
                 $this->enqueue_Extra_Resources_To_Test_Page();                
             }            
-        });
+        }); */
         
+        add_action('wp_enqueue_scripts', function(){            
+            // const URL_MATCHING_PATTERN = '#^(/index\.php)?/order-tracking/?#';
+            if( preg_match( self::URL_MATCHING_PATTERN, $_SERVER['REQUEST_URI'] ) && !is_admin() ){
+                $this->enqueue_Extra_Resources_To_Test_Page();
+            }
+           
+        });       
 
     }//load_Extra_Resources_If_Front_Page
 

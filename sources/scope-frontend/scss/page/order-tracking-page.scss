@@ -1,0 +1,63 @@
+
+@use '../../../bases/scss/variables' as variables;
+
+div.order-tracking-container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+
+    // 1. Search area inner container
+    div.order-tracking-inner-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
+
+        form.order-tracking-form {
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+    
+            // Input oderID field
+            input.order-id-input-area{
+                width: 80%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }//input.order-id-input-area
+    
+            // Search button 
+            button.order-id-search-button{
+                padding: 10px 20px;
+                background-color: #0073aa;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+    
+                &:hover{
+                    background-color: #005f7a;
+                }
+            }//button.order-id-search-button
+    
+        }//form.order-tracking-form
+    }//div.order-tracking-inner-container
+
+    // 2. Search results area
+    div.order-tracking-result-container{
+        width: 100%;
+        margin: 20px auto;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
+
+    }//.order-tracking-result-container
+
+}//div.order-tracking-container

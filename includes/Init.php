@@ -16,6 +16,8 @@ use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeC
 # use DutapodCompanion\Includes\Controller\ScopeFrontend\WpPostDisplayController as WpPostDisplayController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\GeneralWpPageDisplay as GeneralWpPageDisplay;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\FrontPageDisplay as FrontPageDisplay;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\OrderTrackingPage as OrderTrackingPage;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\OrderTrackingPageTemplate as OrderTrackingPageTemplate;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\AboutUsPage as AboutUsPage;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\TestPageDisplay as TestPageDisplay;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\WooCommerceCustomizer as WooCommerceCustomizer;
@@ -127,12 +129,14 @@ final class Init{
         return array(
             PluginProperties::class,            
             PluginDebugHelper::class,
-            ThemeCustomizer::class,                      
+            ThemeCustomizer::class,
             DebugTemplateController::class,
             CustomTemplateController::class,
             GeneralShortcode::class,
             GeneralWpPageDisplay::class,
             FrontPageDisplay::class,     
+            OrderTrackingPage::class,
+            OrderTrackingPageTemplate::class,
             AboutUsPage::class,
             TestPageDisplay::class
         );

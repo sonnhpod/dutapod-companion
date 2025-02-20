@@ -1,0 +1,84 @@
+/*
+*   @Package devsunsettheme
+* * Need to test the code in the actual position before import. (file devsunset.scss)
+**/
+/*
+Devsunset variables
+-----------------------
+*/
+/**
+*    @Package sunsetpro plugin
+* * Need to test the code in the actual position before import. (file sunsetpro.scss)
+**/
+/* Color code */
+/*Filter color*/
+.colorize-white {
+  filter: invert(97%) sepia(0%) saturate(7486%) hue-rotate(14deg) brightness(102%) contrast(101%);
+}
+
+.colorize-white-with-black-shadow {
+  filter: invert(97%) sepia(0%) saturate(7486%) hue-rotate(14deg) brightness(102%) contrast(101%)drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.8));
+}
+
+.colorize-black {
+  filter: invert(0%) sepia(0%) saturate(7484%) hue-rotate(305deg) brightness(89%) contrast(100%);
+}
+
+/* article formats */
+/* Main header navigation menu */
+/* Common properties*/
+/* Menu item Dropdown icon */
+/* Menu items metadata*/
+/* Form control */
+/* Border information */
+/*** Screen width. Apply for styling according to the display screern size
+* Referential source to design size : https://getbootstrap.com/docs/5.3/layout/grid/
+*
+***/
+div.order-tracking-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+}
+div.order-tracking-container div.order-tracking-inner-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+div.order-tracking-container div.order-tracking-inner-container form.order-tracking-form {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+div.order-tracking-container div.order-tracking-inner-container form.order-tracking-form input.order-id-input-area {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+div.order-tracking-container div.order-tracking-inner-container form.order-tracking-form button.order-id-search-button {
+  padding: 10px 20px;
+  background-color: #0073aa;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+div.order-tracking-container div.order-tracking-inner-container form.order-tracking-form button.order-id-search-button:hover {
+  background-color: #005f7a;
+}
+div.order-tracking-container div.order-tracking-result-container {
+  width: 100%;
+  margin: 20px auto;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
