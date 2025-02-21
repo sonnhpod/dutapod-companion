@@ -17,7 +17,10 @@ get_header();
         <figure class="order-tracking-explanation">Please visit your personal email registered when you placed your order. This include the information of your order ID</figure>
         <figure class="order-tracking-illustration">For example, you will see email notification title: <b>"New Order #1029"</b>, then 1029 is your order ID </figure>
     </div><!--.order-tracking-inner-container-->  
-    <div class="order-tracking-result-container">
+
+    <h3 class="order-info-detail-header">Order Details</h3>
+    <div class="loading-spinner-result" id="loading-spinner-result-id"></div><!--.loading-spinner-->
+    <div class="order-tracking-result-container" id="order-search-result-container-id">
         <?php 
         
         if( isset( $_GET['order_id'] ) ):
@@ -40,7 +43,7 @@ get_header();
                 $orderPrice = wc_price( $order->get_total() );
 
                 $htmlOutput = <<<HTML
-                    <h3 style="font-weight:bold;">Order Details</h3>
+                    
                     <p><strong>Order ID :</strong> $orderID </p>
                     <p><strong>Status :</strong> $orderStatus </p>
                     <p><strong>Total :</strong> $orderPrice </p>

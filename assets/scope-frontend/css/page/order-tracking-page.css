@@ -56,6 +56,7 @@ div.order-tracking-container div.order-search-inner-container {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
+  margin: 1em 0;
 }
 div.order-tracking-container div.order-search-inner-container form.order-search-form {
   max-width: inherit;
@@ -100,6 +101,27 @@ div.order-tracking-container div.order-search-inner-container form.order-search-
 }
 div.order-tracking-container div.order-search-inner-container form.order-search-form button.order-id-search-button:hover {
   background-color: #005f7a;
+}
+div.order-tracking-container h3.order-info-detail-header {
+  text-align: left;
+  font-size: 1.2em;
+}
+div.order-tracking-container div.loading-spinner-result {
+  display: none;
+  width: 30px;
+  height: 30px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #0073aa;
+  border-radius: 50%;
+  animation: spin_item 1s linear infinite;
+}
+@keyframes spin_item {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 div.order-tracking-container div.order-tracking-result-container {
   width: 100%;

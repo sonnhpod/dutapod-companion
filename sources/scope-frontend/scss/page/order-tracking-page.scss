@@ -27,6 +27,7 @@ div.order-tracking-container{
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-evenly;
+        margin: 1em 0;
         
         // 3.1. Search form
         form.order-search-form {
@@ -92,9 +93,33 @@ div.order-tracking-container{
             }//button.order-id-search-button
     
         }//form.order-tracking-form
-    }//div.order-tracking-inner-container
+    }//div.order-tracking-inner-container    
 
     // 2. Search results area
+
+    h3.order-info-detail-header{
+        text-align: left;
+        font-size: 1.2em;
+    }//h3.order-info-detail-header
+
+    // 2.1. Loading spinner item
+    div.loading-spinner-result{
+        display: none; // Hidden by default
+        width: 30px;
+        height: 30px;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #0073aa;
+        border-radius: 50%;
+        animation: spin_item 1s linear infinite;
+        align-items: center;
+    }//div.loading-spinner-result
+
+    @keyframes spin_item {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    // 2.2. Search result container
     div.order-tracking-result-container{
         width: 100%;
         margin: 20px auto;
