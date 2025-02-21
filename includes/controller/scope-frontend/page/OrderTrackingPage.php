@@ -123,7 +123,7 @@ class OrderTrackingPage{
 
     /* 4. Main operational function */
     public function register(){
-        //Inject the custom page template here 
+        // 1. Insert the custom template DUTAPOD order tracking template here
         $orderTrackingPageTemplate = new OrderTrackingPageTemplate();
         $orderTrackingPageTemplate->register();
 

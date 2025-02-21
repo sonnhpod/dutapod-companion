@@ -6,9 +6,10 @@ get_header();
 ?>
 
 <div class="order-tracking-container">
-    <h3>Search your Order </h3>
-    <div class="order-tracking-inner-container">        
-        <form class="order-tracking-form" method="GET">
+    <h1 class="order-info-page-title">Order Information</h1>
+    <h3 class="order-info-search-form-header">Search your Order </h3>
+    <div class="order-search-inner-container">        
+        <form id="order-search-form-id" class="order-search-form" method="GET">
             <label class="wc-order-id-label">Order ID :</label>
             <input class="order-id-input-area" type="text" name="order_id" placeholder="Enter your Order ID" required>
             <button class="order-id-search-button" type="submit">Search</button>
@@ -22,6 +23,8 @@ get_header();
         if( isset( $_GET['order_id'] ) ):
             $order_id = sanitize_text_field( $_GET['order_id'] );
             $order = wc_get_order( $order_id );
+
+            // var_dump( $order );
             
             if($order):
                 $htmlOrders = '<ul class="order-items-list">';

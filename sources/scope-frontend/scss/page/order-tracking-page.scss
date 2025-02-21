@@ -7,38 +7,84 @@ div.order-tracking-container{
     margin: 20px auto;
     text-align: center;
 
-    // 1. Search area inner container
-    div.order-tracking-inner-container{
+    // 1. Site title : Order Information
+    h1.order-info-page-title{
+        text-align: left;
+        font-size: 2em;
+    }
+
+    // 2. Search form title
+    h3.order-info-search-form-header{
+        text-align: left;
+        font-size: 1.2em;
+    }
+
+    // 3. Search area inner container
+    div.order-search-inner-container{
         width: 100%;
+        max-width: inherit;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-evenly;
-
-        form.order-tracking-form {
-            width: 100%;
+        
+        // 3.1. Search form
+        form.order-search-form {
+            // width: 100%;
+            max-width: inherit;
             margin-bottom: 20px;
             display: flex;
             flex-direction: row;
             align-items: center;
+            // align-items: stretch;
             justify-content: space-around;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+            // CSS padding margin shorthand: https://www.w3schools.com/css/css_padding.asp
+
+            // 3.1.1. label
+            label.wc-order-id-label{
+                padding: 0 0.5em;
+                margin: 0 0.5em;
+
+                flex-grow: 1;
+                white-space: nowrap;
+            }//label.wc-order-id-label
     
-            // Input oderID field
-            input.order-id-input-area{
-                width: 80%;
-                padding: 10px;
+            // 3.1.2. Input oderID field
+            input.order-id-input-area[type="text"]{
+                // width: 80%;
+                // padding: 10px;
+                padding: 0 0.5em;
+                margin: 0 0.5em;
+                font-size: 1.2em;
+
                 border: 1px solid #ddd;
                 border-radius: 5px;
+                flex-grow: 3;               
+                font-size: 1em;
+                outline: none;
             }//input.order-id-input-area
     
-            // Search button 
+            // 3.1.3. Search button 
             button.order-id-search-button{
-                padding: 10px 20px;
+                // padding: 10px 15px;
+                padding: 0 0.5em; 
+                margin: 0 0.5em;
+
+                flex-grow: 1;
+                font-size: 1.6em;
+
                 background-color: #0073aa;
                 color: white;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
+                transition: 0.3s ease-out;
     
                 &:hover{
                     background-color: #005f7a;
