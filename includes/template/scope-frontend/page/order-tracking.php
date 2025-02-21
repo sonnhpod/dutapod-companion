@@ -15,7 +15,7 @@ get_header();
             <button class="order-id-search-button" type="submit">Search</button>
         </form>
         <figure class="order-tracking-explanation">Please visit your personal email registered when you placed your order. This include the information of your order ID</figure>
-        <figure class="order-tracking-illustration">For example, you will see email notification title: <b>"New Order #1029"</b>, then 1029 is your order ID </figure>
+        <figure class="order-tracking-illustration">(For example, you will see email notification title: <b>"New Order #1029"</b>, then "1029" is your order ID)</figure>
     </div><!--.order-tracking-inner-container-->  
 
     <h3 class="order-info-detail-header">Order Details</h3>
@@ -30,13 +30,38 @@ get_header();
             // var_dump( $order );
             
             if($order):
-                $htmlOrders = '<ul class="order-items-list">';
+                /* $htmlOrders = '<ul class="order-items-list">';
 
                 foreach( $order->get_items() as $item ):
                     $htmlOrders .= sprintf( '<li>%s x %s </li>', esc_html( $item->get_name() ), esc_html( $item->get_quantity() ) );
                 endforeach;
 
-                $htmlOrders .= '</ul>';
+                $htmlOrders .= '</ul>'; */
+
+                $htmlOrders = '<table class="product-list-table">'; // Start of product list table
+
+                $htmlOrders .= '<tr class="header-row">';// Start of header row
+                $htmlOrders .= '<th>NO</th>';
+                $htmlOrders .= '<th>Product Name</th>';
+                $htmlOrders .= '<th>Quantity</th>';
+                $htmlOrders .= '</tr>'; // End of header row
+
+                $orderProducts = $order->get_items();                
+
+                $productCount = 0;
+                foreach( $orderProducts as $key => $item ):
+                    $productCount++;
+
+                    $htmlOrders .= '<tr class="data-row">';// Start of data row
+                    $htmlOrders .= sprintf('<td>%s</td>', $productCount);
+                    $htmlOrders .= sprintf('<td>%s</td>', esc_html( $item->get_name() ) );
+                    $htmlOrders .= sprintf('<td>%s</td>', esc_html( $item->get_quantity() ) );
+                    $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
+                endforeach;
+
+                $htmlOrders .= '</table><!--.product-list-table-->';// End of product list table
+
+                // var_dump( $orderProducts );// For debugging
 
                 $orderID = esc_html( $order->get_id() );
                 $orderStatus = esc_html(wc_get_order_status_name( $order->get_status() ) );
