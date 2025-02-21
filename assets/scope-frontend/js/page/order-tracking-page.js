@@ -31,14 +31,18 @@ window.addEventListener('load', function () {
   orderSearchForm.addEventListener('submit', function (e) {
     e.preventDefault();
     var spinner = document.getElementById('loading-spinner-result-id');
-    var orderResults = document.getElementById('order-search-result-container-id');
+    var orderResultsContainer = document.getElementById('order-search-result-container-id');
     spinner.style.display = "block"; // Show spinner
-    orderResults.style.display = "none"; // Hide results
+    // orderResultsContainer.style.display = "none"; // Hide results
 
     setTimeout(function () {
       spinner.style.display = "none"; // Hide spinner after loading
-      orderResults.style.display = "block"; // Show order details
-    }, 2000); // Simulating API delay
+
+      // orderResultsContainer.style.display = "block"; // Show order details
+      if (!orderResultsContainer.classList.contains('show')) {
+        orderResultsContainer.classList.add('show');
+      }
+    }, 1200); // Simulating API delay
   });
 });
 

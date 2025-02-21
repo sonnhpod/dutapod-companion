@@ -110,12 +110,12 @@ div.order-tracking-container{
         border: 4px solid rgba(0, 0, 0, 0.1);
         border-left-color: #0073aa;
         border-radius: 50%;
-        animation: spin_item 1s linear infinite;
+        animation: spin_loading_item 1s linear infinite;
         // align item center
         margin: 1em auto;
     }//div.loading-spinner-result
 
-    @keyframes spin_item {
+    @keyframes spin_loading_item {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
@@ -129,6 +129,16 @@ div.order-tracking-container{
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-evenly;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(10%);        
+
+        &.show{
+            visibility: visible;
+            opacity: 1; 
+            transform: translateY(0);
+            transition: transform 360ms ease-in-out, opacity 360ms ease-in-out, visibility 360ms ease-in-out;
+        }
 
     }//.order-tracking-result-container
 
