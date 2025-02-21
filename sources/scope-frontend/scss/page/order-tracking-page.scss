@@ -111,7 +111,8 @@ div.order-tracking-container{
         border-left-color: #0073aa;
         border-radius: 50%;
         animation: spin_item 1s linear infinite;
-        align-items: center;
+        // align item center
+        margin: 1em auto;
     }//div.loading-spinner-result
 
     @keyframes spin_item {

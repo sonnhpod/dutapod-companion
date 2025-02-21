@@ -114,6 +114,7 @@ div.order-tracking-container div.loading-spinner-result {
   border-left-color: #0073aa;
   border-radius: 50%;
   animation: spin_item 1s linear infinite;
+  margin: 1em auto;
 }
 @keyframes spin_item {
   0% {
