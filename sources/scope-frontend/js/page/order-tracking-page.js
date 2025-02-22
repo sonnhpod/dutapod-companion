@@ -3,7 +3,12 @@ import * as _variables from '../../../bases/js/_variables.js';
 
 window.addEventListener('load', function(){
     const orderSearchForm = document.getElementById('order-search-form-id');
-    orderSearchForm.addEventListener('submit', function(e){
+    const orderSearchButton = orderSearchForm.querySelector('button.order-search-button');
+
+    const orderSearchResultContainer = this.document.getElementById('order-search-result-container-id');
+
+    // 1. Handle the submit action in the Search Form
+    /* orderSearchForm.addEventListener('submit', function(e){
         e.preventDefault();
 
         const spinner = document.getElementById('loading-spinner-result-id');
@@ -21,6 +26,51 @@ window.addEventListener('load', function(){
             }
 
         }, 1200); // Simulating API delay
+    }); */
+
+    orderSearchForm.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        let formData = new FormData(this);
+
+        const requestUrl = woocommerce_params.ajax_url + "?action=wc_order_search_info";
+
+        fetch( requestUrl, { method: 'POST', body: formData } )
+            .then( response => response.json() )
+            .then( responseData => {
+                console.log('responseData is : ');
+                console.log( responseData );
+                
+                if( responseData.success ){
+                    // Obtain the HTML response
+                    let htmlResponse = responseData.data.html;
+                    orderSearchResultContainer.innerHTML = htmlResponse;
+
+                    // Apply animation effect for the search result
+                    const spinner = document.getElementById( 'loading-spinner-result-id' );
+                    spinner.style.display = "block"; // Show spinner
+
+                    setTimeout(() => {
+                        spinner.style.display = "none"; // Hide spinner after loading
+            
+                        // orderResultsContainer.style.display = "block"; // Show order details
+                        if( ! orderSearchResultContainer.classList.contains('show') ){
+                            orderSearchResultContainer.classList.add('show');
+                        }
+            
+                    }, 1200); // Simulating API delay
+                }
+                else {
+                    orderSearchResultContainer.innerHTML = `<p>Error loading products. There is no data success </p>`;
+                }
+            })
+            .catch( error => {
+                orderSearchResultContainer.innerHTML = `<p>Error loading products at Fetch API Catch statement ! ... </p>`;
+                console.error('Detail error message is :');
+                console.error( error );
+            });
     });
 
 });
+
+window.addEvent

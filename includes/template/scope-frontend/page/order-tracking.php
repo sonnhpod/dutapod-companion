@@ -1,6 +1,8 @@
 <?php 
 /* Template Name : Order Management */
 
+use Masterminds\HTML5;
+
 get_header();
 
 ?>
@@ -9,26 +11,39 @@ get_header();
     <h1 class="order-info-page-title">Order Information</h1>
     <h3 class="order-info-search-form-header">Search your Order </h3>
     <div class="order-search-inner-container">        
-        <form id="order-search-form-id" class="order-search-form" method="GET">
+        <form id="order-search-form-id" class="order-search-form-container" method="POST">
             <label class="wc-order-id-label">Order ID :</label>
             <input class="order-id-input-area" type="text" name="order_id" placeholder="Enter your Order ID" required>
-            <button class="order-id-search-button" type="submit">Search</button>
+            <label class="wc-order-email-label">Email: </label>
+            <input class="order-email-input-area" type="email" name="order_email" placeholder="Enter your Order Email" required>
+            <input type="hidden" name="wc_order_search_nonce" value="<?php echo wp_create_nonce('wc_order_search_action'); ?>">
+            <button id="order-search-button-id" class="order-search-button" type="submit">Search</button>
         </form>
-        <figure class="order-tracking-explanation">Please visit your personal email registered when you placed your order. This include the information of your order ID</figure>
-        <figure class="order-tracking-illustration">(For example, you will see email notification title: <b>"New Order #1029"</b>, then "1029" is your order ID)</figure>
+        <div class="order-search-notes-container">
+            <span><b>Note :</b></span>
+            <figure class="order-tracking-explanation">1. Please visit your personal email registered when you placed your order. This include the information of your order ID. </figure>
+            <figure class="order-tracking-illustration"><i>(For example, you will see email notification title: "New Order #1029", then "1029" is your order ID)</i></figure>
+            <figure class="order-tracking-contact-info">2. Should you need any futher assistance or message, please contact us at <a href="mailto:supports@miraclespirit.net">supports@miraclespirit.net</a> . </figure>
+        </div><!--.order-search-notes-container-->        
     </div><!--.order-tracking-inner-container-->  
 
     <h3 class="order-info-detail-header">Order Details</h3>
     <div class="loading-spinner-result" id="loading-spinner-result-id"></div><!--.loading-spinner-->
-    <div class="order-tracking-result-container" id="order-search-result-container-id">
+    <div class="order-search-result-container" id="order-search-result-container-id">
         <?php 
-        
-        if( isset( $_GET['order_id'] ) ):
-            $order_id = sanitize_text_field( $_GET['order_id'] );
-            $order = wc_get_order( $order_id );
 
-            // var_dump( $order );
+        //var_dump( esc_url( home_url('/index.php/order-tracking/') ) );
+        var_dump( $_POST['order_id'] );
+        var_dump( $_POST['order_email'] );        
+        
+        // This condition is never valid because no $POST parameter were set
+        if( isset( $_POST['order_id'] ) && isset( $_POST['order_email'] ) ):
+            $orderId = sanitize_text_field( $_POST['order_id'] );
+            $orderEmail = sanitize_text_field( $_POST['order_email'] );            
+
+            $order = wc_get_order( $orderId );            
             
+            //
             if($order):
                 /* $htmlOrders = '<ul class="order-items-list">';
 
@@ -67,15 +82,27 @@ get_header();
                 $orderStatus = esc_html(wc_get_order_status_name( $order->get_status() ) );
                 $orderPrice = wc_price( $order->get_total() );
 
+                ?>
+                                  
+                <div class="order-information-container">
+                    <div class="order-id">
+                        <label>Order ID :</label><span><?php echo $orderID ?></span>                            
+                    </div>
+                    <div class="order-status">
+                        <label>Status :</label><span><?php echo $orderStatus ?></span>     
+                    </div>
+                    <div class="order-total-price">
+                        <label>Total price :</label><span><?php echo $orderPrice ?></span>                            
+                    </div>
+                </div><!--.order-information-container-->                   
+                
+                <?php
                 $htmlOutput = <<<HTML
-                    
-                    <p><strong>Order ID :</strong> $orderID </p>
-                    <p><strong>Status :</strong> $orderStatus </p>
-                    <p><strong>Total :</strong> $orderPrice </p>
                     <br>    
                     <h3 style="font-weight:bold;">Order Items</h3>
                     {$htmlOrders}
                 HTML;
+                
             else:
                 $htmlOutput = <<<HTML
                     <p style="color:red;">Order not found. Please check the Order ID.</p>
@@ -86,7 +113,7 @@ get_header();
         endif;
 
         ?>
-    </div><!--.order-tracking-result-container-->
+    </div><!--.order-search-result-container-->
     
 
 </div><!--.order-management-container-->

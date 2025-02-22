@@ -60,7 +60,7 @@ div.order-tracking-container div.order-search-inner-container {
   justify-content: space-evenly;
   margin: 1em 0;
 }
-div.order-tracking-container div.order-search-inner-container form.order-search-form {
+div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container {
   max-width: inherit;
   margin-bottom: 20px;
   background: #ffffff;
@@ -69,26 +69,38 @@ div.order-tracking-container div.order-search-inner-container form.order-search-
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-div.order-tracking-container div.order-search-inner-container form.order-search-form label.wc-order-id-label {
+div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container label.wc-order-id-label {
   padding: 0 0.5em;
   margin: 0 0.5em;
   flex-grow: 1;
   white-space: nowrap;
 }
-div.order-tracking-container div.order-search-inner-container form.order-search-form input.order-id-input-area[type=text] {
+div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-id-input-area[type=text] {
   padding: 0 0.5em;
   margin: 0 0.5em;
   font-size: 1.2em;
   border: 1px solid #ddd;
   border-radius: 5px;
-  flex-grow: 3;
   font-size: 1em;
   outline: none;
 }
-div.order-tracking-container div.order-search-inner-container form.order-search-form button.order-id-search-button {
+div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container label.wc-order-email-label {
   padding: 0 0.5em;
   margin: 0 0.5em;
-  flex-grow: 1;
+  white-space: nowrap;
+}
+div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-email-input-area {
+  padding: 0 0.5em;
+  margin: 0 0.5em;
+  font-size: 1.2em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  outline: none;
+}
+div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button {
+  padding: 0 0.5em;
+  margin: 0 0.5em;
   font-size: 1.6em;
   background-color: #0073aa;
   color: white;
@@ -97,8 +109,12 @@ div.order-tracking-container div.order-search-inner-container form.order-search-
   cursor: pointer;
   transition: 0.3s ease-out;
 }
-div.order-tracking-container div.order-search-inner-container form.order-search-form button.order-id-search-button:hover {
+div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button:hover {
   background-color: #005f7a;
+}
+div.order-tracking-container div.order-search-inner-container div.order-search-notes-container {
+  margin: 0.5em 0;
+  padding: 0.5em 0;
 }
 div.order-tracking-container h3.order-info-detail-header {
   text-align: left;
@@ -122,7 +138,7 @@ div.order-tracking-container div.loading-spinner-result {
     transform: rotate(360deg);
   }
 }
-div.order-tracking-container div.order-tracking-result-container {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container {
   width: 100%;
   margin: 1em 0;
   padding: 1em;
@@ -137,46 +153,90 @@ div.order-tracking-container div.order-tracking-result-container {
   opacity: 0;
   transform: translateY(10%);
 }
-div.order-tracking-container div.order-tracking-result-container.show {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
   transition: transform 360ms ease-in-out, opacity 360ms ease-in-out, visibility 360ms ease-in-out;
 }
-div.order-tracking-container div.order-tracking-result-container.show table.product-list-table {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container div.order-id, div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container div.order-status, div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container div.order-total-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table {
   margin: 1em 0;
   padding: 1em 0;
   border: 2px solid #ddd;
 }
-div.order-tracking-container div.order-tracking-result-container.show table.product-list-table tr.header-row th {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.header-row th {
   text-align: center;
   background-color: #e1e1e1;
 }
-div.order-tracking-container div.order-tracking-result-container.show table.product-list-table tr.header-row th:nth-child(1) {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.header-row th:nth-child(1) {
   border: 2px solid rgba(0, 0, 0, 0.5);
 }
-div.order-tracking-container div.order-tracking-result-container.show table.product-list-table tr.header-row th:not(:first-child) {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.header-row th:not(:first-child) {
   border-right: 2px solid rgba(0, 0, 0, 0.5);
   border-top: 2px solid rgba(0, 0, 0, 0.5);
   border-bottom: 2px solid rgba(0, 0, 0, 0.5);
 }
-div.order-tracking-container div.order-tracking-result-container.show table.product-list-table tr.data-row td:nth-child(1) {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.data-row td:nth-child(1) {
   text-align: center;
 }
-div.order-tracking-container div.order-tracking-result-container.show table.product-list-table tr.data-row td:nth-child(2) {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.data-row td:nth-child(2) {
   text-align: left;
 }
-div.order-tracking-container div.order-tracking-result-container.show table.product-list-table tr.data-row td:nth-child(3) {
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.data-row td:nth-child(3) {
   text-align: center;
 }
 
 /** II. Styling basing on the screen size */
 @media (min-width: 768px) {
-  div.order-tracking-container div.order-search-inner-container form.order-search-form {
+  div.order-tracking-container div.order-search-inner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container label.wc-order-id-label {
+    flex-grow: 1;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-id-input-area[type=text] {
+    min-width: 12em;
+    flex-grow: 3;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container label.wc-order-email-label {
+    flex-grow: 1;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-email-input-area[type=email] {
+    min-width: 24em;
+    flex-grow: 6;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button {
+    padding: 0 0.5em;
+    margin: 0 0.5em;
+    font-size: 1.6em;
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button:hover {
+    background-color: #005f7a;
+  }
+  div.order-tracking-container div.order-search-inner-container div.order-search-notes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 @media (max-width: 767px) {
@@ -186,21 +246,28 @@ div.order-tracking-container div.order-tracking-result-container.show table.prod
   div.order-tracking-container div.order-search-inner-container {
     width: 100%;
   }
-  div.order-tracking-container div.order-search-inner-container form.order-search-form {
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
   }
-  div.order-tracking-container div.order-search-inner-container form.order-search-form label.wc-order-id-label {
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container label.wc-order-id-label {
     text-align: left;
     margin: 0.5em 0;
   }
-  div.order-tracking-container div.order-search-inner-container form.order-search-form input.order-id-input-area[type=text] {
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-id-input-area[type=text] {
     margin: 0.5em 0;
   }
-  div.order-tracking-container div.order-search-inner-container form.order-search-form button.order-id-search-button {
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container label.wc-order-email-label {
+    text-align: left;
+    margin: 0.5em 0;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-email-input-area {
+    margin: 0.5em 0;
+  }
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button {
     margin: 0.5em 0;
     background-color: #0073aa;
     color: white;
@@ -209,7 +276,7 @@ div.order-tracking-container div.order-tracking-result-container.show table.prod
     cursor: pointer;
     transition: 0.3s ease-out;
   }
-  div.order-tracking-container div.order-search-inner-container form.order-search-form button.order-id-search-button:hover {
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button:hover {
     background-color: #005f7a;
   }
 }

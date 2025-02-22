@@ -118,15 +118,115 @@ class OrderTrackingPage{
         wp_enqueue_script( self::ORDER_TRACKING_PAGE_SCRIPT_HANDLER, self::$ORDER_TRACKING_PAGE_SCRIPT_PATH, [], $js_version, true );
 
         /**  2.2.2. Localize this additional front page script */
-        // wp_localize_script( self::WP_FRONTPAGE_SCRIPT_HANDLER, 'woocommerce_params', [ 'ajax_url' => admin_url('admin-ajax.php') ] );
+        // Add the AJAX URL information to the frontend script
+        wp_localize_script( self::ORDER_TRACKING_PAGE_SCRIPT_HANDLER, 'woocommerce_params', [ 'ajax_url' => admin_url('admin-ajax.php') ] );
     }//enqueue_Extra_Resources_To_Front_Page
 
     /* 4. Main operational function */
+    /** Main operational functions -  */
     public function register(){
         // 1. Insert the custom template DUTAPOD order tracking template here
         $orderTrackingPageTemplate = new OrderTrackingPageTemplate();
         $orderTrackingPageTemplate->register();
 
+        // 2. Callback function to handle AJAX wc_order_search
+        add_action( 'wp_ajax_wc_order_search_info', [ $this, 'handle_WC_Order_Search_Info' ] );
+        add_action( 'wp_ajax_nopriv_wc_order_search_info', [ $this, 'handle_WC_Order_Search_Info' ] );
     }//register
+
+    /** Other main operational functions */
+    /** 4.1. AJAX handler for the order search feature - at order tracking page */
+    public function handle_WC_Order_Search_Info(){
+        // $this->localDebugger->write_log_general( $_POST['wc_order_search_nonce'] );
+        // 1. Verify nonce for security
+        // isset( $_POST['wc_order_search_nonce'] is true
+        if( !isset( $_POST['wc_order_search_nonce'] ) || !wp_verify_nonce( $_POST['wc_order_search_nonce'] , 'wc_order_search_action') ){
+            wp_send_json_error(['html' => 'Security check failed. The process of verify nonce failed!']);
+        }
+
+        // 2. Sanitize user inputs
+        $orderID = isset( $_POST['order_id'] ) ? sanitize_text_field( $_POST['order_id'] ) : '';
+        $customerEmail = isset( $_POST['order_email'] ) ? sanitize_text_field( $_POST['order_email'] ) : '';
+
+        // 3. Guarding the operation - validate the input
+        if ( empty( $orderID ) || empty( $customerEmail ) ) {
+            wp_send_json_error(['html' => 'Order ID and Email are required.']);
+        }
+
+        // Load WooCommerce
+        if ( !class_exists( 'WooCommerce' ) ) {
+            wp_send_json_error(['html' => 'WooCommerce is not installed.']);
+        }
+
+        // Get order by ID
+        $order = wc_get_order($orderID);
+
+        if ( !$order ) {
+            $htmlErrorMessage = '<p style="color:red;">Order not found. Please check the Order ID & customer email.</p>';
+
+            wp_send_json_error( [ 'html' => $htmlErrorMessage ] );
+        }
+
+        // Check if email matches the order
+        if ( $order->get_billing_email() !== $customerEmail ) {
+            $htmlErrorMessage = '<p style="color:red;">Email does not match the order.</p>';
+
+            wp_send_json_error( [ 'html' => $htmlErrorMessage ] );
+        }
+
+        // Proceed order information:
+        $order = wc_get_order( $orderID );
+
+     
+        $htmlOrders = '<table class="product-list-table">'; // Start of product list table
+
+        $htmlOrders .= '<tr class="header-row">';// Start of header row
+        $htmlOrders .= '<th>NO</th>';
+        $htmlOrders .= '<th>Product Name</th>';
+        $htmlOrders .= '<th>Quantity</th>';
+        $htmlOrders .= '</tr>'; // End of header row
+
+        $orderProducts = $order->get_items();                
+
+        $productCount = 0;
+        foreach( $orderProducts as $key => $item ):
+            $productCount++;
+
+            $htmlOrders .= '<tr class="data-row">';// Start of data row
+            $htmlOrders .= sprintf('<td>%s</td>', $productCount);
+            $htmlOrders .= sprintf('<td>%s</td>', esc_html( $item->get_name() ) );
+            $htmlOrders .= sprintf('<td>%s</td>', esc_html( $item->get_quantity() ) );
+            $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
+        endforeach;
+
+        $htmlOrders .= '</table><!--.product-list-table-->';// End of product list table
+
+        $orderID = esc_html( $order->get_id() );
+        $orderStatus = esc_html(wc_get_order_status_name( $order->get_status() ) );
+        $orderPrice = wc_price( $order->get_total() );
+
+        $htmlOutput = <<<HTML
+        <div class="order-information-container">
+                <div class="order-id">
+                    <label>Order ID :</label><span>{$orderID}</span>                            
+                </div>
+                <div class="order-status">
+                    <label>Status :</label><span>{$orderStatus}</span>     
+                </div>
+                <div class="order-total-price">
+                    <label>Total price :</label><span>{$orderPrice}</span>                            
+                </div>
+            </div><!--.order-information-container-->                   
+        HTML;
+
+        $htmlOutput .= <<<HTML
+            <br>    
+            <h3 style="font-weight:bold;">Order Items</h3>
+            {$htmlOrders}
+        HTML;
+
+        wp_send_json_success( ['html' => $htmlOutput] );
+
+    }//handle_WC_Order_Search_Info
 
 }//OrderTrackingPage

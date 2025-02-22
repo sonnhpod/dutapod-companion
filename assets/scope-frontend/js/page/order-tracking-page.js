@@ -28,22 +28,64 @@ function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; 
 
 window.addEventListener('load', function () {
   var orderSearchForm = document.getElementById('order-search-form-id');
+  var orderSearchButton = orderSearchForm.querySelector('button.order-search-button');
+  var orderSearchResultContainer = this.document.getElementById('order-search-result-container-id');
+
+  // 1. Handle the submit action in the Search Form
+  /* orderSearchForm.addEventListener('submit', function(e){
+      e.preventDefault();
+        const spinner = document.getElementById('loading-spinner-result-id');
+      const orderResultsContainer = document.getElementById('order-search-result-container-id');
+        spinner.style.display = "block"; // Show spinner
+      // orderResultsContainer.style.display = "none"; // Hide results
+        setTimeout(() => {
+          spinner.style.display = "none"; // Hide spinner after loading
+            // orderResultsContainer.style.display = "block"; // Show order details
+          if( ! orderResultsContainer.classList.contains('show') ){
+              orderResultsContainer.classList.add('show');
+          }
+        }, 1200); // Simulating API delay
+  }); */
+
   orderSearchForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    var spinner = document.getElementById('loading-spinner-result-id');
-    var orderResultsContainer = document.getElementById('order-search-result-container-id');
-    spinner.style.display = "block"; // Show spinner
-    // orderResultsContainer.style.display = "none"; // Hide results
+    var formData = new FormData(this);
+    var requestUrl = woocommerce_params.ajax_url + "?action=wc_order_search_info";
+    fetch(requestUrl, {
+      method: 'POST',
+      body: formData
+    }).then(function (response) {
+      return response.json();
+    }).then(function (responseData) {
+      console.log('responseData is : ');
+      console.log(responseData);
+      if (responseData.success) {
+        // Obtain the HTML response
+        var htmlResponse = responseData.data.html;
+        orderSearchResultContainer.innerHTML = htmlResponse;
 
-    setTimeout(function () {
-      spinner.style.display = "none"; // Hide spinner after loading
+        // Apply animation effect for the search result
+        var spinner = document.getElementById('loading-spinner-result-id');
+        spinner.style.display = "block"; // Show spinner
 
-      // orderResultsContainer.style.display = "block"; // Show order details
-      if (!orderResultsContainer.classList.contains('show')) {
-        orderResultsContainer.classList.add('show');
+        setTimeout(function () {
+          spinner.style.display = "none"; // Hide spinner after loading
+
+          // orderResultsContainer.style.display = "block"; // Show order details
+          if (!orderSearchResultContainer.classList.contains('show')) {
+            orderSearchResultContainer.classList.add('show');
+          }
+        }, 1200); // Simulating API delay
+      } else {
+        orderSearchResultContainer.innerHTML = "<p>Error loading products. There is no data success </p>";
       }
-    }, 1200); // Simulating API delay
+    })["catch"](function (error) {
+      orderSearchResultContainer.innerHTML = "<p>Error loading products at Fetch API Catch statement ! ... </p>";
+      console.error('Detail error message is :');
+      console.error(error);
+    });
   });
 });
+window.addEvent;
 
 },{"../../../bases/js/_variables.js":1}]},{},[2]);

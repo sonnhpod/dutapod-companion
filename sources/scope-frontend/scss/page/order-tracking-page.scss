@@ -32,7 +32,7 @@ div.order-tracking-container{
         margin: 1em 0;
         
         // 3.1. Search form
-        form.order-search-form {
+        form#order-search-form-id.order-search-form-container {
             // width: 100%;
             max-width: inherit;
             margin-bottom: 20px;
@@ -51,7 +51,7 @@ div.order-tracking-container{
 
             // CSS padding margin shorthand: https://www.w3schools.com/css/css_padding.asp
 
-            // 3.1.1. label
+            // 3.1.1. label order ID
             label.wc-order-id-label{
                 padding: 0 0.5em;
                 margin: 0 0.5em;
@@ -60,7 +60,7 @@ div.order-tracking-container{
                 white-space: nowrap;
             }//label.wc-order-id-label
     
-            // 3.1.2. Input oderID field
+            // Input order ID
             input.order-id-input-area[type="text"]{
                 // width: 80%;
                 // padding: 10px;
@@ -70,18 +70,40 @@ div.order-tracking-container{
 
                 border: 1px solid #ddd;
                 border-radius: 5px;
-                flex-grow: 3;               
+                // flex-grow: 3;               
                 font-size: 1em;
                 outline: none;
             }//input.order-id-input-area
+
+            // 3.1.2. Label order email
+            label.wc-order-email-label{
+                padding: 0 0.5em;
+                margin: 0 0.5em;
+
+                // flex-grow: 1;
+                white-space: nowrap;
+            }//label.wc-order-email-label
+
+            // Input email
+            input.order-email-input-area{
+                padding: 0 0.5em;
+                margin: 0 0.5em;
+                font-size: 1.2em;
+
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                // flex-grow: 3;               
+                font-size: 1em;
+                outline: none;
+            }//input.order-email-input-area
     
             // 3.1.3. Search button 
-            button.order-id-search-button{
+            button.order-search-button{
                 // padding: 10px 15px;
                 padding: 0 0.5em; 
                 margin: 0 0.5em;
 
-                flex-grow: 1;
+                // flex-grow: 1;
                 font-size: 1.6em;
 
                 background-color: #0073aa;
@@ -94,9 +116,19 @@ div.order-tracking-container{
                 &:hover{
                     background-color: #005f7a;
                 }
-            }//button.order-id-search-button
+            }//button.order-search-button
     
-        }//form.order-tracking-form
+        }//form#order-search-form-id.order-search-form-container
+
+
+        // 3.2. Search note container 
+        div.order-search-notes-container{
+            margin: 0.5em 0;
+            padding: 0.5em 0;
+        }//div.order-search-notes-container
+
+
+
     }//div.order-tracking-inner-container    
 
     // 2. Search results area
@@ -125,7 +157,7 @@ div.order-tracking-container{
     }
     
     // 2.2. Search result container
-    div.order-tracking-result-container{
+    div#order-search-result-container-id.order-search-result-container{
         width: 100%;
         //margin: 20px auto;
         margin: 1em 0;
@@ -153,6 +185,15 @@ div.order-tracking-container{
             transition: transform 360ms ease-in-out, opacity 360ms ease-in-out, visibility 360ms ease-in-out;
 
             // Everything in order tracking result container here
+            // Order information container:
+            div.order-information-container{
+                div.order-id, div.order-status,div.order-total-price{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+                }//div.order-id, div.order-status,div.order-total-price
+            }//div.order-information-container
 
             // product list table - within the current order
             table.product-list-table{
@@ -198,7 +239,7 @@ div.order-tracking-container{
             }
         }//&.show
 
-    }//.order-tracking-result-container
+    }//#order-search-result-container-id.order-search-result-container
 
 }//div.order-tracking-container
 
@@ -210,13 +251,69 @@ div.order-tracking-container{
 
         // 3. Search area inner container
         div.order-search-inner-container{
-            form.order-search-form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            // 1. Search form information
+            form#order-search-form-id.order-search-form-container {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 // align-items: stretch;
                 justify-content: space-around;
-            }//form.order-search-form
+                // flex-wrap: wrap;
+
+                // 3.1.1. label order ID
+                label.wc-order-id-label{
+                    flex-grow: 1;
+                }//label.wc-order-id-label
+    
+                // Input order ID
+                input.order-id-input-area[type="text"]{
+                    min-width: 12em;
+                    flex-grow: 3;              
+                }//input.order-id-input-area
+
+                // 3.1.2. Label order email
+                label.wc-order-email-label{
+                    flex-grow: 1;
+                }//label.wc-order-email-label
+
+                // Input email
+                input.order-email-input-area[type="email"]{
+                    min-width: 24em;
+                    flex-grow: 6;               
+                }//input.order-email-input-area
+    
+                // 3.1.3. Search button 
+                button.order-search-button{
+                    // padding: 10px 15px;
+                    padding: 0 0.5em; 
+                    margin: 0 0.5em;
+
+                    // flex-grow: 1;
+                    font-size: 1.6em;
+
+                    background-color: #0073aa;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: 0.3s ease-out;
+        
+                    &:hover{
+                        background-color: #005f7a;
+                    }
+                }//button.order-search-button
+            }//form#order-search-form-id.order-search-form-container
+
+            // 2. Order search note section
+            div.order-search-notes-container{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }//div.order-search-inner-container
 
     }//div.order-tracking-container
@@ -232,7 +329,7 @@ div.order-tracking-container{
         div.order-search-inner-container{
             width: 100%;
 
-            form.order-search-form {
+            form#order-search-form-id.order-search-form-container {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -240,19 +337,30 @@ div.order-tracking-container{
                 // align-items: stretch;
                 justify-content: space-around;
 
-                // 3.1.1. label
+                // 3.1.1. Label order ID
                 label.wc-order-id-label{
                     text-align: left;
                     margin: 0.5em 0;
                 }//label.wc-order-id-label
 
-                 // 3.1.2. Input oderID field
+                 // Input oderID 
                 input.order-id-input-area[type="text"]{
                     margin: 0.5em 0;
                 }//input.order-id-input-area
+
+                // 3.1.2. Label order email
+                label.wc-order-email-label{
+                    text-align: left;
+                    margin: 0.5em 0;
+                }//label.wc-order-email-label
+
+                // Input email
+                input.order-email-input-area{
+                    margin: 0.5em 0;
+                }//input.order-email-input-area
         
                 // 3.1.3. Search button 
-                button.order-id-search-button{
+                button.order-search-button{
                     // padding: 10px 15px;
                     margin: 0.5em 0;         
 
@@ -266,9 +374,9 @@ div.order-tracking-container{
                     &:hover{
                         background-color: #005f7a;
                     }
-                }//button.order-id-search-button
+                }//button.order-search-button
 
-            }//form.order-search-form
+            }//form#order-search-form-id.order-search-form-container
         }//div.order-search-inner-container
     }//div.order-tracking-container
 
