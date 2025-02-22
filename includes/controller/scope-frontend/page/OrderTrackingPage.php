@@ -138,26 +138,28 @@ class OrderTrackingPage{
     /** 4.1. AJAX handler for the order search feature - at order tracking page */
     public function handle_WC_Order_Search_Info(){
         // $this->localDebugger->write_log_general( $_POST['wc_order_search_nonce'] );
-        // 1. Verify nonce for security
+        // 1. Validate the oprations
+        // 1.1. Verify nonce for security
         // isset( $_POST['wc_order_search_nonce'] is true
         if( !isset( $_POST['wc_order_search_nonce'] ) || !wp_verify_nonce( $_POST['wc_order_search_nonce'] , 'wc_order_search_action') ){
             wp_send_json_error(['html' => 'Security check failed. The process of verify nonce failed!']);
         }
 
-        // 2. Sanitize user inputs
+        // 1.2. Sanitize user inputs
         $orderID = isset( $_POST['order_id'] ) ? sanitize_text_field( $_POST['order_id'] ) : '';
         $customerEmail = isset( $_POST['order_email'] ) ? sanitize_text_field( $_POST['order_email'] ) : '';
 
-        // 3. Guarding the operation - validate the input
+        // 1.3. Guarding the operation - validate the input
         if ( empty( $orderID ) || empty( $customerEmail ) ) {
             wp_send_json_error(['html' => 'Order ID and Email are required.']);
         }
 
-        // Load WooCommerce
+        // 1.4. Load WooCommerce
         if ( !class_exists( 'WooCommerce' ) ) {
             wp_send_json_error(['html' => 'WooCommerce is not installed.']);
         }
 
+        // 2. Start processing order information 
         // Get order by ID
         $order = wc_get_order($orderID);
 
@@ -175,9 +177,41 @@ class OrderTrackingPage{
         }
 
         // Proceed order information:
-        $order = wc_get_order( $orderID );
+        
+        // 3. Render HTML output
+        // 3.1. Render the progress bar for order information
+        $orderStatus = esc_html( wc_get_order_status_name( $order->get_status() ) );       
+        $orderStatusLowercaseName = strtolower( $orderStatus );
+        
+        $this->localDebugger->write_log_general( $orderStatus );
 
-     
+        $htmlOrderProgress = '<div class="order-progress">';
+
+        $htmlOrderProgress .= '<ul>';
+        
+        $processingStatus = $orderStatusLowercaseName == 'processing' || $orderStatusLowercaseName == 'completed' ? 'active' : '';
+        $htmlOrderProgress .= sprintf(
+            '<li class="processing-milestone %s">Order Received</li>',
+            $processingStatus
+        );
+
+        $shippedStatus = $orderStatusLowercaseName == 'shipped' || $orderStatusLowercaseName == 'completed' ? 'active' : '';
+        $htmlOrderProgress .= sprintf(
+            '<li class="shipping-milestone %s">Shipped</li>',
+            $shippedStatus
+        );
+
+        $completedStatus = $orderStatusLowercaseName == 'completed' ? 'active' : '';
+        $htmlOrderProgress .= sprintf(
+            '<li class="delivered-milestone %s">Delivered</li>',
+            $completedStatus
+        );
+
+        $htmlOrderProgress .= '</ul>';
+
+        $htmlOrderProgress .= '</div><!--.order-progress-->';
+
+        // 3.2. Detail product list in the order
         $htmlOrders = '<table class="product-list-table">'; // Start of product list table
 
         $htmlOrders .= '<tr class="header-row">';// Start of header row
@@ -201,25 +235,28 @@ class OrderTrackingPage{
 
         $htmlOrders .= '</table><!--.product-list-table-->';// End of product list table
 
-        $orderID = esc_html( $order->get_id() );
-        $orderStatus = esc_html(wc_get_order_status_name( $order->get_status() ) );
+        //$orderID = esc_html( $order->get_id() );
+        //$orderStatus = esc_html(wc_get_order_status_name( $order->get_status() ) );
         $orderPrice = wc_price( $order->get_total() );
 
+        // 3.3. Start rendering the HTML output for the wc_order_search_info action.
         $htmlOutput = <<<HTML
         <div class="order-information-container">
-                <div class="order-id">
-                    <label>Order ID :</label><span>{$orderID}</span>                            
-                </div>
-                <div class="order-status">
-                    <label>Status :</label><span>{$orderStatus}</span>     
-                </div>
-                <div class="order-total-price">
-                    <label>Total price :</label><span>{$orderPrice}</span>                            
-                </div>
-            </div><!--.order-information-container-->                   
+            <div class="order-id">
+                <label>Order ID :</label><span>{$orderID}</span>                            
+            </div>
+            <div class="order-status">
+                <label>Status :</label><span>{$orderStatus}</span>     
+            </div>
+            <div class="order-total-price">
+                <label>Total price :</label><span>{$orderPrice}</span>                            
+            </div>
+        </div><!--.order-information-container-->                   
         HTML;
 
         $htmlOutput .= <<<HTML
+            <br>
+            {$htmlOrderProgress}
             <br>    
             <h3 style="font-weight:bold;">Order Items</h3>
             {$htmlOrders}
