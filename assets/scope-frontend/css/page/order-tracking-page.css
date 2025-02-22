@@ -259,13 +259,15 @@ div.order-tracking-container div#order-search-result-container-id.order-search-r
   }
   div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-id-input-area[type=text] {
     margin: 0.5em 0;
+    min-width: 24em;
   }
   div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container label.wc-order-email-label {
     text-align: left;
     margin: 0.5em 0;
   }
-  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-email-input-area {
+  div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container input.order-email-input-area[type=email] {
     margin: 0.5em 0;
+    min-width: 24em;
   }
   div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button {
     margin: 0.5em 0;
