@@ -243,15 +243,6 @@ class OrderTrackingPage{
         $htmlOrders = '<table class="product-list-table">'; // Start of product list table
 
         // a. header row
-       /*  $htmlOrders .= '<tr class="header-row">';// Start of header row
-        $htmlOrders .= '<th class="header-no">NO</th>';
-        $htmlOrders .= '<th class="header-product-name">Product Name</th>';
-        $htmlOrders .= '<th class="header-quantity">Quantity</th>';
-        $htmlOrders .= '<th class="header-quantity">Unit Price</th>';
-        // $htmlOrders .= '<th class="header-subtotal-price">Subtotal Price</th>';
-        $htmlOrders .= '<th class="header-total-price">Total price</th>';
-        $htmlOrders .= '</tr>'; // End of header row */
-
         $htmlOrders .= <<<HTML
             <tr class="header-row">
                 <th class="header-no">NO</th>
@@ -263,16 +254,6 @@ class OrderTrackingPage{
         HTML;
 
         // b. header note row
-        
-       /*  $htmlOrders .= '<tr class="header-notes-row">';// Start of header row
-        $htmlOrders .= '<th class="header-no"><small>Note</small></th>';
-        $htmlOrders .= '<th class="header-product-name"><small>Single product item name & its embedded product link. Click to visit each single product.</small></th>';
-        $htmlOrders .= '<th class="header-quantity"><small>the amount of products purchased</small></th>';
-        $htmlOrders .= '<th class="header-quantity"><small>Price per single product</small></th>';
-        //$htmlOrders .= '<th class="header-subtotal-price"><small>before applying promotional code</small></th>';
-        $htmlOrders .= '<th class="header-total-price"><small>Unit price * quantity</small></th>';
-        $htmlOrders .= '</tr>'; // End of header row */
-
         $htmlOrders .= <<<HTML
             <tr class="header-notes-row">
                 <th class="header-no"><small>Note</small></th>
@@ -281,8 +262,7 @@ class OrderTrackingPage{
                 <th class="header-quantity"><small>Price per single product</small></th>
                 <th class="header-total-price"><small>Unit price * quantity</small></th>
             </tr><!--.header-notes-row-->
-        HTML;
-        
+        HTML;        
 
         $orderProducts = $order->get_items();                
 
@@ -321,6 +301,7 @@ class OrderTrackingPage{
         $htmlOrders .= sprintf( '<td style="text-align:center;" colspan="1">%s</td>', $orderPrice );
         $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
 
+        // Closing the product items list table
         $htmlOrders .= '</table><!--.product-list-table-->';// End of product list table
 
         //$orderID = esc_html( $order->get_id() );
