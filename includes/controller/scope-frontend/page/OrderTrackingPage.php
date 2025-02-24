@@ -273,6 +273,7 @@ class OrderTrackingPage{
             /** $itemProduct class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item-Product.html */    
             // require_once('../../../../../woocommerce/includes/class-wc-order-item-product.php');      
             $productCount++;
+            // Still working even though VS error notification here
             $product = $itemProduct->get_product();
 
             $productID = $product->get_id();
@@ -289,6 +290,7 @@ class OrderTrackingPage{
             $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $productPrice ) );
             // Getter method exists but still showing error warning
             // $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_subtotal() ) );
+            // Still working even though VS error notification here
             $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_total() ) );
             $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
         endforeach;
@@ -315,8 +317,7 @@ class OrderTrackingPage{
         HTML;
 
         // 4. Send HTML data to frontend display in responseData.data.html 
-        wp_send_json_success( ['html' => $htmlOutput] );
-
+        wp_send_json_success( [ 'html' => $htmlOutput ] );
     }//handle_WC_Order_Search_Info
 
 }//OrderTrackingPage
