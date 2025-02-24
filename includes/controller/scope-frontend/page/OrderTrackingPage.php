@@ -289,11 +289,17 @@ class OrderTrackingPage{
             /** $itemProduct class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item-Product.html */          
             $productCount++;
             $product = $itemProduct->get_product();
+
+            $productID = $product->get_id();
             $productPrice = $product->get_price();
+            $productUrl = get_permalink( $productID );
+
+            //$this->localDebugger->write_log_general( $productUrl );
 
             $htmlOrders .= '<tr class="data-row">';// Start of data row
             $htmlOrders .= sprintf('<td>%s</td>', $productCount);
-            $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_name() ) );
+            $htmlOrders .= sprintf('<td><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></td>', $productUrl, esc_html( $itemProduct->get_name() ) );
+            // $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_name() ) );// OK but too simple
             $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_quantity() ) );
             $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $productPrice ) );
             // Getter method exists but still showing error warning
