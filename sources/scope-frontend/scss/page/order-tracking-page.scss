@@ -189,17 +189,63 @@ div.order-tracking-container{
             // Everything in order tracking result container here
             // 1. Order information container:
             div.order-information-container{
-                div.order-id, div.order-status,div.order-total-price{
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: flex-start;
-                }//div.order-id, div.order-status,div.order-total-price
+                width: 100%;
+               
+                h3.order-info-summary-header{
+                    text-align: left;
+                    font-weight: bold;
+                    margin: 0.5em 0;
+                    padding: 0.5em 0;
+                }//h3.order-info-summary-header
+
+                table.order-info-summary-table{
+                    // 1. Header row
+                    tr.header-row{
+                        th{
+                            text-align: center;
+                            background-color: #e1e1e1; // Very Light grey   
+                        }//th
+
+                        th:nth-child(1){
+                            border: 2px solid rgba(0,0,0,0.5);
+                        }//th:nth-child(1)
+    
+                        th:not(:first-child){
+                            border-right: 2px solid rgba(0,0,0,0.5);
+                            border-top: 2px solid rgba(0,0,0,0.5);
+                            border-bottom: 2px solid rgba(0,0,0,0.5);
+                        }//th:not(:first-child)
+
+                    }//tr.header-row                    
+
+                    // 2. General table data row
+                    tr.data-row{
+                        td:nth-child(1){
+                            text-align: left;
+                            font-weight: bold;
+                            white-space: nowrap;
+                        }//td:nth-child(1)
+
+                        td:nth-child(2){
+                            text-align: left;
+                        }//td:nth-child(1)
+
+                    }//td.data-row
+
+                }//table.order-inf-summary-table
+
             }//div.order-information-container
 
             // 2. Progress bar
             div.order-progress{
 
+                // Order status header
+                h3.order-status-header{
+                    text-align: left;
+                    font-weight: bold;
+                }//h3.order-statud-header
+
+                // Progress bar
                 ul{
                     list-style-type: none;
                     padding: 0;
@@ -218,7 +264,7 @@ div.order-tracking-container{
                             font-weight: bold;
                             border-bottom: 3px solid green;
                         }
-                    }
+                    }//li
                 }//ul
 
             }//div.order-progress
@@ -229,7 +275,7 @@ div.order-tracking-container{
                 padding: 1em 0;
                 border: 2px solid #ddd;
 
-                // header row
+                // 3.1. header row
                 tr.header-row{
                     th{
                         text-align: center;
@@ -247,7 +293,17 @@ div.order-tracking-container{
                     }
                 }//tr.header-row
 
-                // data row
+                // 3.2. Header note row
+                tr.header-notes-row{
+                    th {
+                        small{
+                            font-style: italic;
+                            font-weight: normal;
+                        }
+                    }
+                }//tr.header-notes-row
+
+                // 3.3. data row
                 tr.data-row{
                     // Product order
                     td:nth-child(1){
@@ -264,7 +320,7 @@ div.order-tracking-container{
                         text-align: center;
                     }
                 }//tr.data-row
-            }
+            }//table.product-list-table
         }//&.show
 
     }//#order-search-result-container-id.order-search-result-container
@@ -411,4 +467,5 @@ div.order-tracking-container{
     }//div.order-tracking-container
 
 }//@media(min-width: variables.$min-md-width)
+
 

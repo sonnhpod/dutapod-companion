@@ -160,11 +160,38 @@ div.order-tracking-container div#order-search-result-container-id.order-search-r
   transform: translateY(0);
   transition: transform 360ms ease-in-out, opacity 360ms ease-in-out, visibility 360ms ease-in-out;
 }
-div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container div.order-id, div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container div.order-status, div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container div.order-total-price {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container {
+  width: 100%;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container h3.order-info-summary-header {
+  text-align: left;
+  font-weight: bold;
+  margin: 0.5em 0;
+  padding: 0.5em 0;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container table.order-info-summary-table tr.header-row th {
+  text-align: center;
+  background-color: #e1e1e1;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container table.order-info-summary-table tr.header-row th:nth-child(1) {
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container table.order-info-summary-table tr.header-row th:not(:first-child) {
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container table.order-info-summary-table tr.data-row td:nth-child(1) {
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container table.order-info-summary-table tr.data-row td:nth-child(2) {
+  text-align: left;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress h3.order-status-header {
+  text-align: left;
+  font-weight: bold;
 }
 div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress ul {
   list-style-type: none;
@@ -200,6 +227,10 @@ div.order-tracking-container div#order-search-result-container-id.order-search-r
   border-right: 2px solid rgba(0, 0, 0, 0.5);
   border-top: 2px solid rgba(0, 0, 0, 0.5);
   border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.header-notes-row th small {
+  font-style: italic;
+  font-weight: normal;
 }
 div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.data-row td:nth-child(1) {
   text-align: center;

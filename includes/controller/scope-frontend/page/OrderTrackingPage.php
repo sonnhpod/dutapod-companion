@@ -160,9 +160,10 @@ class OrderTrackingPage{
         }
 
         // 2. Start processing order information 
-        // Get order by ID
-        $order = wc_get_order($orderID);
+        // Get order by order ID: WC-Order :
+        $order = wc_get_order( $orderID );
 
+        // Guarding the operation if $order is invalid or not exist
         if ( !$order ) {
             $htmlErrorMessage = '<p style="color:red;">Order not found. Please check the Order ID & customer email.</p>';
 
@@ -179,13 +180,51 @@ class OrderTrackingPage{
         // Proceed order information:
         
         // 3. Render HTML output
-        // 3.1. Render the progress bar for order information
+        // 3.1. Order information summary 
+        
+        $shippingMethod = $order->get_shipping_method();
+        // $shippingMethod = '';
+        // $paymentMethod = $order->get_payment_method();
+        $paymentMethodTitle = $order->get_payment_method_title();
+        $customerNote = $order->get_customer_note();
+
+        $htmlOutput = <<<HTML
+        <div class="order-information-container">
+            <h3 class="order-info-summary-header">1. Order Information Summary</h3>
+            <table class="order-info-summary-table">
+                <tr class="header-row">
+                    <th class="header-no">Property</th>
+                    <th class="header-no">Detail information</th>
+                </tr><!--.header-row-->
+                <tr class="data-row order-id">
+                    <td>Order ID:</td>
+                    <td>{$orderID}</td>
+                </tr>
+                <tr class="data-row shipping">
+                    <td>Shipping:</td>
+                    <td>{$shippingMethod}</td>
+                </tr>
+                <tr class="data-row payment-method">
+                    <td>Payment Method:</td>
+                    <td>{$paymentMethodTitle}</td>
+                </tr>
+                <tr class="data-row notes">
+                    <td>Notes:</td>
+                    <td>{$customerNote}</td>
+                </tr>
+            </table><!--.product-list-table-->  
+        </div><!--.order-information-container-->                   
+        HTML;
+
+        // 3.2. Render the progress bar for order information
         $orderStatus = esc_html( wc_get_order_status_name( $order->get_status() ) );       
         $orderStatusLowercaseName = strtolower( $orderStatus );
         
         // $this->localDebugger->write_log_general( $orderStatus );
 
         $htmlOrderProgress = '<div class="order-progress">';
+        
+        $htmlOrderProgress .= '<h3 class="order-status-header">2. Order status</h3>';
 
         $htmlOrderProgress .= '<ul>';
         
@@ -211,7 +250,14 @@ class OrderTrackingPage{
 
         $htmlOrderProgress .= '</div><!--.order-progress-->';
 
-        // 3.2. Detail product list in the order
+        // Append the order progress to HTML output
+        $htmlOutput .= <<<HTML
+            <br>    
+            {$htmlOrderProgress}
+            <br>
+        HTML;
+
+        // 3.3. Detail product items list in the order
         $htmlOrders = '<table class="product-list-table">'; // Start of product list table
 
         // header row
@@ -226,7 +272,7 @@ class OrderTrackingPage{
 
         // header note row
         $htmlOrders .= '<tr class="header-notes-row">';// Start of header row
-        $htmlOrders .= '<th class="header-no"></th>';
+        $htmlOrders .= '<th class="header-no"><small>Note</small></th>';
         $htmlOrders .= '<th class="header-product-name"></th>';
         $htmlOrders .= '<th class="header-quantity"></th>';
         $htmlOrders .= '<th class="header-quantity"><small>Per unit</small></th>';
@@ -237,9 +283,10 @@ class OrderTrackingPage{
         $orderProducts = $order->get_items();                
 
         $productCount = 0;
-        foreach( $orderProducts as $itemID => $itemProduct ):
-            // $this->localDebugger->write_log_simple( $itemProduct );
 
+        // Render the product detail data
+        foreach( $orderProducts as $itemID => $itemProduct ):
+            /** $itemProduct class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item-Product.html */          
             $productCount++;
             $product = $itemProduct->get_product();
             $productPrice = $product->get_price();
@@ -255,35 +302,27 @@ class OrderTrackingPage{
             $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
         endforeach;
 
+        // render order information summary
+        $orderPrice = wc_price( $order->get_total() );
+
+        $htmlOrders .= '<tr class="data-row">';// Start of data row
+        $htmlOrders .= sprintf( '<td style="text-align:left;font-weight:bold;" colspan="4">Total order\'s price : </td>' );
+        $htmlOrders .= sprintf( '<td style="text-align:center;" colspan="1">%s</td>', $orderPrice );
+        $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
+
         $htmlOrders .= '</table><!--.product-list-table-->';// End of product list table
 
         //$orderID = esc_html( $order->get_id() );
-        //$orderStatus = esc_html(wc_get_order_status_name( $order->get_status() ) );
-        $orderPrice = wc_price( $order->get_total() );
+        //$orderStatus = esc_html(wc_get_order_status_name( $order->get_status() ) );       
 
-        // 3.3. Start rendering the HTML output for the wc_order_search_info action.
-        $htmlOutput = <<<HTML
-        <div class="order-information-container">
-            <div class="order-id">
-                <label>Order ID :</label><span>{$orderID}</span>                            
-            </div>
-            <div class="order-status">
-                <label>Status :</label><span>{$orderStatus}</span>     
-            </div>
-            <div class="order-total-price">
-                <label>Total price :</label><span>{$orderPrice}</span>                            
-            </div>
-        </div><!--.order-information-container-->                   
-        HTML;
-
+        // 3.3. Start rendering the HTML output for the wc_order_search_info action.      
         $htmlOutput .= <<<HTML
-            <br>
-            {$htmlOrderProgress}
-            <br>    
-            <h3 style="font-weight:bold;">Order Items</h3>
+            <br>           
+            <h3 style="font-weight:bold;">3. Order's products item detail</h3>
             {$htmlOrders}
         HTML;
 
+        // 4. Send HTML data to frontend display in responseData.data.html 
         wp_send_json_success( ['html' => $htmlOutput] );
 
     }//handle_WC_Order_Search_Info
