@@ -117,7 +117,8 @@ div.order-tracking-container div.order-search-inner-container form#order-search-
 div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button {
   padding: 0 0.5em;
   margin: 0 0.5em;
-  font-size: 1.6em;
+  font-size: 1em;
+  padding: 0.5em 2em;
   background-color: #0073aa;
   color: white;
   border: none;
@@ -206,27 +207,65 @@ div.order-tracking-container div#order-search-result-container-id.order-search-r
 div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-information-container table.order-info-summary-table tr.data-row td:nth-child(2) {
   text-align: left;
 }
-div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress h3.order-status-header {
-  text-align: left;
-  font-weight: bold;
-}
-div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress ul {
-  list-style-type: none;
-  padding: 0;
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress-container {
+  /* // Order status header
+  h3.order-status-header{
+      text-align: left;
+      font-weight: bold;
+  }//h3.order-statud-header
+
+  // Progress bar
+  ul{
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      margin: 1em 0;
+
+      li{
+          width: 30%;
+          text-align: center;
+          padding: 1em;
+          border-bottom: 3px solid grey;
+
+          &.active{
+              color: green;
+              font-weight: bold;
+              border-bottom: 3px solid green;
+          }
+      }//li
+  }//ul */
   display: flex;
-  justify-content: space-between;
-  margin: 1em 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
-div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress ul li {
-  width: 30%;
-  text-align: center;
-  padding: 1em;
-  border-bottom: 3px solid grey;
-}
-div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress ul li.active {
-  color: green;
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress-container h3.order-status-label {
   font-weight: bold;
-  border-bottom: 3px solid green;
+  text-align: left;
+  margin: 1em 0;
+  padding: 0;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress-container span.order-status-detail {
+  margin: 1em;
+  padding: 0.5em;
+  background-color: grey;
+  border: 1px solid black;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress-container span.order-status-detail.processing-status {
+  background-color: #90D5FF;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress-container span.order-status-detail.completed-status {
+  background-color: green;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress-container span.order-status-detail.on-hold-status {
+  background-color: #FFBF00;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress-container span.order-status-detail.failed-status {
+  background-color: #8B0000;
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show div.order-progress-container span.order-status-detail.cancelled-status {
+  background-color: red;
 }
 div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table {
   margin: 1em 0;
@@ -292,7 +331,8 @@ div.order-tracking-container div#order-search-result-container-id.order-search-r
   div.order-tracking-container div.order-search-inner-container form#order-search-form-id.order-search-form-container button.order-search-button {
     padding: 0 0.5em;
     margin: 0 0.5em;
-    font-size: 1.6em;
+    font-size: 1em;
+    padding: 0.5em 2em;
     background-color: #0073aa;
     color: white;
     border: none;

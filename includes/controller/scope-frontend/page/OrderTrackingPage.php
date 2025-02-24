@@ -218,9 +218,12 @@ class OrderTrackingPage{
         // 3.2. Render the progress bar for order information
         $orderStatus = esc_html( wc_get_order_status_name( $order->get_status() ) );       
         $orderStatusLowercaseName = strtolower( $orderStatus );
+        // Replace all whitespace with minus letter
+        $orderStatusLowercaseName = str_replace( ' ', '-', $orderStatusLowercaseName );
         
         // $this->localDebugger->write_log_general( $orderStatus );
 
+        /***
         $htmlOrderProgress = '<div class="order-progress">';
         
         $htmlOrderProgress .= '<h3 class="order-status-header">2. Order status</h3>';
@@ -247,7 +250,15 @@ class OrderTrackingPage{
 
         $htmlOrderProgress .= '</ul>';
 
-        $htmlOrderProgress .= '</div><!--.order-progress-->';
+        $htmlOrderProgress .= '</div><!--.order-progress-->'; 
+        ***/
+
+        $htmlOrderProgress = <<<HTML
+        <div class="order-progress-container">
+            <h3 class="order-status-label">2. Order status :</h3>
+            <span class="order-status-detail {$orderStatusLowercaseName}-status">{$orderStatusLowercaseName}</span>
+        </div><!--.order-progress-->
+        HTML;
 
         // Append the order progress to HTML output
         $htmlOutput .= <<<HTML
@@ -287,7 +298,8 @@ class OrderTrackingPage{
 
         // Render the product detail data
         foreach( $orderProducts as $itemID => $itemProduct ):
-            /** $itemProduct class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item-Product.html */          
+            /** $itemProduct class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item-Product.html */    
+            // require_once('../../../../../woocommerce/includes/class-wc-order-item-product.php');      
             $productCount++;
             $product = $itemProduct->get_product();
 

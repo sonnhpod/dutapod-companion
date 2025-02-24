@@ -123,7 +123,9 @@ div.order-tracking-container{
                 margin: 0 0.5em;
 
                 // flex-grow: 1;
-                font-size: 1.6em;
+                // font-size: 1.6em;
+                font-size: 1em;
+                padding: 0.5em 2em;
 
                 background-color: #0073aa;
                 color: white;
@@ -257,9 +259,9 @@ div.order-tracking-container{
             }//div.order-information-container
 
             // 2. Progress bar
-            div.order-progress{
+            div.order-progress-container{
 
-                // Order status header
+                /* // Order status header
                 h3.order-status-header{
                     text-align: left;
                     font-weight: bold;
@@ -285,7 +287,46 @@ div.order-tracking-container{
                             border-bottom: 3px solid green;
                         }
                     }//li
-                }//ul
+                }//ul */
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+
+                h3.order-status-label{
+                    font-weight: bold;
+                    text-align: left;
+                    margin: 1em 0;
+                    padding: 0;
+                }//label.order-status-label
+
+                span.order-status-detail{
+                    margin: 1em;
+                    padding: 0.5em;
+                    background-color: grey;
+                    border: 1px solid black;                    
+
+                    &.processing-status{
+                        background-color: #90D5FF;
+                    }
+
+                    &.completed-status{
+                        background-color: green;
+                    }
+
+                    &.on-hold-status{
+                        background-color: #FFBF00;// amber color
+                    }
+
+                    &.failed-status{
+                        background-color: #8B0000;
+                    }
+
+                    &.cancelled-status{
+                        background-color: red;
+                    }
+                }//span.order-status-detail
 
             }//div.order-progress
 
@@ -398,8 +439,10 @@ div.order-tracking-container{
                     margin: 0 0.5em;
 
                     // flex-grow: 1;
-                    font-size: 1.6em;
-
+                    // font-size: 1.6em;
+                    font-size: 1em;
+                    padding: 0.5em 2em;
+                    
                     background-color: #0073aa;
                     color: white;
                     border: none;
