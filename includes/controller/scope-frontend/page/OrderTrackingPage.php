@@ -186,6 +186,7 @@ class OrderTrackingPage{
         // $paymentMethod = $order->get_payment_method();
         $paymentMethodTitle = $order->get_payment_method_title();
         $customerNote = $order->get_customer_note();
+        // $shippingOption = 
 
         $htmlOutput = <<<HTML
         <div class="order-information-container">
@@ -206,7 +207,7 @@ class OrderTrackingPage{
                 <tr class="data-row payment-method">
                     <td>Payment Method:</td>
                     <td>{$paymentMethodTitle}</td>
-                </tr>
+                </tr>                
                 <tr class="data-row notes">
                     <td>Notes:</td>
                     <td>{$customerNote}</td>
