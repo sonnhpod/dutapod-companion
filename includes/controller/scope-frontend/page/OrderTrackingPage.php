@@ -223,36 +223,7 @@ class OrderTrackingPage{
         $orderStatusLowercaseName = str_replace( ' ', '-', $orderStatusLowercaseName );
         
         // $this->localDebugger->write_log_general( $orderStatus );
-
-        /***
-        $htmlOrderProgress = '<div class="order-progress">';
         
-        $htmlOrderProgress .= '<h3 class="order-status-header">2. Order status</h3>';
-
-        $htmlOrderProgress .= '<ul>';
-        
-        $processingStatus = $orderStatusLowercaseName == 'processing' || $orderStatusLowercaseName == 'completed' ? 'active' : '';
-        $htmlOrderProgress .= sprintf(
-            '<li class="processing-milestone %s">Order Received</li>',
-            $processingStatus
-        );
-
-        $shippedStatus = $orderStatusLowercaseName == 'shipped' || $orderStatusLowercaseName == 'completed' ? 'active' : '';
-        $htmlOrderProgress .= sprintf(
-            '<li class="shipping-milestone %s">Shipped</li>',
-            $shippedStatus
-        );
-
-        $completedStatus = $orderStatusLowercaseName == 'completed' ? 'active' : '';
-        $htmlOrderProgress .= sprintf(
-            '<li class="delivered-milestone %s">Delivered</li>',
-            $completedStatus
-        );
-
-        $htmlOrderProgress .= '</ul>';
-
-        $htmlOrderProgress .= '</div><!--.order-progress-->'; 
-        ***/
 
         $htmlOrderProgress = <<<HTML
         <div class="order-progress-container">
@@ -271,26 +242,46 @@ class OrderTrackingPage{
         // 3.3. Detail product items list in the order
         $htmlOrders = '<table class="product-list-table">'; // Start of product list table
 
-        // header row
-        $htmlOrders .= '<tr class="header-row">';// Start of header row
+        // a. header row
+       /*  $htmlOrders .= '<tr class="header-row">';// Start of header row
         $htmlOrders .= '<th class="header-no">NO</th>';
         $htmlOrders .= '<th class="header-product-name">Product Name</th>';
         $htmlOrders .= '<th class="header-quantity">Quantity</th>';
         $htmlOrders .= '<th class="header-quantity">Unit Price</th>';
         // $htmlOrders .= '<th class="header-subtotal-price">Subtotal Price</th>';
         $htmlOrders .= '<th class="header-total-price">Total price</th>';
-        $htmlOrders .= '</tr>'; // End of header row
+        $htmlOrders .= '</tr>'; // End of header row */
 
-        // header note row
+        $htmlOrders .= <<<HTML
+            <tr class="header-row">
+                <th class="header-no">NO</th>
+                <th class="header-product-name">Product Name</th>
+                <th class="header-quantity">Quantity</th>
+                <th class="header-quantity">Unit Price</th>
+                <th class="header-total-price">Total price</th>
+            </tr><!--.header-row-->
+        HTML;
+
+        // b. header note row
         
-        $htmlOrders .= '<tr class="header-notes-row">';// Start of header row
+       /*  $htmlOrders .= '<tr class="header-notes-row">';// Start of header row
         $htmlOrders .= '<th class="header-no"><small>Note</small></th>';
         $htmlOrders .= '<th class="header-product-name"><small>Single product item name & its embedded product link. Click to visit each single product.</small></th>';
         $htmlOrders .= '<th class="header-quantity"><small>the amount of products purchased</small></th>';
         $htmlOrders .= '<th class="header-quantity"><small>Price per single product</small></th>';
         //$htmlOrders .= '<th class="header-subtotal-price"><small>before applying promotional code</small></th>';
         $htmlOrders .= '<th class="header-total-price"><small>Unit price * quantity</small></th>';
-        $htmlOrders .= '</tr>'; // End of header row
+        $htmlOrders .= '</tr>'; // End of header row */
+
+        $htmlOrders .= <<<HTML
+            <tr class="header-notes-row">
+                <th class="header-no"><small>Note</small></th>
+                <th class="header-product-name"><small>Single product item name & its embedded product link. Click to visit each single product.</small></th>
+                <th class="header-quantity"><small>the amount of products purchased</small></th>
+                <th class="header-quantity"><small>Price per single product</small></th>
+                <th class="header-total-price"><small>Unit price * quantity</small></th>
+            </tr><!--.header-notes-row-->
+        HTML;
         
 
         $orderProducts = $order->get_items();                
