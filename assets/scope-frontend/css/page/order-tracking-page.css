@@ -37,19 +37,35 @@ Devsunset variables
 *
 ***/
 /** I. Generic styling for all screen size */
+div#content.site-content div.ast-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+/** II. Detail content styling */
+h1.order-info-page-title {
+  text-align: left;
+  font-size: 2em;
+  margin: 1em auto 1em 0;
+}
+
 div.order-tracking-container {
   max-width: 1200px;
   width: 100%;
   margin: 20px auto;
   text-align: center;
 }
-div.order-tracking-container h1.order-info-page-title {
+div.order-tracking-container h2.order-info-search-form-header {
   text-align: left;
-  font-size: 2em;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em auto 1em 0;
 }
-div.order-tracking-container h3.order-info-search-form-header {
+div.order-tracking-container p.order-info-search-instruction {
   text-align: left;
-  font-size: 1.2em;
+  margin: 1em auto 1em 0;
 }
 div.order-tracking-container div.order-search-inner-container {
   width: 100%;
@@ -116,9 +132,10 @@ div.order-tracking-container div.order-search-inner-container div.order-search-n
   margin: 0.5em 0;
   padding: 0.5em 0;
 }
-div.order-tracking-container h3.order-info-detail-header {
+div.order-tracking-container h2.order-info-detail-header {
   text-align: left;
-  font-size: 1.2em;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 div.order-tracking-container div.loading-spinner-result {
   display: none;
@@ -227,6 +244,9 @@ div.order-tracking-container div#order-search-result-container-id.order-search-r
   border-right: 2px solid rgba(0, 0, 0, 0.5);
   border-top: 2px solid rgba(0, 0, 0, 0.5);
   border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.header-notes-row th {
+  text-align: left;
 }
 div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show table.product-list-table tr.header-notes-row th small {
   font-style: italic;

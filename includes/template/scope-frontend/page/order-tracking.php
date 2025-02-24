@@ -7,9 +7,11 @@ get_header();
 
 ?>
 
+<h1 class="order-info-page-title">Order Information</h1>
 <div class="order-tracking-container">
-    <h1 class="order-info-page-title">Order Information</h1>
-    <h3 class="order-info-search-form-header">Search your Order </h3>
+    
+    <h2 class="order-info-search-form-header">Search your Order </h2>
+    <p class="order-info-search-instruction">Enter your order ID and email used to make your order request to find your order information detail. </p>
     <div class="order-search-inner-container">        
         <form id="order-search-form-id" class="order-search-form-container" method="POST">
             <label class="wc-order-id-label">Order ID :</label>
@@ -27,7 +29,7 @@ get_header();
         </div><!--.order-search-notes-container-->        
     </div><!--.order-tracking-inner-container-->  
 
-    <h3 class="order-info-detail-header">Order Details</h3>
+    <h2 class="order-info-detail-header">Order Details</h2>
     <div class="loading-spinner-result" id="loading-spinner-result-id"></div><!--.loading-spinner-->
     <div class="order-search-result-container" id="order-search-result-container-id">
         <?php 

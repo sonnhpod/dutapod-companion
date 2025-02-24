@@ -137,10 +137,9 @@ class OrderTrackingPage{
     /** Other main operational functions */
     /** 4.1. AJAX handler for the order search feature - at order tracking page */
     public function handle_WC_Order_Search_Info(){
-        // $this->localDebugger->write_log_general( $_POST['wc_order_search_nonce'] );
+        
         // 1. Validate the oprations
-        // 1.1. Verify nonce for security
-        // isset( $_POST['wc_order_search_nonce'] is true
+        // 1.1. Verify nonce for security     
         if( !isset( $_POST['wc_order_search_nonce'] ) || !wp_verify_nonce( $_POST['wc_order_search_nonce'] , 'wc_order_search_action') ){
             wp_send_json_error(['html' => 'Security check failed. The process of verify nonce failed!']);
         }
@@ -265,20 +264,22 @@ class OrderTrackingPage{
         $htmlOrders .= '<th class="header-no">NO</th>';
         $htmlOrders .= '<th class="header-product-name">Product Name</th>';
         $htmlOrders .= '<th class="header-quantity">Quantity</th>';
-        $htmlOrders .= '<th class="header-quantity">Price</th>';
+        $htmlOrders .= '<th class="header-quantity">Unit Price</th>';
         // $htmlOrders .= '<th class="header-subtotal-price">Subtotal Price</th>';
         $htmlOrders .= '<th class="header-total-price">Total price</th>';
         $htmlOrders .= '</tr>'; // End of header row
 
         // header note row
+        
         $htmlOrders .= '<tr class="header-notes-row">';// Start of header row
         $htmlOrders .= '<th class="header-no"><small>Note</small></th>';
-        $htmlOrders .= '<th class="header-product-name"></th>';
-        $htmlOrders .= '<th class="header-quantity"></th>';
-        $htmlOrders .= '<th class="header-quantity"><small>Per unit</small></th>';
+        $htmlOrders .= '<th class="header-product-name"><small>Single product item name & its embedded product link. Click to visit each single product.</small></th>';
+        $htmlOrders .= '<th class="header-quantity"><small>the amount of products purchased</small></th>';
+        $htmlOrders .= '<th class="header-quantity"><small>Price per single product</small></th>';
         //$htmlOrders .= '<th class="header-subtotal-price"><small>before applying promotional code</small></th>';
-        $htmlOrders .= '<th class="header-total-price"><small>Final price for total quantity</small></th>';
+        $htmlOrders .= '<th class="header-total-price"><small>Unit price * quantity</small></th>';
         $htmlOrders .= '</tr>'; // End of header row
+        
 
         $orderProducts = $order->get_items();                
 

@@ -2,6 +2,23 @@
 @use '../../../bases/scss/variables' as variables;
 
 /** I. Generic styling for all screen size */
+div#content.site-content{
+    div.ast-container{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }//div.ast-container
+}//div#content.site-content
+
+
+/** II. Detail content styling */
+// 1. Site title : Order Information
+h1.order-info-page-title{
+    text-align: left;
+    font-size: 2em;
+    margin: 1em auto 1em 0;
+}
 
 div.order-tracking-container{
     max-width: 1200px;
@@ -9,16 +26,18 @@ div.order-tracking-container{
     margin: 20px auto;
     text-align: center;
 
-    // 1. Site title : Order Information
-    h1.order-info-page-title{
-        text-align: left;
-        font-size: 2em;
-    }
 
     // 2. Search form title
-    h3.order-info-search-form-header{
+    h2.order-info-search-form-header{
         text-align: left;
-        font-size: 1.2em;
+        font-size: 1.5em;
+        font-weight: bold;
+        margin: 1em auto 1em 0;
+    }
+
+    p.order-info-search-instruction{
+        text-align: left;
+        margin: 1em auto 1em 0;
     }
 
     // 3. Search area inner container
@@ -133,9 +152,10 @@ div.order-tracking-container{
 
     // 2. Search results area
 
-    h3.order-info-detail-header{
+    h2.order-info-detail-header{
         text-align: left;
-        font-size: 1.2em;
+        font-size: 1.5em;
+        font-weight: bold;
     }//h3.order-info-detail-header
 
     // 2.1. Loading spinner item
@@ -296,11 +316,12 @@ div.order-tracking-container{
                 // 3.2. Header note row
                 tr.header-notes-row{
                     th {
+                        text-align: left;
                         small{
                             font-style: italic;
-                            font-weight: normal;
+                            font-weight: normal;                            
                         }
-                    }
+                    }//th
                 }//tr.header-notes-row
 
                 // 3.3. data row
