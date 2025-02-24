@@ -274,6 +274,7 @@ class OrderTrackingPage{
             // require_once('../../../../../woocommerce/includes/class-wc-order-item-product.php');      
             $productCount++;
             // Still working even though VS error notification here
+            // @php-ignore  
             $product = $itemProduct->get_product();
 
             $productID = $product->get_id();
@@ -287,10 +288,11 @@ class OrderTrackingPage{
             $htmlOrders .= sprintf('<td><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></td>', $productUrl, esc_html( $itemProduct->get_name() ) );
             // $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_name() ) );// OK but too simple
             $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_quantity() ) );
-            $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $productPrice ) );
-            // Getter method exists but still showing error warning
+            $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $productPrice ) );           
             // $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_subtotal() ) );
+
             // Still working even though VS error notification here
+            // @php-ignore  
             $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_total() ) );
             $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
         endforeach;
