@@ -1,5 +1,6 @@
 /** Package dutapod-companion */
 import * as _variables from '../../../bases/js/_variables.js';
+// import { forceRedraw } from '../../../bases/js/_variables.js';
 
 window.addEventListener('load', function(){
     const orderSearchForm = document.getElementById('order-search-form-id');
@@ -31,15 +32,27 @@ window.addEventListener('load', function(){
     orderSearchForm.addEventListener('submit', function(e){
         e.preventDefault();
 
+        // Empty the orderSearchResultContainer before fetching new data:
+        orderSearchResultContainer.innerHTML = '';
+        if( orderSearchResultContainer.classList.contains('show') ){
+            orderSearchResultContainer.classList.remove('show');
+        }
+
+        _variables.forceRedraw( orderSearchResultContainer );
+
         let formData = new FormData(this);
 
         const requestUrl = woocommerce_params.ajax_url + "?action=wc_order_search_info";
 
-        fetch( requestUrl, { method: 'POST', body: formData } )
+        let updateOrderSearchResultDelay = _variables.redrawDelay + 20;//OK
+
+        // Fetch the order search result container with the 
+        setTimeout( () => {
+            fetch( requestUrl, { method: 'POST', body: formData } )
             .then( response => response.json() )
             .then( responseData => {
-                console.log('responseData is : ');
-                console.log( responseData );
+                // console.log('responseData is : ');
+                // console.log( responseData );
                 
                 if( responseData.success ){
                     // Obtain the HTML response
@@ -61,7 +74,7 @@ window.addEventListener('load', function(){
                     }, 1200); // Simulating API delay
                 }
                 else {
-                    orderSearchResultContainer.innerHTML = `<p>Error loading products. There is no data success </p>`;
+                    orderSearchResultContainer.innerHTML = `<p>Error loading products. There is no data even though the fetch API got success status. </p>`;
                 }
             })
             .catch( error => {
@@ -69,6 +82,9 @@ window.addEventListener('load', function(){
                 console.error('Detail error message is :');
                 console.error( error );
             });
+        }, updateOrderSearchResultDelay );
+
+       
     });
 
 });

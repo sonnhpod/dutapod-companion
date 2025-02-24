@@ -4,7 +4,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.minXxlScreenWidth = exports.minXlScreenWidth = exports.minSmScreenWidth = exports.minMdScreenWidth = exports.minLgScreenWidth = exports.maxXsScreenWidth = exports.maxXlScreenWidth = exports.maxSmScreenWidth = exports.maxMdScreenWidth = exports.maxLgScreenWidth = void 0;
+exports.redrawDelay = exports.minXxlScreenWidth = exports.minXlScreenWidth = exports.minSmScreenWidth = exports.minMdScreenWidth = exports.minLgScreenWidth = exports.maxXsScreenWidth = exports.maxXlScreenWidth = exports.maxSmScreenWidth = exports.maxMdScreenWidth = exports.maxLgScreenWidth = exports.forceRedraw = void 0;
 // Screen sizes variables - in pixel value
 var minXxlScreenWidth = exports.minXxlScreenWidth = 1400;
 var maxXlScreenWidth = exports.maxXlScreenWidth = 1399;
@@ -17,6 +17,28 @@ var maxSmScreenWidth = exports.maxSmScreenWidth = 767;
 var minSmScreenWidth = exports.minSmScreenWidth = 576;
 var maxXsScreenWidth = exports.maxXsScreenWidth = 575;
 
+// Redraw the DOM element with the delay of 20ms
+var redrawDelay = exports.redrawDelay = 20; //ms
+
+var forceRedraw = exports.forceRedraw = function forceRedraw(element) {
+  if (!element) {
+    return;
+  }
+  var n = document.createTextNode(' ');
+  var disp = element.style.display; // don't worry about previous display style
+
+  element.appendChild(n);
+  element.style.display = 'none';
+  setTimeout(function () {
+    element.style.display = disp;
+    n.parentNode.removeChild(n);
+  }, redrawDelay); // you can play with this timeout to make it as short as possible
+};
+
+// Screen size parameter
+
+// Force redraw parameter
+
 },{}],2:[function(require,module,exports){
 "use strict";
 
@@ -25,6 +47,8 @@ var _variables = _interopRequireWildcard(require("../../../bases/js/_variables.j
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
 /** Package dutapod-companion */
+
+// import { forceRedraw } from '../../../bases/js/_variables.js';
 
 window.addEventListener('load', function () {
   var orderSearchForm = document.getElementById('order-search-form-id');
@@ -49,41 +73,54 @@ window.addEventListener('load', function () {
 
   orderSearchForm.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    // Empty the orderSearchResultContainer before fetching new data:
+    orderSearchResultContainer.innerHTML = '';
+    if (orderSearchResultContainer.classList.contains('show')) {
+      orderSearchResultContainer.classList.remove('show');
+    }
+    _variables.forceRedraw(orderSearchResultContainer);
     var formData = new FormData(this);
     var requestUrl = woocommerce_params.ajax_url + "?action=wc_order_search_info";
-    fetch(requestUrl, {
-      method: 'POST',
-      body: formData
-    }).then(function (response) {
-      return response.json();
-    }).then(function (responseData) {
-      console.log('responseData is : ');
-      console.log(responseData);
-      if (responseData.success) {
-        // Obtain the HTML response
-        var htmlResponse = responseData.data.html;
-        orderSearchResultContainer.innerHTML = htmlResponse;
+    var updateOrderSearchResultDelay = _variables.redrawDelay + 20; //OK
 
-        // Apply animation effect for the search result
-        var spinner = document.getElementById('loading-spinner-result-id');
-        spinner.style.display = "block"; // Show spinner
+    // Fetch the order search result container with the 
+    setTimeout(function () {
+      fetch(requestUrl, {
+        method: 'POST',
+        body: formData
+      }).then(function (response) {
+        return response.json();
+      }).then(function (responseData) {
+        // console.log('responseData is : ');
+        // console.log( responseData );
 
-        setTimeout(function () {
-          spinner.style.display = "none"; // Hide spinner after loading
+        if (responseData.success) {
+          // Obtain the HTML response
+          var htmlResponse = responseData.data.html;
+          orderSearchResultContainer.innerHTML = htmlResponse;
 
-          // orderResultsContainer.style.display = "block"; // Show order details
-          if (!orderSearchResultContainer.classList.contains('show')) {
-            orderSearchResultContainer.classList.add('show');
-          }
-        }, 1200); // Simulating API delay
-      } else {
-        orderSearchResultContainer.innerHTML = "<p>Error loading products. There is no data success </p>";
-      }
-    })["catch"](function (error) {
-      orderSearchResultContainer.innerHTML = "<p>Error loading products at Fetch API Catch statement ! ... </p>";
-      console.error('Detail error message is :');
-      console.error(error);
-    });
+          // Apply animation effect for the search result
+          var spinner = document.getElementById('loading-spinner-result-id');
+          spinner.style.display = "block"; // Show spinner
+
+          setTimeout(function () {
+            spinner.style.display = "none"; // Hide spinner after loading
+
+            // orderResultsContainer.style.display = "block"; // Show order details
+            if (!orderSearchResultContainer.classList.contains('show')) {
+              orderSearchResultContainer.classList.add('show');
+            }
+          }, 1200); // Simulating API delay
+        } else {
+          orderSearchResultContainer.innerHTML = "<p>Error loading products. There is no data even though the fetch API got success status. </p>";
+        }
+      })["catch"](function (error) {
+        orderSearchResultContainer.innerHTML = "<p>Error loading products at Fetch API Catch statement ! ... </p>";
+        console.error('Detail error message is :');
+        console.error(error);
+      });
+    }, updateOrderSearchResultDelay);
   });
 });
 window.addEvent;

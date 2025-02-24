@@ -4,7 +4,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.minXxlScreenWidth = exports.minXlScreenWidth = exports.minSmScreenWidth = exports.minMdScreenWidth = exports.minLgScreenWidth = exports.maxXsScreenWidth = exports.maxXlScreenWidth = exports.maxSmScreenWidth = exports.maxMdScreenWidth = exports.maxLgScreenWidth = void 0;
+exports.redrawDelay = exports.minXxlScreenWidth = exports.minXlScreenWidth = exports.minSmScreenWidth = exports.minMdScreenWidth = exports.minLgScreenWidth = exports.maxXsScreenWidth = exports.maxXlScreenWidth = exports.maxSmScreenWidth = exports.maxMdScreenWidth = exports.maxLgScreenWidth = exports.forceRedraw = void 0;
 // Screen sizes variables - in pixel value
 var minXxlScreenWidth = exports.minXxlScreenWidth = 1400;
 var maxXlScreenWidth = exports.maxXlScreenWidth = 1399;
@@ -16,6 +16,28 @@ var minMdScreenWidth = exports.minMdScreenWidth = 768;
 var maxSmScreenWidth = exports.maxSmScreenWidth = 767;
 var minSmScreenWidth = exports.minSmScreenWidth = 576;
 var maxXsScreenWidth = exports.maxXsScreenWidth = 575;
+
+// Redraw the DOM element with the delay of 20ms
+var redrawDelay = exports.redrawDelay = 20; //ms
+
+var forceRedraw = exports.forceRedraw = function forceRedraw(element) {
+  if (!element) {
+    return;
+  }
+  var n = document.createTextNode(' ');
+  var disp = element.style.display; // don't worry about previous display style
+
+  element.appendChild(n);
+  element.style.display = 'none';
+  setTimeout(function () {
+    element.style.display = disp;
+    n.parentNode.removeChild(n);
+  }, redrawDelay); // you can play with this timeout to make it as short as possible
+};
+
+// Screen size parameter
+
+// Force redraw parameter
 
 },{}],2:[function(require,module,exports){
 "use strict";

@@ -152,6 +152,7 @@ div.order-tracking-container div#order-search-result-container-id.order-search-r
   visibility: hidden;
   opacity: 0;
   transform: translateY(10%);
+  transition: transform 360ms ease-in-out, opacity 360ms ease-in-out, visibility 360ms ease-in-out;
 }
 div.order-tracking-container div#order-search-result-container-id.order-search-result-container.show {
   visibility: visible;

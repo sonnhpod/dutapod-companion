@@ -177,8 +177,10 @@ div.order-tracking-container{
         visibility: hidden;
         opacity: 0;
         transform: translateY(10%);        
+        transition: transform 360ms ease-in-out, opacity 360ms ease-in-out, visibility 360ms ease-in-out;
 
         &.show{
+            // For animation effect
             visibility: visible;
             opacity: 1; 
             transform: translateY(0);

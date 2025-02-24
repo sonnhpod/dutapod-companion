@@ -183,7 +183,7 @@ class OrderTrackingPage{
         $orderStatus = esc_html( wc_get_order_status_name( $order->get_status() ) );       
         $orderStatusLowercaseName = strtolower( $orderStatus );
         
-        $this->localDebugger->write_log_general( $orderStatus );
+        // $this->localDebugger->write_log_general( $orderStatus );
 
         $htmlOrderProgress = '<div class="order-progress">';
 
@@ -214,22 +214,44 @@ class OrderTrackingPage{
         // 3.2. Detail product list in the order
         $htmlOrders = '<table class="product-list-table">'; // Start of product list table
 
+        // header row
         $htmlOrders .= '<tr class="header-row">';// Start of header row
-        $htmlOrders .= '<th>NO</th>';
-        $htmlOrders .= '<th>Product Name</th>';
-        $htmlOrders .= '<th>Quantity</th>';
+        $htmlOrders .= '<th class="header-no">NO</th>';
+        $htmlOrders .= '<th class="header-product-name">Product Name</th>';
+        $htmlOrders .= '<th class="header-quantity">Quantity</th>';
+        $htmlOrders .= '<th class="header-quantity">Price</th>';
+        // $htmlOrders .= '<th class="header-subtotal-price">Subtotal Price</th>';
+        $htmlOrders .= '<th class="header-total-price">Total price</th>';
+        $htmlOrders .= '</tr>'; // End of header row
+
+        // header note row
+        $htmlOrders .= '<tr class="header-notes-row">';// Start of header row
+        $htmlOrders .= '<th class="header-no"></th>';
+        $htmlOrders .= '<th class="header-product-name"></th>';
+        $htmlOrders .= '<th class="header-quantity"></th>';
+        $htmlOrders .= '<th class="header-quantity"><small>Per unit</small></th>';
+        //$htmlOrders .= '<th class="header-subtotal-price"><small>before applying promotional code</small></th>';
+        $htmlOrders .= '<th class="header-total-price"><small>Final price for total quantity</small></th>';
         $htmlOrders .= '</tr>'; // End of header row
 
         $orderProducts = $order->get_items();                
 
         $productCount = 0;
-        foreach( $orderProducts as $key => $item ):
+        foreach( $orderProducts as $itemID => $itemProduct ):
+            // $this->localDebugger->write_log_simple( $itemProduct );
+
             $productCount++;
+            $product = $itemProduct->get_product();
+            $productPrice = $product->get_price();
 
             $htmlOrders .= '<tr class="data-row">';// Start of data row
             $htmlOrders .= sprintf('<td>%s</td>', $productCount);
-            $htmlOrders .= sprintf('<td>%s</td>', esc_html( $item->get_name() ) );
-            $htmlOrders .= sprintf('<td>%s</td>', esc_html( $item->get_quantity() ) );
+            $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_name() ) );
+            $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_quantity() ) );
+            $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $productPrice ) );
+            // Getter method exists but still showing error warning
+            // $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_subtotal() ) );
+            $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_total() ) );
             $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
         endforeach;
 
