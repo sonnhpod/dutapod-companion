@@ -264,14 +264,15 @@ class OrderTrackingPage{
                 <th class="header-total-price"><small>Unit price * quantity</small></th>
             </tr><!--.header-notes-row-->
         HTML;        
-
+        
+        /** Class WC_Order_Item documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item.html  */
         $orderItems = $order->get_items();// Obtain an array of WC_Order_Item
 
         $productCount = 0;
 
         // Render the product detail data
         foreach( $orderItems as $orderItemID => $orderItem ):
-            /** $orderItem class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item-Product.html 
+            /** $orderItem class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item.html 
              * Need to work with 2 WC product object:
              * - Order item - class WC_Order_Item (currently using method of WC_Order_Item_Product still work ?)
              * - WooCommerce product - class WC_Product
@@ -280,13 +281,14 @@ class OrderTrackingPage{
             $productCount++;
             // Still working even though VS error notification here. It seems because of the WooCommerce product extensions
             // @php-ignore  
-            /** class WC_Product documentation: https://woocommerce.github.io/code-reference/classes/WC-Product.html */    
-            $orderItemData = $orderItem->get_data();//OK
+             
+            $orderItemData = $orderItem->get_data();//OK. Contain helpful information about product item
 
             $productID = isset( $orderItemData['product_id'] ) ? $orderItemData['product_id'] : false;
             if( ! $productID ) { continue; }
 
-            // Get WC_Product object by ID 
+            // 2. Get WC_Product object by ID 
+            /** class WC_Product documentation: https://woocommerce.github.io/code-reference/classes/WC-Product.html */   
             $product = wc_get_product( $productID  );
 
             if( is_null( $product) || ! $product ) { continue; }
@@ -296,27 +298,25 @@ class OrderTrackingPage{
             $productPrice = $product->get_price();
             $productUrl = get_permalink( $productID );          
             
-            $orderItemName = esc_html( $orderItem->get_name() );
-            $orderItemQuantity = esc_html( $orderItem->get_quantity() );
+            // $orderItemName = esc_html( $orderItem->get_name() );
+            $orderItemName = isset( $orderItemData['name'] ) ? $orderItemData['name'] : 'unknown order product item';
+            // $orderItemQuantity = esc_html( $orderItem->get_quantity() );
+            $orderItemQuantity = isset( $orderItemData['quantity'] ) ? $orderItemData['quantity'] : 0;
             $orderItemTotalPrice = isset( $orderItemData['total'] ) ? $orderItemData['total'] : 0;
-            // $this->localDebugger->write_log_general('-->  $orderItemData[\'product_id\'] : ');       
-            // $this->localDebugger->write_log_general( $orderItemData['product_id'] );
-            $this->localDebugger->write_log_general('-->  $orderITemData : ');
-            $this->localDebugger->write_log_general( $orderItemData );
+       
+            // $this->localDebugger->write_log_general('-->  $orderITemData : ');
+            // $this->localDebugger->write_log_general( $orderItemData );            
 
-            $htmlOrders .= '<tr class="data-row">';// Start of data row
-            $htmlOrders .= sprintf('<td>%s</td>', $productCount);
-            $htmlOrders .= sprintf('<td><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></td>', $productUrl, $orderItemName );
-            // $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_name() ) );// OK but too simple
-            $htmlOrders .= sprintf('<td>%s</td>', $orderItemQuantity );
-            $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $productPrice ) );           
-            // $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_subtotal() ) );
-
-            // Still working even though VS error notification here
-            // @php-ignore  
-            // $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $orderItem->get_total() ) );
-            $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $orderItemTotalPrice ) );
-            $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
+            // 3. Append HTML content of order product item 
+            $htmlOrders .= <<<HTML
+            <tr class="data-row">
+                <td class="data-value product-count">{$productCount}</td>
+                <td class="data-value product-name"><a href="{$productUrl}" rel="noopener noreferrer">{$orderItemName}</a></td>
+                <td class="data-value product-quantity">{$orderItemQuantity}</td>
+                <td class="data-value product-price">{$productPrice} $</td>
+                <td class="data-value product-total-price">{$orderItemTotalPrice} $</td>
+            </tr><!--.data-row-->
+            HTML;
         endforeach;
 
         // render order information summary
