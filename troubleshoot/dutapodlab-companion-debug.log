@@ -1,0 +1,252 @@
+2025-02-25, 11:41:12 --> Start logging variable ...  
+2025-02-25, 11:41:12 $logMessage : -->  $orderITemData : 
+2025-02-25, 11:41:12 --> End of logging variable ...  
+2025-02-25, 11:41:12 --> Start logging variable ...  
+2025-02-25, 11:41:12 $logMessage : array(13) {
+  ["id"]=>
+  int(24)
+  ["order_id"]=>
+  int(1058)
+  ["name"]=>
+  string(196) "Miracle Spirit Come to me all you who are weary and burdened, and I will give you rest, Jesus embracing girl, Jesus painting, Jesus Posters for Walls, Christ watercolor, Modern Wall Art (UNFRAMED)"
+  ["product_id"]=>
+  int(942)
+  ["variation_id"]=>
+  int(0)
+  ["quantity"]=>
+  int(2)
+  ["tax_class"]=>
+  string(0) ""
+  ["subtotal"]=>
+  string(2) "40"
+  ["subtotal_tax"]=>
+  string(1) "0"
+  ["total"]=>
+  string(2) "40"
+  ["total_tax"]=>
+  string(1) "0"
+  ["taxes"]=>
+  array(2) {
+    ["total"]=>
+    array(0) {
+    }
+    ["subtotal"]=>
+    array(0) {
+    }
+  }
+  ["meta_data"]=>
+  array(0) {
+  }
+}
+
+2025-02-25, 11:41:12 --> End of logging variable ...  
+2025-02-25, 11:41:12 --> Start logging variable ...  
+2025-02-25, 11:41:12 $logMessage : -->  $orderITemData : 
+2025-02-25, 11:41:12 --> End of logging variable ...  
+2025-02-25, 11:41:12 --> Start logging variable ...  
+2025-02-25, 11:41:12 $logMessage : array(13) {
+  ["id"]=>
+  int(25)
+  ["order_id"]=>
+  int(1058)
+  ["name"]=>
+  string(199) "Miracle Spirit Jesus in the Garden, Jesus Poster, Jesus Painting, Christian Wall Decor, Jesus Art, Picture Watercolor of Jesus, Inspirational Painting, Artwork God Pictures for Living Room (UNFRAMED)"
+  ["product_id"]=>
+  int(954)
+  ["variation_id"]=>
+  int(0)
+  ["quantity"]=>
+  int(1)
+  ["tax_class"]=>
+  string(0) ""
+  ["subtotal"]=>
+  string(2) "16"
+  ["subtotal_tax"]=>
+  string(1) "0"
+  ["total"]=>
+  string(2) "16"
+  ["total_tax"]=>
+  string(1) "0"
+  ["taxes"]=>
+  array(2) {
+    ["total"]=>
+    array(0) {
+    }
+    ["subtotal"]=>
+    array(0) {
+    }
+  }
+  ["meta_data"]=>
+  array(0) {
+  }
+}
+
+2025-02-25, 11:41:12 --> End of logging variable ...  
+2025-02-25, 11:41:12 --> Start logging variable ...  
+2025-02-25, 11:41:12 $logMessage : -->  $orderITemData : 
+2025-02-25, 11:41:12 --> End of logging variable ...  
+2025-02-25, 11:41:12 --> Start logging variable ...  
+2025-02-25, 11:41:12 $logMessage : array(13) {
+  ["id"]=>
+  int(26)
+  ["order_id"]=>
+  int(1058)
+  ["name"]=>
+  string(183) "Glacier Bay National Park, National Parks Wall Poster, Glacier Bay National Park Wall Art, Abstract Nature Landscape Forest Wall Art Pictures for Bedroom Office Living Room (UNFRAMED)"
+  ["product_id"]=>
+  int(346)
+  ["variation_id"]=>
+  int(0)
+  ["quantity"]=>
+  int(3)
+  ["tax_class"]=>
+  string(0) ""
+  ["subtotal"]=>
+  string(3) "177"
+  ["subtotal_tax"]=>
+  string(1) "0"
+  ["total"]=>
+  string(3) "177"
+  ["total_tax"]=>
+  string(1) "0"
+  ["taxes"]=>
+  array(2) {
+    ["total"]=>
+    array(0) {
+    }
+    ["subtotal"]=>
+    array(0) {
+    }
+  }
+  ["meta_data"]=>
+  array(0) {
+  }
+}
+
+2025-02-25, 11:41:12 --> End of logging variable ...  
+2025-02-25, 11:43:40 --> Start logging variable ...  
+2025-02-25, 11:43:40 $logMessage : -->  $orderITemData : 
+2025-02-25, 11:43:40 --> End of logging variable ...  
+2025-02-25, 11:43:40 --> Start logging variable ...  
+2025-02-25, 11:43:40 $logMessage : array(13) {
+  ["id"]=>
+  int(24)
+  ["order_id"]=>
+  int(1058)
+  ["name"]=>
+  string(196) "Miracle Spirit Come to me all you who are weary and burdened, and I will give you rest, Jesus embracing girl, Jesus painting, Jesus Posters for Walls, Christ watercolor, Modern Wall Art (UNFRAMED)"
+  ["product_id"]=>
+  int(942)
+  ["variation_id"]=>
+  int(0)
+  ["quantity"]=>
+  int(2)
+  ["tax_class"]=>
+  string(0) ""
+  ["subtotal"]=>
+  string(2) "40"
+  ["subtotal_tax"]=>
+  string(1) "0"
+  ["total"]=>
+  string(2) "40"
+  ["total_tax"]=>
+  string(1) "0"
+  ["taxes"]=>
+  array(2) {
+    ["total"]=>
+    array(0) {
+    }
+    ["subtotal"]=>
+    array(0) {
+    }
+  }
+  ["meta_data"]=>
+  array(0) {
+  }
+}
+
+2025-02-25, 11:43:40 --> End of logging variable ...  
+2025-02-25, 11:43:40 --> Start logging variable ...  
+2025-02-25, 11:43:40 $logMessage : -->  $orderITemData : 
+2025-02-25, 11:43:40 --> End of logging variable ...  
+2025-02-25, 11:43:40 --> Start logging variable ...  
+2025-02-25, 11:43:40 $logMessage : array(13) {
+  ["id"]=>
+  int(25)
+  ["order_id"]=>
+  int(1058)
+  ["name"]=>
+  string(199) "Miracle Spirit Jesus in the Garden, Jesus Poster, Jesus Painting, Christian Wall Decor, Jesus Art, Picture Watercolor of Jesus, Inspirational Painting, Artwork God Pictures for Living Room (UNFRAMED)"
+  ["product_id"]=>
+  int(954)
+  ["variation_id"]=>
+  int(0)
+  ["quantity"]=>
+  int(1)
+  ["tax_class"]=>
+  string(0) ""
+  ["subtotal"]=>
+  string(2) "16"
+  ["subtotal_tax"]=>
+  string(1) "0"
+  ["total"]=>
+  string(2) "16"
+  ["total_tax"]=>
+  string(1) "0"
+  ["taxes"]=>
+  array(2) {
+    ["total"]=>
+    array(0) {
+    }
+    ["subtotal"]=>
+    array(0) {
+    }
+  }
+  ["meta_data"]=>
+  array(0) {
+  }
+}
+
+2025-02-25, 11:43:40 --> End of logging variable ...  
+2025-02-25, 11:43:40 --> Start logging variable ...  
+2025-02-25, 11:43:40 $logMessage : -->  $orderITemData : 
+2025-02-25, 11:43:40 --> End of logging variable ...  
+2025-02-25, 11:43:40 --> Start logging variable ...  
+2025-02-25, 11:43:40 $logMessage : array(13) {
+  ["id"]=>
+  int(26)
+  ["order_id"]=>
+  int(1058)
+  ["name"]=>
+  string(183) "Glacier Bay National Park, National Parks Wall Poster, Glacier Bay National Park Wall Art, Abstract Nature Landscape Forest Wall Art Pictures for Bedroom Office Living Room (UNFRAMED)"
+  ["product_id"]=>
+  int(346)
+  ["variation_id"]=>
+  int(0)
+  ["quantity"]=>
+  int(3)
+  ["tax_class"]=>
+  string(0) ""
+  ["subtotal"]=>
+  string(3) "177"
+  ["subtotal_tax"]=>
+  string(1) "0"
+  ["total"]=>
+  string(3) "177"
+  ["total_tax"]=>
+  string(1) "0"
+  ["taxes"]=>
+  array(2) {
+    ["total"]=>
+    array(0) {
+    }
+    ["subtotal"]=>
+    array(0) {
+    }
+  }
+  ["meta_data"]=>
+  array(0) {
+  }
+}
+
+2025-02-25, 11:43:40 --> End of logging variable ...  

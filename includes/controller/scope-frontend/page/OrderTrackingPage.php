@@ -160,6 +160,7 @@ class OrderTrackingPage{
 
         // 2. Start processing order information 
         // Get order by order ID: WC-Order :
+        /** Class WC_Order documentation: https://woocommerce.github.io/code-reference/classes/WC-Order.html */
         $order = wc_get_order( $orderID );
 
         // Guarding the operation if $order is invalid or not exist
@@ -264,36 +265,57 @@ class OrderTrackingPage{
             </tr><!--.header-notes-row-->
         HTML;        
 
-        $orderProducts = $order->get_items();                
+        $orderItems = $order->get_items();// Obtain an array of WC_Order_Item
 
         $productCount = 0;
 
         // Render the product detail data
-        foreach( $orderProducts as $itemID => $itemProduct ):
-            /** $itemProduct class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item-Product.html */    
-            // require_once('../../../../../woocommerce/includes/class-wc-order-item-product.php');      
+        foreach( $orderItems as $orderItemID => $orderItem ):
+            /** $orderItem class documentation: https://woocommerce.github.io/code-reference/classes/WC-Order-Item-Product.html 
+             * Need to work with 2 WC product object:
+             * - Order item - class WC_Order_Item (currently using method of WC_Order_Item_Product still work ?)
+             * - WooCommerce product - class WC_Product
+             * */    
+             
             $productCount++;
-            // Still working even though VS error notification here
+            // Still working even though VS error notification here. It seems because of the WooCommerce product extensions
             // @php-ignore  
-            $product = $itemProduct->get_product();
+            /** class WC_Product documentation: https://woocommerce.github.io/code-reference/classes/WC-Product.html */    
+            $orderItemData = $orderItem->get_data();//OK
 
-            $productID = $product->get_id();
+            $productID = isset( $orderItemData['product_id'] ) ? $orderItemData['product_id'] : false;
+            if( ! $productID ) { continue; }
+
+            // Get WC_Product object by ID 
+            $product = wc_get_product( $productID  );
+
+            if( is_null( $product) || ! $product ) { continue; }
+
+            // $product = $orderItem->get_product();
+            // $productID = $product->get_id();
             $productPrice = $product->get_price();
-            $productUrl = get_permalink( $productID );
-
-            //$this->localDebugger->write_log_general( $productUrl );
+            $productUrl = get_permalink( $productID );          
+            
+            $orderItemName = esc_html( $orderItem->get_name() );
+            $orderItemQuantity = esc_html( $orderItem->get_quantity() );
+            $orderItemTotalPrice = isset( $orderItemData['total'] ) ? $orderItemData['total'] : 0;
+            // $this->localDebugger->write_log_general('-->  $orderItemData[\'product_id\'] : ');       
+            // $this->localDebugger->write_log_general( $orderItemData['product_id'] );
+            $this->localDebugger->write_log_general('-->  $orderITemData : ');
+            $this->localDebugger->write_log_general( $orderItemData );
 
             $htmlOrders .= '<tr class="data-row">';// Start of data row
             $htmlOrders .= sprintf('<td>%s</td>', $productCount);
-            $htmlOrders .= sprintf('<td><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></td>', $productUrl, esc_html( $itemProduct->get_name() ) );
+            $htmlOrders .= sprintf('<td><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></td>', $productUrl, $orderItemName );
             // $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_name() ) );// OK but too simple
-            $htmlOrders .= sprintf('<td>%s</td>', esc_html( $itemProduct->get_quantity() ) );
+            $htmlOrders .= sprintf('<td>%s</td>', $orderItemQuantity );
             $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $productPrice ) );           
             // $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_subtotal() ) );
 
             // Still working even though VS error notification here
             // @php-ignore  
-            $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $itemProduct->get_total() ) );
+            // $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $orderItem->get_total() ) );
+            $htmlOrders .= sprintf('<td>%s $</td>', esc_html( $orderItemTotalPrice ) );
             $htmlOrders .= '</tr><!--.data-row-->'; // End of data row
         endforeach;
 
