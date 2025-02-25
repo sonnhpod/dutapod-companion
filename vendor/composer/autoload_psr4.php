@@ -28,6 +28,7 @@ return array(
     'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Category\\' => array($baseDir . '/includes/controller/scope-frontend/category'),
     'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\' => array($baseDir . '/includes/controller/scope-frontend'),
     'DutapodCompanion\\Includes\\Controller\\ScopeEditor\\' => array($baseDir . '/includes/controller/scope-editor'),
+    'DutapodCompanion\\Includes\\Controller\\ScopeAdmin\\Page\\' => array($baseDir . '/includes/controller/scope-admin/page'),
     'DutapodCompanion\\Includes\\Controller\\ScopeAdmin\\' => array($baseDir . '/includes/controller/scope-admin'),
     'DutapodCompanion\\Includes\\Controller\\' => array($baseDir . '/includes/controller'),
     'DutapodCompanion\\Includes\\Content\\Widget\\' => array($baseDir . '/includes/content/widget'),
