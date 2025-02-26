@@ -106,7 +106,7 @@ class TroubleshootSubpage extends BaseController{
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue_Extra_Resources'] );
     }//load_Extra_Resources
 
-    /** 3.2.2. Register extra resources for this admin parent root page */
+    /** 3.2.2. Register extra resources for this admin troubleshoot page */
     public function register_Extra_Resources(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
@@ -119,7 +119,7 @@ class TroubleshootSubpage extends BaseController{
 
     }//register_Extra_Resources
 
-    /** 3.2.3. Enqueue extra resources for this admin parent root page */
+    /** 3.2.3. Enqueue extra resources for this admin troubleshoot page */
     public function enqueue_Extra_Resources(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
@@ -133,5 +133,14 @@ class TroubleshootSubpage extends BaseController{
         /**  2.2.2. Localize this additional front page script */
         // wp_localize_script( self::SCRIPT_HANDLER, 'woocommerce_params', [ 'ajax_url' => admin_url('admin-ajax.php') ] );
     }//enqueue_Extra_Resources
+
+    /** 3.2.4. Enqueue prerequisite resources for this admin troubleshoot page */
+    public function enqueue_Extra_Prerequisite_Resources(){
+        // Media library 
+        wp_enqueue_script('media-upload');
+
+        // jquery library
+        wp_enqueue_script('jquery');
+    }//enqueue_Extra_Prerequisite_Resources
 
 }//AdminParentRoot class definition

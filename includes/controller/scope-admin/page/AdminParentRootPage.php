@@ -134,4 +134,13 @@ class AdminParentRootPage extends BaseController{
         // wp_localize_script( self::SCRIPT_HANDLER, 'woocommerce_params', [ 'ajax_url' => admin_url('admin-ajax.php') ] );
     }//enqueue_Extra_Resources
 
+    /** 3.2.4. Enqueue prerequisite resources for this admin troubleshoot page */
+    public function enqueue_Extra_Prerequisite_Resources(){
+        // Media library 
+        wp_enqueue_script('media-upload');
+
+        // jquery library
+        wp_enqueue_script('jquery');
+    }//enqueue_Extra_Prerequisite_Resources
+
 }//AdminParentRoot class definition
