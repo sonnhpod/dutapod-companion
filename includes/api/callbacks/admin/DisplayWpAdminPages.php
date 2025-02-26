@@ -11,8 +11,10 @@ use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
 class DisplayWpAdminPages extends BaseController{
 
+    /** 1. Variables declaration */
     public object $contentTypes; 
 
+    /** 2. Constructor */
     public function __construct(){
         $this->contentTypes = new stdClass();
 
@@ -23,11 +25,22 @@ class DisplayWpAdminPages extends BaseController{
         $this->contentTypes->sunsetTemplate = new stdClass();
     }//__construct
 
+    /** 3. Operational functions to display WP admin pages content */
+    /** 3.1. Callback function to render the plugin's admin parent root page */
     public function renderAdminParentRootPage(){
         // require_once("$this->pluginPath/templates/admin/admin-parent-root.php");
-        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/dutapod-parent-root.php" );
+        // require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/dutapod-parent-root.php" );
+        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/admin-parent-root.php" );
     }//renderAdminParentRootPage
 
+    /** 3.2. Callback function to render the plugin's troubleshoot page */
+    
+    public function renderTroubleshootSubpage(){
+        // require_once("$this->pluginPath/includes/template/scope-admin/admin-page-troubleshoot.php");
+        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/troubleshoot-subpage.php" );
+    }//renderTroubleshootSubpage
+
+    /** 3.3.+ Other callback functions to render additional admin setting pages */
     public function renderAdminCarouselPage(){
         // require_once("$this->pluginPath/templates/admin/admin-cpt.php");
         require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/dutapod-carousel.php" );
@@ -53,9 +66,5 @@ class DisplayWpAdminPages extends BaseController{
         require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/dutapod-menu.php" );
     }//renderAdminWidgetsPage 
 
-    public function renderAdminTroubleshootPage(){
-        // require_once("$this->pluginPath/includes/template/scope-admin/admin-page-troubleshoot.php");
-        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/admin-page-troubleshoot.php" );
-    }
 
 }//End of SunsetproAdmin(callback) definition

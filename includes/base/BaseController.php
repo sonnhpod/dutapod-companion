@@ -12,15 +12,19 @@ use DutapodCompanion\Includes\Api\SettingsManagerPage as SettingsManagerPage;
 
 class BaseController{
     /** 1. Define variables: */
+    // Store the instance of this class. This is to create a singleton class
     private static $INSTANCE = null;
 
+    // Plugin system variables
     public static string $PLUGIN_PATH;
     public static string $PLUGIN_URL;
     public static string $PLUGIN_BASENAME;
     public static string $PLUGIN_NAME;
 
+    // General plugin properties
     public static PluginProperties $PLUGIN_PROPERTIES;
 
+    // A list of WP admin setting pages
     public static array $ADMIN_PAGES;    
 
     public array $settingPageManagers;
@@ -53,7 +57,8 @@ class BaseController{
 
     }//__construct
 
-    public function getInstance(){
+    // Get instance
+    public static function getInstance(){
         if( null == self::$INSTANCE ){
             self::$INSTANCE = new BaseController();
         }

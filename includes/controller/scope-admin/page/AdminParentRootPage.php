@@ -16,7 +16,7 @@ use DutapodCompanion\Includes\Base\BaseController as BaseController;
  * 
 */
 
-class AdminParentRoot extends BaseController{
+class AdminParentRootPage extends BaseController{
 
     // 
     // public SettingsAdminPages $settings;

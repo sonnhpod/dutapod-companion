@@ -13,6 +13,7 @@ use DutapodCompanion\Includes\Api\SettingsAdminPages as SettingsAdminPages;
 use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as DisplayWpAdminPages;
 use DutapodCompanion\Includes\Api\Callbacks\Admin\AdminManagerCallbacks as AdminManagerCallbacks;
 
+/** 1. This class is responsible to insert all plugins' admin setting pages to the WP admin setting pages menu. */
 class AdminGeneral extends BaseController{
 
     public SettingsAdminPages $settings;
@@ -128,7 +129,7 @@ class AdminGeneral extends BaseController{
             'menu_title'            => 'Troubleshoot',
             'capability'            => 'manage_options',
             'menu_slug'             => 'dutapod_plugin_troubleshoot',
-            'callback'              => array($this->callbacks, 'renderAdminTroubleshootPage')
+            'callback'              => array($this->callbacks, 'renderTroubleshootSubpage')
         ];
 
         $this->subpages = [ $troubleshootPage ];
