@@ -9,8 +9,6 @@ namespace DutapodCompanion\Includes;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-# Admin controller
-use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminGeneral as AdminGeneral;
 # Frontend Controller
 use DutapodCompanion\Includes\Controller\ScopeFrontend\DebugTemplateController as DebugTemplateController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\CustomTemplateController as CustomTemplateController;
@@ -35,7 +33,7 @@ use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
  * 
  */
 
-final class Init{
+final class WpAdminInit{
 
     /** 1. Variable declaration */
     public static array $PLUGIN_INSTANCE_LIST;
@@ -68,20 +66,7 @@ final class Init{
     }//register_plugin_services
 
     public static function register_admin_services(){
-        $servicesList = self::get_admin_services();
-
-        foreach( $servicesList as $serviceItem ){
-            // 1. Initialize an instance of the dedicated service
-            $instance = self::instantiate( $serviceItem );
-
-            // 2. Run all actions defined in the corresponding services in "register" method
-            if( method_exists( $instance , 'register' ) ){
-                $instance->register();
-            }//method_exists( $instance , 'register' )
-
-            self::$FRONTEND_INSTANCES_LIST[ $serviceItem ] = $instance;
-
-        }// Endforeach $servicesList as $serviceItem
+        return false;
     }//register_admin_services
 
     public static function register_editor_services(){
@@ -120,7 +105,6 @@ final class Init{
         return array(
             PluginProperties::class,            
             PluginDebugHelper::class,
-            AdminGeneral::class,
         );
     }//get_admin_services
 
@@ -169,4 +153,4 @@ final class Init{
 
     }//instantiate()
 
-}//Init class definition
+}//WpAdminInit class definition

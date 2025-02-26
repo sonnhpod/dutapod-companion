@@ -15,6 +15,8 @@
             "DutapodCompanion\\Helper\\WpFrontend\\": "helper/wp-frontend/",
             "DutapodCompanion\\Includes\\": "includes/",
             "DutapodCompanion\\Includes\\Api\\": "includes/api/",
+            "DutapodCompanion\\Includes\\Api\\Callbacks\\": "includes/api/callbacks/",
+            "DutapodCompanion\\Includes\\Api\\Callbacks\\Admin\\": "includes/api/callbacks/admin/",
             "DutapodCompanion\\Includes\\Base\\": "includes/base/",
             "DutapodCompanion\\Includes\\Content\\": "includes/content/",
             "DutapodCompanion\\Includes\\Content\\Block\\": "includes/content/block/",

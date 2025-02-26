@@ -38,6 +38,8 @@ return array(
     'DutapodCompanion\\Includes\\Content\\Block\\' => array($baseDir . '/includes/content/block'),
     'DutapodCompanion\\Includes\\Content\\' => array($baseDir . '/includes/content'),
     'DutapodCompanion\\Includes\\Base\\' => array($baseDir . '/includes/base'),
+    'DutapodCompanion\\Includes\\Api\\Callbacks\\Admin\\' => array($baseDir . '/includes/api/callbacks/admin'),
+    'DutapodCompanion\\Includes\\Api\\Callbacks\\' => array($baseDir . '/includes/api/callbacks'),
     'DutapodCompanion\\Includes\\Api\\' => array($baseDir . '/includes/api'),
     'DutapodCompanion\\Includes\\' => array($baseDir . '/includes'),
     'DutapodCompanion\\Helper\\WpFrontend\\' => array($baseDir . '/helper/wp-frontend'),

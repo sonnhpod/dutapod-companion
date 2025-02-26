@@ -5,7 +5,7 @@
  * This is unused class because Composer autoloader did all things
  */
 
-namespace DutapodCompanion\Includes\Controller\ScopeAdmin\Page;
+namespace DutapodCompanion\Includes\Api;
 
 class SettingsManagerPage{
 

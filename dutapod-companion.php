@@ -82,26 +82,31 @@ if( class_exists( PluginClassLoader::class ) ){
 }// End of class_exists( PluginClassLoader::class )
 
 if( class_exists( Init::class ) ){
-    // 1. Initialize all instances of all necessary services 
-    // Init::register_services();//Used to work
-    Init::register_frontend_services();
+    // 1. Optimize the workflow: 
+    // - If requesting to WordPress admin setting page: register admin service.
+    // - Otherwise, register frontend service.
+    if( is_admin() ){
+        Init::register_admin_services();
+    } else {
+        // 1. Initialize all instances of all necessary services    
+        Init::register_frontend_services();   
 
-    // 2. Manually add PluginClassLoader to the Init::$PLUGIN_INSTANCE_LIST;
-    // Init::$PLUGIN_INSTANCE_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
-
-    // 2. Manually add PluginClassLoader to the Init::$FRONTEND_INSTANCE_LIST
-    Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
+        // 2. Manually add PluginClassLoader to the Init::$FRONTEND_INSTANCE_LIST
+        Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
+    }  
 }
 
 /** 7 . Start WooCommerce Helper init */
 
 if( class_exists( WcHelperInit::class ) ){
-    // 1. Initialize all instances of all necessary services 
-    // Init::register_services();//Used to work
-    WcHelperInit::register_frontend_services();
+    // 1. Optimize the workflow
+    // - If acessing frontend page, then register WooCommerce Helper at frontend display.
+    
+    if( !is_admin() ){
+        // 1. Register frontend services for WooCommerce class helper.
+        WcHelperInit::register_frontend_services();
+    }    
 
-    // 2. Manually add PluginClassLoader to the Init::$FRONTEND_INSTANCE_LIST
-    // WcHelperInit::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
 }//class_exists( WcHelperInit::class )
 
 

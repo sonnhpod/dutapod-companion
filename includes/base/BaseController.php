@@ -8,7 +8,7 @@ namespace DutapodCompanion\Includes\Base;
 
 use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
-use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsManagerPage as SettingsManagerPage;
+use DutapodCompanion\Includes\Api\SettingsManagerPage as SettingsManagerPage;
 
 class BaseController{
     /** 1. Define variables: */
@@ -38,7 +38,7 @@ class BaseController{
         $this->setLocalPluginProperties();
         // global $PluginProperties;
         self::$PLUGIN_PROPERTIES = self::$PLUGIN_PROPERTIES ?? new PluginProperties();
-
+         
         $this->settingPageManagers = array(
             SettingsManagerPage::createInstance(
                 'cpt_manager', 'Custom Post Type (CPT) Manager', 'dutapod-cpt-manager'
@@ -49,7 +49,8 @@ class BaseController{
             SettingsManagerPage::createInstance(
                 'widgets_manager', 'Widgets Manager', 'dutapod-widgets-manager'
             ),
-        );
+        );         
+
     }//__construct
 
     public function getInstance(){
