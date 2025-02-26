@@ -6,42 +6,57 @@
 
 namespace DutapodCompanion\Includes\Base;
 
-use DutapodCompanion\Includes\Init as Init;
+// Plugin system variables
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
+// Debug helper class
+use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
+
+use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Includes\Api\SettingsManagerPage as SettingsManagerPage;
 
 class BaseController{
     /** 1. Define variables: */
-    // Store the instance of this class. This is to create a singleton class
+    // 1.1. Store the instance of this class. This is to create a singleton class
     private static $INSTANCE = null;
 
-    // Plugin system variables
+    /** 1.2. Debug information */
+    public Init $pluginInitiator;
+    public PluginProperties $localProps;
+    public PluginDebugHelper $localDebugger;
+
+    // 1.3. Plugin system variables
     public static string $PLUGIN_PATH;
     public static string $PLUGIN_URL;
     public static string $PLUGIN_BASENAME;
     public static string $PLUGIN_NAME;
 
-    // General plugin properties
-    public static PluginProperties $PLUGIN_PROPERTIES;
+    // 1.3. General plugin properties
+    // public static PluginProperties $PLUGIN_PROPERTIES;
+    // public static PluginDebugHelper $PLUGIN_DEBUGGER;
 
-    // A list of WP admin setting pages
+    // 1.4. A list of WP admin setting pages
     public static array $ADMIN_PAGES;    
 
     public array $settingPageManagers;
 
-    /* 3. Define several global variables use across the current plugin (Devsunshine plugin scope)
-    * PLUGIN_PATH: C:\WebPlatform\apache24\htdocs\vnlabwin\wp-content\plugins\sunsetpro *
-    * PLUGIN_URL: http://vnlabwin.local.info/wp-content/plugins/sunsetpro/
-    * PLUGIN: sunsetpro/sunsetpro.php (plugin basename)
-    * **/
+    /** 2. Constructor */
     public function __construct(){
-        // $this->pluginPath = plugin_dir_path( dirname(__FILE__ , 2) );
-        // $this->pluginUrl = plugin_dir_url( dirname(__FILE__ , 2) );
-        // $this->pluginName = plugin_basename( dirname(__FILE__ , 3).'/sunsetpro.php' );
+         /** 1. Troubleshooting information */
+        // 1. Load the plugin initiator
+        $this->pluginInitiator = Init::$INSTANCE ?? new Init();
+        
+        // 2. Setup local properties
+        $this->set_Local_Properties();
 
-        $this->setLocalPluginProperties();
+        // 3. Setup local debuggger
+        $this->set_Local_Debugger();
+
+        $this->set_Additional_Local_Plugin_Properties();
         // global $PluginProperties;
-        self::$PLUGIN_PROPERTIES = self::$PLUGIN_PROPERTIES ?? new PluginProperties();
+
+        // Setup the local plugin debug information:
+        //self::$PLUGIN_PROPERTIES = self::$PLUGIN_PROPERTIES ?? new PluginProperties();
+        //self::$PLUGIN_DEBUGGER = self::$PLUGIN_DEBUGGER ?? new PluginDebugHelper();
          
         $this->settingPageManagers = array(
             SettingsManagerPage::createInstance(
@@ -57,7 +72,18 @@ class BaseController{
 
     }//__construct
 
-    // Get instance
+    /** 2.2. Helper method for constructor */
+    /** 2.2.1. Initialize the variable that point to general plugin properties */ 
+    public function set_Local_Properties():void{
+        $this->localProps =  $this->pluginInitiator::$PLUGIN_PROPERTIES;
+    }//setLocalProperties
+
+    /** 2.2.2. setup the custom debugger for plugin */ 
+    public function set_Local_Debugger():void{
+        $this->localDebugger = $this->pluginInitiator::$PLUGIN_DEBUGGER;
+    }//setLocalDebugger
+
+    // 2.2.3. Get instance
     public static function getInstance(){
         if( null == self::$INSTANCE ){
             self::$INSTANCE = new BaseController();
@@ -66,7 +92,13 @@ class BaseController{
         return self::$INSTANCE;
     }//getInstance
 
-    function setLocalPluginProperties(){        
+    /* 2.4. Define several global variables use across the current plugin (Devsunshine plugin scope)
+    * PLUGIN_PATH: C:\WebPlatform\apache24\htdocs\vnlabwin\wp-content\plugins\sunsetpro *
+    * PLUGIN_URL: http://vnlabwin.local.info/wp-content/plugins/sunsetpro/
+    * PLUGIN: sunsetpro/sunsetpro.php (plugin basename)
+    * **/
+
+    function set_Additional_Local_Plugin_Properties(){        
         // Initialize equivalent variables in static format
         // Plugin variables
         // Plugin path: E:\\WebPlatforms\\Apache24\\htdocs\\vnlabwin\\wp-content\\plugins\\sunsetpro/
@@ -96,5 +128,7 @@ class BaseController{
         );
     }//setLocalPluginProperties
 
+    /** 3. Main operational functions for the local plugin properties */
+    
 
 }//BaseController class definitions

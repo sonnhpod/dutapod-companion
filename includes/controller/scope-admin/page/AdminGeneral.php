@@ -18,7 +18,7 @@ class AdminGeneral extends BaseController{
 
     public SettingsAdminPages $settings;
     // public SunsetproAdmin $callbacks;
-    public DisplayWpAdminPages $callbacks;
+    public DisplayWpAdminPages $displayCallbacks;
     public AdminManagerCallbacks $callbacksManager;
 
     // An array that store a list of a parent admin setting page.
@@ -34,7 +34,7 @@ class AdminGeneral extends BaseController{
         $this->settings = new SettingsAdminPages();
 
         //$this->callbacks = new SunsetproAdmin();
-        $this->callbacks = new DisplayWpAdminPages();
+        $this->displayCallbacks = new DisplayWpAdminPages();
         $this->callbacksManager = new AdminManagerCallbacks();
 
         $this->setPages();
@@ -58,7 +58,7 @@ class AdminGeneral extends BaseController{
                 'menu_title'    => 'Dutapod Companion',
                 'capability'    => 'manage_options',
                 'menu_slug'     => 'dutapod_plugin',
-                'callback'      => array($this->callbacks, 'renderAdminParentRootPage'),
+                'callback'      => array($this->displayCallbacks, 'renderAdminParentRootPage'),
                 'icon_url'      => 'dashicons-welcome-widgets-menus',
                 'position'      => 121,
             )
@@ -129,7 +129,7 @@ class AdminGeneral extends BaseController{
             'menu_title'            => 'Troubleshoot',
             'capability'            => 'manage_options',
             'menu_slug'             => 'dutapod_plugin_troubleshoot',
-            'callback'              => array($this->callbacks, 'renderTroubleshootSubpage')
+            'callback'              => [ $this->displayCallbacks, 'renderTroubleshootSubpage' ]
         ];
 
         $this->subpages = [ $troubleshootPage ];
@@ -173,7 +173,7 @@ class AdminGeneral extends BaseController{
           array(
             'id'            => 'dutapod_admin_index',
             'title'         => 'Settings Manager',
-            'callback'      => array($this->callbacksManager, 'dutapodSectionManager'),
+            'callback'      => array( $this->callbacksManager, 'dutapodSectionManager' ),
             'page'          => 'dutapod_plugin'
           )
         );
