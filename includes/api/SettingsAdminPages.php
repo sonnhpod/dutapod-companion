@@ -10,8 +10,12 @@ namespace DutapodCompanion\Includes\Api;
 class SettingsAdminPages{
 
     /** 1. Variable declarations */
+    // 1.1. WordPress admin setting pages and sub pages
     public array $adminPages;
     public array $adminSubPages;
+
+    // 1.2. WordPress admin settings, sections, and fields 
+    // - Use for all admin pages & sub pages?
     public array $settings;
     public array $sections;
     public array $fields;
@@ -20,6 +24,7 @@ class SettingsAdminPages{
     public function __construct(){
         $this->adminPages = array();
         $this->adminSubPages = array();
+
         $this->settings = array();
         $this->sections = array();
         $this->fields = array();
@@ -47,7 +52,7 @@ class SettingsAdminPages{
     /** 3.1.1. Add to WordPress admin setting page menu */
     public function addToWpAdminMenu(){
 
-        // 1. Add all "main admin setting page" menu:
+        // 1. Add all "main (parent) admin setting page" to the WP admin setting page's menu:
         foreach( $this->adminPages as $page ){
             add_menu_page(
                 $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],
@@ -55,7 +60,7 @@ class SettingsAdminPages{
             );
         }// endforeach
     
-        // 2. Add all "sub - admin setting page" menu:
+        // 2. Add all "sub - admin setting page" to the main (parent) admin setting page above - at the WP admin setting page's menu:
         foreach( $this->adminSubPages as $page ){
             add_submenu_page(
                 $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'],
@@ -106,14 +111,6 @@ class SettingsAdminPages{
         return $this;
     }//addAdminPages
 
-    public function addSubPages( array $pages ) : static{
-        // Update the subpages
-        // $this->admin_subpages = $pages;
-        $this->adminSubPages = array_merge( $this->adminSubPages, $pages );
-    
-        return $this;
-    }//addSubPages
-
     public function withSubPage( string $title = null ): static {
         if( empty($this->adminPages) ){
           return $this;
@@ -126,35 +123,43 @@ class SettingsAdminPages{
         * The parent_slug of a sub page must be menu_slug of admin page
         **/
         $sub_pages = array(
-          array(
-            'parent_slug'     => $admin_page['menu_slug'],
-            'page_title'      => $admin_page['page_title'],
-            'menu_title'      => ($title) ? $title : $admin_page['menu_title'],
-            'capability'      => $admin_page['capability'],
-            'menu_slug'       => $admin_page['menu_slug'],
-            'callback'        => function(){echo '<h3> dutapod-companion plugin sub pages </h3>';},
-          ),
+            array(
+                'parent_slug'     => $admin_page['menu_slug'],
+                'page_title'      => $admin_page['page_title'],
+                'menu_title'      => ($title) ? $title : $admin_page['menu_title'],
+                'capability'      => $admin_page['capability'],
+                'menu_slug'       => $admin_page['menu_slug'],
+                'callback'        => function(){echo '<h3> dutapod-companion plugin sub pages </h3>';},
+            ),
         );
     
         $this->adminSubPages = $sub_pages;
     
         return $this;
     }//withSubPage  
+
+    public function addSubPages( array $pages ) : static{
+        // Update the subpages
+        // $this->admin_subpages = $pages;
+        $this->adminSubPages = array_merge( $this->adminSubPages, $pages );
     
-    public function setSettings( array $settings): static
+        return $this;
+    }//addSubPages
+    
+    public function setSettings( array $settings ): static
     {
         $this->settings = $settings;
 
         return $this;
     }//setSettings
 
-    public function setSections( array $sections): static {
+    public function setSections( array $sections ): static {
         $this->sections = $sections;
 
         return $this;
     }//setSections
 
-    public function setFields( array $fields) : static {
+    public function setFields( array $fields ) : static {
         $this->fields = $fields;
 
         return $this;

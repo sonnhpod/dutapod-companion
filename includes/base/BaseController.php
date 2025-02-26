@@ -17,7 +17,7 @@ use DutapodCompanion\Includes\Api\SettingsManagerPage as SettingsManagerPage;
 class BaseController{
     /** 1. Define variables: */
     // 1.1. Store the instance of this class. This is to create a singleton class
-    private static $INSTANCE = null;
+    // private static $INSTANCE = null;
 
     /** 1.2. Debug information */
     public Init $pluginInitiator;
@@ -84,13 +84,13 @@ class BaseController{
     }//setLocalDebugger
 
     // 2.2.3. Get instance
-    public static function getInstance(){
+    /* public static function getInstance(){
         if( null == self::$INSTANCE ){
             self::$INSTANCE = new BaseController();
         }
 
         return self::$INSTANCE;
-    }//getInstance
+    }//getInstance */
 
     /* 2.4. Define several global variables use across the current plugin (Devsunshine plugin scope)
     * PLUGIN_PATH: C:\WebPlatform\apache24\htdocs\vnlabwin\wp-content\plugins\sunsetpro *

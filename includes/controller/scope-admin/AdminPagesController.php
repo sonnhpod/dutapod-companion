@@ -4,61 +4,96 @@
  * @version 1.0.1
  */
 
-namespace DutapodCompanion\Includes\Controller\ScopeAdmin\Page;
+namespace DutapodCompanion\Includes\Controller\ScopeAdmin;
 
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
+// 2. WP admin setting pages - system variables 
 use DutapodCompanion\Includes\Api\SettingsAdminPages as SettingsAdminPages;
 // use SunsetPro\Includes\Api\Callbacks\Admin\AdminParentCallbacks as AdminParentCallbacks;
 use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as DisplayWpAdminPages;
 use DutapodCompanion\Includes\Api\Callbacks\Admin\AdminManagerCallbacks as AdminManagerCallbacks;
+// 3. WP admin page system controller 
+use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminParentRootPage as AdminParentRootPage;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\TroubleshootSubpage as TroubleshootSubpage;
 
 /** 1. This class is responsible to insert all plugins' admin setting pages to the WP admin setting pages menu. */
-class AdminGeneral extends BaseController{
+/** - The original class is AdminGeneral / Admin in all previous plugin version*/
+class AdminPagesController extends BaseController{
 
+    /** 1. Variables declaration */
+    // 1.1. WP admin setting page system variables
     public SettingsAdminPages $settings;
     // public SunsetproAdmin $callbacks;
     public DisplayWpAdminPages $displayCallbacks;
     public AdminManagerCallbacks $callbacksManager;
+
+    // 1.2. WP admin setting page controller
+    // Admin parent root page
+    public AdminParentRootPage $adminParentRootPage;
+    public TroubleshootSubpage $troubleshootSubpage;
+    // Troubleshoot page
 
     // An array that store a list of a parent admin setting page.
     public array $pages;   
     // Sub page corresponding with each parent page
     public array $subpages;
 
+    /** 2. Constructor */
     public function __construct(){
         parent::__construct();
-    }//__construct
+    }//__construct  
 
+    /** 2.2. Helper functions for constructor */
+
+    /** 3. Main operational functions*/
+    /** 3.1. Main register method - invoke in the main plugin execution file */
     public function register(){
+        // 1. Initialize al necessary variables
+        // 1.1. Initialize WP admin setting page system variables 
         $this->settings = new SettingsAdminPages();
 
         //$this->callbacks = new SunsetproAdmin();
-        $this->displayCallbacks = new DisplayWpAdminPages();
+        // $this->displayCallbacks = new DisplayWpAdminPages();// Move display callback handler to each corresponding Page Controller class
         $this->callbacksManager = new AdminManagerCallbacks();
 
+        // 1.2. Initialize WP admin setting page controller
+        $this->adminParentRootPage = new AdminParentRootPage();
+        $this->troubleshootSubpage = new TroubleshootSubpage();
+
+        // 2. Set WP admin setting page list
+        // 2.1. WP admin setting pages
         $this->setPages();
+        // 2.2. WP admin setting sub-pages
         $this->setSubpages();
 
+        // 3. Setup properties for $this->settings (settings, sections, fields)
         $this->setSettings();
         $this->setSections();
         $this->setFields();
 
-        // 1. Register admin setting pages from plugin
+        // 4. Register admin setting pages from plugin
         // - "Control Dashboard" is the original value of withSubPage method
+        /**
+         * - Add the parent admin page
+         * - Add the 1st sub page named 'overview' with the same properties as parent admin setting page 
+         * (parent_slug, page_title, menu_title, capability, menu_slug ) Only different display callback function
+         * 
+        */
         $this->settings->addAdminPages( $this->pages )->withSubPage( 'Overview' )->addSubPages( $this->subpages )->register();
     }//register
 
     /* === Register the main pages in WordPress Admin setting pages === */
     public function setPages(){
         // 1. Admin parent root page of this plugin - Dutapod
+        // - Original callback entry: 'callback'      => array($this->displayCallbacks, 'renderAdminParentRootPage'),
         $this->pages = array(
             array(
                 'page_title'    => 'Dutapod Plugin',
                 'menu_title'    => 'Dutapod Companion',
                 'capability'    => 'manage_options',
                 'menu_slug'     => 'dutapod_plugin',
-                'callback'      => array($this->displayCallbacks, 'renderAdminParentRootPage'),
+                'callback'      => [ $this->adminParentRootPage, 'renderPageContent' ],
                 'icon_url'      => 'dashicons-welcome-widgets-menus',
                 'position'      => 121,
             )
@@ -122,6 +157,7 @@ class AdminGeneral extends BaseController{
     }//setSubpages
     */
 
+    // Original callback entry: 'callback'              => [ $this->displayCallbacks, 'renderTroubleshootSubpage' ]
     public function setSubpages(){
         $troubleshootPage = [
             'parent_slug'           => 'dutapod_plugin',
@@ -129,7 +165,7 @@ class AdminGeneral extends BaseController{
             'menu_title'            => 'Troubleshoot',
             'capability'            => 'manage_options',
             'menu_slug'             => 'dutapod_plugin_troubleshoot',
-            'callback'              => [ $this->displayCallbacks, 'renderTroubleshootSubpage' ]
+            'callback'              => [ $this->troubleshootSubpage, 'renderTroubleshootSubpage' ]
         ];
 
         $this->subpages = [ $troubleshootPage ];

@@ -12,6 +12,9 @@ use DutapodCompanion\Includes\Base\BaseController as BaseController;
 class DisplayWpAdminPages extends BaseController{
 
     /** 1. Variables declaration */
+    // 1.1. Store the instance of this class. This is to create a singleton class
+    private static $INSTANCE = null;
+
     public object $contentTypes; 
 
     /** 2. Constructor */
@@ -24,6 +27,15 @@ class DisplayWpAdminPages extends BaseController{
         $this->contentTypes->sunsetWidget = new stdClass();
         $this->contentTypes->sunsetTemplate = new stdClass();
     }//__construct
+
+    /** 2.2. Helper function for constructor */
+    public static function getInstance(){
+        if( null == self::$INSTANCE ){
+            self::$INSTANCE = new DisplayWpAdminPages();
+        }
+
+        return self::$INSTANCE;
+    }//getInstance
 
     /** 3. Operational functions to display WP admin pages content */
     /** 3.1. Callback function to render the plugin's admin parent root page */
@@ -40,6 +52,7 @@ class DisplayWpAdminPages extends BaseController{
         require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/troubleshoot-subpage.php" );
     }//renderTroubleshootSubpage
 
+    /************************************************************************************************/
     /** 3.3.+ Other callback functions to render additional admin setting pages */
     public function renderAdminCarouselPage(){
         // require_once("$this->pluginPath/templates/admin/admin-cpt.php");

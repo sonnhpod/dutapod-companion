@@ -9,9 +9,13 @@ namespace DutapodCompanion\Includes;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-# Admin controller
-use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminGeneral as AdminGeneral;
-# Frontend Controller
+# 1. WP admin setting page scope
+// 1. General WordPress admin setting page's controller
+// use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminGeneral as AdminGeneral;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\AdminPagesController as AdminPagesController;
+
+# 2. WP frontend scope 
+# 2.1. Frontend Controller
 use DutapodCompanion\Includes\Controller\ScopeFrontend\DebugTemplateController as DebugTemplateController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\CustomTemplateController as CustomTemplateController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
@@ -120,7 +124,7 @@ final class Init{
         return array(
             PluginProperties::class,            
             PluginDebugHelper::class,
-            AdminGeneral::class,
+            AdminPagesController::class,
         );
     }//get_admin_services
 
