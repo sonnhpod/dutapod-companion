@@ -27,10 +27,10 @@ class BaseController{
     public PluginDebugHelper $localDebugger;
 
     // 1.3. Plugin system variables
-    public static string $PLUGIN_PATH;
-    public static string $PLUGIN_URL;
-    public static string $PLUGIN_BASENAME;
-    public static string $PLUGIN_NAME;
+    public static string $PLUGIN_PATH; // value: C:/WebPlatforms/Apache24-62/htdocs/dutapodlab/wp-content/plugins/dutapod-companion/
+    public static string $PLUGIN_URL; // value: https://dutapodlab.local.info/wp-content/plugins/dutapod-companion/ 
+    public static string $PLUGIN_BASENAME; // value: dutapod-companion/dutapod-companion.php
+    public static string $PLUGIN_NAME; // value: dutapod-companion
 
     // 1.3. General plugin properties
     // public static PluginProperties $PLUGIN_PROPERTIES;

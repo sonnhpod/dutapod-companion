@@ -19,7 +19,7 @@ use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as Display
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
 /** Support the display and operational function of the admin's parent root page 
- * 1. Enqueue custom CSS and JS.
+ * 1. Enqueue custom CSS and JS - OK
  * 2. Display the content of this page at its corresponding WP admin setting pages - OK
  * 3. Handle AJAX request if it is exist.
  * 
