@@ -6,12 +6,14 @@
 
 namespace DutapodCompanion\Includes\Base;
 
+// Init class object
+use DutapodCompanion\Includes\Init as Init;
 // Plugin system variables
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 // Debug helper class
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-use DutapodCompanion\Includes\Init as Init;
+
 use DutapodCompanion\Includes\Api\SettingsManagerPage as SettingsManagerPage;
 
 class BaseController{

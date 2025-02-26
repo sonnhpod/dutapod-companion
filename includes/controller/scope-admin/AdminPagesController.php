@@ -165,7 +165,7 @@ class AdminPagesController extends BaseController{
             'menu_title'            => 'Troubleshoot',
             'capability'            => 'manage_options',
             'menu_slug'             => 'dutapod_plugin_troubleshoot',
-            'callback'              => [ $this->troubleshootSubpage, 'renderTroubleshootSubpage' ]
+            'callback'              => [ $this->troubleshootSubpage, 'renderPageContent' ]
         ];
 
         $this->subpages = [ $troubleshootPage ];
