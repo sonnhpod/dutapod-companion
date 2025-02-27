@@ -27,14 +27,19 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         array (
             'DutapodCompanion\\Troubleshoot\\' => 30,
             'DutapodCompanion\\Sources\\' => 25,
+            'DutapodCompanion\\Includes\\View\\ScopeFrontend\\WooCommerce\\' => 57,
+            'DutapodCompanion\\Includes\\View\\ScopeFrontend\\Shortcode\\' => 55,
+            'DutapodCompanion\\Includes\\View\\ScopeFrontend\\Post\\' => 50,
+            'DutapodCompanion\\Includes\\View\\ScopeFrontend\\Page\\' => 50,
+            'DutapodCompanion\\Includes\\View\\ScopeFrontend\\Category\\' => 54,
+            'DutapodCompanion\\Includes\\View\\ScopeFrontend\\' => 45,
+            'DutapodCompanion\\Includes\\View\\ScopeAdmin\\Page\\' => 47,
+            'DutapodCompanion\\Includes\\View\\ScopeAdmin\\' => 42,
             'DutapodCompanion\\Includes\\View\\' => 31,
             'DutapodCompanion\\Includes\\Template\\ScopeFrontend\\' => 49,
             'DutapodCompanion\\Includes\\Template\\ScopeEditor\\' => 47,
             'DutapodCompanion\\Includes\\Template\\ScopeAdmin\\' => 46,
             'DutapodCompanion\\Includes\\Template\\' => 35,
-            'DutapodCompanion\\Includes\\Display\\Post\\' => 39,
-            'DutapodCompanion\\Includes\\Display\\Page\\' => 39,
-            'DutapodCompanion\\Includes\\Display\\' => 34,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => 63,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Shortcode\\' => 61,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Post\\' => 56,
@@ -51,6 +56,7 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
             'DutapodCompanion\\Includes\\Content\\Carousel\\' => 43,
             'DutapodCompanion\\Includes\\Content\\Block\\' => 40,
             'DutapodCompanion\\Includes\\Content\\' => 34,
+            'DutapodCompanion\\Includes\\Base\\Settings\\' => 40,
             'DutapodCompanion\\Includes\\Base\\' => 31,
             'DutapodCompanion\\Includes\\Api\\Callbacks\\Admin\\' => 46,
             'DutapodCompanion\\Includes\\Api\\Callbacks\\' => 40,
@@ -96,6 +102,38 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         array (
             0 => __DIR__ . '/../..' . '/sources',
         ),
+        'DutapodCompanion\\Includes\\View\\ScopeFrontend\\WooCommerce\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view/scope-frontend/woocommerce-cpt',
+        ),
+        'DutapodCompanion\\Includes\\View\\ScopeFrontend\\Shortcode\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view/scope-frontend/shortcode',
+        ),
+        'DutapodCompanion\\Includes\\View\\ScopeFrontend\\Post\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view/scope-frontend/post',
+        ),
+        'DutapodCompanion\\Includes\\View\\ScopeFrontend\\Page\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view/scope-frontend/page',
+        ),
+        'DutapodCompanion\\Includes\\View\\ScopeFrontend\\Category\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view/scope-frontend/category',
+        ),
+        'DutapodCompanion\\Includes\\View\\ScopeFrontend\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view/scope-frontend',
+        ),
+        'DutapodCompanion\\Includes\\View\\ScopeAdmin\\Page\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view/scope-admin/page',
+        ),
+        'DutapodCompanion\\Includes\\View\\ScopeAdmin\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/view/scope-admin',
+        ),
         'DutapodCompanion\\Includes\\View\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/view',
@@ -115,18 +153,6 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         'DutapodCompanion\\Includes\\Template\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/template',
-        ),
-        'DutapodCompanion\\Includes\\Display\\Post\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/includes/display/post',
-        ),
-        'DutapodCompanion\\Includes\\Display\\Page\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/includes/display/page',
-        ),
-        'DutapodCompanion\\Includes\\Display\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/includes/display',
         ),
         'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => 
         array (
@@ -191,6 +217,10 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         'DutapodCompanion\\Includes\\Content\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/content',
+        ),
+        'DutapodCompanion\\Includes\\Base\\Settings\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/base/settings',
         ),
         'DutapodCompanion\\Includes\\Base\\' => 
         array (
