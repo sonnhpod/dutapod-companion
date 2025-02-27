@@ -7,12 +7,24 @@
 
 namespace DutapodCompanion\Includes\Api;
 
+// Init class object
+use DutapodCompanion\Includes\Init as Init;
+// Plugin system variables
+use DutapodCompanion\Helper\PluginProperties as PluginProperties;
+// Debug helper class
+use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
+
 class SettingsAdminPages{
 
     /** 1. Variable declarations */
     // 1.1. WordPress admin setting pages and sub pages
     public array $adminPages;
     public array $adminSubPages;
+
+    /** 1.2. Debug information */
+    public Init $pluginInitiator;
+    public PluginProperties $localProps;
+    public PluginDebugHelper $localDebugger;
 
     // 1.2. WordPress admin settings, sections, and fields 
     // - Use for all admin pages & sub pages?
@@ -22,6 +34,13 @@ class SettingsAdminPages{
 
     /** 2. Constructor */
     public function __construct(){
+        // 1. Initialize the debug information
+        // 1. Load the plugin initiator
+        $this->pluginInitiator = Init::$INSTANCE ?? new Init();
+        $this->localProps =  $this->pluginInitiator::$PLUGIN_PROPERTIES;
+        $this->localDebugger = $this->pluginInitiator::$PLUGIN_DEBUGGER;
+
+        // 2. Initialize original values of WP admin pages, sub page
         $this->adminPages = array();
         $this->adminSubPages = array();
 
@@ -54,6 +73,7 @@ class SettingsAdminPages{
 
         // 1. Add all "main (parent) admin setting page" to the WP admin setting page's menu:
         foreach( $this->adminPages as $page ){
+            // $this->localDebugger->write_log_general( $page );
             add_menu_page(
                 $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],
                 $page['callback'], $page['icon_url'],$page['position']

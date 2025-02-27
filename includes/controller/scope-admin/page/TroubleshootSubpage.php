@@ -28,9 +28,10 @@ use DutapodCompanion\Includes\Base\BaseController as BaseController;
 class TroubleshootSubpage extends BaseController{
 
     /** 1. Variable decalration */
+    // 1. Callback function to render HTML content
     public DisplayWpAdminPages $displayCallbacks;
 
-    // styles and script
+    // 2. styles and script
     const STYLE_FILENAME = 'troubleshoot-subpage.css';
     const STYLE_HANDLER = 'dutapod-troubleshoot-subpage-style';
     const SCRIPT_FIlENAME = 'admin-parent-root.js';
@@ -39,7 +40,20 @@ class TroubleshootSubpage extends BaseController{
     public static $STYLE_PATH;
     public static $SCRIPT_PATH;
 
+    // 3. WP admin setting pages properties
+    public string $parent_slug;
+    public string $page_title;
+    public string $menu_title;
+    public string $capability;
+    public string $menu_slug;
+    // Callback function to display HTML content at WP admin setting page
+    // public $callback; $this->renderPageContent() has already fulfilled this task
+    public string $icon_url; // Optional
+    public int $subpage_position; // Optional. 'position' argument when adding page to WP admin setting sub page?
+
     /** 2. Constructor */
+    // 2.1. Main constructor
+    // 2.1.1. Simple constructor withour variable
     public function __construct(){
         // 1. Initialize parent constructor
         parent::__construct();
@@ -53,6 +67,24 @@ class TroubleshootSubpage extends BaseController{
         // 4. Load extra resources if requesting to this WP admin troubleshooting page
         $this->load_Extra_Resources();
     }//__construct
+
+    // 2.1.2. Constructor with variable parsing
+    public static function createPageWithInputData( array $inputData ){
+        $currentPage = new self();
+
+        $currentPage->parent_slug = $inputData['parent_slug'] ?? '';
+        $currentPage->page_title = $inputData['page_title'] ?? '';
+        $currentPage->menu_title = $inputData['menu_title'] ?? '';
+        $currentPage->capability = $inputData['capability'] ?? '';
+        $currentPage->menu_slug = $inputData['menu_slug'] ?? '';        
+
+        // $currentPage->callback = $inputData['callback'] ?? (function(){ return false; })();
+        $currentPage->icon_url = $inputData['icon_url'] ?? '';
+        $currentPage->subpage_position = $inputData['subpage_position'] ?? 0;
+
+        return $currentPage;
+    }//createPageWithFullData
+
 
     /** 2.2. Helper method for constructor*/
     /** 2.2.1. Set local properties for this local class */

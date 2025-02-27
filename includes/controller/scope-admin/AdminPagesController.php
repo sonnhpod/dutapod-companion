@@ -1,6 +1,6 @@
 <?php 
 /*
- * @package Sunsetpro
+ * @package dutapod-companion
  * @version 1.0.1
  */
 
@@ -58,8 +58,36 @@ class AdminPagesController extends BaseController{
         $this->callbacksManager = new AdminManagerCallbacks();
 
         // 1.2. Initialize WP admin setting page controller
-        $this->adminParentRootPage = new AdminParentRootPage();
-        $this->troubleshootSubpage = new TroubleshootSubpage();
+        // $this->adminParentRootPage = new AdminParentRootPage();// OK 
+        // - Use wrapped constructor. 
+        // + Remove the callback function entry : 'callback' => [ $this->troubleshootSubpage, 'renderPageContent' ]
+        // + menu_slug is dutapod-companion_plugin
+        // + page_position is the original position
+        $this->adminParentRootPage = AdminParentRootPage::createPageWithInputData(
+            [
+                'page_title'    => 'Dutapod Plugin',
+                'menu_title'    => 'Dutapod Companion',
+                'capability'    => 'manage_options',
+                'menu_slug'     => sprintf( '%s_plugin', self::$PLUGIN_NAME ),               
+                'icon_url'      => 'dashicons-welcome-widgets-menus',
+                'page_position' => 121,
+            ]
+        );
+
+        // $this->troubleshootSubpage = new TroubleshootSubpage();// OK
+        // Use wrapped constructor.  
+        // + Remove the callback function: 'callback' => [ $this->troubleshootSubpage, 'renderPageContent' ]
+        // + parent_slug is dutapod-companion_plugin
+        $this->troubleshootSubpage = TroubleshootSubpage::createPageWithInputData(
+            [
+                'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
+                'page_title'            => 'Dutapod troubleshoot page',
+                'menu_title'            => 'Troubleshoot',
+                'capability'            => 'manage_options',
+                'menu_slug'             => sprintf( '%s_plugin_troubleshoot', self::$PLUGIN_NAME ),     
+                'subpage_position'      => 10,           
+            ]
+        );
 
         // 2. Set WP admin setting page list
         // 2.1. WP admin setting pages
@@ -87,17 +115,31 @@ class AdminPagesController extends BaseController{
     public function setPages(){
         // 1. Admin parent root page of this plugin - Dutapod
         // - Original callback entry: 'callback'      => array($this->displayCallbacks, 'renderAdminParentRootPage'),
-        $this->pages = array(
+        // - Original menu_slug entry: 'dutapod_plugin'
+        /* $this->pages = array(
             array(
                 'page_title'    => 'Dutapod Plugin',
                 'menu_title'    => 'Dutapod Companion',
                 'capability'    => 'manage_options',
-                'menu_slug'     => 'dutapod_plugin',
+                'menu_slug'     => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
                 'callback'      => [ $this->adminParentRootPage, 'renderPageContent' ],
                 'icon_url'      => 'dashicons-welcome-widgets-menus',
                 'position'      => 121,
             )
         );
+         */
+
+        $this->pages = [
+            [
+                'page_title'    => $this->adminParentRootPage->page_title,
+                'menu_title'    => $this->adminParentRootPage->menu_title,
+                'capability'    => $this->adminParentRootPage->capability,
+                'menu_slug'     => $this->adminParentRootPage->menu_slug,
+                'callback'      => [ $this->adminParentRootPage, 'renderPageContent' ],
+                'icon_url'      => $this->adminParentRootPage->icon_url,
+                'position'      => $this->adminParentRootPage->page_position,
+            ]
+        ];
     }//setPages
 
     /* === Register the sub pages === */
@@ -158,17 +200,27 @@ class AdminPagesController extends BaseController{
     */
 
     // Original callback entry: 'callback'              => [ $this->displayCallbacks, 'renderTroubleshootSubpage' ]
+    // Original parent_slug entry: 'dutapod_plugin'
     public function setSubpages(){
-        $troubleshootPage = [
-            'parent_slug'           => 'dutapod_plugin',
+        /* $troubleshootSubpage = [
+            'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
             'page_title'            => 'Dutapod troubleshoot page',
             'menu_title'            => 'Troubleshoot',
             'capability'            => 'manage_options',
-            'menu_slug'             => 'dutapod_plugin_troubleshoot',
+            'menu_slug'             => sprintf( '%s_plugin_troubleshoot', self::$PLUGIN_NAME ),
+            'callback'              => [ $this->troubleshootSubpage, 'renderPageContent' ]
+        ]; */
+
+        $troubleshootSubpage = [
+            'parent_slug'           => $this->troubleshootSubpage->parent_slug,
+            'page_title'            => $this->troubleshootSubpage->page_title,
+            'menu_title'            => $this->troubleshootSubpage->menu_title,
+            'capability'            => $this->troubleshootSubpage->capability,
+            'menu_slug'             => $this->troubleshootSubpage->menu_slug,
             'callback'              => [ $this->troubleshootSubpage, 'renderPageContent' ]
         ];
 
-        $this->subpages = [ $troubleshootPage ];
+        $this->subpages = [ $troubleshootSubpage ];
     }//setSubpages
 
     /* === Register the custom fields in admin setting pages === */
@@ -193,10 +245,15 @@ class AdminPagesController extends BaseController{
         * devsunshine-plugin
         **/
 
+        /**
+         * Original entries:
+         * - option_group : dutapod_plugin_settings
+         * - option_name  : dutapod_plugin
+        */
         $settingsArgs = array(
             array(
-                'option_group'      => 'dutapod_plugin_settings',
-                'option_name'       => 'dutapod_plugin',
+                'option_group'      => sprintf( '%s_plugin_settings', self::$PLUGIN_NAME),
+                'option_name'       => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
                 'callback'          => array( $this->callbacksManager, 'checkboxSanitize' ),
             )
         );

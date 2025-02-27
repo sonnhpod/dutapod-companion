@@ -43,7 +43,7 @@ class BaseController{
 
     /** 2. Constructor */
     public function __construct(){
-         /** 1. Troubleshooting information */
+        /** 1. Troubleshooting information */
         // 1. Load the plugin initiator
         $this->pluginInitiator = Init::$INSTANCE ?? new Init();
         
@@ -59,7 +59,8 @@ class BaseController{
         // Setup the local plugin debug information:
         //self::$PLUGIN_PROPERTIES = self::$PLUGIN_PROPERTIES ?? new PluginProperties();
         //self::$PLUGIN_DEBUGGER = self::$PLUGIN_DEBUGGER ?? new PluginDebugHelper();
-         
+        
+        /** 2. Additional plugin properties */
         $this->settingPageManagers = array(
             SettingsManagerPage::createInstance(
                 'cpt_manager', 'Custom Post Type (CPT) Manager', 'dutapod-cpt-manager'
@@ -102,7 +103,7 @@ class BaseController{
 
     function set_Additional_Local_Plugin_Properties(){        
         // Initialize equivalent variables in static format
-        // Plugin variables
+        // 1. Plugin variables
         // Plugin path: E:\\WebPlatforms\\Apache24\\htdocs\\vnlabwin\\wp-content\\plugins\\sunsetpro/
         self::$PLUGIN_PATH = self::$PLUGIN_PATH ?? plugin_dir_path( dirname(__FILE__ , 2) );  
         // Convert DIRECTORY_SEPARATOR - for Windows OS:
@@ -112,11 +113,12 @@ class BaseController{
         
         // Plugin URL: http://vnlabwin.local.info/wp-content/plugins/sunsetpro/   
         self::$PLUGIN_URL = self::$PLUGIN_URL ?? plugin_dir_url( dirname(__FILE__ , 2) );
-        // Plugin_basename: sunsetpro/sunsetpro.php
+        // Plugin_basename: sunsetpro/sunsetpro.php , dutapod-companion/dutapod-companion.php
         self::$PLUGIN_BASENAME = self::$PLUGIN_BASENAME ?? plugin_basename( dirname(__FILE__ , 3).'/dutapod-companion.php' );
-        // Plugin name : sunsetpro
+        // Plugin name : sunsetpro / dutapod-companion
         self::$PLUGIN_NAME = self::$PLUGIN_NAME ?? plugin_basename( dirname(__FILE__ , 3) );
 
+        // 2. A list of admin setting page - not usable in this plugin scope
         self::$ADMIN_PAGES = self::$ADMIN_PAGES ?? array(
             self::$PLUGIN_NAME,   
             self::$PLUGIN_NAME.'_cpt', 
@@ -127,6 +129,7 @@ class BaseController{
             self::$PLUGIN_NAME.'_plugin_taxonomies',
             self::$PLUGIN_NAME.'_plugin_widgets',
             self::$PLUGIN_NAME.'_plugin_menu',  
+            self::$PLUGIN_NAME.'_plugin_troubleshoot',
         );
     }//setLocalPluginProperties
 

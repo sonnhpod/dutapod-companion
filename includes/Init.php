@@ -13,7 +13,7 @@ use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 // 1. General WordPress admin setting page's controller
 // use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminGeneral as AdminGeneral;
 use DutapodCompanion\Includes\Controller\ScopeAdmin\AdminPagesController as AdminPagesController;
-use DutapodCompanion\Includes\Base\SettingsLinks as SettingsLinks;
+use DutapodCompanion\Includes\Base\SettingsController as SettingsController;
 
 # 2. WP frontend scope 
 # 2.1. Frontend Controller
@@ -126,7 +126,7 @@ final class Init{
             PluginProperties::class,            
             PluginDebugHelper::class,
             AdminPagesController::class,
-            SettingsLinks::class,
+            SettingsController::class,
         );
     }//get_admin_services
 

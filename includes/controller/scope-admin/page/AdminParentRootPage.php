@@ -28,9 +28,10 @@ use DutapodCompanion\Includes\Base\BaseController as BaseController;
 class AdminParentRootPage extends BaseController{
 
     /** 1. Variable decalration */
+    // 1. Callback function to render HTML content
     public DisplayWpAdminPages $displayCallbacks;
 
-    // styles and script
+    // 2. styles and script
     const STYLE_FILENAME = 'admin-parent-root.css';
     const STYLE_HANDLER = 'dutapod-admin-parent-root-style';
     const SCRIPT_FIlENAME = 'admin-parent-root.js';
@@ -39,7 +40,19 @@ class AdminParentRootPage extends BaseController{
     public static $STYLE_PATH;
     public static $SCRIPT_PATH;
 
+    // 3. WP admin setting pages properties
+    public string $page_title;
+    public string $menu_title;
+    public string $capability;
+    public string $menu_slug;
+    // Callback function to display HTML content at WP admin setting page
+    // public $callback; $this->renderPageContent() has already fulfilled this task
+    public string $icon_url;
+    public int $page_position; // 'position' argument when adding page to WP admin setting page
+
     /** 2. Constructor */
+    // 2.1. Main constructor
+    // 2.1.1. Simple constructor withour variable
     public function __construct(){
         // 1. Initialize parent constructor
         parent::__construct();
@@ -53,6 +66,23 @@ class AdminParentRootPage extends BaseController{
         // 4. Load extra resources if requesting to this WP admin parent root page
         $this->load_Extra_Resources();
     }//__construct
+
+    // 2.1.2. Constructor with variable parsing
+    public static function createPageWithInputData( array $inputData ){
+        $currentPage = new self();
+
+        $currentPage->page_title = $inputData['page_title'] ?? '';
+        $currentPage->menu_title = $inputData['menu_title'] ?? '';
+        $currentPage->capability = $inputData['capability'] ?? '';
+        $currentPage->menu_slug = $inputData['menu_slug'] ?? '';
+        $currentPage->icon_url = $inputData['icon_url'] ?? '';
+
+        // $currentPage->callback = $inputData['callback'] ?? (function(){ return false; })();
+
+        $currentPage->page_position = $inputData['page_position'] ?? 0;
+
+        return $currentPage;
+    }//createPageWithFullData
 
     /** 2.2. Helper method for constructor*/
     /** 2.2.1. Set local properties for this local class */
@@ -100,7 +130,7 @@ class AdminParentRootPage extends BaseController{
         // if( !in_array( $requestPageSlug, self::$ADMIN_PAGES)  ) return false;     
 
         // 1.4. If not requesting the dutapod_plugin page
-        if( 'dutapod_plugin_troubleshoot' !== $requestPageSlug ) return false;
+        if( is_null( $requestPageSlug ) || 'dutapod_plugin_troubleshoot' !== $requestPageSlug ) return false;
 
         // 2. Enqueue extra resource if correctly requesting to the WordPress admin setting page
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue_Extra_Resources'] );
