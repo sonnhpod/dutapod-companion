@@ -47,9 +47,9 @@ if( file_exists( dirname(__FILE__).'/vendor/autoload.php' ) ){
  * PLUGIN: sunsetpro/sunsetpro.php (plugin basename)
  * **/
 
-define('PLUGIN_PATH', plugin_dir_path(__FILE__)); //OK
-define('PLUGIN_URL', plugin_dir_url(__FILE__)); //OK
-define('PLUGIN', plugin_basename(__FILE__)); //OK
+define( 'PLUGIN_PATH', plugin_dir_path(__FILE__) ); //OK
+define( 'PLUGIN_URL', plugin_dir_url(__FILE__) ); //OK
+define( 'PLUGIN', plugin_basename(__FILE__) ); //OK
 
  /** 4. Register activation hooks, deactivation hooks for the current plugin */
 register_activation_hook( __FILE__, 'activate_dutapod_companion_plugin' );
@@ -84,12 +84,13 @@ if( class_exists( PluginClassLoader::class ) ){
 }// End of class_exists( PluginClassLoader::class )
 
 if( class_exists( Init::class ) ){   
+
     if( is_admin() ){
         // 1. Register Wordpress Admin setting page service
         Init::register_admin_services();
 
         // 1.2. Register frontend service if it is an AJAX request
-        if( strpos($_SERVER['REQUEST_URI'], 'admin-ajax.php') !== false ){
+        if( strpos($_SERVER['REQUEST_URI'], 'admin-ajax.php' ) !== false ){
             // 2. Register WordPress frontend service.
             // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
             Init::register_frontend_services(); 
@@ -117,7 +118,7 @@ if( class_exists( Init::class ) ){
 if( class_exists( WcHelperInit::class ) ){
     // 1. Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
     if( is_admin() ){
-        if( strpos($_SERVER['REQUEST_URI'], 'admin-ajax.php') !== false ){
+        if( strpos( $_SERVER['REQUEST_URI'], 'admin-ajax.php' ) !== false ){
             WcHelperInit::register_frontend_services();
         }
     } else {
