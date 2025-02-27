@@ -231,8 +231,8 @@ class AdminPagesController extends BaseController{
 
         /**
          * Original entries:
-         * - option_group : dutapod_plugin_settings
-         * - option_name  : dutapod_plugin
+         * - option_group : dutapod-companion_plugin_settings
+         * - option_name  : dutapod-companion_plugin
         */
         $settingsArgs = array(
             array(

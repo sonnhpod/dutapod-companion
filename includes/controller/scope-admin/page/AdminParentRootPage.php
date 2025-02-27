@@ -136,6 +136,7 @@ class AdminParentRootPage extends AbstractAdminPage{
         if( is_null( $requestPageSlug ) || $this->menu_slug !== $requestPageSlug ) return false;
 
         // 2. Enqueue extra resource if correctly requesting to the WordPress admin setting page
+        add_action( 'admin_enqueue_scripts', [$this, 'enqueue_Extra_Prerequisite_Resources'] );
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue_Extra_Resources'] );
     }//load_Extra_Resources
 
@@ -169,11 +170,15 @@ class AdminParentRootPage extends AbstractAdminPage{
 
     /** 3.2.4. Enqueue prerequisite resources for this admin troubleshoot page */
     public function enqueue_Extra_Prerequisite_Resources(){
+        // 1. Style 
+        wp_enqueue_style( 'dashicons' );
+
+        // 2. Scripts
         // Media library 
-        wp_enqueue_script('media-upload');
+        wp_enqueue_script( 'media-upload' );
 
         // jquery library
-        wp_enqueue_script('jquery');
+        wp_enqueue_script( 'jquery' );
     }//enqueue_Extra_Prerequisite_Resources
 
 }//AdminParentRoot class definition

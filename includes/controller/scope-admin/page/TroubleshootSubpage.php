@@ -43,7 +43,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
     // public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties - defined in AbstractSubpage class
-    // + menu_slug is dutapod-companion_plugin
+    // + menu_slug is dutapod-companion_plugin_troubleshoot
     // + page_position is the original position    
 
     /** 2. Constructor */
@@ -134,7 +134,8 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         if( is_null( $requestPageSlug ) || $this->menu_slug !== $requestPageSlug ) return false;
 
         // 2. Enqueue extra resource if correctly requesting to the WordPress admin setting page
-        add_action( 'admin_enqueue_scripts', [$this, 'enqueue_Extra_Resources'] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_Extra_Prerequisite_Resources' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_Extra_Resources' ] );
     }//load_Extra_Resources
 
     /** 3.2.2. Register extra resources for this admin troubleshoot page */
@@ -167,11 +168,15 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
 
     /** 3.2.4. Enqueue prerequisite resources for this admin troubleshoot page */
     public function enqueue_Extra_Prerequisite_Resources(){
+        // 1. Style 
+        wp_enqueue_style( 'dashicons' );
+
+        // 2. Scripts
         // Media library 
-        wp_enqueue_script('media-upload');
+        wp_enqueue_script( 'media-upload' );
 
         // jquery library
-        wp_enqueue_script('jquery');
+        wp_enqueue_script( 'jquery' );
     }//enqueue_Extra_Prerequisite_Resources
 
 }//AdminParentRoot class definition
