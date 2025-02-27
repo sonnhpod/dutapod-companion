@@ -84,20 +84,47 @@ if( class_exists( PluginClassLoader::class ) ){
 }// End of class_exists( PluginClassLoader::class )
 
 if( class_exists( Init::class ) ){   
-    // 1. Register Wordpress Admin setting page service
-    Init::register_admin_services();
+    if( is_admin() ){
+        // 1. Register Wordpress Admin setting page service
+        Init::register_admin_services();
 
+        // 1.2. Register frontend service if it is an AJAX request
+        if( strpos($_SERVER['REQUEST_URI'], 'admin-ajax.php') !== false ){
+            // 2. Register WordPress frontend service.
+            // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
+            Init::register_frontend_services(); 
+            Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
+        }
+
+    } else {
+        // 2. Register WordPress frontend service.
+        // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
+        Init::register_frontend_services(); 
+        Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
+    }
+   
+    /* // 1. Register Wordpress Admin setting page service
+    Init::register_admin_services();
     // 2. Register WordPress frontend service.
     // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
     Init::register_frontend_services(); 
-    Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
+    Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader; 
+    */
 }
 
 
 /** 7 . Start WooCommerce Helper init */
 if( class_exists( WcHelperInit::class ) ){
     // 1. Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
-    WcHelperInit::register_frontend_services();
+    if( is_admin() ){
+        if( strpos($_SERVER['REQUEST_URI'], 'admin-ajax.php') !== false ){
+            WcHelperInit::register_frontend_services();
+        }
+    } else {
+        WcHelperInit::register_frontend_services();
+    }
+    
+    // WcHelperInit::register_frontend_services();
 }//class_exists( WcHelperInit::class )
 
 
