@@ -42,9 +42,10 @@ window.addEventListener( 'load', function(){
 
         let formData = new FormData(this);
 
+        // requestUrl : https://dutapodlab.local.info/wp-admin/admin-ajax.php?action=wc_order_search_info  
         const requestUrl = woocommerce_params.ajax_url + "?action=wc_order_search_info";
 
-        console.log(`--> requestUrl is : ${requestUrl} `);
+        // console.log(`--> requestUrl is : ${requestUrl} `);
 
         let updateOrderSearchResultDelay = _variables.redrawDelay + 20;//OK
 
