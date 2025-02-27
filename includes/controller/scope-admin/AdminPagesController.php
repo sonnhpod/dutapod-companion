@@ -58,6 +58,7 @@ class AdminPagesController extends BaseController{
         $this->callbacksManager = new AdminManagerCallbacks();
 
         // 1.2. Initialize WP admin setting page controller
+        // 1.2.1. Initialize an admin parent root page instance.
         // $this->adminParentRootPage = new AdminParentRootPage();// OK 
         // - Use wrapped constructor. 
         // + Remove the callback function entry : 'callback' => [ $this->troubleshootSubpage, 'renderPageContent' ]
@@ -73,6 +74,8 @@ class AdminPagesController extends BaseController{
                 'page_position' => 121,
             ]
         );
+        // Register the admin parent root page instance to the plugin's workflow
+        $this->adminParentRootPage->register();
 
         // $this->troubleshootSubpage = new TroubleshootSubpage();// OK
         // Use wrapped constructor.  
@@ -88,6 +91,8 @@ class AdminPagesController extends BaseController{
                 'subpage_position'      => 10,           
             ]
         );
+        // Register the admin parent root page instance to the plugin's workflow
+        $this->troubleshootSubpage->register();
 
         // 2. Set WP admin setting page list
         // 2.1. WP admin setting pages

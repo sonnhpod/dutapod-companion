@@ -43,6 +43,8 @@ class AdminParentRootPage extends AbstractAdminPage{
     // public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties - defined in the AbstractPage class
+    // + menu_slug is dutapod-companion_plugin
+    // + page_position is the original position
 
     /** 2. Constructor */
     // 2.1. Main constructor
@@ -58,7 +60,7 @@ class AdminParentRootPage extends AbstractAdminPage{
         $this->set_Local_Class_Properties();
 
         // 4. Load extra resources if requesting to this WP admin parent root page
-        $this->load_Extra_Resources();
+        // $this->load_Extra_Resources();
     }//__construct
 
     // 2.1.2. Constructor with variable parsing 
@@ -69,6 +71,7 @@ class AdminParentRootPage extends AbstractAdminPage{
         $currentPage->menu_title = $inputData['menu_title'] ?? '';
         $currentPage->capability = $inputData['capability'] ?? '';
         $currentPage->menu_slug = $inputData['menu_slug'] ?? '';
+        // self::$MENU_SLUG = $inputData['menu_slug'] ?? '';
         $currentPage->icon_url = $inputData['icon_url'] ?? '';
 
         // $currentPage->callback = $inputData['callback'] ?? (function(){ return false; })();
@@ -101,12 +104,17 @@ class AdminParentRootPage extends AbstractAdminPage{
     }//set_Local_Properties
 
     /** 3. Main operational function */ 
-    /** 3.1. Render page content */
+    /** 3.1.1. Register service to plugin workflow*/
+    public function register(){
+        $this->load_Extra_Resources();
+    }//register
+
+    /** 3.1.2. Render page content */
     public function renderPageContent(){
         $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
 
         $this->displayCallbacks->renderAdminParentRootPage();
-    }//renderTroubleshootSubpageContent
+    }//renderPageContent
 
     /** 3.2. Register & enqueue extra resources (style, script) */
     /** 3.2.1. Load extra resources if accessing this page */
@@ -124,8 +132,8 @@ class AdminParentRootPage extends AbstractAdminPage{
         // 1.3. If in the right array list
         // if( !in_array( $requestPageSlug, self::$ADMIN_PAGES)  ) return false;     
 
-        // 1.4. If not requesting the dutapod_plugin page
-        if( is_null( $requestPageSlug ) || 'dutapod_plugin_troubleshoot' !== $requestPageSlug ) return false;
+        // 1.4. If not requesting the dutapod-companion_plugin admin setting page
+        if( is_null( $requestPageSlug ) || $this->menu_slug !== $requestPageSlug ) return false;
 
         // 2. Enqueue extra resource if correctly requesting to the WordPress admin setting page
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue_Extra_Resources'] );

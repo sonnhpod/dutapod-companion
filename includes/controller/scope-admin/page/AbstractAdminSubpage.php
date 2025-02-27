@@ -44,6 +44,8 @@ abstract class AbstractAdminSubpage extends BaseController{
     public string $icon_url;
     public int $subpage_position; // 'position' argument when adding page to WP admin setting page
 
+    //public static string $MENU_SLUG;
+
     /** 2. Constructor */
     // 2.1. Main constructor
     // 2.1.1. Simple constructor withour variable
@@ -69,7 +71,10 @@ abstract class AbstractAdminSubpage extends BaseController{
     public function set_Local_Class_Properties(){}//set_Local_Properties
 
     /** 3. Main operational function */ 
-    /** 3.1. Render page content */
+    /** 3.1.1. Register service to plugin workflow*/
+    public function register(){}//register    
+    
+    /** 3.1.2. Render page content */
     public function renderPageContent(){}//renderPageContent    
 
     /** 3.2. Register & enqueue extra resources (style, script) */

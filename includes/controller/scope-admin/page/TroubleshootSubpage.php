@@ -39,19 +39,12 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
     const SCRIPT_HANDLER = 'dutapod-troubleshoot-subpage-script';
 
     // 2.2. Public path of styles and scripts - defined in AbstractSubpage class
-    public static $STYLE_PATH;
-    public static $SCRIPT_PATH;
+    // public static $STYLE_PATH;
+    // public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties - defined in AbstractSubpage class
-    public string $parent_slug;
-    public string $page_title;
-    public string $menu_title;
-    public string $capability;
-    public string $menu_slug;
-    // Callback function to display HTML content at WP admin setting page
-    // public $callback; $this->renderPageContent() has already fulfilled this task
-    public string $icon_url; // Optional
-    public int $subpage_position; // Optional. 'position' argument when adding page to WP admin setting sub page?
+    // + menu_slug is dutapod-companion_plugin
+    // + page_position is the original position    
 
     /** 2. Constructor */
     // 2.1. Main constructor
@@ -67,7 +60,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         $this->set_Local_Class_Properties();
 
         // 4. Load extra resources if requesting to this WP admin troubleshooting page
-        $this->load_Extra_Resources();
+        // $this->load_Extra_Resources();
     }//__construct
 
     // 2.1.2. Constructor with variable parsing
@@ -79,7 +72,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         $currentPage->menu_title = $inputData['menu_title'] ?? '';
         $currentPage->capability = $inputData['capability'] ?? '';
         $currentPage->menu_slug = $inputData['menu_slug'] ?? '';        
-
+        //self::$MENU_SLUG = $inputData['menu_slug'] ?? '';
         // $currentPage->callback = $inputData['callback'] ?? (function(){ return false; })();
         $currentPage->icon_url = $inputData['icon_url'] ?? '';
         $currentPage->subpage_position = $inputData['subpage_position'] ?? 0;
@@ -109,7 +102,12 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
     }//set_Local_Properties
 
     /** 3. Main operational function */
-    /** 3.1. Render page content */
+    /** 3.1.1. Register service to plugin workflow*/
+    public function register(){
+        $this->load_Extra_Resources();
+    }//register
+
+    /** 3.1.2. Render page content */
     public function renderPageContent(){
         $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
 
@@ -132,8 +130,8 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         // 1.3. If in the right array list
         // if( !in_array( $requestPageSlug, self::$ADMIN_PAGES)  ) return false;     
 
-        // 1.4. If not requesting the dutapod_plugin page
-        if( 'dutapod_plugin' !== $requestPageSlug ) return false;
+        // 1.4. If not requesting the dutapod-companion_plugin_troubleshoot admin setting page
+        if( is_null( $requestPageSlug ) || $this->menu_slug !== $requestPageSlug ) return false;
 
         // 2. Enqueue extra resource if correctly requesting to the WordPress admin setting page
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue_Extra_Resources'] );
