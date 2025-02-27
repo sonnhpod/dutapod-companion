@@ -7,6 +7,7 @@
 
 namespace  DutapodCompanion\Includes\Controller\ScopeAdmin\Page;
 
+// 1. Debug information
 // Init class object
 use DutapodCompanion\Includes\Init as Init;
 // Plugin system variables
@@ -14,22 +15,22 @@ use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 // Debug helper class
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsManagerPage as SettingsManagerPage;
+// 2. WP admin setting page information
+// use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsManagerPage as SettingsManagerPage;
 use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as DisplayWpAdminPages;
-use DutapodCompanion\Includes\Base\BaseController as BaseController;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AbstractAdminPage as AbstractAdminPage;
+// use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
 /** Support the display and operational function of the admin's parent root page 
  * 1. Enqueue custom CSS and JS - OK.
  * 2. Display the content of this page at its corresponding WP admin setting pages - OK
  * 3. Handle AJAX request if it is exist.
- * 
 */
 
-class AdminParentRootPage extends BaseController{
+class AdminParentRootPage extends AbstractAdminPage{
 
     /** 1. Variable decalration */
-    // 1. Callback function to render HTML content
-    public DisplayWpAdminPages $displayCallbacks;
+    // 1. Callback function to render HTML content - defined in AbstractPage class
 
     // 2. styles and script
     const STYLE_FILENAME = 'admin-parent-root.css';
@@ -37,18 +38,11 @@ class AdminParentRootPage extends BaseController{
     const SCRIPT_FIlENAME = 'admin-parent-root.js';
     const SCRIPT_HANDLER = 'dutapod-admin-parent-root-script';
 
-    public static $STYLE_PATH;
-    public static $SCRIPT_PATH;
+    // 2.2. Define style and script path - defined in AbstractPage class
+    // public static $STYLE_PATH;
+    // public static $SCRIPT_PATH;
 
-    // 3. WP admin setting pages properties
-    public string $page_title;
-    public string $menu_title;
-    public string $capability;
-    public string $menu_slug;
-    // Callback function to display HTML content at WP admin setting page
-    // public $callback; $this->renderPageContent() has already fulfilled this task
-    public string $icon_url;
-    public int $page_position; // 'position' argument when adding page to WP admin setting page
+    // 3. WP admin setting pages properties - defined in the AbstractPage class
 
     /** 2. Constructor */
     // 2.1. Main constructor
@@ -58,7 +52,7 @@ class AdminParentRootPage extends BaseController{
         parent::__construct();
 
         // 2. Initialize the display callback 
-        $this->displayCallbacks = DisplayWpAdminPages::getInstance();
+        // $this->displayCallbacks = DisplayWpAdminPages::getInstance();
 
         // 3. Setup additional class local properties
         $this->set_Local_Class_Properties();
@@ -67,7 +61,7 @@ class AdminParentRootPage extends BaseController{
         $this->load_Extra_Resources();
     }//__construct
 
-    // 2.1.2. Constructor with variable parsing
+    // 2.1.2. Constructor with variable parsing 
     public static function createPageWithInputData( array $inputData ){
         $currentPage = new self();
 
@@ -83,6 +77,7 @@ class AdminParentRootPage extends BaseController{
 
         return $currentPage;
     }//createPageWithFullData
+
 
     /** 2.2. Helper method for constructor*/
     /** 2.2.1. Set local properties for this local class */

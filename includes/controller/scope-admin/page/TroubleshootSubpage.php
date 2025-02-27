@@ -17,6 +17,7 @@ use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsManagerPage as SettingsManagerPage;
 use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as DisplayWpAdminPages;
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AbstractAdminSubpage as AbstractAdminSubpage;
 
 /** Support the display and operational function of the admin's parent root page 
  * 1. Enqueue custom CSS and JS - OK
@@ -25,11 +26,11 @@ use DutapodCompanion\Includes\Base\BaseController as BaseController;
  * 
 */
 
-class TroubleshootSubpage extends BaseController{
+class TroubleshootSubpage extends AbstractAdminSubpage{
 
     /** 1. Variable decalration */
-    // 1. Callback function to render HTML content
-    public DisplayWpAdminPages $displayCallbacks;
+    // 1. Callback function to render HTML content - defined in AbstractSubpage class
+
 
     // 2. styles and script
     const STYLE_FILENAME = 'troubleshoot-subpage.css';
@@ -37,10 +38,11 @@ class TroubleshootSubpage extends BaseController{
     const SCRIPT_FIlENAME = 'admin-parent-root.js';
     const SCRIPT_HANDLER = 'dutapod-troubleshoot-subpage-script';
 
+    // 2.2. Public path of styles and scripts - defined in AbstractSubpage class
     public static $STYLE_PATH;
     public static $SCRIPT_PATH;
 
-    // 3. WP admin setting pages properties
+    // 3. WP admin setting pages properties - defined in AbstractSubpage class
     public string $parent_slug;
     public string $page_title;
     public string $menu_title;
@@ -59,7 +61,7 @@ class TroubleshootSubpage extends BaseController{
         parent::__construct();
         
         // 2. Initialize the display callback 
-        $this->displayCallbacks = DisplayWpAdminPages::getInstance();
+        // $this->displayCallbacks = DisplayWpAdminPages::getInstance();
 
         // 3. Setup additional class local properties
         $this->set_Local_Class_Properties();
@@ -84,7 +86,6 @@ class TroubleshootSubpage extends BaseController{
 
         return $currentPage;
     }//createPageWithFullData
-
 
     /** 2.2. Helper method for constructor*/
     /** 2.2.1. Set local properties for this local class */
