@@ -342,6 +342,9 @@ class OrderTrackingPage{
 
         // 4. Send HTML data to frontend display in responseData.data.html 
         wp_send_json_success( [ 'html' => $htmlOutput ] );
+
+        // Final - terminate AJAX requests
+        die();
     }//handle_WC_Order_Search_Info
 
 }//OrderTrackingPage

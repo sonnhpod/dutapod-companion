@@ -121,7 +121,7 @@ final class Init{
      * II. The PluginClassLoader class's instance is initialized separately,
      */
 
-     public static function get_admin_services(){
+    public static function get_admin_services(){
         return array(
             PluginProperties::class,            
             PluginDebugHelper::class,

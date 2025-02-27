@@ -82,6 +82,7 @@ window.addEventListener('load', function () {
     _variables.forceRedraw(orderSearchResultContainer);
     var formData = new FormData(this);
     var requestUrl = woocommerce_params.ajax_url + "?action=wc_order_search_info";
+    console.log("--> requestUrl is : ".concat(requestUrl, " "));
     var updateOrderSearchResultDelay = _variables.redrawDelay + 20; //OK
 
     // Fetch the order search result container with the 

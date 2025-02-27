@@ -2,7 +2,7 @@
 import * as _variables from '../../../bases/js/_variables.js';
 // import { forceRedraw } from '../../../bases/js/_variables.js';
 
-window.addEventListener('load', function(){
+window.addEventListener( 'load', function(){
     const orderSearchForm = document.getElementById('order-search-form-id');
     const orderSearchButton = orderSearchForm.querySelector('button.order-search-button');
 
@@ -43,6 +43,8 @@ window.addEventListener('load', function(){
         let formData = new FormData(this);
 
         const requestUrl = woocommerce_params.ajax_url + "?action=wc_order_search_info";
+
+        console.log(`--> requestUrl is : ${requestUrl} `);
 
         let updateOrderSearchResultDelay = _variables.redrawDelay + 20;//OK
 

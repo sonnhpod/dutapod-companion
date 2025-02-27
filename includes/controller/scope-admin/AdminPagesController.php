@@ -116,18 +116,6 @@ class AdminPagesController extends BaseController{
         // 1. Admin parent root page of this plugin - Dutapod
         // - Original callback entry: 'callback'      => array($this->displayCallbacks, 'renderAdminParentRootPage'),
         // - Original menu_slug entry: 'dutapod_plugin'
-        /* $this->pages = array(
-            array(
-                'page_title'    => 'Dutapod Plugin',
-                'menu_title'    => 'Dutapod Companion',
-                'capability'    => 'manage_options',
-                'menu_slug'     => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
-                'callback'      => [ $this->adminParentRootPage, 'renderPageContent' ],
-                'icon_url'      => 'dashicons-welcome-widgets-menus',
-                'position'      => 121,
-            )
-        );
-         */
 
         $this->pages = [
             [
@@ -202,15 +190,6 @@ class AdminPagesController extends BaseController{
     // Original callback entry: 'callback'              => [ $this->displayCallbacks, 'renderTroubleshootSubpage' ]
     // Original parent_slug entry: 'dutapod_plugin'
     public function setSubpages(){
-        /* $troubleshootSubpage = [
-            'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
-            'page_title'            => 'Dutapod troubleshoot page',
-            'menu_title'            => 'Troubleshoot',
-            'capability'            => 'manage_options',
-            'menu_slug'             => sprintf( '%s_plugin_troubleshoot', self::$PLUGIN_NAME ),
-            'callback'              => [ $this->troubleshootSubpage, 'renderPageContent' ]
-        ]; */
-
         $troubleshootSubpage = [
             'parent_slug'           => $this->troubleshootSubpage->parent_slug,
             'page_title'            => $this->troubleshootSubpage->page_title,

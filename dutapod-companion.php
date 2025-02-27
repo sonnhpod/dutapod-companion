@@ -69,7 +69,9 @@ function deactivate_dutapod_companion_plugin(){
 
 /** 4.2. Custom function to enable write information to debug.log */
 
+
 /** 5. Start initialize all plugins services if exists the Init class files **/
+
 
 /** 6. Start initialize all plugins services if exists the Init class files **/
 if( class_exists( PluginClassLoader::class ) ){
@@ -81,32 +83,21 @@ if( class_exists( PluginClassLoader::class ) ){
 	
 }// End of class_exists( PluginClassLoader::class )
 
-if( class_exists( Init::class ) ){
-    // 1. Optimize the workflow: 
-    // - If requesting to WordPress admin setting page: register admin service.
-    // - Otherwise, register frontend service.
-    if( is_admin() ){
-        Init::register_admin_services();
-    } else {
-        // 1. Initialize all instances of all necessary services    
-        Init::register_frontend_services();   
+if( class_exists( Init::class ) ){   
+    // 1. Register Wordpress Admin setting page service
+    Init::register_admin_services();
 
-        // 2. Manually add PluginClassLoader to the Init::$FRONTEND_INSTANCE_LIST
-        Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
-    }  
+    // 2. Register WordPress frontend service.
+    // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
+    Init::register_frontend_services(); 
+    Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
 }
 
+
 /** 7 . Start WooCommerce Helper init */
-
 if( class_exists( WcHelperInit::class ) ){
-    // 1. Optimize the workflow
-    // - If acessing frontend page, then register WooCommerce Helper at frontend display.
-    
-    if( !is_admin() ){
-        // 1. Register frontend services for WooCommerce class helper.
-        WcHelperInit::register_frontend_services();
-    }    
-
+    // 1. Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
+    WcHelperInit::register_frontend_services();
 }//class_exists( WcHelperInit::class )
 
 
