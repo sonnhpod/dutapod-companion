@@ -21,7 +21,7 @@ use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AbstractAdminSubpage as
 
 class SettingsSubpage extends AbstractAdminSubpage{
 
-    /** I. Variable decalration */
+    /** 1. Variable decalration */
     // 1. Callback function to render HTML content - defined in AbstractSubpage class
 
 
@@ -58,7 +58,7 @@ class SettingsSubpage extends AbstractAdminSubpage{
     // 3.4. Fields properties
     public array $fieldsData;  
 
-    /** II. Constructor */
+    /************************************************************************************************************/
     /** 2. Constructor */
     // 2.1. Main constructor
     // 2.1.1. Simple constructor withour variable
@@ -150,10 +150,18 @@ class SettingsSubpage extends AbstractAdminSubpage{
         $this->option_name = sprintf( '%s_plugin_settings', self::$PLUGIN_NAME);
         $this->option_group = sprintf( '%s_plugin', self::$PLUGIN_NAME );
 
+        $settingArgs = [
+            'type'          => 'string',
+            'label'         => 'dutapod-companion_plugin_label',
+            'description'   => 'general setting for option name: "dutapod-companion_plugin_settings", option group: "dutapod-companion_plugin"',
+            'default'       => 'dutapod-companion_plugin default value'
+        ];
+
         $settingDataItem = [
-            'option_group'  =>  $this->option_name,
+            'option_group'  => $this->option_name,
             'option_name'   => $this->option_group,
             'callback'      => [$this, 'checkboxSanitize'],
+            'args'          => $settingArgs,
         ]; 
 
         $this->settingsData[] = $settingDataItem;
@@ -162,11 +170,16 @@ class SettingsSubpage extends AbstractAdminSubpage{
     /** 2.2.2.3. sections data */
     public function set_Sections_Data(){
         // 'callback'      => array( $this->callbacksManager, 'dutapodSectionManager' ),
+        $sectionArgs = [
+            'section_class'     => 'dutapod-companion-settings-section-container'
+        ];
+
         $sectionDataItem = [
             'id'            => sprintf( '%s_demo_section', self::$PLUGIN_NAME ),
             'title'         => $this->page_title,
             'callback'      => [ $this, 'renderDemoSectionContent' ],
             'page'          => $this->menu_slug,
+            'args'          => $sectionArgs
         ];
 
         $this->sectionsData[] = $sectionDataItem;
@@ -193,7 +206,8 @@ class SettingsSubpage extends AbstractAdminSubpage{
 
     }//set_Fields_Data
 
-    /** III. Main operational function */
+    /************************************************************************************************************/
+    /** 3. Main operational function */
     /** 3.1.1. Register service to plugin workflow*/
     public function register(){
         // 1. Add this top-level admin setting page to the WP admin menu page
@@ -204,11 +218,10 @@ class SettingsSubpage extends AbstractAdminSubpage{
         // 2. Load extra resources for this top level page
         $this->load_Extra_Resources();        
 
-        // 3. Add settings for the admin parent root page
+        /** 3. Register settings, sections, and fields for this settings page: 
+         * - The admin_init hook is executed after admin_menu*/ 
+        add_action( 'admin_init', [ $this, 'register_Submenu_Page_Settings' ] );       
 
-        // 4. Add sections for the admin parent root page
-
-        // 5. Add fields for the admin parent root page
 
     }//register
 
@@ -298,6 +311,27 @@ class SettingsSubpage extends AbstractAdminSubpage{
         wp_enqueue_script( 'jquery' );
     }//enqueue_Extra_Prerequisite_Resources
 
+    /** 3.3. Register settings, sections, fields for the wp admin submenu settings page */
+    public function register_Submenu_Page_Settings(){
+        /** 3. Add settings for the admin parent root page
+         * 3.1. Register necessary settings for this settings subpage under an option group
+         * */ 
+        /** Documentation: https://developer.wordpress.org/reference/functions/register_setting/  */
+        $settingData = $this->settingsData[0];        
+        register_setting( $settingData['option_group'], $settingData['option_name'], $settingData['args'] );
+
+        /** 4. Add sections for the admin parent root page */ 
+        /** Documentation: https://developer.wordpress.org/reference/functions/add_settings_section/  */
+        $sectionData = $this->sectionsData[0];                   
+        add_settings_section( $sectionData['id'], $sectionData['title'], $sectionData['callback'], $sectionData['page'], $sectionData['args'] );
+
+        /** 5. Add fields for the admin parent root page */ 
+        /** Documentation: https://developer.wordpress.org/reference/functions/add_settings_field/  */
+        $fieldData = $this->fieldsData[0];        
+        add_settings_field( $fieldData['id'], $fieldData['title'], $fieldData['callback'], $fieldData['page'], $fieldData['section'], $fieldData['args'] );
+    }//register_Submenu_Page_Settings
+
+    /************************************************************************************************************/
     /** 4. Helper methods */
     /** 4.1. Render page content */
     public function renderPageContent(){

@@ -19,11 +19,13 @@ $settingData = $settingsSubpage->settingsData[0];
 $sectionData = $settingsSubpage->sectionsData[0];
 // $sectionID = $sectionData['id'];
 
+$fieldData = $settingsSubpage->fieldsData[0];
+
 ?>
 
 <?php settings_errors(); ?>
 
-<?php // var_dump( $settingsSubpage->settingsData ); ?>
+<?php // var_dump( $fieldData ); ?>
 
 <form method="post" action="options.php" class="dutapod-companion-general-form">
     <!-- 1. Specify setting groups. This will include a hidden form -->
@@ -34,7 +36,7 @@ $sectionData = $settingsSubpage->sectionsData[0];
     <!-- 2. Implement the settings for a specific page - using slug -->
     <!-- Using the value menu_slug of the troubleshoot page -->
     <?php // do_settings_sections( 'dutapod-companion_plugin_troubleshoot' ); ?> 
-    <?php do_settings_sections(  $sectionData['id'] ); ?> 
+    <?php do_settings_sections(  $settingsSubpage->menu_slug ); ?> 
 
     <!-- 3. Output a HTML data for the submit button -->
     <?php submit_button( 'Save your changes' , 'primary' , 'custom-submit-button' ); ?> 
