@@ -72,7 +72,8 @@ class SettingsSubpage extends AbstractAdminSubpage{
         // 3. Setup additional class local properties
         $this->set_Local_Class_Properties();
 
-        $this->set_Subpage_Properties();
+        // $this->set_Subpage_Properties();
+       
 
         // 4. Load extra resources if requesting to this WP admin troubleshooting page
         // $this->load_Extra_Resources();
@@ -82,18 +83,29 @@ class SettingsSubpage extends AbstractAdminSubpage{
     public static function createPageWithInputSubpageData( array $inputSubpageData ){
         $currentPage = new self();
 
+        // 1. Page properties
         $currentPage->parent_slug = $inputSubpageData['parent_slug'] ?? '';
         $currentPage->page_title = $inputSubpageData['page_title'] ?? '';
         $currentPage->menu_title = $inputSubpageData['menu_title'] ?? '';
         $currentPage->capability = $inputSubpageData['capability'] ?? '';
         $currentPage->menu_slug = $inputSubpageData['menu_slug'] ?? '';        
-        //self::$MENU_SLUG = $inputData['menu_slug'] ?? '';
-        // $currentPage->callback = $inputData['callback'] ?? (function(){ return false; })();
+
         $currentPage->icon_url = $inputSubpageData['icon_url'] ?? '';
         $currentPage->subpage_position = $inputSubpageData['subpage_position'] ?? 0;
 
         // admin menu priority 
         $currentPage->admin_menu_priority = $inputSubpageData['admin_menu_priority'] ?? $currentPage->admin_menu_priority;
+
+        $currentPage->set_Subpage_Properties();
+
+        // 2. Settings properties 
+        $currentPage->set_Settings_Data();
+
+        // 3. Section properties
+        $currentPage->set_Sections_Data();
+
+        // 4. Field properties
+        $currentPage->set_Fields_Data();
 
         return $currentPage;
     }//createPageWithFullData
@@ -148,7 +160,7 @@ class SettingsSubpage extends AbstractAdminSubpage{
     }//set_Settings_Data
 
     /** 2.2.2.3. sections data */
-    public function set_Sections_Data( array $inputData ){
+    public function set_Sections_Data(){
         // 'callback'      => array( $this->callbacksManager, 'dutapodSectionManager' ),
         $sectionDataItem = [
             'id'            => sprintf( '%s_demo_section', self::$PLUGIN_NAME ),
@@ -161,7 +173,7 @@ class SettingsSubpage extends AbstractAdminSubpage{
     }//set_Sections_Data
 
     /** 2.2.2.4. fields data */
-    public function set_Fields_Data( array $inputData ){
+    public function set_Fields_Data(){
 
         // 'callback'      => array($this->callbacksManager, 'displayCheckboxField'),
         $fieldDataItem = [
@@ -289,6 +301,17 @@ class SettingsSubpage extends AbstractAdminSubpage{
     /** 4. Helper methods */
     /** 4.1. Render page content */
     public function renderPageContent(){
+        /** 1. Prepare data to parse into the template. 
+         * - The data category include:
+         * + Page data
+         * + Settings data
+         * + Sections data
+         * + Section Fields data
+         * */       
+
+        // 2. Parse directly $settingsPage object to the template
+        $settingsSubpage = $this;
+
         require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/settings-subpage.php" );
     }//renderTroubleshootSubpageContent
 

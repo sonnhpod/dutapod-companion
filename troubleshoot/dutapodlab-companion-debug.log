@@ -608,3 +608,796 @@
 }
 
 2025-02-28, 14:34:17 --> End of logging variable ...  
+2025-02-28, 15:10:08 --> Start logging variable ...  
+2025-02-28, 15:10:08 $logMessage : array(6) {
+  ["parent_slug"]=>
+  string(24) "dutapod-companion_plugin"
+  ["page_title"]=>
+  string(32) "Dutapod Settings Management page"
+  ["menu_title"]=>
+  string(8) "Settings"
+  ["capability"]=>
+  string(14) "manage_options"
+  ["menu_slug"]=>
+  string(33) "dutapod-companion_plugin-settings"
+  ["callback"]=>
+  array(2) {
+    [0]=>
+    object(DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage)#1157 (18) {
+      ["pluginInitiator"]=>
+      object(DutapodCompanion\Includes\Init)#1158 (0) {
+      }
+      ["localProps"]=>
+      object(DutapodCompanion\Helper\PluginProperties)#1143 (0) {
+      }
+      ["localDebugger"]=>
+      object(DutapodCompanion\Helper\PluginDebugHelper)#1138 (0) {
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+      }
+      ["settingPageManagers"]=>
+      uninitialized(array)
+      ["displayCallbacks"]=>
+      object(DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages)#1151 (1) {
+        ["pluginInitiator"]=>
+        uninitialized(DutapodCompanion\Includes\Init)
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+        ["localDebugger"]=>
+        uninitialized(DutapodCompanion\Helper\PluginDebugHelper)
+        ["settingPageManagers"]=>
+        uninitialized(array)
+        ["contentTypes"]=>
+        object(stdClass)#1152 (4) {
+          ["sunsetMenu"]=>
+          object(stdClass)#1153 (0) {
+          }
+          ["sunsetCarousel"]=>
+          object(stdClass)#1154 (0) {
+          }
+          ["sunsetWidget"]=>
+          object(stdClass)#1155 (0) {
+          }
+          ["sunsetTemplate"]=>
+          object(stdClass)#1156 (0) {
+          }
+        }
+      }
+      ["parent_slug"]=>
+      string(24) "dutapod-companion_plugin"
+      ["page_title"]=>
+      string(32) "Dutapod Settings Management page"
+      ["menu_title"]=>
+      string(8) "Settings"
+      ["capability"]=>
+      string(14) "manage_options"
+      ["menu_slug"]=>
+      string(33) "dutapod-companion_plugin-settings"
+      ["icon_url"]=>
+      string(0) ""
+      ["subpage_position"]=>
+      int(2)
+      ["admin_menu_priority"]=>
+      int(122)
+      ["pageId"]=>
+      string(8) "settings"
+      ["pageTitle"]=>
+      string(13) "Settings Page"
+      ["pageClassnames"]=>
+      string(16) "dutapod-settings"
+      ["option_group"]=>
+      uninitialized(string)
+      ["option_name"]=>
+      uninitialized(string)
+      ["settingsData"]=>
+      array(0) {
+      }
+      ["sectionsData"]=>
+      array(0) {
+      }
+      ["fieldsData"]=>
+      array(0) {
+      }
+    }
+    [1]=>
+    string(17) "renderPageContent"
+  }
+}
+
+2025-02-28, 15:10:08 --> End of logging variable ...  
+2025-02-28, 15:10:10 --> Start logging variable ...  
+2025-02-28, 15:10:10 $logMessage : array(6) {
+  ["parent_slug"]=>
+  string(24) "dutapod-companion_plugin"
+  ["page_title"]=>
+  string(32) "Dutapod Settings Management page"
+  ["menu_title"]=>
+  string(8) "Settings"
+  ["capability"]=>
+  string(14) "manage_options"
+  ["menu_slug"]=>
+  string(33) "dutapod-companion_plugin-settings"
+  ["callback"]=>
+  array(2) {
+    [0]=>
+    object(DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage)#1157 (18) {
+      ["pluginInitiator"]=>
+      object(DutapodCompanion\Includes\Init)#1158 (0) {
+      }
+      ["localProps"]=>
+      object(DutapodCompanion\Helper\PluginProperties)#1143 (0) {
+      }
+      ["localDebugger"]=>
+      object(DutapodCompanion\Helper\PluginDebugHelper)#1138 (0) {
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+      }
+      ["settingPageManagers"]=>
+      uninitialized(array)
+      ["displayCallbacks"]=>
+      object(DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages)#1151 (1) {
+        ["pluginInitiator"]=>
+        uninitialized(DutapodCompanion\Includes\Init)
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+        ["localDebugger"]=>
+        uninitialized(DutapodCompanion\Helper\PluginDebugHelper)
+        ["settingPageManagers"]=>
+        uninitialized(array)
+        ["contentTypes"]=>
+        object(stdClass)#1152 (4) {
+          ["sunsetMenu"]=>
+          object(stdClass)#1153 (0) {
+          }
+          ["sunsetCarousel"]=>
+          object(stdClass)#1154 (0) {
+          }
+          ["sunsetWidget"]=>
+          object(stdClass)#1155 (0) {
+          }
+          ["sunsetTemplate"]=>
+          object(stdClass)#1156 (0) {
+          }
+        }
+      }
+      ["parent_slug"]=>
+      string(24) "dutapod-companion_plugin"
+      ["page_title"]=>
+      string(32) "Dutapod Settings Management page"
+      ["menu_title"]=>
+      string(8) "Settings"
+      ["capability"]=>
+      string(14) "manage_options"
+      ["menu_slug"]=>
+      string(33) "dutapod-companion_plugin-settings"
+      ["icon_url"]=>
+      string(0) ""
+      ["subpage_position"]=>
+      int(2)
+      ["admin_menu_priority"]=>
+      int(122)
+      ["pageId"]=>
+      string(8) "settings"
+      ["pageTitle"]=>
+      string(13) "Settings Page"
+      ["pageClassnames"]=>
+      string(16) "dutapod-settings"
+      ["option_group"]=>
+      uninitialized(string)
+      ["option_name"]=>
+      uninitialized(string)
+      ["settingsData"]=>
+      array(0) {
+      }
+      ["sectionsData"]=>
+      array(0) {
+      }
+      ["fieldsData"]=>
+      array(0) {
+      }
+    }
+    [1]=>
+    string(17) "renderPageContent"
+  }
+}
+
+2025-02-28, 15:10:10 --> End of logging variable ...  
+2025-02-28, 15:11:18 --> Start logging variable ...  
+2025-02-28, 15:11:18 $logMessage : array(6) {
+  ["parent_slug"]=>
+  string(24) "dutapod-companion_plugin"
+  ["page_title"]=>
+  string(32) "Dutapod Settings Management page"
+  ["menu_title"]=>
+  string(8) "Settings"
+  ["capability"]=>
+  string(14) "manage_options"
+  ["menu_slug"]=>
+  string(33) "dutapod-companion_plugin-settings"
+  ["callback"]=>
+  array(2) {
+    [0]=>
+    object(DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage)#1157 (18) {
+      ["pluginInitiator"]=>
+      object(DutapodCompanion\Includes\Init)#1158 (0) {
+      }
+      ["localProps"]=>
+      object(DutapodCompanion\Helper\PluginProperties)#1143 (0) {
+      }
+      ["localDebugger"]=>
+      object(DutapodCompanion\Helper\PluginDebugHelper)#1138 (0) {
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+      }
+      ["settingPageManagers"]=>
+      uninitialized(array)
+      ["displayCallbacks"]=>
+      object(DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages)#1151 (1) {
+        ["pluginInitiator"]=>
+        uninitialized(DutapodCompanion\Includes\Init)
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+        ["localDebugger"]=>
+        uninitialized(DutapodCompanion\Helper\PluginDebugHelper)
+        ["settingPageManagers"]=>
+        uninitialized(array)
+        ["contentTypes"]=>
+        object(stdClass)#1152 (4) {
+          ["sunsetMenu"]=>
+          object(stdClass)#1153 (0) {
+          }
+          ["sunsetCarousel"]=>
+          object(stdClass)#1154 (0) {
+          }
+          ["sunsetWidget"]=>
+          object(stdClass)#1155 (0) {
+          }
+          ["sunsetTemplate"]=>
+          object(stdClass)#1156 (0) {
+          }
+        }
+      }
+      ["parent_slug"]=>
+      string(24) "dutapod-companion_plugin"
+      ["page_title"]=>
+      string(32) "Dutapod Settings Management page"
+      ["menu_title"]=>
+      string(8) "Settings"
+      ["capability"]=>
+      string(14) "manage_options"
+      ["menu_slug"]=>
+      string(33) "dutapod-companion_plugin-settings"
+      ["icon_url"]=>
+      string(0) ""
+      ["subpage_position"]=>
+      int(2)
+      ["admin_menu_priority"]=>
+      int(122)
+      ["pageId"]=>
+      string(8) "settings"
+      ["pageTitle"]=>
+      string(13) "Settings Page"
+      ["pageClassnames"]=>
+      string(16) "dutapod-settings"
+      ["option_group"]=>
+      uninitialized(string)
+      ["option_name"]=>
+      uninitialized(string)
+      ["settingsData"]=>
+      array(0) {
+      }
+      ["sectionsData"]=>
+      array(0) {
+      }
+      ["fieldsData"]=>
+      array(0) {
+      }
+    }
+    [1]=>
+    string(17) "renderPageContent"
+  }
+}
+
+2025-02-28, 15:11:18 --> End of logging variable ...  
+2025-02-28, 15:12:13 --> Start logging variable ...  
+2025-02-28, 15:12:13 $logMessage : array(6) {
+  ["parent_slug"]=>
+  string(24) "dutapod-companion_plugin"
+  ["page_title"]=>
+  string(32) "Dutapod Settings Management page"
+  ["menu_title"]=>
+  string(8) "Settings"
+  ["capability"]=>
+  string(14) "manage_options"
+  ["menu_slug"]=>
+  string(33) "dutapod-companion_plugin-settings"
+  ["callback"]=>
+  array(2) {
+    [0]=>
+    object(DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage)#1157 (18) {
+      ["pluginInitiator"]=>
+      object(DutapodCompanion\Includes\Init)#1158 (0) {
+      }
+      ["localProps"]=>
+      object(DutapodCompanion\Helper\PluginProperties)#1143 (0) {
+      }
+      ["localDebugger"]=>
+      object(DutapodCompanion\Helper\PluginDebugHelper)#1138 (0) {
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+      }
+      ["settingPageManagers"]=>
+      uninitialized(array)
+      ["displayCallbacks"]=>
+      object(DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages)#1151 (1) {
+        ["pluginInitiator"]=>
+        uninitialized(DutapodCompanion\Includes\Init)
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+        ["localDebugger"]=>
+        uninitialized(DutapodCompanion\Helper\PluginDebugHelper)
+        ["settingPageManagers"]=>
+        uninitialized(array)
+        ["contentTypes"]=>
+        object(stdClass)#1152 (4) {
+          ["sunsetMenu"]=>
+          object(stdClass)#1153 (0) {
+          }
+          ["sunsetCarousel"]=>
+          object(stdClass)#1154 (0) {
+          }
+          ["sunsetWidget"]=>
+          object(stdClass)#1155 (0) {
+          }
+          ["sunsetTemplate"]=>
+          object(stdClass)#1156 (0) {
+          }
+        }
+      }
+      ["parent_slug"]=>
+      string(24) "dutapod-companion_plugin"
+      ["page_title"]=>
+      string(32) "Dutapod Settings Management page"
+      ["menu_title"]=>
+      string(8) "Settings"
+      ["capability"]=>
+      string(14) "manage_options"
+      ["menu_slug"]=>
+      string(33) "dutapod-companion_plugin-settings"
+      ["icon_url"]=>
+      string(0) ""
+      ["subpage_position"]=>
+      int(2)
+      ["admin_menu_priority"]=>
+      int(122)
+      ["pageId"]=>
+      string(8) "settings"
+      ["pageTitle"]=>
+      string(13) "Settings Page"
+      ["pageClassnames"]=>
+      string(16) "dutapod-settings"
+      ["option_group"]=>
+      uninitialized(string)
+      ["option_name"]=>
+      uninitialized(string)
+      ["settingsData"]=>
+      array(0) {
+      }
+      ["sectionsData"]=>
+      array(0) {
+      }
+      ["fieldsData"]=>
+      array(0) {
+      }
+    }
+    [1]=>
+    string(17) "renderPageContent"
+  }
+}
+
+2025-02-28, 15:12:13 --> End of logging variable ...  
+2025-02-28, 15:12:29 --> Start logging variable ...  
+2025-02-28, 15:12:29 $logMessage : array(6) {
+  ["parent_slug"]=>
+  string(24) "dutapod-companion_plugin"
+  ["page_title"]=>
+  string(32) "Dutapod Settings Management page"
+  ["menu_title"]=>
+  string(8) "Settings"
+  ["capability"]=>
+  string(14) "manage_options"
+  ["menu_slug"]=>
+  string(33) "dutapod-companion_plugin-settings"
+  ["callback"]=>
+  array(2) {
+    [0]=>
+    object(DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage)#1157 (18) {
+      ["pluginInitiator"]=>
+      object(DutapodCompanion\Includes\Init)#1158 (0) {
+      }
+      ["localProps"]=>
+      object(DutapodCompanion\Helper\PluginProperties)#1143 (0) {
+      }
+      ["localDebugger"]=>
+      object(DutapodCompanion\Helper\PluginDebugHelper)#1138 (0) {
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+      }
+      ["settingPageManagers"]=>
+      uninitialized(array)
+      ["displayCallbacks"]=>
+      object(DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages)#1151 (1) {
+        ["pluginInitiator"]=>
+        uninitialized(DutapodCompanion\Includes\Init)
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+        ["localDebugger"]=>
+        uninitialized(DutapodCompanion\Helper\PluginDebugHelper)
+        ["settingPageManagers"]=>
+        uninitialized(array)
+        ["contentTypes"]=>
+        object(stdClass)#1152 (4) {
+          ["sunsetMenu"]=>
+          object(stdClass)#1153 (0) {
+          }
+          ["sunsetCarousel"]=>
+          object(stdClass)#1154 (0) {
+          }
+          ["sunsetWidget"]=>
+          object(stdClass)#1155 (0) {
+          }
+          ["sunsetTemplate"]=>
+          object(stdClass)#1156 (0) {
+          }
+        }
+      }
+      ["parent_slug"]=>
+      string(24) "dutapod-companion_plugin"
+      ["page_title"]=>
+      string(32) "Dutapod Settings Management page"
+      ["menu_title"]=>
+      string(8) "Settings"
+      ["capability"]=>
+      string(14) "manage_options"
+      ["menu_slug"]=>
+      string(33) "dutapod-companion_plugin-settings"
+      ["icon_url"]=>
+      string(0) ""
+      ["subpage_position"]=>
+      int(2)
+      ["admin_menu_priority"]=>
+      int(122)
+      ["pageId"]=>
+      string(8) "settings"
+      ["pageTitle"]=>
+      string(13) "Settings Page"
+      ["pageClassnames"]=>
+      string(16) "dutapod-settings"
+      ["option_group"]=>
+      uninitialized(string)
+      ["option_name"]=>
+      uninitialized(string)
+      ["settingsData"]=>
+      array(0) {
+      }
+      ["sectionsData"]=>
+      array(0) {
+      }
+      ["fieldsData"]=>
+      array(0) {
+      }
+    }
+    [1]=>
+    string(17) "renderPageContent"
+  }
+}
+
+2025-02-28, 15:12:29 --> End of logging variable ...  
+2025-02-28, 15:17:34 --> Start logging variable ...  
+2025-02-28, 15:17:34 $logMessage : array(6) {
+  ["parent_slug"]=>
+  string(24) "dutapod-companion_plugin"
+  ["page_title"]=>
+  string(32) "Dutapod Settings Management page"
+  ["menu_title"]=>
+  string(8) "Settings"
+  ["capability"]=>
+  string(14) "manage_options"
+  ["menu_slug"]=>
+  string(33) "dutapod-companion_plugin-settings"
+  ["callback"]=>
+  array(2) {
+    [0]=>
+    object(DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage)#1157 (20) {
+      ["pluginInitiator"]=>
+      object(DutapodCompanion\Includes\Init)#1158 (0) {
+      }
+      ["localProps"]=>
+      object(DutapodCompanion\Helper\PluginProperties)#1143 (0) {
+      }
+      ["localDebugger"]=>
+      object(DutapodCompanion\Helper\PluginDebugHelper)#1138 (0) {
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+      }
+      ["settingPageManagers"]=>
+      uninitialized(array)
+      ["displayCallbacks"]=>
+      object(DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages)#1151 (1) {
+        ["pluginInitiator"]=>
+        uninitialized(DutapodCompanion\Includes\Init)
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+        ["localDebugger"]=>
+        uninitialized(DutapodCompanion\Helper\PluginDebugHelper)
+        ["settingPageManagers"]=>
+        uninitialized(array)
+        ["contentTypes"]=>
+        object(stdClass)#1152 (4) {
+          ["sunsetMenu"]=>
+          object(stdClass)#1153 (0) {
+          }
+          ["sunsetCarousel"]=>
+          object(stdClass)#1154 (0) {
+          }
+          ["sunsetWidget"]=>
+          object(stdClass)#1155 (0) {
+          }
+          ["sunsetTemplate"]=>
+          object(stdClass)#1156 (0) {
+          }
+        }
+      }
+      ["parent_slug"]=>
+      string(24) "dutapod-companion_plugin"
+      ["page_title"]=>
+      string(32) "Dutapod Settings Management page"
+      ["menu_title"]=>
+      string(8) "Settings"
+      ["capability"]=>
+      string(14) "manage_options"
+      ["menu_slug"]=>
+      string(33) "dutapod-companion_plugin-settings"
+      ["icon_url"]=>
+      string(0) ""
+      ["subpage_position"]=>
+      int(2)
+      ["admin_menu_priority"]=>
+      int(122)
+      ["pageId"]=>
+      string(8) "settings"
+      ["pageTitle"]=>
+      string(13) "Settings Page"
+      ["pageClassnames"]=>
+      string(16) "dutapod-settings"
+      ["option_group"]=>
+      string(24) "dutapod-companion_plugin"
+      ["option_name"]=>
+      string(33) "dutapod-companion_plugin_settings"
+      ["settingsData"]=>
+      array(1) {
+        [0]=>
+        array(3) {
+          ["option_group"]=>
+          string(33) "dutapod-companion_plugin_settings"
+          ["option_name"]=>
+          string(24) "dutapod-companion_plugin"
+          ["callback"]=>
+          array(2) {
+            [0]=>
+            *RECURSION*
+            [1]=>
+            string(16) "checkboxSanitize"
+          }
+        }
+      }
+      ["sectionsData"]=>
+      array(1) {
+        [0]=>
+        array(4) {
+          ["id"]=>
+          string(30) "dutapod-companion_demo_section"
+          ["title"]=>
+          string(32) "Dutapod Settings Management page"
+          ["callback"]=>
+          array(2) {
+            [0]=>
+            *RECURSION*
+            [1]=>
+            string(24) "renderDemoSectionContent"
+          }
+          ["page"]=>
+          string(33) "dutapod-companion_plugin-settings"
+        }
+      }
+      ["fieldsData"]=>
+      array(1) {
+        [0]=>
+        array(6) {
+          ["id"]=>
+          string(8) "settings"
+          ["title"]=>
+          string(22) "Activate Settings Page"
+          ["callback"]=>
+          array(2) {
+            [0]=>
+            *RECURSION*
+            [1]=>
+            string(20) "displayCheckboxField"
+          }
+          ["page"]=>
+          string(33) "dutapod-companion_plugin-settings"
+          ["section"]=>
+          string(30) "dutapod-companion_demo_section"
+          ["args"]=>
+          array(3) {
+            ["option_name"]=>
+            string(33) "dutapod-companion_plugin_settings"
+            ["label_for"]=>
+            string(8) "settings"
+            ["class"]=>
+            string(26) "ui-toggle dutapod-settings"
+          }
+        }
+      }
+    }
+    [1]=>
+    string(17) "renderPageContent"
+  }
+}
+
+2025-02-28, 15:17:34 --> End of logging variable ...  
+2025-02-28, 15:17:53 --> Start logging variable ...  
+2025-02-28, 15:17:53 $logMessage : array(6) {
+  ["parent_slug"]=>
+  string(24) "dutapod-companion_plugin"
+  ["page_title"]=>
+  string(32) "Dutapod Settings Management page"
+  ["menu_title"]=>
+  string(8) "Settings"
+  ["capability"]=>
+  string(14) "manage_options"
+  ["menu_slug"]=>
+  string(33) "dutapod-companion_plugin-settings"
+  ["callback"]=>
+  array(2) {
+    [0]=>
+    object(DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage)#1157 (20) {
+      ["pluginInitiator"]=>
+      object(DutapodCompanion\Includes\Init)#1158 (0) {
+      }
+      ["localProps"]=>
+      object(DutapodCompanion\Helper\PluginProperties)#1143 (0) {
+      }
+      ["localDebugger"]=>
+      object(DutapodCompanion\Helper\PluginDebugHelper)#1138 (0) {
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+      }
+      ["settingPageManagers"]=>
+      uninitialized(array)
+      ["displayCallbacks"]=>
+      object(DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages)#1151 (1) {
+        ["pluginInitiator"]=>
+        uninitialized(DutapodCompanion\Includes\Init)
+        ["localProps"]=>
+        uninitialized(DutapodCompanion\Helper\PluginProperties)
+        ["localDebugger"]=>
+        uninitialized(DutapodCompanion\Helper\PluginDebugHelper)
+        ["settingPageManagers"]=>
+        uninitialized(array)
+        ["contentTypes"]=>
+        object(stdClass)#1152 (4) {
+          ["sunsetMenu"]=>
+          object(stdClass)#1153 (0) {
+          }
+          ["sunsetCarousel"]=>
+          object(stdClass)#1154 (0) {
+          }
+          ["sunsetWidget"]=>
+          object(stdClass)#1155 (0) {
+          }
+          ["sunsetTemplate"]=>
+          object(stdClass)#1156 (0) {
+          }
+        }
+      }
+      ["parent_slug"]=>
+      string(24) "dutapod-companion_plugin"
+      ["page_title"]=>
+      string(32) "Dutapod Settings Management page"
+      ["menu_title"]=>
+      string(8) "Settings"
+      ["capability"]=>
+      string(14) "manage_options"
+      ["menu_slug"]=>
+      string(33) "dutapod-companion_plugin-settings"
+      ["icon_url"]=>
+      string(0) ""
+      ["subpage_position"]=>
+      int(2)
+      ["admin_menu_priority"]=>
+      int(122)
+      ["pageId"]=>
+      string(8) "settings"
+      ["pageTitle"]=>
+      string(13) "Settings Page"
+      ["pageClassnames"]=>
+      string(16) "dutapod-settings"
+      ["option_group"]=>
+      string(24) "dutapod-companion_plugin"
+      ["option_name"]=>
+      string(33) "dutapod-companion_plugin_settings"
+      ["settingsData"]=>
+      array(1) {
+        [0]=>
+        array(3) {
+          ["option_group"]=>
+          string(33) "dutapod-companion_plugin_settings"
+          ["option_name"]=>
+          string(24) "dutapod-companion_plugin"
+          ["callback"]=>
+          array(2) {
+            [0]=>
+            *RECURSION*
+            [1]=>
+            string(16) "checkboxSanitize"
+          }
+        }
+      }
+      ["sectionsData"]=>
+      array(1) {
+        [0]=>
+        array(4) {
+          ["id"]=>
+          string(30) "dutapod-companion_demo_section"
+          ["title"]=>
+          string(32) "Dutapod Settings Management page"
+          ["callback"]=>
+          array(2) {
+            [0]=>
+            *RECURSION*
+            [1]=>
+            string(24) "renderDemoSectionContent"
+          }
+          ["page"]=>
+          string(33) "dutapod-companion_plugin-settings"
+        }
+      }
+      ["fieldsData"]=>
+      array(1) {
+        [0]=>
+        array(6) {
+          ["id"]=>
+          string(8) "settings"
+          ["title"]=>
+          string(22) "Activate Settings Page"
+          ["callback"]=>
+          array(2) {
+            [0]=>
+            *RECURSION*
+            [1]=>
+            string(20) "displayCheckboxField"
+          }
+          ["page"]=>
+          string(33) "dutapod-companion_plugin-settings"
+          ["section"]=>
+          string(30) "dutapod-companion_demo_section"
+          ["args"]=>
+          array(3) {
+            ["option_name"]=>
+            string(33) "dutapod-companion_plugin_settings"
+            ["label_for"]=>
+            string(8) "settings"
+            ["class"]=>
+            string(26) "ui-toggle dutapod-settings"
+          }
+        }
+      }
+    }
+    [1]=>
+    string(17) "renderPageContent"
+  }
+}
+
+2025-02-28, 15:17:53 --> End of logging variable ...  
