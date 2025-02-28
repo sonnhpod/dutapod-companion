@@ -15,6 +15,7 @@ use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as Display
 use DutapodCompanion\Includes\Api\Callbacks\Admin\AdminManagerCallbacks as AdminManagerCallbacks;
 // 3. WP admin page system controller 
 use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminParentRootPage as AdminParentRootPage;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage as SettingsSubpage;
 use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\TroubleshootSubpage as TroubleshootSubpage;
 
 /** 1. This class is responsible to insert all plugins' admin setting pages to the WP admin setting pages menu. 
@@ -43,6 +44,7 @@ class AdminPagesController extends BaseController{
     // Admin parent root page
     public AdminParentRootPage $adminParentRootPage;
     public TroubleshootSubpage $troubleshootSubpage;
+    public SettingsSubpage $settingsSubpage;
     // Troubleshoot page
 
     // An array that store a list of a parent admin setting page.
@@ -92,6 +94,23 @@ class AdminPagesController extends BaseController{
          * */         
         $this->adminParentRootPage->register();
 
+        // 1.3. Settings Management subpage
+        $this->settingsSubpage = SettingsSubpage::createPageWithInputSubpageData(
+            [
+                'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
+                'page_title'            => 'Dutapod Settings Management page',
+                'menu_title'            => 'Settings',
+                'capability'            => 'manage_options',
+                'menu_slug'             => sprintf( '%s_plugin-settings', self::$PLUGIN_NAME ),     
+                'subpage_position'      => 2,    
+                'admin_menu_priority'   => $this->adminParentRootPage->admin_menu_priority + 2,       
+            ]
+        );
+
+        // Register the admin parent root page instance to the plugin's workflow
+        $this->settingsSubpage->register(); // Cause error when registering settings subpage
+
+        // 1.4. 
         // $this->troubleshootSubpage = new TroubleshootSubpage();// OK
         // Use wrapped constructor.  
         // + Remove the callback function: 'callback' => [ $this->troubleshootSubpage, 'renderPageContent' ]
@@ -111,6 +130,8 @@ class AdminPagesController extends BaseController{
         // Register the admin parent root page instance to the plugin's workflow
         $this->troubleshootSubpage->register();
 
+
+
         // 2. Set WP admin setting page list
         // 2.1. WP admin setting pages
         $this->setPages();
@@ -118,9 +139,10 @@ class AdminPagesController extends BaseController{
         $this->setSubpages();
 
         // 3. Setup properties for $this->settings (settings, sections, fields)
-        $this->setSettings();
-        $this->setSections();
-        $this->setFields();
+        // 2025-02-28 : disable these options. Assign settings, sectiosn, fields for each menu/submenu page object
+        //$this->setSettings();
+        //$this->setSections();
+        //$this->setFields();
 
         // 4. Register admin setting pages from plugin
         // - "Control Dashboard" is the original value of withSubPage method

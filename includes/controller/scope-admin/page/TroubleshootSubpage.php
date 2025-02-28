@@ -149,7 +149,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         $settingDataItem = [
             'option_group'  =>  $this->option_name,
             'option_name'   => $this->option_group,
-            'callback'      => [$this, 'checkboxSaniitize'],
+            'callback'      => [$this, 'checkboxSanitize'],
         ]; 
 
         $this->settingsData[] = $settingDataItem;
@@ -295,9 +295,10 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
     /** 4. Helper methods */
     /** 4.1. Render page content */
     public function renderPageContent(){
-        $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
+        // $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
 
-        $this->displayCallbacks->renderTroubleshootSubpage();
+        // $this->displayCallbacks->renderTroubleshootSubpage();
+        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/troubleshoot-subpage.php" );
     }//renderTroubleshootSubpageContent
 
     /** 4.2. Settings callback -  Checkbox sanitize */

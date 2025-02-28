@@ -111,8 +111,10 @@ class AdminParentRootPage extends AbstractAdminPage{
     /** 3.1.1. Register service to plugin workflow*/
     public function register(){
         // 1. Add this top-level admin setting page to the WP admin menu page
+        // 1.1. Top level menu page
         add_action( 'admin_menu', [ $this, 'add_Top_Menu_Page_To_WP_Admin_Menu' ] , $this->admin_menu_priority );
-        // add_action( 'admin_menu', [ $this, 'add_Top_SubMenu_Page_To_WP_Admin_Menu' ] , $this->admin_menu_priority + 1 );
+        // 1.2. Top level submenu page
+        add_action( 'admin_menu', [ $this, 'add_Top_SubMenu_Page_To_WP_Admin_Menu' ] , $this->admin_menu_priority + 1 );
 
         // 2. Load extra resources for this top level page
         $this->load_Extra_Resources();        
@@ -148,14 +150,14 @@ class AdminParentRootPage extends AbstractAdminPage{
     }//add_Page_To_WP_Admin_Menu    
 
     /** 3.2.2. Add top-level submenu page - it would be duplicated to the same parent menu page */
-    /* public function add_Top_SubMenu_Page_To_WP_Admin_Menu(){
+    public function add_Top_SubMenu_Page_To_WP_Admin_Menu(){
         // declare a dummy callback function
         $page = [
             'parent_slug'       => $this->menu_slug,
             'page_title'        => $this->page_title,
             'menu_title'        => 'Overview',
             'capability'        => $this->capability,
-            'menu_slug'         => sprintf( '%s_top_page', $this->menu_slug ),
+            'menu_slug'         => $this->menu_slug,
             'callback'          => function(){echo '<h3> dutapod-companion plugin sub pages </h3>';},
         ];
         
@@ -233,9 +235,11 @@ class AdminParentRootPage extends AbstractAdminPage{
     /** 4. Helper functions */
     /** 4.1. Render page content */
     public function renderPageContent(){
-        $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
+        // $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
 
-        $this->displayCallbacks->renderAdminParentRootPage();
+        // $this->displayCallbacks->renderAdminParentRootPage();
+
+        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/admin-parent-root.php" );
     }//renderPageContent
 
 

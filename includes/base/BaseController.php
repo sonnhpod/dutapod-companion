@@ -62,7 +62,8 @@ class BaseController{
         
         /** 2. Additional plugin properties */
         /** Create 3 setting page manager to manage CPT, taxonomies, widgets */
-        $this->settingPageManagers = array(
+
+       /*  $this->settingPageManagers = array(
             SettingsManagerPage::createInstance(
                 'cpt_manager', 'Custom Post Type (CPT) Manager', 'dutapod-cpt-manager'
             ),
@@ -72,7 +73,7 @@ class BaseController{
             SettingsManagerPage::createInstance(
                 'widgets_manager', 'Widgets Manager', 'dutapod-widgets-manager'
             ),
-        );         
+        );          */
 
     }//__construct
 

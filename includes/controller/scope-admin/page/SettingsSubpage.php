@@ -19,17 +19,17 @@ use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as Display
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AbstractAdminSubpage as AbstractAdminSubpage;
 
-class SettingsManagementSubpage extends AbstractAdminSubpage{
+class SettingsSubpage extends AbstractAdminSubpage{
 
     /** I. Variable decalration */
     // 1. Callback function to render HTML content - defined in AbstractSubpage class
 
 
     // 2. styles and script
-    const STYLE_FILENAME = 'settings-management-subpage.css';
-    const STYLE_HANDLER = 'dutapod-settings-management-subpage-style';
-    const SCRIPT_FIlENAME = 'settings-management-subpage.js';
-    const SCRIPT_HANDLER = 'dutapod-settings-management-subpage-script';
+    const STYLE_FILENAME = 'settings-subpage.css';
+    const STYLE_HANDLER = 'dutapod-settings-subpage-style';
+    const SCRIPT_FIlENAME = 'settings-subpage.js';
+    const SCRIPT_HANDLER = 'dutapod-settings-subpage-script';
 
     // 2.2. Public path of styles and scripts - defined in AbstractSubpage class
     // public static $STYLE_PATH;
@@ -71,6 +71,7 @@ class SettingsManagementSubpage extends AbstractAdminSubpage{
 
         // 3. Setup additional class local properties
         $this->set_Local_Class_Properties();
+
         $this->set_Subpage_Properties();
 
         // 4. Load extra resources if requesting to this WP admin troubleshooting page
@@ -90,6 +91,9 @@ class SettingsManagementSubpage extends AbstractAdminSubpage{
         // $currentPage->callback = $inputData['callback'] ?? (function(){ return false; })();
         $currentPage->icon_url = $inputSubpageData['icon_url'] ?? '';
         $currentPage->subpage_position = $inputSubpageData['subpage_position'] ?? 0;
+
+        // admin menu priority 
+        $currentPage->admin_menu_priority = $inputSubpageData['admin_menu_priority'] ?? $currentPage->admin_menu_priority;
 
         return $currentPage;
     }//createPageWithFullData
@@ -123,20 +127,21 @@ class SettingsManagementSubpage extends AbstractAdminSubpage{
     /** 2.2.2. Page content properties */
     /** 2.2.2.1. Subpage data */
     public function set_Subpage_Properties(){
-        $this->pageId = 'troubleshoot_manager';
-        $this->pageTitle = 'Troubleshoot Manager Page';
-        $this->pageClassnames = 'dutapod-troubleshoot-manager';
+        $this->pageId = 'settings';
+        $this->pageTitle = 'Settings Page';
+        $this->pageClassnames = 'dutapod-settings';
     }//set_Subpage_Properties
 
     /** 2.2.2.2. settings data - without array $inputData */
     public function set_Settings_Data(){
         // 'callback'          => array( $this->callbacksManager, 'checkboxSanitize' ),
-        $this->option_name = sprintf( '%s_plugin_troubleshoot', self::$PLUGIN_NAME);
+        $this->option_name = sprintf( '%s_plugin_settings', self::$PLUGIN_NAME);
         $this->option_group = sprintf( '%s_plugin', self::$PLUGIN_NAME );
 
         $settingDataItem = [
             'option_group'  =>  $this->option_name,
             'option_name'   => $this->option_group,
+            'callback'      => [$this, 'checkboxSanitize'],
         ]; 
 
         $this->settingsData[] = $settingDataItem;
@@ -146,9 +151,10 @@ class SettingsManagementSubpage extends AbstractAdminSubpage{
     public function set_Sections_Data( array $inputData ){
         // 'callback'      => array( $this->callbacksManager, 'dutapodSectionManager' ),
         $sectionDataItem = [
-            'id'            =>  $inputData['id'] ?? '',
-            'title'         =>  $inputData['title'] ?? '',            
-            'page'          =>  $inputData['page'] ?? '',
+            'id'            => sprintf( '%s_demo_section', self::$PLUGIN_NAME ),
+            'title'         => $this->page_title,
+            'callback'      => [ $this, 'renderDemoSectionContent' ],
+            'page'          => $this->menu_slug,
         ];
 
         $this->sectionsData[] = $sectionDataItem;
@@ -160,11 +166,12 @@ class SettingsManagementSubpage extends AbstractAdminSubpage{
         // 'callback'      => array($this->callbacksManager, 'displayCheckboxField'),
         $fieldDataItem = [
             'id'            => $this->pageId,
-            'title'         => sprintf('Activate %s', $this->pageTitle),            
-            'page'          => $inputData['page'] ?? '',
-            'section'       => $inputData['section'] ?? '',
+            'title'         => sprintf('Activate %s', $this->pageTitle),  
+            'callback'      => [ $this, 'displayCheckboxField' ],          
+            'page'          => $this->menu_slug,
+            'section'       => sprintf( '%s_demo_section', self::$PLUGIN_NAME ),
             'args'          => array(
-                'option_name'   => 'dutapod_plugin',
+                'option_name'   => $this->option_name,
                 'label_for'     => $this->pageId,
                 'class'         => sprintf('ui-toggle %s', $this->pageClassnames),
             )
@@ -177,15 +184,41 @@ class SettingsManagementSubpage extends AbstractAdminSubpage{
     /** III. Main operational function */
     /** 3.1.1. Register service to plugin workflow*/
     public function register(){
-        $this->load_Extra_Resources();
+        // 1. Add this top-level admin setting page to the WP admin menu page
+        
+        // Must be after the top-level admin menu page
+        add_action( 'admin_menu', [ $this, 'add_SubMenu_Page_To_WP_Admin_Menu' ], $this->admin_menu_priority );
+
+        // 2. Load extra resources for this top level page
+        $this->load_Extra_Resources();        
+
+        // 3. Add settings for the admin parent root page
+
+        // 4. Add sections for the admin parent root page
+
+        // 5. Add fields for the admin parent root page
+
     }//register
 
     /** 3.1.2. Render page content */
-    public function renderPageContent(){
-        $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
+    /** 3.2. Add top-level admin setting page */
+    public function add_SubMenu_Page_To_WP_Admin_Menu(){
+        $page = [
+            'parent_slug'       => $this->parent_slug,
+            'page_title'        => $this->page_title,
+            'menu_title'        => $this->menu_title,
+            'capability'        => $this->capability,
+            'menu_slug'         => $this->menu_slug,
+            'callback'          => [ $this, 'renderPageContent' ]
+        ];
 
-        $this->displayCallbacks->renderTroubleshootSubpage();
-    }//renderTroubleshootSubpageContent
+        $this->localDebugger->write_log_general( $page );
+
+        add_submenu_page(
+            $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'],
+            $page['menu_slug'], $page['callback']
+        );
+    }//add_SubMenu_Page_To_WP_Admin_Menu
     
     /** 3.2. Register & enqueue extra resources (style, script) */
     /** 3.2.1. Load extra resources if accessing this page */
@@ -197,6 +230,7 @@ class SettingsManagementSubpage extends AbstractAdminSubpage{
         // 1.2. If request to admin.php
         global $pagenow;
         if( 'admin.php' !== $pagenow ) return false;//OK  
+        // $this->localDebugger->write_log_general(  );
 
         $requestPageSlug = $_GET['page'];     
 
@@ -252,5 +286,67 @@ class SettingsManagementSubpage extends AbstractAdminSubpage{
         wp_enqueue_script( 'jquery' );
     }//enqueue_Extra_Prerequisite_Resources
 
+    /** 4. Helper methods */
+    /** 4.1. Render page content */
+    public function renderPageContent(){
+        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/settings-subpage.php" );
+    }//renderTroubleshootSubpageContent
 
-}//SettingsManagementSubpage class definition
+    /** 4.2. Settings callback -  Checkbox sanitize */
+    /*Sample input:
+    * Input:  ["cpt_manager"] => 1; ["taxonomies_manager"]=>1; ["gallery_manager"]=>1 ... (only item set before)
+    * Output: All items with boolean. If isset => true; if not set => false
+    * ["cpt_manager"]=> true ; ["taxonomies_manager"]=> false;  ["gallery_manager"]=> true ...
+    */
+    public function checkboxSanitize($input): array
+    {
+        // Validate whether the checkbox is checked or not: true or false
+        // return filter_var($input, FILTER_SANITIZE_NUMBER_INT); // filter number
+        //return isset($input);
+        $output = array();
+
+        foreach($this->settingPageManagers as $pageManager){
+            $output[$pageManager->id] = isset($input[$pageManager->id]) ;
+        }
+
+        return $output;
+    }//checkboxSanitize
+
+    // 4.3. Section callback - Render demo section content
+    public function renderDemoSectionContent(){
+        echo '<h1>Manage the sections & features of the dutapod-companion plugin</h1>';
+    }//renderDemoSectionContent
+
+    // 4.4. Field callback - Display checkbox field 
+    public function displayCheckboxField( $args ){
+        $name = $args['label_for'];
+        $classes = $args['class'];
+        // $checkbox = get_option($name) ? 'checked' : ''; // OK
+        //$option_name = get_option( $args['option_name'] ); // as tutorial ?
+        $option_name = $args['option_name'];
+        /* 1 - Array of items with key (string) - value (boolean)
+         *  ["cpt_manager"]=> true ; ["taxonomies_manager"]=> false;  ["gallery_manager"]=> true
+         ***/
+        $checkboxDbValue = get_option( $option_name );
+        // $checkboxDbStatus = isset($checkboxDbValue[$name]) ? ( $checkboxDbValue[$name] ? true : false ) : false;
+        $checkboxDbStatus = isset($checkboxDbValue[$name]) && $checkboxDbValue[$name]; // Equivalent expression to the above
+        $checkbox = $checkboxDbStatus ? 'checked' : '';
+        //$checkbox = $checkboxDbValue[$name] ? 'checked' : ''; // OK
+    
+        $displayName = sprintf('%s[%s]',$option_name, $name); // display: devsunshine_plugin[cpt_manager]
+        //$checkStatus = get_option($name) ? 'checked' : 'unchecked';
+
+        $outputHTML =  <<<HTML
+        <div class="{$classes}">
+            <input type="checkbox" name="{$displayName}" value="1" class="{$classes}" $checkbox>
+            <label class="item-checkbox-label" for="{$name}">
+              <div></div>
+            </label>
+        </div>
+        HTML;
+
+        echo $outputHTML;    
+    }//displayCheckboxField
+
+
+}//SettingsSubpage class definition
