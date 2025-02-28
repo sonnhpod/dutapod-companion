@@ -1,0 +1,1 @@
+<h1>Manage all settings for the plugin dutapod-companion</h1>

@@ -29,7 +29,7 @@ class AdminManagerCallbacks extends BaseController{
         $output = array();
 
         foreach($this->settingPageManagers as $pageManager){
-        $output[$pageManager->id] = isset($input[$pageManager->id]) ;
+            $output[$pageManager->id] = isset($input[$pageManager->id]) ;
         }
 
         //$this->debugger->write_log_general($input);

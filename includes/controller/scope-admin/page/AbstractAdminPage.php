@@ -34,16 +34,25 @@ abstract class AbstractAdminPage extends BaseController{
     public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties
-    public string $page_title;
-    public string $menu_title;
-    public string $capability;
-    public string $menu_slug;
+    // 3.1. WP admin parent root page properties
+    public string $page_title; // i.e: Dutapod Plugin
+    public string $menu_title; // i.e: Dutapod Companion
+    public string $capability; // i.e: manage_options
+    public string $menu_slug;  // i.e: dutapod-companion_plugin (plugin name is : dutapod-companion)
     // Callback function to display HTML content at WP admin setting page
     // public $callback; $this->renderPageContent() has already fulfilled this task
-    public string $icon_url;
-    public int $page_position; // 'position' argument when adding page to WP admin setting page
+    public string $icon_url;  // i.e: dashicons-welcome-widgets-menus // use built-in icon of WordPress
+    public int $page_position; // 'position' argument when adding page to WP admin setting page. 112 is the default last most
+
+    // Priority for adding menu/submenu page to the WP admin setting page. Default = 10
+    public int $admin_menu_priority;
 
     // public static string $MENU_SLUG;
+
+    // 3.2. Sections properties
+
+    // 3.3. Fields properties
+    
 
     /** 2. Constructor */
     // 2.1. Main constructor
@@ -55,6 +64,8 @@ abstract class AbstractAdminPage extends BaseController{
         // 2. Initialize the display callback 
         $this->displayCallbacks = DisplayWpAdminPages::getInstance();
 
+        // 3. Initialize default value that will not be change across inherited class:
+        $this->admin_menu_priority = 10;
         // 3. Setup additional class local properties
         // $this->set_Local_Class_Properties();
 
@@ -63,7 +74,7 @@ abstract class AbstractAdminPage extends BaseController{
     }//__construct
 
     // 2.1.2. Constructor with variable parsing
-    public static function createPageWithInputData( array $inputData ){}
+    public static function createPageWithInputPageData( array $inputPageData ){}
     
     /** 2.2. Helper method for constructor*/
     /** 2.2.1. Set local properties for this local class */

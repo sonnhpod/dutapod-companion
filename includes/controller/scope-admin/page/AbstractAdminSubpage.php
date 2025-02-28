@@ -34,18 +34,25 @@ abstract class AbstractAdminSubpage extends BaseController{
     public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties
-    public string $parent_slug;
-    public string $page_title;
-    public string $menu_title;
-    public string $capability;
-    public string $menu_slug;
+    // 3.1. WP admin setting sub-pages properties
+    public string $parent_slug;// i.e: dutapod-companion_plugin
+    public string $page_title; // i.e: Dutapod troubleshoot page
+    public string $menu_title; // i.e: Troubleshoot
+    public string $capability; // i.e: manage_options
+    public string $menu_slug;  // i.e: dutapod-companion_plugin_troubleshoot (plugin name is dutapod-companion)
     // Callback function to display HTML content at WP admin setting page
-    // public $callback; $this->renderPageContent() has already fulfilled this task
+    // public $callback; // $this->renderPageContent() has already fulfilled this task
     public string $icon_url;
     public int $subpage_position; // 'position' argument when adding page to WP admin setting page
 
-    //public static string $MENU_SLUG;
+    // Priority for adding menu/submenu page to the WP admin setting page. Default = 10
+    public int $admin_menu_priority;
 
+    // 3.2. Sections properties
+
+    // 3.3. Field properties 
+
+    
     /** 2. Constructor */
     // 2.1. Main constructor
     // 2.1.1. Simple constructor withour variable
@@ -56,6 +63,9 @@ abstract class AbstractAdminSubpage extends BaseController{
         // 2. Initialize the display callback 
         $this->displayCallbacks = DisplayWpAdminPages::getInstance();
 
+        // 3. Initialize default value that will not be change across inherited class:
+        $this->admin_menu_priority = 10;
+        
         // 3. Setup additional class local properties
         // $this->set_Local_Class_Properties();
 
@@ -64,7 +74,7 @@ abstract class AbstractAdminSubpage extends BaseController{
     }//__construct
 
     // 2.1.2. Constructor with variable parsing
-    public static function createPageWithInputData( array $inputData ){}
+    public static function createPageWithInputSubpageData( array $inputSubpageData ){}
 
     /** 2.2. Helper method for constructor*/
     /** 2.2.1. Set local properties for this local class */

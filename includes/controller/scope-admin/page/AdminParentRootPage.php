@@ -64,22 +64,25 @@ class AdminParentRootPage extends AbstractAdminPage{
     }//__construct
 
     // 2.1.2. Constructor with variable parsing 
-    public static function createPageWithInputData( array $inputData ){
+    public static function createPageWithInputPageData( array $inputPageData ){
         $currentPage = new self();
 
-        $currentPage->page_title = $inputData['page_title'] ?? '';
-        $currentPage->menu_title = $inputData['menu_title'] ?? '';
-        $currentPage->capability = $inputData['capability'] ?? '';
-        $currentPage->menu_slug = $inputData['menu_slug'] ?? '';
-        // self::$MENU_SLUG = $inputData['menu_slug'] ?? '';
-        $currentPage->icon_url = $inputData['icon_url'] ?? '';
+        $currentPage->page_title = $inputPageData['page_title'] ?? '';
+        $currentPage->menu_title = $inputPageData['menu_title'] ?? '';
+        $currentPage->capability = $inputPageData['capability'] ?? '';
+        $currentPage->menu_slug = $inputPageData['menu_slug'] ?? '';
+        // self::$MENU_SLUG = $inputPageData['menu_slug'] ?? '';
+        $currentPage->icon_url = $inputPageData['icon_url'] ?? '';
 
-        // $currentPage->callback = $inputData['callback'] ?? (function(){ return false; })();
+        // $currentPage->callback = $inputPageData['callback'] ?? (function(){ return false; })();
 
-        $currentPage->page_position = $inputData['page_position'] ?? 0;
+        $currentPage->page_position = $inputPageData['page_position'] ?? 0;
+
+        // admin menu priority 
+        $currentPage->admin_menu_priority = $inputPageData['admin_menu_priority'] ?? $currentPage->admin_menu_priority;
 
         return $currentPage;
-    }//createPageWithFullData
+    }//createPageWithInputPageData
 
 
     /** 2.2. Helper method for constructor*/
@@ -104,20 +107,66 @@ class AdminParentRootPage extends AbstractAdminPage{
     }//set_Local_Properties
 
     /** 3. Main operational function */ 
+    /** 3.1. Essential operational functions */
     /** 3.1.1. Register service to plugin workflow*/
     public function register(){
-        $this->load_Extra_Resources();
+        // 1. Add this top-level admin setting page to the WP admin menu page
+        add_action( 'admin_menu', [ $this, 'add_Top_Menu_Page_To_WP_Admin_Menu' ] , $this->admin_menu_priority );
+        // add_action( 'admin_menu', [ $this, 'add_Top_SubMenu_Page_To_WP_Admin_Menu' ] , $this->admin_menu_priority + 1 );
+
+        // 2. Load extra resources for this top level page
+        $this->load_Extra_Resources();        
+
+        // 3. Add settings for the admin parent root page
+
+        // 4. Add sections for the admin parent root page
+
+        // 5. Add fields for the admin parent root page
+
     }//register
 
-    /** 3.1.2. Render page content */
-    public function renderPageContent(){
-        $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
 
-        $this->displayCallbacks->renderAdminParentRootPage();
-    }//renderPageContent
+    /** 3.2. Add top-level admin setting page */
+    /** 3.2.1. Add top-level admin setting page */
+    public function add_Top_Menu_Page_To_WP_Admin_Menu(){
 
-    /** 3.2. Register & enqueue extra resources (style, script) */
-    /** 3.2.1. Load extra resources if accessing this page */
+        $page = [
+            'page_title'    =>  $this->page_title,
+            'menu_title'    =>  $this->menu_title,
+            'capability'    =>  $this->capability,
+            'menu_slug'     =>  $this->menu_slug,
+            'callback'      =>  [$this, 'renderPageContent' ],
+            'icon_url'      =>  $this->icon_url,
+            'position'      =>  $this->page_position,
+        ];
+
+        add_menu_page(
+            $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],
+            $page['callback'], $page['icon_url'],$page['position']
+        );
+       
+    }//add_Page_To_WP_Admin_Menu    
+
+    /** 3.2.2. Add top-level submenu page - it would be duplicated to the same parent menu page */
+    /* public function add_Top_SubMenu_Page_To_WP_Admin_Menu(){
+        // declare a dummy callback function
+        $page = [
+            'parent_slug'       => $this->menu_slug,
+            'page_title'        => $this->page_title,
+            'menu_title'        => 'Overview',
+            'capability'        => $this->capability,
+            'menu_slug'         => sprintf( '%s_top_page', $this->menu_slug ),
+            'callback'          => function(){echo '<h3> dutapod-companion plugin sub pages </h3>';},
+        ];
+        
+        add_submenu_page(
+            $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'],
+            $page['menu_slug'], $page['callback']
+        );
+    }//add_Top_SubMenu_Page_To_WP_Admin_Menu */
+
+    /** 3.3. Register & enqueue extra resources (style, script) */
+    /** 3.3.1. Load extra resources if accessing this page */
     public function load_Extra_Resources(){
         // 1. Validate the client's incoming request.
         // 1.1. If requesting to an admin page
@@ -140,7 +189,7 @@ class AdminParentRootPage extends AbstractAdminPage{
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue_Extra_Resources'] );
     }//load_Extra_Resources
 
-    /** 3.2.2. Register extra resources for this admin parent root page */
+    /** 3.3.2. Register extra resources for this admin parent root page */
     public function register_Extra_Resources(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
@@ -153,7 +202,7 @@ class AdminParentRootPage extends AbstractAdminPage{
 
     }//register_Extra_Resources
 
-    /** 3.2.3. Enqueue extra resources for this admin parent root page */
+    /** 3.3.3. Enqueue extra resources for this admin parent root page */
     public function enqueue_Extra_Resources(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
@@ -168,7 +217,7 @@ class AdminParentRootPage extends AbstractAdminPage{
         // wp_localize_script( self::SCRIPT_HANDLER, 'woocommerce_params', [ 'ajax_url' => admin_url('admin-ajax.php') ] );
     }//enqueue_Extra_Resources
 
-    /** 3.2.4. Enqueue prerequisite resources for this admin troubleshoot page */
+    /** 3.3.4. Enqueue prerequisite resources for this admin troubleshoot page */
     public function enqueue_Extra_Prerequisite_Resources(){
         // 1. Style 
         wp_enqueue_style( 'dashicons' );
@@ -180,5 +229,14 @@ class AdminParentRootPage extends AbstractAdminPage{
         // jquery library
         wp_enqueue_script( 'jquery' );
     }//enqueue_Extra_Prerequisite_Resources
+
+    /** 4. Helper functions */
+    /** 4.1. Render page content */
+    public function renderPageContent(){
+        $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
+
+        $this->displayCallbacks->renderAdminParentRootPage();
+    }//renderPageContent
+
 
 }//AdminParentRoot class definition

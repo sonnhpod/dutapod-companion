@@ -1,0 +1,1 @@
+<h1>Manage custom widget from the plugin dutapod-companion</h1>

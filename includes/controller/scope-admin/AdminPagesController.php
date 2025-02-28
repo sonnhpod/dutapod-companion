@@ -17,8 +17,19 @@ use DutapodCompanion\Includes\Api\Callbacks\Admin\AdminManagerCallbacks as Admin
 use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminParentRootPage as AdminParentRootPage;
 use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\TroubleshootSubpage as TroubleshootSubpage;
 
-/** 1. This class is responsible to insert all plugins' admin setting pages to the WP admin setting pages menu. */
-/** - The original class is AdminGeneral / Admin in all previous plugin version*/
+/** 1. This class is responsible to insert all plugins' admin setting pages to the WP admin setting pages menu. 
+ * 2. Steps to insert WP admin setting pages of this plugin:
+ * 2.1. Insert the top-level plugin admin setting page: menu_slug: dutapod-companion_plugin 
+ * 2.2. Insert submenu admin setting pages (if it is activated):
+ * - Submenu page custom content management. menu_slug: dutapod-companion_plugin-custom_content
+ * - Submenu page custom post type management. menu_slug: dutapod-companion_plugin-custom_post_type
+ * - Submenu page custom shortcode management. menu_slug: dutapod-companion_plugin-custom_shortcode
+ * - Submenu page custom taxonomy management. menu_slug: dutapod-companion_plugin-custom_taxonomy
+ * - Submenu page custom widget management. menu_slug: dutapod-companion_plugin-custom_widget
+ * 2.3. Insert the submenu settings management page. menu_slug: dutapod-companion_plugin-settings_management
+ * 2.4. Innsert the submenut troubleshoot page. menu_slug: dutapod-companion_plugin-troubleshoot
+*/
+/** - The original class is AdminGeneral / Admin in all previous plugin version */
 class AdminPagesController extends BaseController{
 
     /** 1. Variables declaration */
@@ -64,31 +75,37 @@ class AdminPagesController extends BaseController{
         // + Remove the callback function entry : 'callback' => [ $this->troubleshootSubpage, 'renderPageContent' ]
         // + menu_slug is dutapod-companion_plugin
         // + page_position is the original position
-        $this->adminParentRootPage = AdminParentRootPage::createPageWithInputData(
+        $this->adminParentRootPage = AdminParentRootPage::createPageWithInputPageData(
             [
-                'page_title'    => 'Dutapod Plugin',
-                'menu_title'    => 'Dutapod Companion',
-                'capability'    => 'manage_options',
-                'menu_slug'     => sprintf( '%s_plugin', self::$PLUGIN_NAME ),               
-                'icon_url'      => 'dashicons-welcome-widgets-menus',
-                'page_position' => 121,
+                'page_title'            => 'Dutapod Plugin',
+                'menu_title'            => 'Dutapod Companion',
+                'capability'            => 'manage_options',
+                'menu_slug'             => sprintf( '%s_plugin', self::$PLUGIN_NAME ),               
+                'icon_url'              => 'dashicons-welcome-widgets-menus',
+                'page_position'         => 121,
+                'admin_menu_priority'   => 120,
             ]
         );
-        // Register the admin parent root page instance to the plugin's workflow
+        /** 1.2.2. Register the admin parent root page instance to the plugin's workflow.
+         * - Add this top-level menu page to the WP admin menu page 
+         * - Load its corresponding custom CSS and JS 
+         * */         
         $this->adminParentRootPage->register();
 
         // $this->troubleshootSubpage = new TroubleshootSubpage();// OK
         // Use wrapped constructor.  
         // + Remove the callback function: 'callback' => [ $this->troubleshootSubpage, 'renderPageContent' ]
-        // + parent_slug is dutapod-companion_plugin
-        $this->troubleshootSubpage = TroubleshootSubpage::createPageWithInputData(
+        // + parent_slug is dutapod-companion_plugin       
+
+        $this->troubleshootSubpage = TroubleshootSubpage::createPageWithInputSubpageData(
             [
                 'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
                 'page_title'            => 'Dutapod troubleshoot page',
                 'menu_title'            => 'Troubleshoot',
                 'capability'            => 'manage_options',
-                'menu_slug'             => sprintf( '%s_plugin_troubleshoot', self::$PLUGIN_NAME ),     
-                'subpage_position'      => 10,           
+                'menu_slug'             => sprintf( '%s_plugin-troubleshoot', self::$PLUGIN_NAME ),     
+                'subpage_position'      => 10,    
+                'admin_menu_priority'   => $this->adminParentRootPage->admin_menu_priority + 8,       
             ]
         );
         // Register the admin parent root page instance to the plugin's workflow
@@ -113,7 +130,7 @@ class AdminPagesController extends BaseController{
          * (parent_slug, page_title, menu_title, capability, menu_slug ) Only different display callback function
          * 
         */
-        $this->settings->addAdminPages( $this->pages )->withSubPage( 'Overview' )->addSubPages( $this->subpages )->register();
+        // $this->settings->addAdminPages( $this->pages )->withSubPage( 'Overview' )->addSubPages( $this->subpages )->register();
     }//register
 
     /* === Register the main pages in WordPress Admin setting pages === */
@@ -209,7 +226,6 @@ class AdminPagesController extends BaseController{
 
     /* === Register the custom fields in admin setting pages === */
     public function setSettings(){
-
         /**
          * Devsunshine plugins features list:
         * - Modular administration area

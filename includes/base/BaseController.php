@@ -61,6 +61,7 @@ class BaseController{
         //self::$PLUGIN_DEBUGGER = self::$PLUGIN_DEBUGGER ?? new PluginDebugHelper();
         
         /** 2. Additional plugin properties */
+        /** Create 3 setting page manager to manage CPT, taxonomies, widgets */
         $this->settingPageManagers = array(
             SettingsManagerPage::createInstance(
                 'cpt_manager', 'Custom Post Type (CPT) Manager', 'dutapod-cpt-manager'
