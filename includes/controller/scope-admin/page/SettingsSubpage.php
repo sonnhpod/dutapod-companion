@@ -185,7 +185,7 @@ class SettingsSubpage extends AbstractAdminSubpage{
         $this->sectionsData[] = $sectionDataItem;
     }//set_Sections_Data
 
-    /** 2.2.2.4. fields data */
+    /** 2.2.2.4. fields data. There would be multiple fields for a single section */
     public function set_Fields_Data(){
 
         // 'callback'      => array($this->callbacksManager, 'displayCheckboxField'),
@@ -371,7 +371,7 @@ class SettingsSubpage extends AbstractAdminSubpage{
 
     // 4.3. Section callback - Render demo section content
     public function renderDemoSectionContent(){
-        echo '<h1>Manage the sections & features of the dutapod-companion plugin</h1>';
+        echo '<h4>Section content header of the dutapod-companion plugin</h4>';
     }//renderDemoSectionContent
 
     // 4.4. Field callback - Display checkbox field 

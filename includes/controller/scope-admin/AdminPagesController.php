@@ -52,6 +52,9 @@ class AdminPagesController extends BaseController{
     // Sub page corresponding with each parent page
     public array $subpages;
 
+    public static array $MENU_PAGES;
+    public static array $SUBMENU_PAGES;
+
     /** 2. Constructor */
     public function __construct(){
         parent::__construct();
@@ -72,9 +75,8 @@ class AdminPagesController extends BaseController{
 
         // 1.2. Initialize WP admin setting pages controller:
         // 1.2.1. Initialize an admin parent root page instance.
-        // $this->adminParentRootPage = new AdminParentRootPage();// OK 
+        // a.
         // - Use wrapped constructor. 
-        // + Remove the callback function entry : 'callback' => [ $this->troubleshootSubpage, 'renderPageContent' ]
         // + menu_slug is dutapod-companion_plugin
         // + page_position is the original position
         $this->adminParentRootPage = AdminParentRootPage::createPageWithInputPageData(
@@ -88,13 +90,38 @@ class AdminPagesController extends BaseController{
                 'admin_menu_priority'   => 120,
             ]
         );
-        /** 1.2.2. Register the admin parent root page instance to the plugin's workflow.
+
+        /** b. Register the admin parent root page instance to the plugin's workflow.
          * - Add this top-level menu page to the WP admin menu page 
          * - Load its corresponding custom CSS and JS 
          * */         
         $this->adminParentRootPage->register();
 
-        // 1.3. Settings Management subpage
+        // c. Add to the class's static property for management purpose
+        self::$MENU_PAGES[ $this->adminParentRootPage->menu_slug ] = $this->adminParentRootPage;
+
+        // 1.2.2. troubleshoot submenu page
+        // a. Create a troubleshoot submenu page - Use wrapped constructor.  
+        // + parent_slug is dutapod-companion_plugin       
+        $this->troubleshootSubpage = TroubleshootSubpage::createPageWithInputSubpageData(
+            [
+                'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
+                'page_title'            => 'Dutapod troubleshoot page',
+                'menu_title'            => 'Troubleshoot',
+                'capability'            => 'manage_options',
+                'menu_slug'             => sprintf( '%s_plugin-troubleshoot', self::$PLUGIN_NAME ),     
+                'subpage_position'      => 10,    
+                'admin_menu_priority'   => $this->adminParentRootPage->admin_menu_priority + 8,       
+            ]
+        );
+
+        // b. Register the admin parent root page instance to the plugin's workflow
+        $this->troubleshootSubpage->register();
+
+        // c. Add to the class's static property for management purpose
+        self::$SUBMENU_PAGES[ $this->troubleshootSubpage->menu_slug ] = $this->troubleshootSubpage;
+
+        // 1.2.3. Settings Management subpage
         $this->settingsSubpage = SettingsSubpage::createPageWithInputSubpageData(
             [
                 'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
@@ -110,33 +137,16 @@ class AdminPagesController extends BaseController{
         // Register the admin parent root page instance to the plugin's workflow
         $this->settingsSubpage->register(); // Cause error when registering settings subpage
 
-        // 1.4. 
-        // $this->troubleshootSubpage = new TroubleshootSubpage();// OK
-        // Use wrapped constructor.  
-        // + Remove the callback function: 'callback' => [ $this->troubleshootSubpage, 'renderPageContent' ]
-        // + parent_slug is dutapod-companion_plugin       
-
-        $this->troubleshootSubpage = TroubleshootSubpage::createPageWithInputSubpageData(
-            [
-                'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
-                'page_title'            => 'Dutapod troubleshoot page',
-                'menu_title'            => 'Troubleshoot',
-                'capability'            => 'manage_options',
-                'menu_slug'             => sprintf( '%s_plugin-troubleshoot', self::$PLUGIN_NAME ),     
-                'subpage_position'      => 10,    
-                'admin_menu_priority'   => $this->adminParentRootPage->admin_menu_priority + 8,       
-            ]
-        );
-        // Register the admin parent root page instance to the plugin's workflow
-        $this->troubleshootSubpage->register();
+        // c. Add to the class's static property for management purpose
+        self::$SUBMENU_PAGES[ $this->settingsSubpage->menu_slug ] = $this->settingsSubpage;
 
         /** 1.3. Register all WP admin setting page object to the WP workflow 
          * - Register at admin_init hook
         */
 
-        add_action( 'admin_init', [ $this->adminParentRootPage, 'register' ], 201 );
-        add_action( 'admin_init', [ $this->settingsSubpage, 'register' ], 202 );
-        add_action( 'admin_init', [ $this->troubleshootSubpage, 'register' ], 203 );
+        // add_action( 'admin_init', [ $this->adminParentRootPage, 'register' ], 201 );
+        // add_action( 'admin_init', [ $this->settingsSubpage, 'register' ], 202 );
+        // add_action( 'admin_init', [ $this->troubleshootSubpage, 'register' ], 203 );
 
 
         // 2. Set WP admin setting page list
