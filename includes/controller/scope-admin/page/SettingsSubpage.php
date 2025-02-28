@@ -237,7 +237,7 @@ class SettingsSubpage extends AbstractAdminSubpage{
             'callback'          => [ $this, 'renderPageContent' ]
         ];
 
-        $this->localDebugger->write_log_general( $page );
+        // $this->localDebugger->write_log_general( $page );
 
         add_submenu_page(
             $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'],
