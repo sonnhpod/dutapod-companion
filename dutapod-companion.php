@@ -89,7 +89,7 @@ if( class_exists( Init::class ) ){
         // 1. Register Wordpress Admin setting page service
         Init::register_admin_services();
 
-        // 1.2. Register frontend service if it is an AJAX request
+        // 1.2. Register additional frontend services if the incoming HTTP request is an AJAX request
         if( strpos($_SERVER['REQUEST_URI'], 'admin-ajax.php' ) !== false ){
             // 2. Register WordPress frontend service.
             // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
@@ -97,7 +97,7 @@ if( class_exists( Init::class ) ){
             Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
         }
 
-        // 1.3. Register frontend service if it is a page editor / post editor request
+        // 1.2. Register additional frontend services if the incoming HTTP request is a page editor / post editor request
         if( strpos($_SERVER['REQUEST_URI'], 'post.php' ) !== false ){
             // 2. Register WordPress frontend service.
             // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.

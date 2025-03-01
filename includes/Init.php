@@ -82,12 +82,15 @@ final class Init{
      * 3. Frontend scope
      */
 
-    public static function register_plugin_services(){
+    
+    /* public static function register_plugin_services(){
         self::register_admin_services();
         self::register_editor_services();
         self::register_frontend_services();
-    }//register_plugin_services
+    }//register_plugin_services */
 
+    /**3. Main operational functions of the plugin */
+    /** 3.1. Register all services belong to WP admin setting page scope */
     public static function register_admin_services(){
         $servicesList = self::get_admin_services();
 
@@ -105,10 +108,12 @@ final class Init{
         }// Endforeach $servicesList as $serviceItem
     }//register_admin_services
 
+    /** 3.2. Register all services belong to WP editor (post, page) scope */
     public static function register_editor_services(){
         return false;
     }//register_editor_services
 
+    /** 3.3. Register all services belong to WP frontend display scope */
     public static function register_frontend_services(){
         $servicesList = self::get_frontend_services();
 
@@ -125,6 +130,24 @@ final class Init{
 
         }// Endforeach $servicesList as $serviceItem
     }//register_frontend_services
+
+    /** 3.1. Register all services belong to specific needs */
+    public static function regiser_custom_services( array $servicesList ){
+
+        foreach( $servicesList as $serviceItem ){
+            // 1. Initialize an instance of the dedicated service
+            $instance = self::instantiate( $serviceItem );
+
+            // 2. Run all actions defined in the corresponding services in "register" method
+            if( method_exists( $instance , 'register' ) ){
+                $instance->register();
+            }//method_exists( $instance , 'register' )
+
+            self::$FRONTEND_INSTANCES_LIST[ $serviceItem ] = $instance;
+
+        }// Endforeach $servicesList as $serviceItem
+        
+    }//regiser_custom_services
 
     // Define a list of instance that will be initialized to run plugin
     /****
