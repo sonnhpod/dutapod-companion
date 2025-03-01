@@ -19,24 +19,17 @@ use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as Display
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AbstractAdminSubpage as AbstractAdminSubpage;
 
-/** Support the display and operational function of the admin's parent root page 
- * 1. Enqueue custom CSS and JS - OK
- * 2. Display the content of this page at its corresponding WP admin setting pages - OK
- * 3. Handle AJAX request if it is exist.
- * 
-*/
-
-class TroubleshootSubpage extends AbstractAdminSubpage{
+class SubpageSettings extends AbstractAdminSubpage{
 
     /** 1. Variable decalration */
     // 1. Callback function to render HTML content - defined in AbstractSubpage class
 
 
     // 2. styles and script
-    const STYLE_FILENAME = 'troubleshoot-subpage.css';
-    const STYLE_HANDLER = 'dutapod-troubleshoot-subpage-style';
-    const SCRIPT_FIlENAME = 'admin-parent-root.js';
-    const SCRIPT_HANDLER = 'dutapod-troubleshoot-subpage-script';
+    const STYLE_FILENAME = 'settings-subpage.css';
+    const STYLE_HANDLER = 'dutapod-settings-subpage-style';
+    const SCRIPT_FIlENAME = 'settings-subpage.js';
+    const SCRIPT_HANDLER = 'dutapod-settings-subpage-script';
 
     // 2.2. Public path of styles and scripts - defined in AbstractSubpage class
     // public static $STYLE_PATH;
@@ -63,9 +56,9 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
     public array $sectionsData;
 
     // 3.4. Fields properties
-    public array $fieldsData;   
+    public array $fieldsData;  
 
-
+    /************************************************************************************************************/
     /** 2. Constructor */
     // 2.1. Main constructor
     // 2.1.1. Simple constructor withour variable
@@ -78,7 +71,9 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
 
         // 3. Setup additional class local properties
         $this->set_Local_Class_Properties();
-        $this->set_Subpage_Properties();
+
+        // $this->set_Subpage_Properties();
+       
 
         // 4. Load extra resources if requesting to this WP admin troubleshooting page
         // $this->load_Extra_Resources();
@@ -88,20 +83,29 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
     public static function createPageWithInputSubpageData( array $inputSubpageData ){
         $currentPage = new self();
 
+        // 1. Page properties
         $currentPage->parent_slug = $inputSubpageData['parent_slug'] ?? '';
         $currentPage->page_title = $inputSubpageData['page_title'] ?? '';
         $currentPage->menu_title = $inputSubpageData['menu_title'] ?? '';
         $currentPage->capability = $inputSubpageData['capability'] ?? '';
         $currentPage->menu_slug = $inputSubpageData['menu_slug'] ?? '';        
-        //self::$MENU_SLUG = $inputData['menu_slug'] ?? '';
-        // $currentPage->callback = $inputData['callback'] ?? (function(){ return false; })();
+
         $currentPage->icon_url = $inputSubpageData['icon_url'] ?? '';
         $currentPage->subpage_position = $inputSubpageData['subpage_position'] ?? 0;
 
         // admin menu priority 
         $currentPage->admin_menu_priority = $inputSubpageData['admin_menu_priority'] ?? $currentPage->admin_menu_priority;
 
-        // $this->localDebugger->write_log_general( $this->admin_menu_priority );
+        $currentPage->set_Subpage_Properties();
+
+        // 2. Settings properties 
+        $currentPage->set_Settings_Data();
+
+        // 3. Section properties
+        $currentPage->set_Sections_Data();
+
+        // 4. Field properties
+        $currentPage->set_Fields_Data();
 
         return $currentPage;
     }//createPageWithFullData
@@ -135,44 +139,56 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
     /** 2.2.2. Page content properties */
     /** 2.2.2.1. Subpage data */
     public function set_Subpage_Properties(){
-        $this->pageId = 'troubleshoot_manager';
-        $this->pageTitle = 'Troubleshoot Manager Page';
-        $this->pageClassnames = 'dutapod-troubleshoot-manager';
+        $this->pageId = 'settings';
+        $this->pageTitle = 'Settings Page';
+        $this->pageClassnames = 'dutapod-settings';
     }//set_Subpage_Properties
 
     /** 2.2.2.2. settings data - without array $inputData */
     public function set_Settings_Data(){
         // 'callback'          => array( $this->callbacksManager, 'checkboxSanitize' ),
-        $this->option_name = sprintf( '%s_plugin_troubleshoot', self::$PLUGIN_NAME);
+        $this->option_name = sprintf( '%s_plugin_settings', self::$PLUGIN_NAME);
         $this->option_group = sprintf( '%s_plugin', self::$PLUGIN_NAME );
 
+        $settingArgs = [
+            'type'          => 'string',
+            'label'         => 'dutapod-companion_plugin_label',
+            'description'   => 'general setting for option name: "dutapod-companion_plugin_settings", option group: "dutapod-companion_plugin"',
+            'default'       => 'dutapod-companion_plugin default value'
+        ];
+
         $settingDataItem = [
-            'option_group'  =>  $this->option_name,
+            'option_group'  => $this->option_name,
             'option_name'   => $this->option_group,
             'callback'      => [$this, 'checkboxSanitize'],
+            'args'          => $settingArgs,
         ]; 
 
         $this->settingsData[] = $settingDataItem;
     }//set_Settings_Data
 
     /** 2.2.2.3. sections data */
-    public function set_Sections_Data( array $inputData ){
-        // 'id'            => 'dutapod_admin_index',
-        // 'title'         => 'Settings Manager',
+    public function set_Sections_Data(){
+        // 'callback'      => array( $this->callbacksManager, 'dutapodSectionManager' ),
+        $sectionArgs = [
+            'section_class'     => 'dutapod-companion-settings-section-container'
+        ];
+
         $sectionDataItem = [
             'id'            => sprintf( '%s_demo_section', self::$PLUGIN_NAME ),
             'title'         => $this->page_title,
             'callback'      => [ $this, 'renderDemoSectionContent' ],
             'page'          => $this->menu_slug,
+            'args'          => $sectionArgs
         ];
 
         $this->sectionsData[] = $sectionDataItem;
     }//set_Sections_Data
 
-    /** 2.2.2.4. fields data */
-    public function set_Fields_Data( array $inputData ){
+    /** 2.2.2.4. fields data. There would be multiple fields for a single section */
+    public function set_Fields_Data(){
 
-        // section: use the section id configured in the set_Sections_Data
+        // 'callback'      => array($this->callbacksManager, 'displayCheckboxField'),
         $fieldDataItem = [
             'id'            => $this->pageId,
             'title'         => sprintf('Activate %s', $this->pageTitle),  
@@ -190,6 +206,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
 
     }//set_Fields_Data
 
+    /************************************************************************************************************/
     /** 3. Main operational function */
     /** 3.1.1. Register service to plugin workflow*/
     public function register(){
@@ -201,14 +218,14 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         // 2. Load extra resources for this top level page
         $this->load_Extra_Resources();        
 
-        // 3. Add settings for the admin parent root page
+        /** 3. Register settings, sections, and fields for this settings page: 
+         * - The admin_init hook is executed after admin_menu*/ 
+        add_action( 'admin_init', [ $this, 'register_Submenu_Page_Settings' ] );       
 
-        // 4. Add sections for the admin parent root page
 
-        // 5. Add fields for the admin parent root page
-        
     }//register
 
+    /** 3.1.2. Render page content */
     /** 3.2. Add top-level admin setting page */
     public function add_SubMenu_Page_To_WP_Admin_Menu(){
         $page = [
@@ -220,15 +237,16 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
             'callback'          => [ $this, 'renderPageContent' ]
         ];
 
+        // $this->localDebugger->write_log_general( $page );
+
         add_submenu_page(
             $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'],
             $page['menu_slug'], $page['callback']
         );
     }//add_SubMenu_Page_To_WP_Admin_Menu
-
     
-    /** 3.3. Register & enqueue extra resources (style, script) */
-    /** 3.3.1. Load extra resources if accessing this page */
+    /** 3.2. Register & enqueue extra resources (style, script) */
+    /** 3.2.1. Load extra resources if accessing this page */
     public function load_Extra_Resources(){
         // 1. Validate the client's incoming request.
         // 1.1. If requesting to an admin page
@@ -237,6 +255,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         // 1.2. If request to admin.php
         global $pagenow;
         if( 'admin.php' !== $pagenow ) return false;//OK  
+        // $this->localDebugger->write_log_general(  );
 
         $requestPageSlug = $_GET['page'];     
 
@@ -251,7 +270,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_Extra_Resources' ] );
     }//load_Extra_Resources
 
-    /** 3.3.2. Register extra resources for this admin troubleshoot page */
+    /** 3.2.2. Register extra resources for this admin troubleshoot page */
     public function register_Extra_Resources(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
@@ -264,7 +283,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
 
     }//register_Extra_Resources
 
-    /** 3.3.3. Enqueue extra resources for this admin troubleshoot page */
+    /** 3.2.3. Enqueue extra resources for this admin troubleshoot page */
     public function enqueue_Extra_Resources(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
@@ -279,7 +298,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         // wp_localize_script( self::SCRIPT_HANDLER, 'woocommerce_params', [ 'ajax_url' => admin_url('admin-ajax.php') ] );
     }//enqueue_Extra_Resources
 
-    /** 3.3.4. Enqueue prerequisite resources for this admin troubleshoot page */
+    /** 3.2.4. Enqueue prerequisite resources for this admin troubleshoot page */
     public function enqueue_Extra_Prerequisite_Resources(){
         // 1. Style 
         wp_enqueue_style( 'dashicons' );
@@ -292,13 +311,42 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         wp_enqueue_script( 'jquery' );
     }//enqueue_Extra_Prerequisite_Resources
 
+    /** 3.3. Register settings, sections, fields for the wp admin submenu settings page */
+    public function register_Submenu_Page_Settings(){
+        /** 3. Add settings for the admin parent root page
+         * 3.1. Register necessary settings for this settings subpage under an option group
+         * */ 
+        /** Documentation: https://developer.wordpress.org/reference/functions/register_setting/  */
+        $settingData = $this->settingsData[0];        
+        register_setting( $settingData['option_group'], $settingData['option_name'], $settingData['args'] );
+
+        /** 4. Add sections for the admin parent root page */ 
+        /** Documentation: https://developer.wordpress.org/reference/functions/add_settings_section/  */
+        $sectionData = $this->sectionsData[0];                   
+        add_settings_section( $sectionData['id'], $sectionData['title'], $sectionData['callback'], $sectionData['page'], $sectionData['args'] );
+
+        /** 5. Add fields for the admin parent root page */ 
+        /** Documentation: https://developer.wordpress.org/reference/functions/add_settings_field/  */
+        $fieldData = $this->fieldsData[0];        
+        add_settings_field( $fieldData['id'], $fieldData['title'], $fieldData['callback'], $fieldData['page'], $fieldData['section'], $fieldData['args'] );
+    }//register_Submenu_Page_Settings
+
+    /************************************************************************************************************/
     /** 4. Helper methods */
     /** 4.1. Render page content */
     public function renderPageContent(){
-        // $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
+        /** 1. Prepare data to parse into the template. 
+         * - The data category include:
+         * + Page data
+         * + Settings data
+         * + Sections data
+         * + Section Fields data
+         * */       
 
-        // $this->displayCallbacks->renderTroubleshootSubpage();
-        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/troubleshoot-subpage.php" );
+        // 2. Parse directly $settingsPage object to the template
+        $settingsSubpage = $this;
+
+        require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/settings-subpage.php" );
     }//renderTroubleshootSubpageContent
 
     /** 4.2. Settings callback -  Checkbox sanitize */
@@ -323,7 +371,7 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
 
     // 4.3. Section callback - Render demo section content
     public function renderDemoSectionContent(){
-        echo '<h1>Manage the sections & features of the dutapod-companion plugin</h1>';
+        echo '<h4>Section content header of the dutapod-companion plugin</h4>';
     }//renderDemoSectionContent
 
     // 4.4. Field callback - Display checkbox field 
@@ -357,4 +405,5 @@ class TroubleshootSubpage extends AbstractAdminSubpage{
         echo $outputHTML;    
     }//displayCheckboxField
 
-}//AdminParentRoot class definition
+
+}//SubpageSettings class definition

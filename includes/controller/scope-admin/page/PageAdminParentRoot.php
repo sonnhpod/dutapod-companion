@@ -27,7 +27,7 @@ use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AbstractAdminPage as Ab
  * 3. Handle AJAX request if it is exist.
 */
 
-class AdminParentRootPage extends AbstractAdminPage{
+class PageAdminParentRoot extends AbstractAdminPage{
 
     /** 1. Variable decalration */
     // 1. Callback function to render HTML content - defined in AbstractPage class
@@ -243,4 +243,4 @@ class AdminParentRootPage extends AbstractAdminPage{
     }//renderPageContent
 
 
-}//AdminParentRoot class definition
+}//PageAdminParentRoot class definition

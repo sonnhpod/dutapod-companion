@@ -14,9 +14,9 @@ use DutapodCompanion\Includes\Api\SettingsAdminPages as SettingsAdminPages;
 use DutapodCompanion\Includes\Api\Callbacks\Admin\DisplayWpAdminPages as DisplayWpAdminPages;
 use DutapodCompanion\Includes\Api\Callbacks\Admin\AdminManagerCallbacks as AdminManagerCallbacks;
 // 3. WP admin page system controller 
-use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminParentRootPage as AdminParentRootPage;
-use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SettingsSubpage as SettingsSubpage;
-use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\TroubleshootSubpage as TroubleshootSubpage;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\PageAdminParentRoot as PageAdminParentRoot;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SubpageSettings as SubpageSettings;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SubpageTroubleshoot as SubpageTroubleshoot;
 
 /** 1. This class is responsible to insert all plugins' admin setting pages to the WP admin setting pages menu. 
  * 2. Steps to insert WP admin setting pages of this plugin:
@@ -42,9 +42,9 @@ class MenuAdminPages extends BaseController{
 
     // 1.2. WP admin setting page controller
     // Admin parent root page
-    public AdminParentRootPage $adminParentRootPage;
-    public TroubleshootSubpage $troubleshootSubpage;
-    public SettingsSubpage $settingsSubpage;
+    public PageAdminParentRoot $adminParentRootPage;
+    public SubpageTroubleshoot $troubleshootSubpage;
+    public SubpageSettings $settingsSubpage;
     // Troubleshoot page
 
     // An array that store a list of a parent admin setting page.
@@ -79,7 +79,7 @@ class MenuAdminPages extends BaseController{
         // - Use wrapped constructor. 
         // + menu_slug is dutapod-companion_plugin
         // + page_position is the original position
-        $this->adminParentRootPage = AdminParentRootPage::createPageWithInputPageData(
+        $this->adminParentRootPage = PageAdminParentRoot::createPageWithInputPageData(
             [
                 'page_title'            => 'Dutapod Plugin',
                 'menu_title'            => 'Dutapod Companion',
@@ -103,7 +103,7 @@ class MenuAdminPages extends BaseController{
         // 1.2.2. troubleshoot submenu page
         // a. Create a troubleshoot submenu page - Use wrapped constructor.  
         // + parent_slug is dutapod-companion_plugin       
-        $this->troubleshootSubpage = TroubleshootSubpage::createPageWithInputSubpageData(
+        $this->troubleshootSubpage = SubpageTroubleshoot::createPageWithInputSubpageData(
             [
                 'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
                 'page_title'            => 'Dutapod troubleshoot page',
@@ -122,7 +122,7 @@ class MenuAdminPages extends BaseController{
         self::$SUBMENU_PAGES[ $this->troubleshootSubpage->menu_slug ] = $this->troubleshootSubpage;
 
         // 1.2.3. Settings Management subpage
-        $this->settingsSubpage = SettingsSubpage::createPageWithInputSubpageData(
+        $this->settingsSubpage = SubpageSettings::createPageWithInputSubpageData(
             [
                 'parent_slug'           => sprintf( '%s_plugin', self::$PLUGIN_NAME ),
                 'page_title'            => 'Dutapod Settings Management page',
