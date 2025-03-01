@@ -110,20 +110,13 @@ if( class_exists( Init::class ) ){
         // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
         Init::register_frontend_services(); 
         Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
-    }
-   
-    /* // 1. Register Wordpress Admin setting page service
-    Init::register_admin_services();
-    // 2. Register WordPress frontend service.
-    // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
-    Init::register_frontend_services(); 
-    Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader; 
-    */
-}
+    }  
+
+}//if( class_exists( Init::class ) 
 
 
 /** 7 . Start WooCommerce Helper init */
-if( class_exists( WcHelperInit::class ) ){
+/* if( class_exists( WcHelperInit::class ) ){
     // 1. Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
     if( is_admin() ){
         if( strpos( $_SERVER['REQUEST_URI'], 'admin-ajax.php' ) !== false ){
@@ -134,41 +127,11 @@ if( class_exists( WcHelperInit::class ) ){
     }
     
     // WcHelperInit::register_frontend_services();
-}//class_exists( WcHelperInit::class )
+}//class_exists( WcHelperInit::class ) */
 
 
 
 /** Add to action when WooCommerce is initialied: 
  * woocommerce_loaded
  * woocommerce_init
-*/
-
-/**
-$pluginInitiator = Init::$INSTANCE ?? new Init();
-$pluginDebugger = $pluginInitiator::$PLUGIN_DEBUGGER;
-add_action('plugins_loaded' , 'initialize_WooCommerce_Helper_Display', 20);
-function initialize_WooCommerce_Helper_Display(){
-    if( class_exists('WooCommcerce') ){
-        if( class_exists( WcHelperInit::class ) ){
-            // 1. Initialize all instances of all necessary services 
-            // Init::register_services();//Used to work
-            WcHelperInit::register_frontend_services();
-        
-            // 2. Manually add PluginClassLoader to the Init::$FRONTEND_INSTANCE_LIST
-            // WcHelperInit::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;            
-        }//class_exists( WcHelperInit::class )
-    } else {
-        add_action( 'admin_notices', function(){
-            $errorMessage = <<< HTML
-            <div class="dutapod-companion-error">
-                <p>
-                    <strong>This plugin </strong> requires WooCommerce to be installed and activated.
-                </p>
-            </div><!--.dutapod-companion-error-->
-            HTML;
-
-            echo $errorMessage;
-        });
-    }
-}//initialize_WooCommerce_Helper_Display
 */

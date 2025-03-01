@@ -41,6 +41,8 @@ use DutapodCompanion\Includes\Controller\ScopeFrontend\Shortcode\GeneralShortcod
 // 2.2. WordPress WooCommerce custom post type
 // use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ProductPage as WcProductPage;
 // use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CategoryPage as WcCategoryPage;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\WcPagesController as WcPagesController;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\Shortcode as WcShortcode;
 
 use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
 
@@ -146,7 +148,7 @@ final class Init{
             self::$FRONTEND_INSTANCES_LIST[ $serviceItem ] = $instance;
 
         }// Endforeach $servicesList as $serviceItem
-        
+
     }//regiser_custom_services
 
     // Define a list of instance that will be initialized to run plugin
@@ -200,6 +202,8 @@ final class Init{
             PageTemplatesController::class,
             GeneralShortcode::class,
             PagesController::class,
+            WcPagesController::class,
+            WcShortcode::class,
         );
     }//get_frontend_services
 
