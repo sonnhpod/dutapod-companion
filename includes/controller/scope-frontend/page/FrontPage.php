@@ -10,7 +10,7 @@ use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-class FrontPageDisplay{
+class FrontPage{
 
     /** 1. Variables & constant for post properties */
     /** 1.1.2. Front page information : */
@@ -156,4 +156,4 @@ class FrontPageDisplay{
     }//lazy_Load_WC_Best_Selling_Products_Section
 
 
-}//FrontPageDisplay class definition
+}//FrontPage class definition

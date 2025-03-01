@@ -3,7 +3,7 @@
         'name' => 'sonnh/dutapod-companion',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'a22f1188ddec380b775e5d31a54e7d70b4698fd7',
+        'reference' => 'ef1af1341f1c3b058369036e63e60773e22bee4a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'sonnh/dutapod-companion' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'a22f1188ddec380b775e5d31a54e7d70b4698fd7',
+            'reference' => 'ef1af1341f1c3b058369036e63e60773e22bee4a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

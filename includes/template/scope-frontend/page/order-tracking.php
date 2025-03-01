@@ -1,6 +1,9 @@
 <?php 
-/* Template Name : Order Management */
+/** Template Name : Order Management 
+ *  Template Post Type: page, post
+*/
 
+/* Package dutapod-companion */
 use Masterminds\HTML5;
 
 get_header();

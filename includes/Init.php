@@ -16,28 +16,44 @@ use DutapodCompanion\Includes\Controller\ScopeAdmin\MenuAdminPages as MenuAdminP
 use DutapodCompanion\Includes\Base\SettingsController as SettingsController;
 
 # 2. WP frontend scope 
-# 2.1. Frontend Controller
-use DutapodCompanion\Includes\Controller\ScopeFrontend\DebugTemplateController as DebugTemplateController;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\CustomTemplateController as CustomTemplateController;
+# 2.1. WordPress page (WP default post type)
+// 2.1.1. Page template controller
+// Move all Page template to the PageTemplatesController class
+use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplatesController as PageTemplatesController;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\OrderTrackingPageTemplate as OrderTrackingPageTemplate;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\DebugPageTemplate as DebugPageTemplate;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\CustomPageTemplate as CustomPageTemplate;
+
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
 # use DutapodCompanion\Includes\Controller\ScopeFrontend\WpPostDisplayController as WpPostDisplayController;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\GeneralWpPageDisplay as GeneralWpPageDisplay;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\FrontPageDisplay as FrontPageDisplay;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\OrderTrackingPage as OrderTrackingPage;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\OrderTrackingPageTemplate as OrderTrackingPageTemplate;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\AboutUsPage as AboutUsPage;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\TestPageDisplay as TestPageDisplay;
+
+// 2.1.2. Page controller
+// Move all Page instance to the PagesController class
+use DutapodCompanion\Includes\Controller\ScopeFrontend\PagesController as PagesController;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\GeneralPages as GeneralPages;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\FrontPage as FrontPage;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\OrderTrackingPage as OrderTrackingPage;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\AboutUsPage as AboutUsPage;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\TestPage as TestPage;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\WooCommerceCustomizer as WooCommerceCustomizer;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\Shortcode\GeneralShortcode as GeneralShortcode;
 
-use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ProductPage as WcProductPage;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CategoryPage as WcCategoryPage;
+// 2.2. WordPress WooCommerce custom post type
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ProductPage as WcProductPage;
+// use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CategoryPage as WcCategoryPage;
 
 use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
 
-/** This class is dedicated to initialize all services (instances) 
+/** Class descriptions
+ * 1.  This class is dedicated to initialize all services (instances) 
  * which may be need for the plugin operation
  * 
+ * 2. Plugin services are categorized as the following criteria:
+ * - WP admin setting page scope.
+ * - WP frontend display scope.
+ * 
+ * Sometimes the services at WP admin scope & frontend scope have mutual interaction relationship. 
+ * It is necessary to initialize services from both scope with proper plugins workflows.
  */
 
 final class Init{
@@ -146,22 +162,21 @@ final class Init{
      * 3. 2025-01-29: Temporary move WooCommerce Customize Class to WcHelperInit
      * - WcProductPage::class,
      * - WcCategoryPage::class,
-     * 
+     *  PageTemplatesController::class,
+     * ---
+     *  DebugPageTemplate::class,
+     *  CustomPageTemplate::class,  
      *  OrderTrackingPageTemplate::class - register in the OrderTrackingPage
+     * 
      */
     public static function get_frontend_services(){
         return array(
             PluginProperties::class,            
             PluginDebugHelper::class,
             ThemeCustomizer::class,
-            DebugTemplateController::class,
-            CustomTemplateController::class,
+            PageTemplatesController::class,
             GeneralShortcode::class,
-            GeneralWpPageDisplay::class,
-            FrontPageDisplay::class,     
-            OrderTrackingPage::class,           
-            AboutUsPage::class,
-            TestPageDisplay::class
+            PagesController::class,
         );
     }//get_frontend_services
 

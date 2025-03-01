@@ -40,10 +40,12 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
             'DutapodCompanion\\Includes\\Template\\ScopeEditor\\' => 47,
             'DutapodCompanion\\Includes\\Template\\ScopeAdmin\\' => 46,
             'DutapodCompanion\\Includes\\Template\\' => 35,
+            'DutapodCompanion\\Includes\\Database\\' => 35,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => 63,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Shortcode\\' => 61,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Post\\' => 56,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Page\\' => 56,
+            'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\PageTemplate\\' => 64,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Category\\' => 60,
             'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\' => 51,
             'DutapodCompanion\\Includes\\Controller\\ScopeEditor\\' => 49,
@@ -154,6 +156,10 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         array (
             0 => __DIR__ . '/../..' . '/includes/template',
         ),
+        'DutapodCompanion\\Includes\\Database\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/database',
+        ),
         'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\WooCommerce\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/woocommerce-cpt',
@@ -169,6 +175,10 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Page\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/page',
+        ),
+        'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\PageTemplate\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/controller/scope-frontend/page-template',
         ),
         'DutapodCompanion\\Includes\\Controller\\ScopeFrontend\\Category\\' => 
         array (

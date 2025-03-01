@@ -10,7 +10,7 @@ use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\OrderTrackingPageTemplate as OrderTrackingPageTemplate;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\OrderTrackingPageTemplate as OrderTrackingPageTemplate;
 
 class OrderTrackingPage{
     /** 1. Variables & constant for post properties */

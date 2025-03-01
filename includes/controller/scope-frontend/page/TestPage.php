@@ -10,7 +10,7 @@ use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-class TestPageDisplay{
+class TestPage{
 
     /** 1. Variables & constant for post properties */
     /** 1.1.3. Test page information */
@@ -149,4 +149,4 @@ class TestPageDisplay{
 
     }//enqueue_Extra_Resources_To_Front_Page
 
-}//TestPageDisplay class definition
+}//TestPage class definition

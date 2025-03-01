@@ -15,7 +15,7 @@ use DutapodCompanion\Helper\WpPageResourceLoader as WpPageResourceLoader;
 use DutapodCompanion\Helper\WpResourceLoader as WpResourceLoader;
 use DutapodCompanion\Includes\View\WpPageFrontendDisplay as WpPageFrontendDisplay;
 
-class GeneralWpPageDisplay{
+class GeneralPages{
     /** 1. Variables & constant for post properties */
 
     /** 2. Debug information */
@@ -76,5 +76,5 @@ class GeneralWpPageDisplay{
 
     /** 3.2. Helper functions */
 
-}//WpPageDisplayController class definition
+}//GeneralPages class definition
 

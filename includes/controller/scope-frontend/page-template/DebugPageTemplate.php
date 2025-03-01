@@ -9,24 +9,25 @@
  * - Compatible with WordPress version 4.7 or higher.
 */
 
-namespace DutapodCompanion\Includes\Controller\ScopeFrontend;
+namespace DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate;
 
 use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-use DutapodCompanion\Includes\Controller\ScopeFrontend\AbstractTemplateController as AbstractTemplateController;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\AbstractPageTemplate as AbstractPageTemplate;
 
 use \WP_Post;
 
-class DebugTemplateController extends AbstractTemplateController{
+class DebugPageTemplate extends AbstractPageTemplate{
 
     /** 1. Variables declaration. Better to validate in custom debugs */    
     // 1. Implement the declaration of self::TEMPLATE_RELATIVE_DIR const.
     const TEMPLATE_RELATIVE_DIR = 'includes/template/scope-frontend/';
     // const TEMPLATE_FILENAME = 'content-debug-template.php';
     const DEBUG_TEMPLATE_FILENAME = 'content-debug-template.php';
+    
     public static string $DEBUG_TEMPLATE_RELATIVE_PATH; //OK
     public static string $DEBUG_TEMPLATE_ABSOLUTE_PATH; //OK
 
@@ -227,5 +228,5 @@ class DebugTemplateController extends AbstractTemplateController{
     public function view_Template_For_CPT( $templates ){}//viewTemplateForCPT
 
 
-}//End of class DebugTemplateController Controller definition
+}//End of class DebugPageTemplate Controller definition
 

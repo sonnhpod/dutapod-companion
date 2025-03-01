@@ -97,6 +97,14 @@ if( class_exists( Init::class ) ){
             Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
         }
 
+        // 1.3. Register frontend service if it is a page editor / post editor request
+        if( strpos($_SERVER['REQUEST_URI'], 'post.php' ) !== false ){
+            // 2. Register WordPress frontend service.
+            // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.
+            Init::register_frontend_services(); 
+            Init::$FRONTEND_INSTANCES_LIST[ PluginClassLoader::class ] = $pluginClassLoader;
+        }
+
     } else {
         // 2. Register WordPress frontend service.
         // Frontend service also handle AJAX request - which is targerted to the admin-ajax.php.

@@ -5,14 +5,14 @@
  */
 
 
-namespace DutapodCompanion\Includes\Controller\ScopeFrontend;
+namespace DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate;
 
 use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 
-abstract class AbstractTemplateController{
+abstract class AbstractPageTemplate{
     /** 1. Variables declaration. Better to validate in custom debugs */
     /** Force all child class of GenericTemplateController re-initialize the TEMPLATE_RELATIVE_DIR const 
      *  - Example :
@@ -90,4 +90,4 @@ abstract class AbstractTemplateController{
     /** 3.2.3. Include in the template path selection in default CPT editor */
     abstract public function view_Template_For_CPT( $templates );//viewTemplateForDefaultCPT
 
-}//AbstractTemplateController
+}//AbstractPageTemplate

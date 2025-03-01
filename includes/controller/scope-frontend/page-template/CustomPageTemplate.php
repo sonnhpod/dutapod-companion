@@ -1,26 +1,30 @@
 <?php 
-/**
+/*
  * @package dutapod-companion
  * @version 1.0.1
  */
 
-namespace DutapodCompanion\Includes\Controller\ScopeFrontend\Page;
+/**
+ * This is a controller class control custom templates for all WordPress post types
+ * 
+*/
+
+namespace DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate;
 
 use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
-use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
-
-use DutapodCompanion\Includes\Controller\ScopeFrontend\AbstractTemplateController as AbstractTemplateController;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\AbstractPageTemplate as AbstractPageTemplate;
 
 use \WP_Post;
 
-class OrderTrackingPageTemplate extends AbstractTemplateController {
+
+class CustomPageTemplate extends AbstractPageTemplate{
 
     /** 1. Variables & constant declaration */
-    const TEMPLATE_RELATIVE_DIR = 'includes/template/scope-frontend/page/';   
+    const TEMPLATE_RELATIVE_DIR = 'includes/template/scope-frontend/';   
     
     // const TEMPLATE_FILENAME = 'content-custom-template.php';
-    const CUSTOM_TEMPLATE_FILENAME = 'order-tracking.php';
+    const CUSTOM_TEMPLATE_FILENAME = 'content-custom-template.php';
 
     public static string $CUSTOM_TEMPLATE_RELATIVE_PATH; //OK
     public static string $CUSTOM_TEMPLATE_ABSOLUTE_PATH; //OK
@@ -46,7 +50,7 @@ class OrderTrackingPageTemplate extends AbstractTemplateController {
     /** 2.2.1.2. Initialize specific variables for debug template */
     public function set_Template_Variables():void{
         /** 1. Obtain plugin path info from static properties of the plugin properties */
-        self::$TEMPLATE_FILENAME = 'order-tracking.php';
+        self::$TEMPLATE_FILENAME = 'content-custom-template.php';
         /** Prioritize to define template path as the web content is proceeded in the backend */
         // self::$CUSTOM_TEMPLATE_ABSOLUTE_PATH = self::$TEMPLATE_ABSOLUTE_DIR.self::$TEMPLATE_FILENAME;
         self::$CUSTOM_TEMPLATE_ABSOLUTE_PATH = self::$TEMPLATE_ABSOLUTE_DIR.self::CUSTOM_TEMPLATE_FILENAME;
@@ -54,7 +58,7 @@ class OrderTrackingPageTemplate extends AbstractTemplateController {
         self::$CUSTOM_TEMPLATE_RELATIVE_PATH = self::$TEMPLATE_ABSOLUTE_DIR.self::CUSTOM_TEMPLATE_FILENAME;
 
         /** 2. Upload a new template entry to the array */
-        $this->templateList[ self::$CUSTOM_TEMPLATE_ABSOLUTE_PATH ] = __( 'DUTAPOD Order Tracking' , 'text-domain' );
+        $this->templateList[ self::$CUSTOM_TEMPLATE_ABSOLUTE_PATH ] = __( 'DUTAPOD Custom Template' , 'text-domain' );
        
     }//setPageTemplageVariables
 
@@ -124,17 +128,17 @@ class OrderTrackingPageTemplate extends AbstractTemplateController {
      * + For page: "theme_page_templates"
      * + For post: "theme_post_templates" 
     */
-    
+
     public function add_Template_To_Default_CPT_Editor( $templates ){        
 
-        $templates[ self::$CUSTOM_TEMPLATE_ABSOLUTE_PATH ] = __( 'DUTAPOD Order Tracking' , 'text-domain' );
+        $templates[ self::$CUSTOM_TEMPLATE_ABSOLUTE_PATH ] = __( 'DUTAPOD Custom Template' , 'text-domain' );
 
         return $templates;
     }//add_Template_To_Default_CPT_Editor 
 
     /** 1.2. Register the DUTAPOD Custom Template to the current active theme */
     public function register_Template_At_Cache_For_Default_CPT( $attributes ){
-        $cacheKey = 'page-templates-'.md5( 'dutapod-order-tracking-template'.get_theme_root().'/'.get_stylesheet() );
+        $cacheKey = 'page-templates-'.md5( 'dutapod-custom-template'.get_theme_root().'/'.get_stylesheet() );
 
         // Get the current WP_Theme object:
         $currentTheme = wp_get_theme();
@@ -213,5 +217,5 @@ class OrderTrackingPageTemplate extends AbstractTemplateController {
 
     /** 3.2.3. Include in the template path selection in default CPT editor */
     public function view_Template_For_CPT( $templates ){}//viewTemplateForCPT
-    
-}//OrderTrackingPageTemplate class definition
+
+}//End of class CustomPageTemplate Controller definition

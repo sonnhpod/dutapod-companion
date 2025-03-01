@@ -80,6 +80,12 @@ class AboutUsPage{
 
     }//setPageResourcesInfo
 
+    /** 3. Main operational function */
+    /** 3.1. Register method */
+    public function register(){
+
+    }//register
+
     /** 3.2. Helper functions */
     /** 3.2.1. Enqueue extra resources for Front Page */
     public function load_Extra_Resources_About_Us_Page(){
