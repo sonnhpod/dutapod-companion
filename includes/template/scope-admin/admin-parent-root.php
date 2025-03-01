@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<h1>The dutapod-companion admin parent root page</h1>
+<h1>The top-level admin parent root page</h1>
 <h2>Plugin features summary</h2>
 <h3>I. WordPress admin setting pages scope </h3>
 

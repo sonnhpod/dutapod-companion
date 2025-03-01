@@ -1,4 +1,4 @@
-<h1>Manage all settings for the plugin dutapod-companion</h1>
+<h1>Manage all of the plugin settings</h1>
 
 <!-- Display if there is any error after submitting the form. -->
 <!-- Obtain the "SettingsSubpage class properties from $settingsSubpage variable -->

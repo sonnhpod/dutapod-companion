@@ -31,7 +31,7 @@ use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\TroubleshootSubpage as 
  * 2.4. Innsert the submenut troubleshoot page. menu_slug: dutapod-companion_plugin-troubleshoot
 */
 /** - The original class is AdminGeneral / Admin in all previous plugin version */
-class AdminPagesController extends BaseController{
+class MenuAdminPages extends BaseController{
 
     /** 1. Variables declaration */
     // 1.1. WP admin setting page system variables
@@ -337,4 +337,4 @@ class AdminPagesController extends BaseController{
     }//setFields
 
 
-}//End of class "Admin" declaration
+}//End of class "MenuAdminPages" declaration

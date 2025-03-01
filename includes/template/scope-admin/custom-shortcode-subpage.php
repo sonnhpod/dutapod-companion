@@ -1,1 +1,1 @@
-<h1>Manage custom shortcode from the plugin dutapod-companion</h1>
+<h1>Manage custom shortcode from the plugin</h1>

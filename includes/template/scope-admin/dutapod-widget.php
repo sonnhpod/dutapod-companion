@@ -1,1 +1,0 @@
-<h3>Sunsetpro widgets management page</h3>

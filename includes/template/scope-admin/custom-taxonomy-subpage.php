@@ -1,1 +1,1 @@
-<h1>Manage custom taxonomy from the plugin dutapod-companion</h1>
+<h1>Manage custom taxonomy from the plugin</h1>
