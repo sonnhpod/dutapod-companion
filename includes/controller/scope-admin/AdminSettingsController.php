@@ -10,6 +10,7 @@ namespace DutapodCompanion\Includes\Controller\ScopeAdmin;
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
 use DutapodCompanion\Includes\Base\Settings\PluginLink as PluginLink ;
+use DutapodCompanion\Includes\Base\Settings\Post\PostSettings as PostSettings;
 
 /** 1. Manage all plugin settings. 
  * - Settings link at WP plugin admin setting page
@@ -27,6 +28,7 @@ class AdminSettingsController extends BaseController{
         // 2. Initialize setting item instances
         self::$GENERAL_SETTINGS_LIST = [
             PluginLink::class,
+            PostSettings::class,
         ];
     }//__construct
 

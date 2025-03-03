@@ -74,7 +74,6 @@ final class Init{
      * 2. Editor scope
      * 3. Frontend scope
      */
-
     
     /* public static function register_plugin_services(){
         self::register_admin_services();

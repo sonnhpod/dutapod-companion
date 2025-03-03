@@ -26,16 +26,29 @@ class PostSettings extends BaseController{
 
     /** 2.2. Helper functions for the constructor */  
     public function set_Additional_Local_Properties(): void {
+        // 1. Post formast
+        /** 1.1. Available supported post format
+         * https://developer.wordpress.org/advanced-administration/wordpress/post-formats/ 
+         *  */ 
         self::$POST_FORMATS = [ 'standard', 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ];
 
-        self::$ACTIVE_POST_FORMATS = [ 'aside', 'gallery',  'image', 'status', 'video', 'audio' ];
+        // 1.2. Active post format
+        self::$ACTIVE_POST_FORMATS = [ 'standard', 'aside', 'gallery', 'image', 'video', 'audio' ];
     }//set_Additional_Local_Properties
 
     /** 3. Main operational function */
     /** 3.1. register method */
     public function register(){
         // 1. Add active post format
-        // add_theme_support( 'post-formats', self::$POST_FORMATS );
+        add_action( 'after_setup_theme', [ $this, 'activate_Plugin_Post_Formats' ] );
     }//register
+
+    public function activate_Plugin_Post_Formats(){
+        global $_wp_theme_features;// A lot of options
+
+        // $this->localDebugger->write_log_general( $_wp_theme_features );
+
+        add_theme_support( 'post-formats', self::$ACTIVE_POST_FORMATS );
+    }//activate_Plugin_Post_Format
 
 }//PostSettings class controller

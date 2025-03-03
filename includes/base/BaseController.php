@@ -61,26 +61,29 @@ class BaseController{
         //self::$PLUGIN_DEBUGGER = self::$PLUGIN_DEBUGGER ?? new PluginDebugHelper();
         
         /** 2. Additional plugin properties */
-        /** Create 3 setting page manager to manage CPT, taxonomies, widgets */
-
-       /*  $this->settingPageManagers = array(
-            SettingsManagerPage::createInstance(
-                'cpt_manager', 'Custom Post Type (CPT) Manager', 'dutapod-cpt-manager'
-            ),
-            SettingsManagerPage::createInstance(
-                'taxonomies_manager', 'Custom Taxonomies Manager', 'dutapod-taxonomies-manager'
-            ),
-            SettingsManagerPage::createInstance(
-                'widgets_manager', 'Widgets Manager', 'dutapod-widgets-manager'
-            ),
-        );          */
 
     }//__construct
 
     /** 2.2. Helper method for constructor */
     /** 2.2.1. Initialize the variable that point to general plugin properties */ 
     public function set_Local_Properties():void{
+        // 1. General plugin properties
         $this->localProps =  $this->pluginInitiator::$PLUGIN_PROPERTIES;
+
+        // 2. Plugin variables
+        // 2.1. Plugin path: E:\\WebPlatforms\\Apache24\\htdocs\\vnlabwin\\wp-content\\plugins\\sunsetpro/
+        self::$PLUGIN_PATH = self::$PLUGIN_PATH ?? plugin_dir_path( dirname(__FILE__ , 2) );  
+        // Convert DIRECTORY_SEPARATOR - for Windows OS:
+        if( in_array( PHP_OS, array('WINNT', 'Windows') ) ){
+            self::$PLUGIN_PATH = str_replace("\\", "/", self::$PLUGIN_PATH);
+        }        
+        
+        // 2.2. Plugin URL: http://vnlabwin.local.info/wp-content/plugins/sunsetpro/   
+        self::$PLUGIN_URL = self::$PLUGIN_URL ?? plugin_dir_url( dirname(__FILE__ , 2) );
+        // 2.3. Plugin_basename: sunsetpro/sunsetpro.php , dutapod-companion/dutapod-companion.php
+        self::$PLUGIN_BASENAME = self::$PLUGIN_BASENAME ?? plugin_basename( dirname(__FILE__ , 3).'/dutapod-companion.php' );
+        // 2.4. Plugin name : sunsetpro / dutapod-companion
+        self::$PLUGIN_NAME = self::$PLUGIN_NAME ?? plugin_basename( dirname(__FILE__ , 3) );
     }//setLocalProperties
 
     /** 2.2.2. setup the custom debugger for plugin */ 
@@ -105,20 +108,6 @@ class BaseController{
 
     function set_Additional_Local_Plugin_Properties(){        
         // Initialize equivalent variables in static format
-        // 1. Plugin variables
-        // Plugin path: E:\\WebPlatforms\\Apache24\\htdocs\\vnlabwin\\wp-content\\plugins\\sunsetpro/
-        self::$PLUGIN_PATH = self::$PLUGIN_PATH ?? plugin_dir_path( dirname(__FILE__ , 2) );  
-        // Convert DIRECTORY_SEPARATOR - for Windows OS:
-        if( in_array( PHP_OS, array('WINNT', 'Windows') ) ){
-            self::$PLUGIN_PATH = str_replace("\\", "/", self::$PLUGIN_PATH);
-        }        
-        
-        // Plugin URL: http://vnlabwin.local.info/wp-content/plugins/sunsetpro/   
-        self::$PLUGIN_URL = self::$PLUGIN_URL ?? plugin_dir_url( dirname(__FILE__ , 2) );
-        // Plugin_basename: sunsetpro/sunsetpro.php , dutapod-companion/dutapod-companion.php
-        self::$PLUGIN_BASENAME = self::$PLUGIN_BASENAME ?? plugin_basename( dirname(__FILE__ , 3).'/dutapod-companion.php' );
-        // Plugin name : sunsetpro / dutapod-companion
-        self::$PLUGIN_NAME = self::$PLUGIN_NAME ?? plugin_basename( dirname(__FILE__ , 3) );
 
         // 2. A list of admin setting page - not usable in this plugin scope
         self::$ADMIN_PAGES = self::$ADMIN_PAGES ?? array(
