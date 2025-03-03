@@ -18,12 +18,12 @@ abstract class AbstractPageTemplate{
      *  - Example :
      *  const TEMPLATE_RELATIVE_DIR = 'includes/template/scope-frontend/'; */
     
-     const TEMPLATE_RELATIVE_DIR = self::TEMPLATE_RELATIVE_DIR;
-     public static string $TEMPLATE_ABSOLUTE_DIR;
-     public static string $TEMPLATE_FILENAME; 
-     public static string $TEMPLATE_RELATIVE_PATH; //OK
-     public static string $TEMPLATE_ABSOLUTE_PATH; //OK
-     public static string $TEMPLATE_ABSOLUTE_URI; // Not necessary
+    //  const TEMPLATE_RELATIVE_DIR = self::TEMPLATE_RELATIVE_DIR;
+    //  public static string $TEMPLATE_ABSOLUTE_DIR;
+    //  public static string $TEMPLATE_FILENAME; 
+    //  public static string $TEMPLATE_RELATIVE_PATH; //OK
+    //  public static string $TEMPLATE_ABSOLUTE_PATH; //OK
+    //  public static string $TEMPLATE_ABSOLUTE_URI; // Not necessary
  
      public array $templateList;
      public Init $pluginInitiator;

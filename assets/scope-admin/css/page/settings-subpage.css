@@ -1,8 +1,14 @@
 /** Package dutapod-companion WordPresss plugin  */
-h1 {
+div#wpbody-content h1 {
   color: #000080;
 }
-
-h3 {
+div#wpbody-content h3 {
   color: #000080;
+}
+div#wpbody-content > form#pluggin-settings-form-id table.form-table > tbody > tr.plugin-general-settings > th[scope=row] label {
+  white-space: no-wrap;
+}
+div#wpbody-content > form#pluggin-settings-form-id table.form-table > tbody > tr.plugin-general-settings > td > div.plugin-general-settings > input.field-value {
+  display: inline-block;
+  width: 40em;
 }

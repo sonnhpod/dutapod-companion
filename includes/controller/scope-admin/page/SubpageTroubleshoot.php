@@ -35,12 +35,12 @@ class SubpageTroubleshoot extends AbstractAdminSubpage{
     // 2. styles and script
     const STYLE_FILENAME = 'troubleshoot-subpage.css';
     const STYLE_HANDLER = 'dutapod-troubleshoot-subpage-style';
-    const SCRIPT_FIlENAME = 'admin-parent-root.js';
+    const SCRIPT_FIlENAME = 'troubleshoot-subpage.js';
     const SCRIPT_HANDLER = 'dutapod-troubleshoot-subpage-script';
 
     // 2.2. Public path of styles and scripts - defined in AbstractSubpage class
-    // public static $STYLE_PATH;
-    // public static $SCRIPT_PATH;
+    public static $STYLE_PATH;
+    public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties - defined in AbstractSubpage class
     // 3.1. WP admin subpage properties
@@ -116,7 +116,7 @@ class SubpageTroubleshoot extends AbstractAdminSubpage{
             PluginProperties::RESOURCES_ADMIN_ROOT_DIR,
             PluginProperties::CSS_ROOT_DIR.'page/', 
             self::STYLE_FILENAME
-        );
+        );// valid
 
         self::$SCRIPT_PATH = sprintf( 
             '%s%s%s%s', 
@@ -124,7 +124,9 @@ class SubpageTroubleshoot extends AbstractAdminSubpage{
             PluginProperties::RESOURCES_ADMIN_ROOT_DIR,
             PluginProperties::JS_ROOT_DIR.'page/', 
             self::SCRIPT_FIlENAME
-        );
+        );// valid
+
+        // $this->localDebugger->write_log_general( self::$STYLE_PATH );
 
         /** 2. Page content properties */
         $this->settingsData = [];
@@ -268,6 +270,10 @@ class SubpageTroubleshoot extends AbstractAdminSubpage{
     public function enqueue_Extra_Resources(){
         /** 2. Enqueue extra styles & scripts  */
         /** 2.1. Enqueue the custom styles */
+        /**
+         * self::$STYLE_PATH & self::$SCRIPT_PATH display wrong value here
+        */
+
         $css_version =  file_exists( self::$STYLE_PATH ) ? filemtime( self::$STYLE_PATH ) : false;
         wp_enqueue_style( self::STYLE_HANDLER, self::$STYLE_PATH, [], $css_version, 'all' );
 

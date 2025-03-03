@@ -1,16 +1,56 @@
 /** Package dutapod-companion WordPresss plugin  */
 
-h1 {
-    color: #000080;
-}
-
-h3 {
-    color: #000080;
-}
-
-// 1. Pluing settings data form
-form.dutapod-companion-plugin-settings-form{
-
-
+div#wpbody-content{
+    h1 {
+        color: #000080;
+    }
     
-}//form.dutapod-companion-plugin-settings-for
+    h3 {
+        color: #000080;
+    }
+
+    // 1. Pluing settings data form
+    & > form#pluggin-settings-form-id{
+        // border: 2px solid red; // OK - valid selector
+
+        // Form table
+        table.form-table{
+            // border: 2px solid red; // OK - valid selector
+
+            & > tbody{
+                // border: 2px solid red; // OK - valid selector 
+                
+                & > tr.plugin-general-settings{
+                    // border: 2px solid red;
+
+                    // table header
+                    & > th[scope="row"]{
+                        label{
+                            white-space: no-wrap;
+                        }
+                    }//th[scope="row"]
+
+                    
+                    // table data - general table data
+                    & > td {
+
+                        // General table data inner container
+                        & > div.plugin-general-settings{
+                        
+                            & > input.field-value{
+                                display: inline-block;
+                                width: 40em;
+                            }// input.field-value
+    
+    
+                        }//div.plugin-general-settings
+                    }//td
+                }//tr.plugin-general-settings
+            }//tbody
+        }//table.form-table
+    
+    }//form.dutapod-companion-plugin-settings-for
+
+}//div#wpbody-content
+
+

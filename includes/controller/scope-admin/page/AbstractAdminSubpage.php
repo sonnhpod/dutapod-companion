@@ -30,8 +30,9 @@ abstract class AbstractAdminSubpage extends BaseController{
     // const SCRIPT_FIlENAME = 'admin-parent-root.js';
     // const SCRIPT_HANDLER = 'dutapod-admin-parent-root-script';
 
-    public static $STYLE_PATH;
-    public static $SCRIPT_PATH;
+    // Don't declare these static variables here. The value is shareable across all extended Class
+    // public static $STYLE_PATH;
+    // public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties
     // 3.1. WP admin setting sub-pages properties

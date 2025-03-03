@@ -26,6 +26,12 @@ class CustomPageTemplate extends AbstractPageTemplate{
     // const TEMPLATE_FILENAME = 'content-custom-template.php';
     const CUSTOM_TEMPLATE_FILENAME = 'content-custom-template.php';
 
+    public static string $TEMPLATE_ABSOLUTE_DIR;
+    public static string $TEMPLATE_FILENAME; 
+    public static string $TEMPLATE_RELATIVE_PATH; //OK
+    public static string $TEMPLATE_ABSOLUTE_PATH; //OK
+    public static string $TEMPLATE_ABSOLUTE_URI; // Not necessary
+
     public static string $CUSTOM_TEMPLATE_RELATIVE_PATH; //OK
     public static string $CUSTOM_TEMPLATE_ABSOLUTE_PATH; //OK
 

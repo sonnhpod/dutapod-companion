@@ -32,8 +32,8 @@ class SubpageSettings extends AbstractAdminSubpage{
     const SCRIPT_HANDLER = 'dutapod-settings-subpage-script';
 
     // 2.2. Public path of styles and scripts - defined in AbstractSubpage class
-    // public static $STYLE_PATH;
-    // public static $SCRIPT_PATH;
+    public static $STYLE_PATH;
+    public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties - defined in AbstractSubpage class
     // 3.1. WP admin subpage properties

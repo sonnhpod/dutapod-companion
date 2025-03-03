@@ -1,9 +1,37 @@
 /** Package dutapod-companion WordPresss plugin  */
 
-h1 {
-    color: #000080;
-}
 
-h3 {
-    color: #000080;
-}
+
+div#wpbody-content{
+
+    h1 {
+        color: #000080;
+    }
+    
+    h3 {
+        color: #000080;
+    }
+
+    // Troubleshoot content data table
+    table#troubleshoot-data-table-id{
+
+        tbody{
+            // 1. header row
+            tr.header-row{
+                background-color: lightgrey;
+                th{
+                    border: 1px solid black;
+                }
+            }//tr.header-row
+
+            // 2. data row
+            tr.data-row{
+                td{
+                    border: 1px solid grey;
+                }
+            }//tr.data-row
+        }//tbody
+
+    }//table#troubleshoot-data-table-id
+
+}//div#wpbody-content

@@ -27,6 +27,12 @@ class DebugPageTemplate extends AbstractPageTemplate{
     const TEMPLATE_RELATIVE_DIR = 'includes/template/scope-frontend/';
     // const TEMPLATE_FILENAME = 'content-debug-template.php';
     const DEBUG_TEMPLATE_FILENAME = 'content-debug-template.php';
+
+    public static string $TEMPLATE_ABSOLUTE_DIR;
+    public static string $TEMPLATE_FILENAME; 
+    public static string $TEMPLATE_RELATIVE_PATH; //OK
+    public static string $TEMPLATE_ABSOLUTE_PATH; //OK
+    public static string $TEMPLATE_ABSOLUTE_URI; // Not necessary
     
     public static string $DEBUG_TEMPLATE_RELATIVE_PATH; //OK
     public static string $DEBUG_TEMPLATE_ABSOLUTE_PATH; //OK
