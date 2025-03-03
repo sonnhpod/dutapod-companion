@@ -28,50 +28,47 @@ class WcPagesController extends BaseController{
 
     /** 1. Variable declaration */
     // 1.1. Manage the page template list
-    public static array $PAGES;
+    public static array $PAGES;// Tracking variables to manage PAGE instance
+    public static array $PAGES_LIST; // List of the page instances name
 
-    public WcProductPage $productPage;
-    public WcCategoryPage $categoryPage;
-    public WcTagPage $tagPage;
-    public WcShopPage $shopPage;
-    public WcCartPage $cartPage;
-    public WcCheckoutPage $checkoutPage;
+    // public WcProductPage $productPage;
+    // public WcCategoryPage $categoryPage;
+    // public WcTagPage $tagPage;
+    // public WcShopPage $shopPage;
+    // public WcCartPage $cartPage;
+    // public WcCheckoutPage $checkoutPage;
 
     /** 2. Constructor */
     public function __construct(){
         parent::__construct();        
         
         // $this->orderTrackingPageTemplate = new OrderTrackingPageTemplate();
+        self::$PAGES_LIST = [
+            WcProductPage::class,
+            WcCategoryPage::class,
+            WcTagPage::class,
+            WcShopPage::class,
+            WcCartPage::class,
+            WcCheckoutPage::class,
+        ];
     }//__construct
 
      /** 3. Main operational functions */
     /** 3.1. Register all page templates services to the plugin workflow */
     public function register(){
-        // 1. Register all relevant WooCommerce Product page
-        // 1.1. WooCommerce product page
-        $this->productPage = new WcProductPage();
-        $this->productPage->register();
+        // Iterate through each page name in the page list
+        foreach( self::$PAGES_LIST as $pageName ){
+            if( class_exists( $pageName ) ){
+                // 1. Initialize the corresponding page name
+                $page = new $pageName();
 
-        // 1.2. WooCommerce product category page
-        $this->categoryPage = new WcCategoryPage();
-        $this->categoryPage->register();
+                // 2. Register each page name to the WP plugin's workflow
+                $page->register();
 
-        // 2. Order tracking page
-        $this->tagPage = new WcTagPage();
-        $this->tagPage->register();
-
-        // 2. Payment page
-        // 2.1. Shop page
-        $this->shopPage = new WcShopPage();
-        $this->shopPage->register();
-
-        // 2.2. Cart page
-        $this->cartPage = new WcCartPage();
-        $this->cartPage->register();
-
-        // 2.3. Checkout page
-        $this->checkoutPage = new WcCheckoutPage();
-        $this->checkoutPage->register();
+                // 3. Add to the PAGES list for tracking purpose
+                self::$PAGES[ $pageName ] = $page;
+            }            
+        }//self::$PAGES_LIST as $page
     }//register
 
 }//WcPagesController class definition

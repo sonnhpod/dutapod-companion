@@ -27,7 +27,6 @@ class PagesController extends BaseController{
     /** 1. Variable declaration */
     // 1.1. Manage the page template list
     public static array $PAGES;// Tracking variables to manage PAGE instance
-
     public static array $PAGES_LIST; // List of the page instances name
 
     // public GeneralPages $generalPages;

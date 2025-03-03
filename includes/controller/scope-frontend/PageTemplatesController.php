@@ -30,9 +30,9 @@ class PageTemplatesController extends BaseController{
     public static array $PAGE_TEMPLATES_LIST;// // List of the page template instances name
 
     // 2. detail page object
-    public DebugPageTemplate $debugPageTemplate;
-    public CustomPageTemplate $customPageTemplate;
-    public OrderTrackingPageTemplate $orderTrackingPageTemplate;
+    // public DebugPageTemplate $debugPageTemplate;
+    // public CustomPageTemplate $customPageTemplate;
+    // public OrderTrackingPageTemplate $orderTrackingPageTemplate;
 
     /** 2. Constructor */
     public function __construct(){
