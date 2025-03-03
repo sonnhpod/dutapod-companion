@@ -44,6 +44,8 @@ return array(
     'DutapodCompanion\\Includes\\Content\\Carousel\\' => array($baseDir . '/includes/content/carousel'),
     'DutapodCompanion\\Includes\\Content\\Block\\' => array($baseDir . '/includes/content/block'),
     'DutapodCompanion\\Includes\\Content\\' => array($baseDir . '/includes/content'),
+    'DutapodCompanion\\Includes\\Base\\Settings\\Post\\' => array($baseDir . '/includes/base/settings/post'),
+    'DutapodCompanion\\Includes\\Base\\Settings\\Page\\' => array($baseDir . '/includes/base/settings/page'),
     'DutapodCompanion\\Includes\\Base\\Settings\\' => array($baseDir . '/includes/base/settings'),
     'DutapodCompanion\\Includes\\Base\\' => array($baseDir . '/includes/base'),
     'DutapodCompanion\\Includes\\Api\\Callbacks\\Admin\\' => array($baseDir . '/includes/api/callbacks/admin'),

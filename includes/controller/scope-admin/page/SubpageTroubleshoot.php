@@ -296,6 +296,7 @@ class SubpageTroubleshoot extends AbstractAdminSubpage{
     /** 4.1. Render page content */
     public function renderPageContent(){
         // $this->displayCallbacks = $this->displayCallbacks ?? DisplayWpAdminPages::getInstance();
+        $pageInstance = $this;
 
         // $this->displayCallbacks->renderTroubleshootSubpage();
         require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/troubleshoot-subpage.php" );

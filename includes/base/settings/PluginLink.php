@@ -9,7 +9,7 @@ namespace DutapodCompanion\Includes\Base\Settings;
 
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
-class SettingsLink extends BaseController{
+class PluginLink extends BaseController{
 
     /** 1. Variables definitions */
         
@@ -69,4 +69,4 @@ class SettingsLink extends BaseController{
         
     }//register
 
-}//SettingsLink class definition
+}//PluginLink class definition

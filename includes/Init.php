@@ -13,38 +13,29 @@ use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 // 1. General WordPress admin setting page's controller
 // use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\AdminGeneral as AdminGeneral;
 use DutapodCompanion\Includes\Controller\ScopeAdmin\MenuAdminPages as MenuAdminPages;
-use DutapodCompanion\Includes\Base\SettingsController as SettingsController;
+use DutapodCompanion\Includes\Controller\ScopeAdmin\AdminSettingsController as AdminSettingsController;
 
 # 2. WP frontend scope 
-# 2.1. WordPress page (WP default post type)
-// 2.1.1. Page template controller
+// 2.1. Frontend setting controller
+use DutapodCompanion\Includes\Controller\ScopeFrontend\SettingsController as SettingsController;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
+
+// 2.2. WordPress page (WP default post type)
+// 2.2.1. Page template controller
 // Move all Page template to the PageTemplatesController class
 use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplatesController as PageTemplatesController;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\OrderTrackingPageTemplate as OrderTrackingPageTemplate;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\DebugPageTemplate as DebugPageTemplate;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplate\CustomPageTemplate as CustomPageTemplate;
 
-use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
-# use DutapodCompanion\Includes\Controller\ScopeFrontend\WpPostDisplayController as WpPostDisplayController;
 
-// 2.1.2. Page controller
+// 2.2.2. Page controller
 // Move all Page instance to the PagesController class
 use DutapodCompanion\Includes\Controller\ScopeFrontend\PagesController as PagesController;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\GeneralPages as GeneralPages;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\FrontPage as FrontPage;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\OrderTrackingPage as OrderTrackingPage;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\AboutUsPage as AboutUsPage;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\Page\TestPage as TestPage;
-use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\WooCommerceCustomizer as WooCommerceCustomizer;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\Shortcode\GeneralShortcode as GeneralShortcode;
 
-// 2.2. WordPress WooCommerce custom post type
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\ProductPage as WcProductPage;
-// use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\CategoryPage as WcCategoryPage;
+// 2.3. WordPress WooCommerce custom post type
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WcPagesController as WcPagesController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerce\Shortcode as WcShortcode;
 
-use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
+// use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
 
 /** Class descriptions
  * 1.  This class is dedicated to initialize all services (instances) 
@@ -167,7 +158,7 @@ final class Init{
             PluginProperties::class,            
             PluginDebugHelper::class,
             MenuAdminPages::class,
-            SettingsController::class,
+            AdminSettingsController::class,
         );
     }//get_admin_services
 
@@ -198,6 +189,7 @@ final class Init{
         return array(
             PluginProperties::class,            
             PluginDebugHelper::class,
+            SettingsController::class,
             ThemeCustomizer::class,
             PageTemplatesController::class,
             GeneralShortcode::class,

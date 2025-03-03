@@ -19,6 +19,8 @@
             "DutapodCompanion\\Includes\\Api\\Callbacks\\Admin\\": "includes/api/callbacks/admin/",
             "DutapodCompanion\\Includes\\Base\\": "includes/base/",
             "DutapodCompanion\\Includes\\Base\\Settings\\": "includes/base/settings/",
+            "DutapodCompanion\\Includes\\Base\\Settings\\Page\\": "includes/base/settings/page/",
+            "DutapodCompanion\\Includes\\Base\\Settings\\Post\\": "includes/base/settings/post/",
             "DutapodCompanion\\Includes\\Content\\": "includes/content/",
             "DutapodCompanion\\Includes\\Content\\Block\\": "includes/content/block/",
             "DutapodCompanion\\Includes\\Content\\Carousel\\": "includes/content/carousel/",

@@ -58,6 +58,8 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
             'DutapodCompanion\\Includes\\Content\\Carousel\\' => 43,
             'DutapodCompanion\\Includes\\Content\\Block\\' => 40,
             'DutapodCompanion\\Includes\\Content\\' => 34,
+            'DutapodCompanion\\Includes\\Base\\Settings\\Post\\' => 45,
+            'DutapodCompanion\\Includes\\Base\\Settings\\Page\\' => 45,
             'DutapodCompanion\\Includes\\Base\\Settings\\' => 40,
             'DutapodCompanion\\Includes\\Base\\' => 31,
             'DutapodCompanion\\Includes\\Api\\Callbacks\\Admin\\' => 46,
@@ -227,6 +229,14 @@ class ComposerStaticInit018e2575c3e0211b9767d99a3b777f5d
         'DutapodCompanion\\Includes\\Content\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/content',
+        ),
+        'DutapodCompanion\\Includes\\Base\\Settings\\Post\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/base/settings/post',
+        ),
+        'DutapodCompanion\\Includes\\Base\\Settings\\Page\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/base/settings/page',
         ),
         'DutapodCompanion\\Includes\\Base\\Settings\\' => 
         array (
