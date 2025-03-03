@@ -126,8 +126,9 @@ class OrderTrackingPage{
     /** Main operational functions -  */
     public function register(){
         // 1. Insert the custom template DUTAPOD order tracking template here
-        $orderTrackingPageTemplate = new OrderTrackingPageTemplate();
-        $orderTrackingPageTemplate->register();
+        // --> Initialize in the DutapodCompanion\Includes\Controller\ScopeFrontend\PagesController class
+        // $orderTrackingPageTemplate = new OrderTrackingPageTemplate();
+        // $orderTrackingPageTemplate->register();
 
         // 2. Callback function to handle AJAX wc_order_search
         add_action( 'wp_ajax_wc_order_search_info', [ $this, 'handle_WC_Order_Search_Info' ] );

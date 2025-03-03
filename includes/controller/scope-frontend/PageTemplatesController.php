@@ -26,7 +26,8 @@ class PageTemplatesController extends BaseController{
 
     /** 1. Variable declaration */
     // 1.1. Manage the page template list
-    public static array $PAGE_TEMPLATES;
+    public static array $PAGE_TEMPLATES;// Tracking variables to manage Page template instances
+    public static array $PAGE_TEMPLATES_LIST;// // List of the page template instances name
 
     // 2. detail page object
     public DebugPageTemplate $debugPageTemplate;
@@ -37,18 +38,30 @@ class PageTemplatesController extends BaseController{
     public function __construct(){
         parent::__construct();        
         
-        // $this->orderTrackingPageTemplate = new OrderTrackingPageTemplate();
+        // 2. Initialize the page template list
+        self::$PAGE_TEMPLATES_LIST = [
+            DebugPageTemplate::class,
+            CustomPageTemplate::class,
+            OrderTrackingPageTemplate::class,
+        ];
     }//__construct
 
     /** 3. Main operational functions */
     /** 3.1. Register all page templates services to the plugin workflow */
     public function register(){
-        $this->debugPageTemplate = new DebugPageTemplate();
-        $this->debugPageTemplate->register();
+        // Iterate through each page name in the page list
+        foreach( self::$PAGE_TEMPLATES_LIST as $pageTemplateName ){
+            if( class_exists( $pageTemplateName ) ){
+                // 1. Initialize the corresponding page name
+                $pageTemplate = new $pageTemplateName();
 
-        $this->customPageTemplate = new CustomPageTemplate();
-        $this->customPageTemplate->register();
-        // $this->orderTrackingPageTemplate->register();
+                // 2. Register each page name to the WP plugin's workflow
+                $pageTemplate->register();
+
+                // 3. Add to the PAGES list for tracking purpose
+                self::$PAGE_TEMPLATES[ $pageTemplateName ] = $pageTemplate;
+            }            
+        }//self::$PAGES_LIST as $page
     }//register
 
 }//PageTemplatesController
