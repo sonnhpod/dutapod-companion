@@ -24,7 +24,6 @@ class SubpageSettings extends AbstractAdminSubpage{
     /** 1. Variable decalration */
     // 1. Callback function to render HTML content - defined in AbstractSubpage class
 
-
     // 2. styles and script
     const STYLE_FILENAME = 'settings-subpage.css';
     const STYLE_HANDLER = 'dutapod-settings-subpage-style';

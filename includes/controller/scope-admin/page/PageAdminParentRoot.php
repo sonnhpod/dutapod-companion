@@ -39,8 +39,8 @@ class PageAdminParentRoot extends AbstractAdminPage{
     const SCRIPT_HANDLER = 'dutapod-admin-parent-root-script';
 
     // 2.2. Define style and script path - defined in AbstractPage class
-    // public static $STYLE_PATH;
-    // public static $SCRIPT_PATH;
+    public static $STYLE_PATH;
+    public static $SCRIPT_PATH;
 
     // 3. WP admin setting pages properties - defined in the AbstractPage class
     // + menu_slug is dutapod-companion_plugin
