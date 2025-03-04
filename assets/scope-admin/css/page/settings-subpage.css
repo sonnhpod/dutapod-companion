@@ -19,11 +19,16 @@ div#wpbody-content > form#pluggin-settings-form-id table.form-table > tbody > tr
   justify-content: flex-start;
 }
 div#wpbody-content > form#pluggin-settings-form-id table.form-table > tbody > tr.plugin-general-settings.author-company-logo > td div.plugin-company-logo-container div.preview-area-container {
-  max-width: 150px;
-  min-width: 5em;
-  min-height: 5em;
+  max-width: 40em;
+  max-height: 10em;
+  min-width: 4em;
+  min-height: 1em;
   display: block;
   border: 1px solid grey;
+}
+div#wpbody-content > form#pluggin-settings-form-id table.form-table > tbody > tr.plugin-general-settings.author-company-logo > td div.plugin-company-logo-container div.preview-area-container img#plugin-company-logo-preview-id {
+  max-width: 40em;
+  max-height: 10em;
 }
 div#wpbody-content > form#pluggin-settings-form-id table.form-table > tbody > tr.plugin-general-settings.author-company-logo > td div.plugin-company-logo-container div.button-area-container button.upload-company-logo-button {
   margin: 1em 0;

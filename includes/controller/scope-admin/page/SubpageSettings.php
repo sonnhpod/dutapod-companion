@@ -745,8 +745,8 @@ class SubpageSettings extends AbstractAdminSubpage{
         $nameID = "$name-id";
         $cssClasses = $args['class'];
 
-        $optionName = $args[ 'option_name' ];
-        $logoImgUrl = get_option( $optionName ); // $optionValue
+        $option_name = $args[ 'option_name' ];
+        $logoImgUrl = get_option( $option_name ); // $optionValue
 
         $logoImgUrl = esc_url( $logoImgUrl );
         
@@ -758,7 +758,7 @@ class SubpageSettings extends AbstractAdminSubpage{
         <div id="plugin-company-logo-container-id" class="plugin-company-logo-container">
             <div class="preview-area-container">
                 <img id="plugin-company-logo-preview-id" src="{$logoImgUrl}">
-                <input type="hidden" id="plugin-company-logo-id" name="{$name}" value="{$logoImgUrl}"/>
+                <input type="hidden" id="plugin-company-logo-id" name="{$option_name}" value="{$logoImgUrl}"/>
             </div><!--.preview-area-container-->
             <div class="button-area-container">
                 <button type="button" class="button upload-company-logo-button" id="upload-logo-button-id">Upload Logo Image</button>

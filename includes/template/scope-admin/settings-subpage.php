@@ -56,7 +56,8 @@ $pluginSectionsFieldsData = $settingsSubpage->pluginSectionsFieldsData[0];
     <!-- This function will generate reference to the custom admin page -->
     <!-- Relevant API documentation: https://developer.wordpress.org/reference/functions/settings_fields/  -->
     <h3>1. Render HTML content for Settings fields</h3>
-    <?php settings_fields(  $pluginSettingsData[ 'option_group' ] ); ?>
+    <!-- $pluginSettingsData[ 'option_group' ] original data -->
+    <?php settings_fields(  $settingsSubpage->settings_Option_Group ); ?>
 
     <!-- 2. Implement the settings for a specific page - using slug -->
     <!-- Using the value menu_slug of the troubleshoot page -->

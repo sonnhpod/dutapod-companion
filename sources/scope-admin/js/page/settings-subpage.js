@@ -37,8 +37,8 @@ jQuery(document).ready( function( $ ){
 
     /** 2. Add click event listener for remove button */ 
     $( '#remove-logo-button-id' ).click( function(){
-        $( '#plugin-company-logo-id').val( '' );
-        $( '#plugin-company-logo-preview-id').hide();
+        $( '#plugin-company-logo-id' ).val( '' );
+        $( '#plugin-company-logo-preview-id' ).hide();
         $(this).hide();
     } );
 } );
