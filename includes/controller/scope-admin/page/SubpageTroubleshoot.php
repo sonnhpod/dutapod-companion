@@ -358,7 +358,7 @@ class SubpageTroubleshoot extends AbstractAdminSubpage{
             <label class="item-checkbox-label" for="{$name}">
               <div></div>
             </label>
-        </div>
+        </div><!--.{$classes}-->
         HTML;
 
         echo $outputHTML;    

@@ -45,12 +45,12 @@ class SubpageSettings extends AbstractAdminSubpage{
     public string $pageClassnames;
 
     // 3.2. Settings properties - stored in 'wp_options' table
-    // 3.2.1. General settings
-    public string $option_group;
+    // 3.2.1. General settings    
     public string $option_name;
+    public string $option_group;
 
     // 3.2.2. Plugin settings group
-    public string $settings_Option_Name;
+    // public string $settings_Option_Name; // Many settings option name will be defined later
     public string $settings_Option_Group;
 
     // public $callbacks; 

@@ -58,6 +58,7 @@ div#wpbody-content{
                             align-items: flex-start;
                             justify-content: flex-start;
 
+                            // 4.1. Image preview area container
                             div.preview-area-container{
                                 max-width: 40em;
                                 max-height: 10em;
@@ -72,18 +73,22 @@ div#wpbody-content{
                                 }//img#plugin-company-logo-preview-id
                             }//div.preview-area-container
 
+                            // 4.2. Button area controller
                             div.button-area-container{
+                                // 4.2.1. Upload button
                                 button.upload-company-logo-button{
                                     margin: 1em 0;
                                     padding: 0.5em;
-                                }
-
+                                }//button.upload-company-logo-button
+                                
+                                // 4.2.2. Remove button
                                 button.remove-company-logo-button{
                                     margin: 1em 0 1em 2em; 
                                     padding: 0.5em;
                                     // If there is no image uploaded, this button need to be disabled
                                     // display: none;
-                                }
+                                }//button.remove-company-logo-button
+
                             }//div.button-area-container
                         }//div.plugin-company-logo-container
                     }//td

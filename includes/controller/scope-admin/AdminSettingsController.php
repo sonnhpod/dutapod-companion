@@ -11,6 +11,7 @@ use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
 use DutapodCompanion\Includes\Base\Settings\PluginLink as PluginLink ;
 use DutapodCompanion\Includes\Base\Settings\Post\PostSettings as PostSettings;
+use  DutapodCompanion\Includes\Base\Settings\Post\ImagesManager as ImagesManager;
 
 /** 1. Manage all plugin settings. 
  * - Settings link at WP plugin admin setting page
@@ -29,6 +30,7 @@ class AdminSettingsController extends BaseController{
         self::$GENERAL_SETTINGS_LIST = [
             PluginLink::class,
             PostSettings::class,
+            ImagesManager::class,
         ];
     }//__construct
 

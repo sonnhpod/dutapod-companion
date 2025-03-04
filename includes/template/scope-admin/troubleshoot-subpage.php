@@ -1,40 +1,36 @@
 <?php
 
 use DutapodCompanion\Includes\Controller\ScopeAdmin\Page\SubpageTroubleshoot as SubpageTroubleshoot;
+use DutapodCompanion\Includes\Base\Settings\Post\ImagesManager as ImagesManager;
+
+$postID = 1080; // test page post ID
 
 ?>
+
 <h1>Troubleshoot page</h1>
 <p>This page is reserved to display some debug information during developing this plugin - at WP admin setting pages scope. </p>
 <p> property of the SubpageTroubleshoot can be accessed via the $pageInstance PHP variable </p>
 <p>-------------------------------------------------------------------------------------------------------------------------</p>
-<table class="troubleshoot-subpage-data wp-options-table" id="troubleshoot-data-table-id">
-    <tbody>
-        <tr class="header-row">
-            <th>Option Name (slug)</th>
-            <th>Option value</th>
-        </tr><!--.header-row-->
-        <?php 
-            $pluginNameLowercase = strtolower( SubpageTroubleshoot::$PLUGIN_NAME );
-            $options = wp_load_alloptions();//OK  
-            // var_dump( $options );
-            foreach( $options as $slug => $value ):  
-                // Display only option start with the plugin name: dutapod-companion.
-                if( str_starts_with( $slug, $pluginNameLowercase ) ){
-                    $optionName = esc_attr( $slug );
-                    $optionValue = esc_attr( $value );
 
-                    $htmlRow = <<<HTML
-                    <tr class="data-row">
-                        <td class="option-slug">{$optionName}</td>
-                        <td class="option-value">{$optionValue}</td>
-                    </tr><!--.data-row-->
-                    HTML;
-    
-                    echo $htmlRow;
-                }                      
-            endforeach;
-        ?>
-    </tbody>
-</table><!--.wp-options-table -->
 <p>-------------------------------------------------------------------------------------------------------------------------</p>
+
+<?php $imgList = ImagesManager::get_Images_In_Post_Content( $postID ); ?>
+
+<?php 
+
+// global $post;
+
+$postInstance = get_post( $postID );
+
+$matchedResult = [];
+// Valid matched status. Found 3 item
+$matchedStatus = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $postInstance->post_content, $matchedResult);
+
+
+// $attachedImgs = get_attached_media( 'image', $postID );
+
+// var_dump( $matchedResult[1] ); 
+var_dump( $imgList );
+
+?>
 

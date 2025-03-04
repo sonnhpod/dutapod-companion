@@ -15,13 +15,13 @@ jQuery(document).ready( function( $ ){
         }
 
         // 1.2. If the media uploader has not been existed, create a new one
-        mediaUploader = wp.media({
+        mediaUploader = wp.media( {
             title: 'Choose Logo Image',
             button: {
                 text: 'Use this logo'
             },
             multiple: false
-        });
+        } );
 
         // When an image is selected, set the input field 
         mediaUploader.on( 'select', function(){
