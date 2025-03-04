@@ -191,10 +191,11 @@ class SubpageSettings extends AbstractAdminSubpage{
         $this->settings_Option_Group = sprintf( '%s_plugin_settings_group', self::$PLUGIN_NAME );
 
         $settingArgs = [
-            'type'          => 'string',
-            'label'         => 'dutapod-companion_plugin_author_name_label',
-            'description'   => 'Setting for the option_name: "dutapod-companion_author_name", option group: "dutapod-companion_plugin_settings_group"',
-            'default'       => 'dutapod-companion_author_name default value'
+            'type'              => 'string',
+            'label'             => 'dutapod-companion_plugin_author_name_label',
+            'description'       => 'Setting for the option_name: "dutapod-companion_author_name", option group: "dutapod-companion_plugin_settings_group"',
+            'sanitize_callback' => [$this, 'sanitize_Input_Text_Field'],
+            'default'           => 'dutapod-companion_author_name default value'
         ];
 
         $settingDataItem = [
@@ -211,10 +212,11 @@ class SubpageSettings extends AbstractAdminSubpage{
         $option_name = sprintf( '%s_author_email', self::$PLUGIN_NAME );
 
         $settingArgs = [
-            'type'          => 'string',
-            'label'         => 'dutapod-companion_plugin_author_email_label',
-            'description'   => 'Setting for the option_name: "dutapod-companion_author_email", option group: "dutapod-companion_plugin_settings_group"',
-            'default'       => 'dutapod-companion_author_email default value'
+            'type'              => 'string',
+            'label'             => 'dutapod-companion_plugin_author_email_label',
+            'description'       => 'Setting for the option_name: "dutapod-companion_author_email", option group: "dutapod-companion_plugin_settings_group"',
+            'sanitize_callback' => [$this, 'sanitize_Input_Email_Field'],
+            'default'           => 'dutapod-companion_author_email default value'
         ];
 
         $settingDataItem = [
@@ -230,10 +232,11 @@ class SubpageSettings extends AbstractAdminSubpage{
         // 2.3. Settings data for author job title property
         $option_name = sprintf( '%s_author_job_title', self::$PLUGIN_NAME );
         $settingArgs = [
-            'type'          => 'string',
-            'label'         => 'dutapod-companion_plugin_author_job_title_label',
-            'description'   => 'Setting for the option_name: "dutapod-companion_author_job_title", option group: "dutapod-companion_plugin_settings_group"',
-            'default'       => 'dutapod-companion_author_job_title default value'
+            'type'              => 'string',
+            'label'             => 'dutapod-companion_plugin_author_job_title_label',
+            'description'       => 'Setting for the option_name: "dutapod-companion_author_job_title", option group: "dutapod-companion_plugin_settings_group"',
+            'sanitize_callback' => [$this, 'sanitize_Input_Text_Field'],
+            'default'           => 'dutapod-companion_author_job_title default value'
         ];
 
         $settingDataItem = [
@@ -288,7 +291,11 @@ class SubpageSettings extends AbstractAdminSubpage{
         $this->pluginSettingsSectionsData[ $this->pluginSettingsSectionID ] = $pluginSettingsSection;
     }//set_Sections_Data
 
-    /** 2.2.2.4. fields data. There would be multiple fields for a single section */
+    /** 2.2.2.4. fields data. There would be multiple fields for a single section 
+     *  $this->fieldsData : manage all fields 
+     *  $this->demoSectionFields: manage fields for demo sections
+     *  $this->pluginSettingsSectionFieldsData: manage fields for the plugin settings section
+    */
     public function set_Fields_Data(){
         // 1. Fields of demo section
         // 'callback'      => array($this->callbacksManager, 'displayCheckboxField'),
@@ -574,7 +581,8 @@ class SubpageSettings extends AbstractAdminSubpage{
         require_once( self::$PLUGIN_PATH."/includes/template/scope-admin/settings-subpage.php" );
     }//renderTroubleshootSubpageContent
 
-    /** 4.2. Settings callback -  Checkbox sanitize */
+    /** 4.2. Settings callback -  Sanitization methods */
+    /** 4.2.1. Sanitize checkbox*/
     /*Sample input:
     * Input:  ["cpt_manager"] => 1; ["taxonomies_manager"]=>1; ["gallery_manager"]=>1 ... (only item set before)
     * Output: All items with boolean. If isset => true; if not set => false
@@ -593,6 +601,24 @@ class SubpageSettings extends AbstractAdminSubpage{
 
         return $output;
     }//checkboxSanitize
+
+    /** 4.2.2. Sanitize input text field */
+    public function sanitize_Input_Text_Field( $input ){
+        return sanitize_text_field( $input );
+    }//sanitizeInputTextField
+
+    public function sanitize_Input_Email_Field( $input ){
+        $sanitizedEmail = sanitize_email( $input );
+
+        $optionEmailName = sprintf( '%s_author_email', self::$PLUGIN_NAME );
+
+        if( is_email( $sanitizedEmail ) ){
+            add_settings_error( $optionEmailName, 'invalid_email', 'Invalid email format' );
+            return '';
+        }
+
+        return $sanitizedEmail;        
+    }//sanitize_Input_Email_Field
 
     // 4.3. Section callback - 
     // 4.3.1. Render demo section content
@@ -675,17 +701,17 @@ class SubpageSettings extends AbstractAdminSubpage{
         $option_value = get_option( $option_name );
 
         $option_value = esc_attr( $option_value );
-        $pluginName = self::$PLUGIN_NAME;
+        //$pluginName = self::$PLUGIN_NAME;
         //$option_value = $option_value ?? '';
 
         // Display name for each field would be: author Name, author email, author job title
-        $displayName = sprintf('%s : ',$option_name, $name); // display: devsunshine_plugin[cpt_manager]
+        // $displayName = sprintf('%s : ',$option_name, $name); // display: devsunshine_plugin[cpt_manager]
 
         // <input class="{$cssClasses}" type="hidden" name="{$displayName}" value="{$option_value}">
         // <label class="field-label author-name">{$displayName}</label>
         $outputHTML = <<<HTML
         <div class="{$cssClasses} {$name}-container">           
-            <input type="text" id="{$nameID}" name="{$pluginName}_{$name}" class="field-value {$name}" value="{$option_value}">
+            <input type="text" id="{$nameID}" name="{$option_name}" class="field-value {$name}" value="{$option_value}">
         </div><!--.{$cssClasses}-->
         HTML;
 
