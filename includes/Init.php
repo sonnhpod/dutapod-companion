@@ -17,7 +17,7 @@ use DutapodCompanion\Includes\Controller\ScopeAdmin\AdminSettingsController as A
 
 # 2. WP frontend scope 
 // 2.1. Frontend setting controller
-use DutapodCompanion\Includes\Controller\ScopeFrontend\SettingsController as SettingsController;
+use DutapodCompanion\Includes\Controller\ScopeFrontend\FrontendSettingsController as FrontendSettingsController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
 
 // 2.2. WordPress page (WP default post type)
@@ -182,13 +182,12 @@ final class Init{
      *  DebugPageTemplate::class,
      *  CustomPageTemplate::class,  
      *  OrderTrackingPageTemplate::class - register in the OrderTrackingPage
-     * 
      */
     public static function get_frontend_services(){
         return array(
             PluginProperties::class,            
             PluginDebugHelper::class,
-            SettingsController::class,
+            FrontendSettingsController::class,
             ThemeCustomizer::class,
             PageTemplatesController::class,
             GeneralShortcode::class,

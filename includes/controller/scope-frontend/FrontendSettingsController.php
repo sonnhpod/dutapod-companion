@@ -15,7 +15,7 @@ use DutapodCompanion\Includes\Base\Settings\Post\ImagesManager as ImagesManager;
 /** 1. Manage all plugin settings. 
  * - Settings link at WP plugin admin setting page
 */
-class SettingsController extends BaseController{
+class FrontendSettingsController extends BaseController{
     /** 1. Variables declarations */
     public static array $GENERAL_SETTINGS;// Tracking variables to manage PAGE instance
     public static array $GENERAL_SETTINGS_LIST; // List of the page instances name
@@ -51,4 +51,4 @@ class SettingsController extends BaseController{
         }//self::$PAGES_LIST as $page
     }//register
 
-}//SettingsController class definition
+}//FrontendSettingsController class definition
