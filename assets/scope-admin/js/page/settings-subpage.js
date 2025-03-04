@@ -4,7 +4,7 @@
 /** Package dutapod-companion WordPresss plugin  */
 // console.log('Hello world from the settings-management-subpage.js !');
 
-jQuery(document).ready(function (_$) {
+jQuery(document).ready(function ($) {
   var mediaUploader;
 
   /** 1. Add click event listener for upload button */

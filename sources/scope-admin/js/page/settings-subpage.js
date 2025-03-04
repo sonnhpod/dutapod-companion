@@ -1,11 +1,11 @@
 /** Package dutapod-companion WordPresss plugin  */
 // console.log('Hello world from the settings-management-subpage.js !');
 
-jQuery(document).ready( function(_$ ){
+jQuery(document).ready( function( $ ){
     let mediaUploader;
 
     /** 1. Add click event listener for upload button */ 
-    $('#upload-logo-button-id').click( function(e){
+    $( '#upload-logo-button-id' ).click( function( e ){
         e.preventDefault();
 
         // 1.1. If the media uploader has already existed, open it
@@ -26,9 +26,9 @@ jQuery(document).ready( function(_$ ){
         // When an image is selected, set the input field 
         mediaUploader.on( 'select', function(){
             let attachment = mediaUploader.state().get('selection').first().toJSON();
-            $('#plugin-company-logo-id').val( attachment.url );
-            $('#plugin-company-logo-preview-id').attr( 'src', attachment.url ).show();
-            $('#remove-logo-button-id').show();
+            $( '#plugin-company-logo-id' ).val( attachment.url );
+            $( '#plugin-company-logo-preview-id' ).attr( 'src', attachment.url ).show();
+            $( '#remove-logo-button-id' ).show();
         } );
 
         // Open the uploader dialog
@@ -36,9 +36,9 @@ jQuery(document).ready( function(_$ ){
     });
 
     /** 2. Add click event listener for remove button */ 
-    $('#remove-logo-button-id').click( function(){
-        $('#plugin-company-logo-id').val( '' );
-        $('#plugin-company-logo-preview-id').hide();
+    $( '#remove-logo-button-id' ).click( function(){
+        $( '#plugin-company-logo-id').val( '' );
+        $( '#plugin-company-logo-preview-id').hide();
         $(this).hide();
     } );
 } );
