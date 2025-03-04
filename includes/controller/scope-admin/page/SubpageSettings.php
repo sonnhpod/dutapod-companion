@@ -611,7 +611,7 @@ class SubpageSettings extends AbstractAdminSubpage{
 
         $optionEmailName = sprintf( '%s_author_email', self::$PLUGIN_NAME );
 
-        if( is_email( $sanitizedEmail ) ){
+        if( ! is_email( $sanitizedEmail ) ){
             add_settings_error( $optionEmailName, 'invalid_email', 'Invalid email format' );
             return '';
         }
