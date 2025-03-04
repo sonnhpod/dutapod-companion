@@ -9,6 +9,7 @@ namespace DutapodCompanion\Includes\Base\Settings;
 
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
+
 class GeneralSettings extends BaseController{
     /** 1. Variables declaration */
 

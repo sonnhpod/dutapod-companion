@@ -9,7 +9,8 @@ namespace DutapodCompanion\Includes\Controller\ScopeFrontend;
 
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 
-use DutapodCompanion\Includes\Base\Settings\Post\PostSettings as PostSettings ;
+use DutapodCompanion\Includes\Base\Settings\Post\PostSettings as PostSettings;
+use DutapodCompanion\Includes\Base\Settings\Post\ImagesManager as ImagesManager;
 
 /** 1. Manage all plugin settings. 
  * - Settings link at WP plugin admin setting page
@@ -27,6 +28,7 @@ class SettingsController extends BaseController{
         // 2. Initialize setting item instances
         self::$GENERAL_SETTINGS_LIST = [
             PostSettings::class,
+            ImagesManager::class,
         ];
     }//__construct
 
