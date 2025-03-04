@@ -205,7 +205,7 @@ class SubpageSettings extends AbstractAdminSubpage{
         ]; 
 
         $this->settingsData[] = $settingDataItem;
-        $this->pluginSettingsData[] = $settingDataItem;
+        $this->pluginSettingsData[ $option_name ] = $settingDataItem;
 
         // 2.2. Settings data for author email property
         $option_name = sprintf( '%s_author_email', self::$PLUGIN_NAME );
@@ -226,7 +226,7 @@ class SubpageSettings extends AbstractAdminSubpage{
         ]; 
 
         $this->settingsData[] = $settingDataItem;
-        $this->pluginSettingsData[] = $settingDataItem;
+        $this->pluginSettingsData[ $option_name ] = $settingDataItem;
 
         // 2.3. Settings data for author job title property
         $option_name = sprintf( '%s_author_job_title', self::$PLUGIN_NAME );
@@ -246,7 +246,29 @@ class SubpageSettings extends AbstractAdminSubpage{
         ]; 
 
         $this->settingsData[] = $settingDataItem;
-        $this->pluginSettingsData[] = $settingDataItem;
+        $this->pluginSettingsData[ $option_name ] = $settingDataItem;
+
+        // 2.4. Settings data for the plugin's company logo
+        $option_name = sprintf( '%s_author_company_logo', self::$PLUGIN_NAME );
+
+        // Should leave default value as empty
+        $settingArgs = [
+            'type'              => 'string',
+            'label'             => 'dutapod-companion_plugin_author_company_logo_label',
+            'description'       => 'Setting for the option_name: "dutapod-companion_plugin_author_company_logo", option group: "dutapod-companion_plugin_settings_group"',
+            'sanitize_callback' => [$this, 'sanitize_Input_Text_Field'],
+            'default'           => ''
+        ];
+
+        $settingDataItem = [
+            'option_group'  => $this->settings_Option_Group,
+            'option_name'   => $option_name,
+            'callback'      => [$this, 'checkboxSanitize'],
+            'args'          => $settingArgs,
+        ]; 
+
+        $this->settingsData[] = $settingDataItem;
+        $this->pluginSettingsData[ $option_name ] = $settingDataItem;
     }//set_Settings_Data
 
     /** 2.2.2.3. sections data */
@@ -320,8 +342,10 @@ class SubpageSettings extends AbstractAdminSubpage{
 
         // 2.1. Plugin property 1 - author name
         // 'args' 'class'         => sprintf('%s author-name', $this->pageClassnames),
+        $fieldID = 'author_name';
+
         $fieldDataItem = [
-            'id'            => 'author_name',
+            'id'            => $fieldID,
             'title'         => 'Author Name',  
             'callback'      => [ $this, 'render_Author_Name_Field' ],          
             'page'          => $this->menu_slug,
@@ -334,12 +358,14 @@ class SubpageSettings extends AbstractAdminSubpage{
         ];
 
         $this->fieldsData[] = $fieldDataItem;
-        $this->pluginSettingsSectionFieldsData[] = $fieldDataItem;
+        $this->pluginSettingsSectionFieldsData[ $fieldID ] = $fieldDataItem;
 
         // 2.2. Plugin property 2 - author email
         // 'args' 'class'         => sprintf('%s author-name', $this->pageClassnames),
+        $fieldID = 'author_email';
+
         $fieldDataItem = [
-            'id'            => 'author_email',
+            'id'            => $fieldID,
             'title'         => 'Author Email',  
             'callback'      => [ $this, 'render_Author_Email_Field' ],          
             'page'          => $this->menu_slug,
@@ -352,12 +378,14 @@ class SubpageSettings extends AbstractAdminSubpage{
         ];
 
         $this->fieldsData[] = $fieldDataItem;
-        $this->pluginSettingsSectionFieldsData[] = $fieldDataItem;
+        $this->pluginSettingsSectionFieldsData[ $fieldID ] = $fieldDataItem;
 
         // 2.3. Plugin property 3 - author job title
         // 'args' 'class'         => sprintf('%s author-name', $this->pageClassnames),
+        $fieldID = 'author_job_title';
+
         $fieldDataItem = [
-            'id'            => 'author_job_title',
+            'id'            => $fieldID,
             'title'         => 'Author Job Title',  
             'callback'      => [ $this, 'render_Author_Job_Title_Field' ],          
             'page'          => $this->menu_slug,
@@ -370,7 +398,27 @@ class SubpageSettings extends AbstractAdminSubpage{
         ];
 
         $this->fieldsData[] = $fieldDataItem;
-        $this->pluginSettingsSectionFieldsData[] = $fieldDataItem;
+        $this->pluginSettingsSectionFieldsData[ $fieldID ] = $fieldDataItem;
+
+        // 2.4. Plugin property 4 - author company logo
+        $fieldID = 'author_company_logo';
+
+        // Need to define callback function render_Author_Company_Logo_Field 
+        $fieldDataItem = [
+            'id'            => $fieldID,
+            'title'         => 'Author Company Logo',  
+            'callback'      => [ $this, 'render_Author_Company_Logo_Field' ],          
+            'page'          => $this->menu_slug,
+            'section'       => $pluginSettingsSection['id'],
+            'args'          => array(
+                'option_name'   => sprintf('%s_author_company_logo', self::$PLUGIN_NAME),
+                'label_for'     => 'author_company_logo',
+                'class'         => 'plugin-general-settings author-company-logo'
+            )
+        ];
+
+        $this->fieldsData[] = $fieldDataItem;
+        $this->pluginSettingsSectionFieldsData[ $fieldID ] = $fieldDataItem;
 
     }//set_Fields_Data
 
@@ -435,8 +483,8 @@ class SubpageSettings extends AbstractAdminSubpage{
         if( is_null( $requestPageSlug ) || $this->menu_slug !== $requestPageSlug ) return false;
 
         // 2. Enqueue extra resource if correctly requesting to the WordPress admin setting page
-        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_Extra_Prerequisite_Resources' ] );
-        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_Extra_Resources' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_Extra_Prerequisite_Resources' ], 10 );
+        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_Extra_Resources' ] , 11 );
     }//load_Extra_Resources
 
     /** 3.2.2. Register extra resources for this admin troubleshoot page */
@@ -461,7 +509,7 @@ class SubpageSettings extends AbstractAdminSubpage{
 
         /** 2.2. Enqueue the custom scripts */
         $js_version = file_exists( self::$SCRIPT_PATH ) ? filemtime( self::$SCRIPT_PATH ) : false;
-        wp_enqueue_script( self::SCRIPT_HANDLER, self::$SCRIPT_PATH, [], $js_version, true );
+        wp_enqueue_script( self::SCRIPT_HANDLER, self::$SCRIPT_PATH, ['jquery'], $js_version, true );
 
         /**  2.2.2. Localize this additional front page script */
         // wp_localize_script( self::SCRIPT_HANDLER, 'woocommerce_params', [ 'ajax_url' => admin_url('admin-ajax.php') ] );
@@ -474,7 +522,9 @@ class SubpageSettings extends AbstractAdminSubpage{
 
         // 2. Scripts
         // Media library 
-        wp_enqueue_script( 'media-upload' );
+        /** Enqueue media library documentation: https://developer.wordpress.org/reference/functions/wp_enqueue_media/  */
+        // wp_enqueue_script( 'media-upload' );
+        wp_enqueue_media();
 
         // jquery library
         wp_enqueue_script( 'jquery' );
@@ -687,6 +737,38 @@ class SubpageSettings extends AbstractAdminSubpage{
     public function render_Author_Job_Title_Field( $args ){
         $this->display_Plugin_WP_Option_Entry( $args );
     }//render_Author_Job_Title_Field
+
+    // 4.4.2.4. Callback function to display author company logo
+    public function render_Author_Company_Logo_Field( $args ){
+        $pluginName = self::$PLUGIN_NAME;
+        $name = $args['label_for'];// use for id, name
+        $nameID = "$name-id";
+        $cssClasses = $args['class'];
+
+        $optionName = $args[ 'option_name' ];
+        $logoImgUrl = get_option( $optionName ); // $optionValue
+
+        $logoImgUrl = esc_url( $logoImgUrl );
+        
+        // $this->localDebugger->write_log_general( $logoImgUrl );
+
+        $displayStatus = empty( $logoImgUrl ) ?  'none' : 'inline-block';
+
+        $outputHTML = <<<HTML
+        <div id="plugin-company-logo-container-id" class="plugin-company-logo-container">
+            <div class="preview-area-container">
+                <img id="plugin-company-logo-preview-id" src="{$logoImgUrl}">
+                <input type="hidden" id="plugin-company-logo-id" name="{$name}" value="{$logoImgUrl}"/>
+            </div><!--.preview-area-container-->
+            <div class="button-area-container">
+                <button type="button" class="button upload-company-logo-button" id="upload-logo-button-id">Upload Logo Image</button>
+                <button type="button" class="button remove-company-logo-button" id="remove-logo-button-id" style="display:{$displayStatus}">Remove Logo Image</button>
+            </div><!--.button-area-container-->
+        </div><!--.plugin-company-logo-container-->
+        HTML;
+
+        echo $outputHTML;
+    }//render_Author_Company_Logo_Field
 
     /************************************************************************************************************/
     /** 5. Helper methods for 4 - display HTML content */
