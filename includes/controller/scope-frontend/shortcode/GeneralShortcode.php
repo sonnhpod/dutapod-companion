@@ -56,13 +56,13 @@ class GeneralShortcode{
         /** 1. Register the home page footer shortcode dutapod-home-page-footer */
         $frontPageFooter = new FrontPageFooter();
         
-        add_shortcode('dutapod-home_page_footer', [ $frontPageFooter, 'renderFrontPageFooterShortcode'] );
+        add_shortcode( 'dutapod-home_page_footer', [ $frontPageFooter, 'renderFrontPageFooterShortcode' ] );
         // $frontPageFooter->renderFrontPageFooter();
 
         /** n. Test Content shortcode*/
         $testContent = new TestContent();
         /** ... More shortcode to be registered */
-        add_shortcode('dutapod-test_content', [ $testContent, 'renderTestContentShortcode'] );
+        add_shortcode( 'dutapod-test_content', [ $testContent, 'renderTestContentShortcode' ] );
 
     }//register
 
