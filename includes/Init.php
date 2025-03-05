@@ -20,6 +20,9 @@ use DutapodCompanion\Includes\Controller\ScopeAdmin\AdminSettingsController as A
 use DutapodCompanion\Includes\Controller\ScopeFrontend\FrontendSettingsController as FrontendSettingsController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
 
+# 3. Global scope - at both admin scope & frontend scope
+use DutapodCompanion\Includes\Database\PluginDbSettings as PluginDbSettings;
+
 // 2.2. WordPress page (WP default post type)
 // 2.2.1. Page template controller
 // Move all Page template to the PageTemplatesController class
@@ -146,16 +149,19 @@ final class Init{
      * Make sure the order of the instance initialized
      * 1. Plugin properties
      * 2. Plugin Debug helper
-     * 3. Plugin functions
+     * 3. Plugin DB settings
+     * 4. Plugin functions
      * - Inject debug template for WP default post type: page, post
      * 
      * II. The PluginClassLoader class's instance is initialized separately,
      */
 
     public static function get_admin_services(){
+
         return array(
             PluginProperties::class,            
             PluginDebugHelper::class,
+            PluginDbSettings::class,
             MenuAdminPages::class,
             AdminSettingsController::class,
         );

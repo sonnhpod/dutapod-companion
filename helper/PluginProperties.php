@@ -40,6 +40,9 @@ class PluginProperties{
         'image/webp', 'image/avif', 'image/gif'
     );
 
+    /** 1.1.3. Database-related information */
+    const DB_TABLE_PREFIX = 'dtpod_';
+
     /** 1.2. Plugin variables - within vncslab-companion plugin scope */
     /** 1.2.1. Directory variables */
     // a. Plugin variables
@@ -70,6 +73,8 @@ class PluginProperties{
     public static string $THEME_EXTRA_CSS_RELATIVE_DIR;
     public static string $THEME_EXTRA_CSS_ABSOLUTE_DIR;
 
+    /**1.3. Database variable */
+
     /** 2. Constructor */
 
     // 2.1. Declare a masked constructor for plugin properties
@@ -96,7 +101,7 @@ class PluginProperties{
         self::$PLUGIN_URL = self::$PLUGIN_URL ?? plugin_dir_url( dirname(__FILE__ , 1) );
         // Example of plugin name : sunsetpro 
         self::$PLUGIN_NAME = plugin_basename( dirname(__FILE__ , 1)  );
-        self::$PLUGIN_BASENAME = plugin_basename( dirname(__FILE__ , 1).'/vncslab-companion.php' );
+        self::$PLUGIN_BASENAME = plugin_basename( dirname(__FILE__ , 1).'/dutapod-companion.php' );
 
         // 2. Theme path variables
         self::$THEME_ROOT_DIR_PATH = get_theme_root().'/'.wp_get_theme();
