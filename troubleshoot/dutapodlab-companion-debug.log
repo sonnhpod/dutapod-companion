@@ -1,0 +1,2025 @@
+2025-03-06, 17:01:10 --> Start logging variable ...  
+2025-03-06, 17:01:10 $logMessage : object(WP_Query)#1391 (53) {
+  ["query"]=>
+  array(2) {
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["posts_per_page"]=>
+    int(-1)
+  }
+  ["query_vars"]=>
+  array(65) {
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["posts_per_page"]=>
+    int(-1)
+    ["error"]=>
+    string(0) ""
+    ["m"]=>
+    string(0) ""
+    ["p"]=>
+    int(0)
+    ["post_parent"]=>
+    string(0) ""
+    ["subpost"]=>
+    string(0) ""
+    ["subpost_id"]=>
+    string(0) ""
+    ["attachment"]=>
+    string(0) ""
+    ["attachment_id"]=>
+    int(0)
+    ["name"]=>
+    string(0) ""
+    ["pagename"]=>
+    string(0) ""
+    ["page_id"]=>
+    int(0)
+    ["second"]=>
+    string(0) ""
+    ["minute"]=>
+    string(0) ""
+    ["hour"]=>
+    string(0) ""
+    ["day"]=>
+    int(0)
+    ["monthnum"]=>
+    int(0)
+    ["year"]=>
+    int(0)
+    ["w"]=>
+    int(0)
+    ["category_name"]=>
+    string(0) ""
+    ["tag"]=>
+    string(0) ""
+    ["cat"]=>
+    string(0) ""
+    ["tag_id"]=>
+    string(0) ""
+    ["author"]=>
+    string(0) ""
+    ["author_name"]=>
+    string(0) ""
+    ["feed"]=>
+    string(0) ""
+    ["tb"]=>
+    string(0) ""
+    ["paged"]=>
+    int(0)
+    ["meta_key"]=>
+    string(0) ""
+    ["meta_value"]=>
+    string(0) ""
+    ["preview"]=>
+    string(0) ""
+    ["s"]=>
+    string(0) ""
+    ["sentence"]=>
+    string(0) ""
+    ["title"]=>
+    string(0) ""
+    ["fields"]=>
+    string(0) ""
+    ["menu_order"]=>
+    string(0) ""
+    ["embed"]=>
+    string(0) ""
+    ["category__in"]=>
+    array(0) {
+    }
+    ["category__not_in"]=>
+    array(0) {
+    }
+    ["category__and"]=>
+    array(0) {
+    }
+    ["post__in"]=>
+    array(0) {
+    }
+    ["post__not_in"]=>
+    array(0) {
+    }
+    ["post_name__in"]=>
+    array(0) {
+    }
+    ["tag__in"]=>
+    array(0) {
+    }
+    ["tag__not_in"]=>
+    array(0) {
+    }
+    ["tag__and"]=>
+    array(0) {
+    }
+    ["tag_slug__in"]=>
+    array(0) {
+    }
+    ["tag_slug__and"]=>
+    array(0) {
+    }
+    ["post_parent__in"]=>
+    array(0) {
+    }
+    ["post_parent__not_in"]=>
+    array(0) {
+    }
+    ["author__in"]=>
+    array(0) {
+    }
+    ["author__not_in"]=>
+    array(0) {
+    }
+    ["search_columns"]=>
+    array(0) {
+    }
+    ["ignore_sticky_posts"]=>
+    bool(false)
+    ["suppress_filters"]=>
+    bool(false)
+    ["cache_results"]=>
+    bool(true)
+    ["update_post_term_cache"]=>
+    bool(true)
+    ["update_menu_item_cache"]=>
+    bool(false)
+    ["lazy_load_term_meta"]=>
+    bool(true)
+    ["update_post_meta_cache"]=>
+    bool(true)
+    ["nopaging"]=>
+    bool(true)
+    ["comments_per_page"]=>
+    string(2) "50"
+    ["no_found_rows"]=>
+    bool(false)
+    ["order"]=>
+    string(4) "DESC"
+  }
+  ["tax_query"]=>
+  object(WP_Tax_Query)#4227 (6) {
+    ["queries"]=>
+    array(0) {
+    }
+    ["relation"]=>
+    string(3) "AND"
+    ["table_aliases":protected]=>
+    array(0) {
+    }
+    ["queried_terms"]=>
+    array(0) {
+    }
+    ["primary_table"]=>
+    string(8) "wp_posts"
+    ["primary_id_column"]=>
+    string(2) "ID"
+  }
+  ["meta_query"]=>
+  object(WP_Meta_Query)#4226 (9) {
+    ["queries"]=>
+    array(0) {
+    }
+    ["relation"]=>
+    NULL
+    ["meta_table"]=>
+    NULL
+    ["meta_id_column"]=>
+    NULL
+    ["primary_table"]=>
+    NULL
+    ["primary_id_column"]=>
+    NULL
+    ["table_aliases":protected]=>
+    array(0) {
+    }
+    ["clauses":protected]=>
+    array(0) {
+    }
+    ["has_or_relation":protected]=>
+    bool(false)
+  }
+  ["date_query"]=>
+  bool(false)
+  ["request"]=>
+  string(277) "SELECT   wp_posts.*
+					 FROM wp_posts 
+					 WHERE 1=1  AND ((wp_posts.post_type = 'spt_testimonial' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'wc-paid-partial' 
+OR wp_posts.post_status = 'private')))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					 "
+  ["posts"]=>
+  array(6) {
+    [0]=>
+    object(WP_Post)#4232 (24) {
+      ["ID"]=>
+      int(996)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:13:31"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:13:31"
+      ["post_content"]=>
+      string(333) "I love <a href="https://www.amazon.com/Miracle-Spirit-Christian-painting-watercolor/dp/B0CSP8RTTB?ref_=ast_sto_dp&amp;th=1">this print</a>, it looks like His eyes follow you lol. It has a few black ink spots but not noticable if you're not looking really closely. Highly recommend the print. Came rolled in a tube and delivered fast."
+      ["post_title"]=>
+      string(17) "I love this print"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(17) "i-love-this-print"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:13:31"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:13:31"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=996"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [1]=>
+    object(WP_Post)#4233 (24) {
+      ["ID"]=>
+      int(995)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:08:25"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:08:25"
+      ["post_content"]=>
+      string(197) "I live in the CVNP &amp; <a href="https://www.amazon.com/National-Natural-Landscape-Painting-UNFRAMED/dp/B0D29BWKXR?ref_=ast_sto_dp&amp;th=1">this poster</a> is beautiful. Makes me feel very happy."
+      ["post_title"]=>
+      string(26) "Good value, great quality."
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(24) "good-value-great-quality"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:08:25"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:08:25"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=995"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [2]=>
+    object(WP_Post)#4234 (24) {
+      ["ID"]=>
+      int(994)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:06:54"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:06:54"
+      ["post_content"]=>
+      string(424) "My national park posters arrived today and <a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">t</a><a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">hey are high quality and gorgeous</a>. True to size to frame and printed on nice thick paper. They were packaged perfectly with zero damage."
+      ["post_title"]=>
+      string(9) "Gorgeous!"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(8) "gorgeous"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:06:54"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:06:54"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=994"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [3]=>
+    object(WP_Post)#4235 (24) {
+      ["ID"]=>
+      int(993)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:05:35"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:05:35"
+      ["post_content"]=>
+      string(589) "Like the title says, I love <a href="https://www.amazon.com/Painting-Pictures-Abstract-Inspirational-Decorations/dp/B0CSPG6MKJ?ref_=ast_sto_dp&amp;th=1">this depiction of Jesus</a>. So peaceful and blissful in nature. I’ve ordered an amazing frame for it to go in. I can’t wait to see it up on my wall.
+I had a great experience of the seller. My item shipped earlier than estimated and arrive WAY earlier than estimated. Thank you! Would definitely buy from again.
+I would totally buy this picture again if it were offered in a canvas print. Wink wink nudge nudge please please. 😇"
+      ["post_title"]=>
+      string(45) "I love this depiction of Jesus. Great Seller."
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(43) "i-love-this-depiction-of-jesus-great-seller"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:05:35"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:05:35"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=993"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [4]=>
+    object(WP_Post)#4236 (24) {
+      ["ID"]=>
+      int(991)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:01:37"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:01:37"
+      ["post_content"]=>
+      string(330) "<a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">These pics</a> are great! The quality of the paper, picture, and color are amazing. The seller is incredible! My shipment was delivered to someone else and the seller sent me a replacement in 2 days. So awesome!!"
+      ["post_title"]=>
+      string(22) "Colors are so vibrant!"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(21) "colors-are-so-vibrant"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:04:03"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:04:03"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=991"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [5]=>
+    object(WP_Post)#4237 (24) {
+      ["ID"]=>
+      int(988)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:00:27"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:00:27"
+      ["post_content"]=>
+      string(197) "<a href="https://www.amazon.com/Shenandoah-National-Landscape-Painting-UNFRAMED/dp/B0D29BY9T5?ref_=ast_sto_dp&amp;th=1">This poster</a> is gorgeous. Customer service from the company was excellent!"
+      ["post_title"]=>
+      string(34) "Beautiful Colors with a retro vibe"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(34) "beautiful-colors-with-a-retro-vibe"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:00:27"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:00:27"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=988"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+  }
+  ["post_count"]=>
+  int(6)
+  ["current_post"]=>
+  int(-1)
+  ["before_loop"]=>
+  bool(true)
+  ["in_the_loop"]=>
+  bool(false)
+  ["post"]=>
+  object(WP_Post)#4232 (24) {
+    ["ID"]=>
+    int(996)
+    ["post_author"]=>
+    string(1) "1"
+    ["post_date"]=>
+    string(19) "2025-02-10 09:13:31"
+    ["post_date_gmt"]=>
+    string(19) "2025-02-10 02:13:31"
+    ["post_content"]=>
+    string(333) "I love <a href="https://www.amazon.com/Miracle-Spirit-Christian-painting-watercolor/dp/B0CSP8RTTB?ref_=ast_sto_dp&amp;th=1">this print</a>, it looks like His eyes follow you lol. It has a few black ink spots but not noticable if you're not looking really closely. Highly recommend the print. Came rolled in a tube and delivered fast."
+    ["post_title"]=>
+    string(17) "I love this print"
+    ["post_excerpt"]=>
+    string(0) ""
+    ["post_status"]=>
+    string(7) "publish"
+    ["comment_status"]=>
+    string(6) "closed"
+    ["ping_status"]=>
+    string(6) "closed"
+    ["post_password"]=>
+    string(0) ""
+    ["post_name"]=>
+    string(17) "i-love-this-print"
+    ["to_ping"]=>
+    string(0) ""
+    ["pinged"]=>
+    string(0) ""
+    ["post_modified"]=>
+    string(19) "2025-02-10 09:13:31"
+    ["post_modified_gmt"]=>
+    string(19) "2025-02-10 02:13:31"
+    ["post_content_filtered"]=>
+    string(0) ""
+    ["post_parent"]=>
+    int(0)
+    ["guid"]=>
+    string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=996"
+    ["menu_order"]=>
+    int(0)
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["post_mime_type"]=>
+    string(0) ""
+    ["comment_count"]=>
+    string(1) "0"
+    ["filter"]=>
+    string(3) "raw"
+  }
+  ["comment_count"]=>
+  int(0)
+  ["current_comment"]=>
+  int(-1)
+  ["found_posts"]=>
+  int(6)
+  ["max_num_pages"]=>
+  int(0)
+  ["max_num_comment_pages"]=>
+  int(0)
+  ["is_single"]=>
+  bool(false)
+  ["is_preview"]=>
+  bool(false)
+  ["is_page"]=>
+  bool(false)
+  ["is_archive"]=>
+  bool(false)
+  ["is_date"]=>
+  bool(false)
+  ["is_year"]=>
+  bool(false)
+  ["is_month"]=>
+  bool(false)
+  ["is_day"]=>
+  bool(false)
+  ["is_time"]=>
+  bool(false)
+  ["is_author"]=>
+  bool(false)
+  ["is_category"]=>
+  bool(false)
+  ["is_tag"]=>
+  bool(false)
+  ["is_tax"]=>
+  bool(false)
+  ["is_search"]=>
+  bool(false)
+  ["is_feed"]=>
+  bool(false)
+  ["is_comment_feed"]=>
+  bool(false)
+  ["is_trackback"]=>
+  bool(false)
+  ["is_home"]=>
+  bool(true)
+  ["is_privacy_policy"]=>
+  bool(false)
+  ["is_404"]=>
+  bool(false)
+  ["is_embed"]=>
+  bool(false)
+  ["is_paged"]=>
+  bool(false)
+  ["is_admin"]=>
+  bool(false)
+  ["is_attachment"]=>
+  bool(false)
+  ["is_singular"]=>
+  bool(false)
+  ["is_robots"]=>
+  bool(false)
+  ["is_favicon"]=>
+  bool(false)
+  ["is_posts_page"]=>
+  bool(false)
+  ["is_post_type_archive"]=>
+  bool(false)
+  ["query_vars_hash":"WP_Query":private]=>
+  string(32) "b817f93798b55bfc0bd20cbf97502003"
+  ["query_vars_changed":"WP_Query":private]=>
+  bool(false)
+  ["thumbnails_cached"]=>
+  bool(false)
+  ["allow_query_attachment_by_filename":protected]=>
+  bool(false)
+  ["stopwords":"WP_Query":private]=>
+  NULL
+  ["compat_fields":"WP_Query":private]=>
+  array(2) {
+    [0]=>
+    string(15) "query_vars_hash"
+    [1]=>
+    string(18) "query_vars_changed"
+  }
+  ["compat_methods":"WP_Query":private]=>
+  array(2) {
+    [0]=>
+    string(16) "init_query_flags"
+    [1]=>
+    string(15) "parse_tax_query"
+  }
+}
+
+2025-03-06, 17:01:10 --> End of logging variable ...  
+2025-03-06, 17:01:10 --> Start logging variable ...  
+2025-03-06, 17:01:10 $logMessage : object(WP_Query)#1391 (53) {
+  ["query"]=>
+  array(2) {
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["posts_per_page"]=>
+    int(-1)
+  }
+  ["query_vars"]=>
+  array(65) {
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["posts_per_page"]=>
+    int(-1)
+    ["error"]=>
+    string(0) ""
+    ["m"]=>
+    string(0) ""
+    ["p"]=>
+    int(0)
+    ["post_parent"]=>
+    string(0) ""
+    ["subpost"]=>
+    string(0) ""
+    ["subpost_id"]=>
+    string(0) ""
+    ["attachment"]=>
+    string(0) ""
+    ["attachment_id"]=>
+    int(0)
+    ["name"]=>
+    string(0) ""
+    ["pagename"]=>
+    string(0) ""
+    ["page_id"]=>
+    int(0)
+    ["second"]=>
+    string(0) ""
+    ["minute"]=>
+    string(0) ""
+    ["hour"]=>
+    string(0) ""
+    ["day"]=>
+    int(0)
+    ["monthnum"]=>
+    int(0)
+    ["year"]=>
+    int(0)
+    ["w"]=>
+    int(0)
+    ["category_name"]=>
+    string(0) ""
+    ["tag"]=>
+    string(0) ""
+    ["cat"]=>
+    string(0) ""
+    ["tag_id"]=>
+    string(0) ""
+    ["author"]=>
+    string(0) ""
+    ["author_name"]=>
+    string(0) ""
+    ["feed"]=>
+    string(0) ""
+    ["tb"]=>
+    string(0) ""
+    ["paged"]=>
+    int(0)
+    ["meta_key"]=>
+    string(0) ""
+    ["meta_value"]=>
+    string(0) ""
+    ["preview"]=>
+    string(0) ""
+    ["s"]=>
+    string(0) ""
+    ["sentence"]=>
+    string(0) ""
+    ["title"]=>
+    string(0) ""
+    ["fields"]=>
+    string(0) ""
+    ["menu_order"]=>
+    string(0) ""
+    ["embed"]=>
+    string(0) ""
+    ["category__in"]=>
+    array(0) {
+    }
+    ["category__not_in"]=>
+    array(0) {
+    }
+    ["category__and"]=>
+    array(0) {
+    }
+    ["post__in"]=>
+    array(0) {
+    }
+    ["post__not_in"]=>
+    array(0) {
+    }
+    ["post_name__in"]=>
+    array(0) {
+    }
+    ["tag__in"]=>
+    array(0) {
+    }
+    ["tag__not_in"]=>
+    array(0) {
+    }
+    ["tag__and"]=>
+    array(0) {
+    }
+    ["tag_slug__in"]=>
+    array(0) {
+    }
+    ["tag_slug__and"]=>
+    array(0) {
+    }
+    ["post_parent__in"]=>
+    array(0) {
+    }
+    ["post_parent__not_in"]=>
+    array(0) {
+    }
+    ["author__in"]=>
+    array(0) {
+    }
+    ["author__not_in"]=>
+    array(0) {
+    }
+    ["search_columns"]=>
+    array(0) {
+    }
+    ["ignore_sticky_posts"]=>
+    bool(false)
+    ["suppress_filters"]=>
+    bool(false)
+    ["cache_results"]=>
+    bool(true)
+    ["update_post_term_cache"]=>
+    bool(true)
+    ["update_menu_item_cache"]=>
+    bool(false)
+    ["lazy_load_term_meta"]=>
+    bool(true)
+    ["update_post_meta_cache"]=>
+    bool(true)
+    ["nopaging"]=>
+    bool(true)
+    ["comments_per_page"]=>
+    string(2) "50"
+    ["no_found_rows"]=>
+    bool(false)
+    ["order"]=>
+    string(4) "DESC"
+  }
+  ["tax_query"]=>
+  object(WP_Tax_Query)#4241 (6) {
+    ["queries"]=>
+    array(0) {
+    }
+    ["relation"]=>
+    string(3) "AND"
+    ["table_aliases":protected]=>
+    array(0) {
+    }
+    ["queried_terms"]=>
+    array(0) {
+    }
+    ["primary_table"]=>
+    string(8) "wp_posts"
+    ["primary_id_column"]=>
+    string(2) "ID"
+  }
+  ["meta_query"]=>
+  object(WP_Meta_Query)#4242 (9) {
+    ["queries"]=>
+    array(0) {
+    }
+    ["relation"]=>
+    NULL
+    ["meta_table"]=>
+    NULL
+    ["meta_id_column"]=>
+    NULL
+    ["primary_table"]=>
+    NULL
+    ["primary_id_column"]=>
+    NULL
+    ["table_aliases":protected]=>
+    array(0) {
+    }
+    ["clauses":protected]=>
+    array(0) {
+    }
+    ["has_or_relation":protected]=>
+    bool(false)
+  }
+  ["date_query"]=>
+  bool(false)
+  ["request"]=>
+  string(277) "SELECT   wp_posts.*
+					 FROM wp_posts 
+					 WHERE 1=1  AND ((wp_posts.post_type = 'spt_testimonial' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'wc-paid-partial' 
+OR wp_posts.post_status = 'private')))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					 "
+  ["posts"]=>
+  array(6) {
+    [0]=>
+    object(WP_Post)#4236 (24) {
+      ["ID"]=>
+      int(996)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:13:31"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:13:31"
+      ["post_content"]=>
+      string(333) "I love <a href="https://www.amazon.com/Miracle-Spirit-Christian-painting-watercolor/dp/B0CSP8RTTB?ref_=ast_sto_dp&amp;th=1">this print</a>, it looks like His eyes follow you lol. It has a few black ink spots but not noticable if you're not looking really closely. Highly recommend the print. Came rolled in a tube and delivered fast."
+      ["post_title"]=>
+      string(17) "I love this print"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(17) "i-love-this-print"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:13:31"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:13:31"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=996"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [1]=>
+    object(WP_Post)#4235 (24) {
+      ["ID"]=>
+      int(995)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:08:25"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:08:25"
+      ["post_content"]=>
+      string(197) "I live in the CVNP &amp; <a href="https://www.amazon.com/National-Natural-Landscape-Painting-UNFRAMED/dp/B0D29BWKXR?ref_=ast_sto_dp&amp;th=1">this poster</a> is beautiful. Makes me feel very happy."
+      ["post_title"]=>
+      string(26) "Good value, great quality."
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(24) "good-value-great-quality"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:08:25"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:08:25"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=995"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [2]=>
+    object(WP_Post)#4234 (24) {
+      ["ID"]=>
+      int(994)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:06:54"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:06:54"
+      ["post_content"]=>
+      string(424) "My national park posters arrived today and <a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">t</a><a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">hey are high quality and gorgeous</a>. True to size to frame and printed on nice thick paper. They were packaged perfectly with zero damage."
+      ["post_title"]=>
+      string(9) "Gorgeous!"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(8) "gorgeous"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:06:54"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:06:54"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=994"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [3]=>
+    object(WP_Post)#4233 (24) {
+      ["ID"]=>
+      int(993)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:05:35"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:05:35"
+      ["post_content"]=>
+      string(589) "Like the title says, I love <a href="https://www.amazon.com/Painting-Pictures-Abstract-Inspirational-Decorations/dp/B0CSPG6MKJ?ref_=ast_sto_dp&amp;th=1">this depiction of Jesus</a>. So peaceful and blissful in nature. I’ve ordered an amazing frame for it to go in. I can’t wait to see it up on my wall.
+I had a great experience of the seller. My item shipped earlier than estimated and arrive WAY earlier than estimated. Thank you! Would definitely buy from again.
+I would totally buy this picture again if it were offered in a canvas print. Wink wink nudge nudge please please. 😇"
+      ["post_title"]=>
+      string(45) "I love this depiction of Jesus. Great Seller."
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(43) "i-love-this-depiction-of-jesus-great-seller"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:05:35"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:05:35"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=993"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [4]=>
+    object(WP_Post)#4232 (24) {
+      ["ID"]=>
+      int(991)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:01:37"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:01:37"
+      ["post_content"]=>
+      string(330) "<a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">These pics</a> are great! The quality of the paper, picture, and color are amazing. The seller is incredible! My shipment was delivered to someone else and the seller sent me a replacement in 2 days. So awesome!!"
+      ["post_title"]=>
+      string(22) "Colors are so vibrant!"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(21) "colors-are-so-vibrant"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:04:03"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:04:03"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=991"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [5]=>
+    object(WP_Post)#4231 (24) {
+      ["ID"]=>
+      int(988)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:00:27"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:00:27"
+      ["post_content"]=>
+      string(197) "<a href="https://www.amazon.com/Shenandoah-National-Landscape-Painting-UNFRAMED/dp/B0D29BY9T5?ref_=ast_sto_dp&amp;th=1">This poster</a> is gorgeous. Customer service from the company was excellent!"
+      ["post_title"]=>
+      string(34) "Beautiful Colors with a retro vibe"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(34) "beautiful-colors-with-a-retro-vibe"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:00:27"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:00:27"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=988"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+  }
+  ["post_count"]=>
+  int(6)
+  ["current_post"]=>
+  int(-1)
+  ["before_loop"]=>
+  bool(true)
+  ["in_the_loop"]=>
+  bool(false)
+  ["post"]=>
+  object(WP_Post)#4236 (24) {
+    ["ID"]=>
+    int(996)
+    ["post_author"]=>
+    string(1) "1"
+    ["post_date"]=>
+    string(19) "2025-02-10 09:13:31"
+    ["post_date_gmt"]=>
+    string(19) "2025-02-10 02:13:31"
+    ["post_content"]=>
+    string(333) "I love <a href="https://www.amazon.com/Miracle-Spirit-Christian-painting-watercolor/dp/B0CSP8RTTB?ref_=ast_sto_dp&amp;th=1">this print</a>, it looks like His eyes follow you lol. It has a few black ink spots but not noticable if you're not looking really closely. Highly recommend the print. Came rolled in a tube and delivered fast."
+    ["post_title"]=>
+    string(17) "I love this print"
+    ["post_excerpt"]=>
+    string(0) ""
+    ["post_status"]=>
+    string(7) "publish"
+    ["comment_status"]=>
+    string(6) "closed"
+    ["ping_status"]=>
+    string(6) "closed"
+    ["post_password"]=>
+    string(0) ""
+    ["post_name"]=>
+    string(17) "i-love-this-print"
+    ["to_ping"]=>
+    string(0) ""
+    ["pinged"]=>
+    string(0) ""
+    ["post_modified"]=>
+    string(19) "2025-02-10 09:13:31"
+    ["post_modified_gmt"]=>
+    string(19) "2025-02-10 02:13:31"
+    ["post_content_filtered"]=>
+    string(0) ""
+    ["post_parent"]=>
+    int(0)
+    ["guid"]=>
+    string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=996"
+    ["menu_order"]=>
+    int(0)
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["post_mime_type"]=>
+    string(0) ""
+    ["comment_count"]=>
+    string(1) "0"
+    ["filter"]=>
+    string(3) "raw"
+  }
+  ["comment_count"]=>
+  int(0)
+  ["current_comment"]=>
+  int(-1)
+  ["found_posts"]=>
+  int(6)
+  ["max_num_pages"]=>
+  int(0)
+  ["max_num_comment_pages"]=>
+  int(0)
+  ["is_single"]=>
+  bool(false)
+  ["is_preview"]=>
+  bool(false)
+  ["is_page"]=>
+  bool(false)
+  ["is_archive"]=>
+  bool(false)
+  ["is_date"]=>
+  bool(false)
+  ["is_year"]=>
+  bool(false)
+  ["is_month"]=>
+  bool(false)
+  ["is_day"]=>
+  bool(false)
+  ["is_time"]=>
+  bool(false)
+  ["is_author"]=>
+  bool(false)
+  ["is_category"]=>
+  bool(false)
+  ["is_tag"]=>
+  bool(false)
+  ["is_tax"]=>
+  bool(false)
+  ["is_search"]=>
+  bool(false)
+  ["is_feed"]=>
+  bool(false)
+  ["is_comment_feed"]=>
+  bool(false)
+  ["is_trackback"]=>
+  bool(false)
+  ["is_home"]=>
+  bool(true)
+  ["is_privacy_policy"]=>
+  bool(false)
+  ["is_404"]=>
+  bool(false)
+  ["is_embed"]=>
+  bool(false)
+  ["is_paged"]=>
+  bool(false)
+  ["is_admin"]=>
+  bool(false)
+  ["is_attachment"]=>
+  bool(false)
+  ["is_singular"]=>
+  bool(false)
+  ["is_robots"]=>
+  bool(false)
+  ["is_favicon"]=>
+  bool(false)
+  ["is_posts_page"]=>
+  bool(false)
+  ["is_post_type_archive"]=>
+  bool(false)
+  ["query_vars_hash":"WP_Query":private]=>
+  string(32) "b817f93798b55bfc0bd20cbf97502003"
+  ["query_vars_changed":"WP_Query":private]=>
+  bool(false)
+  ["thumbnails_cached"]=>
+  bool(false)
+  ["allow_query_attachment_by_filename":protected]=>
+  bool(false)
+  ["stopwords":"WP_Query":private]=>
+  NULL
+  ["compat_fields":"WP_Query":private]=>
+  array(2) {
+    [0]=>
+    string(15) "query_vars_hash"
+    [1]=>
+    string(18) "query_vars_changed"
+  }
+  ["compat_methods":"WP_Query":private]=>
+  array(2) {
+    [0]=>
+    string(16) "init_query_flags"
+    [1]=>
+    string(15) "parse_tax_query"
+  }
+}
+
+2025-03-06, 17:01:10 --> End of logging variable ...  
+2025-03-06, 17:01:10 --> Start logging variable ...  
+2025-03-06, 17:01:10 $logMessage : object(WP_Query)#1391 (53) {
+  ["query"]=>
+  array(2) {
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["posts_per_page"]=>
+    int(-1)
+  }
+  ["query_vars"]=>
+  array(65) {
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["posts_per_page"]=>
+    int(-1)
+    ["error"]=>
+    string(0) ""
+    ["m"]=>
+    string(0) ""
+    ["p"]=>
+    int(0)
+    ["post_parent"]=>
+    string(0) ""
+    ["subpost"]=>
+    string(0) ""
+    ["subpost_id"]=>
+    string(0) ""
+    ["attachment"]=>
+    string(0) ""
+    ["attachment_id"]=>
+    int(0)
+    ["name"]=>
+    string(0) ""
+    ["pagename"]=>
+    string(0) ""
+    ["page_id"]=>
+    int(0)
+    ["second"]=>
+    string(0) ""
+    ["minute"]=>
+    string(0) ""
+    ["hour"]=>
+    string(0) ""
+    ["day"]=>
+    int(0)
+    ["monthnum"]=>
+    int(0)
+    ["year"]=>
+    int(0)
+    ["w"]=>
+    int(0)
+    ["category_name"]=>
+    string(0) ""
+    ["tag"]=>
+    string(0) ""
+    ["cat"]=>
+    string(0) ""
+    ["tag_id"]=>
+    string(0) ""
+    ["author"]=>
+    string(0) ""
+    ["author_name"]=>
+    string(0) ""
+    ["feed"]=>
+    string(0) ""
+    ["tb"]=>
+    string(0) ""
+    ["paged"]=>
+    int(0)
+    ["meta_key"]=>
+    string(0) ""
+    ["meta_value"]=>
+    string(0) ""
+    ["preview"]=>
+    string(0) ""
+    ["s"]=>
+    string(0) ""
+    ["sentence"]=>
+    string(0) ""
+    ["title"]=>
+    string(0) ""
+    ["fields"]=>
+    string(0) ""
+    ["menu_order"]=>
+    string(0) ""
+    ["embed"]=>
+    string(0) ""
+    ["category__in"]=>
+    array(0) {
+    }
+    ["category__not_in"]=>
+    array(0) {
+    }
+    ["category__and"]=>
+    array(0) {
+    }
+    ["post__in"]=>
+    array(0) {
+    }
+    ["post__not_in"]=>
+    array(0) {
+    }
+    ["post_name__in"]=>
+    array(0) {
+    }
+    ["tag__in"]=>
+    array(0) {
+    }
+    ["tag__not_in"]=>
+    array(0) {
+    }
+    ["tag__and"]=>
+    array(0) {
+    }
+    ["tag_slug__in"]=>
+    array(0) {
+    }
+    ["tag_slug__and"]=>
+    array(0) {
+    }
+    ["post_parent__in"]=>
+    array(0) {
+    }
+    ["post_parent__not_in"]=>
+    array(0) {
+    }
+    ["author__in"]=>
+    array(0) {
+    }
+    ["author__not_in"]=>
+    array(0) {
+    }
+    ["search_columns"]=>
+    array(0) {
+    }
+    ["ignore_sticky_posts"]=>
+    bool(false)
+    ["suppress_filters"]=>
+    bool(false)
+    ["cache_results"]=>
+    bool(true)
+    ["update_post_term_cache"]=>
+    bool(true)
+    ["update_menu_item_cache"]=>
+    bool(false)
+    ["lazy_load_term_meta"]=>
+    bool(true)
+    ["update_post_meta_cache"]=>
+    bool(true)
+    ["nopaging"]=>
+    bool(true)
+    ["comments_per_page"]=>
+    string(2) "50"
+    ["no_found_rows"]=>
+    bool(false)
+    ["order"]=>
+    string(4) "DESC"
+  }
+  ["tax_query"]=>
+  object(WP_Tax_Query)#4240 (6) {
+    ["queries"]=>
+    array(0) {
+    }
+    ["relation"]=>
+    string(3) "AND"
+    ["table_aliases":protected]=>
+    array(0) {
+    }
+    ["queried_terms"]=>
+    array(0) {
+    }
+    ["primary_table"]=>
+    string(8) "wp_posts"
+    ["primary_id_column"]=>
+    string(2) "ID"
+  }
+  ["meta_query"]=>
+  object(WP_Meta_Query)#4241 (9) {
+    ["queries"]=>
+    array(0) {
+    }
+    ["relation"]=>
+    NULL
+    ["meta_table"]=>
+    NULL
+    ["meta_id_column"]=>
+    NULL
+    ["primary_table"]=>
+    NULL
+    ["primary_id_column"]=>
+    NULL
+    ["table_aliases":protected]=>
+    array(0) {
+    }
+    ["clauses":protected]=>
+    array(0) {
+    }
+    ["has_or_relation":protected]=>
+    bool(false)
+  }
+  ["date_query"]=>
+  bool(false)
+  ["request"]=>
+  string(277) "SELECT   wp_posts.*
+					 FROM wp_posts 
+					 WHERE 1=1  AND ((wp_posts.post_type = 'spt_testimonial' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'wc-paid-partial' 
+OR wp_posts.post_status = 'private')))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					 "
+  ["posts"]=>
+  array(6) {
+    [0]=>
+    object(WP_Post)#4235 (24) {
+      ["ID"]=>
+      int(996)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:13:31"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:13:31"
+      ["post_content"]=>
+      string(333) "I love <a href="https://www.amazon.com/Miracle-Spirit-Christian-painting-watercolor/dp/B0CSP8RTTB?ref_=ast_sto_dp&amp;th=1">this print</a>, it looks like His eyes follow you lol. It has a few black ink spots but not noticable if you're not looking really closely. Highly recommend the print. Came rolled in a tube and delivered fast."
+      ["post_title"]=>
+      string(17) "I love this print"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(17) "i-love-this-print"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:13:31"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:13:31"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=996"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [1]=>
+    object(WP_Post)#4234 (24) {
+      ["ID"]=>
+      int(995)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:08:25"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:08:25"
+      ["post_content"]=>
+      string(197) "I live in the CVNP &amp; <a href="https://www.amazon.com/National-Natural-Landscape-Painting-UNFRAMED/dp/B0D29BWKXR?ref_=ast_sto_dp&amp;th=1">this poster</a> is beautiful. Makes me feel very happy."
+      ["post_title"]=>
+      string(26) "Good value, great quality."
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(24) "good-value-great-quality"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:08:25"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:08:25"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=995"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [2]=>
+    object(WP_Post)#4233 (24) {
+      ["ID"]=>
+      int(994)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:06:54"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:06:54"
+      ["post_content"]=>
+      string(424) "My national park posters arrived today and <a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">t</a><a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">hey are high quality and gorgeous</a>. True to size to frame and printed on nice thick paper. They were packaged perfectly with zero damage."
+      ["post_title"]=>
+      string(9) "Gorgeous!"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(8) "gorgeous"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:06:54"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:06:54"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=994"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [3]=>
+    object(WP_Post)#4232 (24) {
+      ["ID"]=>
+      int(993)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:05:35"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:05:35"
+      ["post_content"]=>
+      string(589) "Like the title says, I love <a href="https://www.amazon.com/Painting-Pictures-Abstract-Inspirational-Decorations/dp/B0CSPG6MKJ?ref_=ast_sto_dp&amp;th=1">this depiction of Jesus</a>. So peaceful and blissful in nature. I’ve ordered an amazing frame for it to go in. I can’t wait to see it up on my wall.
+I had a great experience of the seller. My item shipped earlier than estimated and arrive WAY earlier than estimated. Thank you! Would definitely buy from again.
+I would totally buy this picture again if it were offered in a canvas print. Wink wink nudge nudge please please. 😇"
+      ["post_title"]=>
+      string(45) "I love this depiction of Jesus. Great Seller."
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(43) "i-love-this-depiction-of-jesus-great-seller"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:05:35"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:05:35"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=993"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [4]=>
+    object(WP_Post)#4231 (24) {
+      ["ID"]=>
+      int(991)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:01:37"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:01:37"
+      ["post_content"]=>
+      string(330) "<a href="https://www.amazon.com/Miracle-Spirit-Yellowstone-National-Landscape/dp/B0CSK93MMH?ref_=ast_sto_dp&amp;th=1">These pics</a> are great! The quality of the paper, picture, and color are amazing. The seller is incredible! My shipment was delivered to someone else and the seller sent me a replacement in 2 days. So awesome!!"
+      ["post_title"]=>
+      string(22) "Colors are so vibrant!"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(21) "colors-are-so-vibrant"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:04:03"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:04:03"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=991"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+    [5]=>
+    object(WP_Post)#4230 (24) {
+      ["ID"]=>
+      int(988)
+      ["post_author"]=>
+      string(1) "1"
+      ["post_date"]=>
+      string(19) "2025-02-10 09:00:27"
+      ["post_date_gmt"]=>
+      string(19) "2025-02-10 02:00:27"
+      ["post_content"]=>
+      string(197) "<a href="https://www.amazon.com/Shenandoah-National-Landscape-Painting-UNFRAMED/dp/B0D29BY9T5?ref_=ast_sto_dp&amp;th=1">This poster</a> is gorgeous. Customer service from the company was excellent!"
+      ["post_title"]=>
+      string(34) "Beautiful Colors with a retro vibe"
+      ["post_excerpt"]=>
+      string(0) ""
+      ["post_status"]=>
+      string(7) "publish"
+      ["comment_status"]=>
+      string(6) "closed"
+      ["ping_status"]=>
+      string(6) "closed"
+      ["post_password"]=>
+      string(0) ""
+      ["post_name"]=>
+      string(34) "beautiful-colors-with-a-retro-vibe"
+      ["to_ping"]=>
+      string(0) ""
+      ["pinged"]=>
+      string(0) ""
+      ["post_modified"]=>
+      string(19) "2025-02-10 09:00:27"
+      ["post_modified_gmt"]=>
+      string(19) "2025-02-10 02:00:27"
+      ["post_content_filtered"]=>
+      string(0) ""
+      ["post_parent"]=>
+      int(0)
+      ["guid"]=>
+      string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=988"
+      ["menu_order"]=>
+      int(0)
+      ["post_type"]=>
+      string(15) "spt_testimonial"
+      ["post_mime_type"]=>
+      string(0) ""
+      ["comment_count"]=>
+      string(1) "0"
+      ["filter"]=>
+      string(3) "raw"
+    }
+  }
+  ["post_count"]=>
+  int(6)
+  ["current_post"]=>
+  int(-1)
+  ["before_loop"]=>
+  bool(true)
+  ["in_the_loop"]=>
+  bool(false)
+  ["post"]=>
+  object(WP_Post)#4235 (24) {
+    ["ID"]=>
+    int(996)
+    ["post_author"]=>
+    string(1) "1"
+    ["post_date"]=>
+    string(19) "2025-02-10 09:13:31"
+    ["post_date_gmt"]=>
+    string(19) "2025-02-10 02:13:31"
+    ["post_content"]=>
+    string(333) "I love <a href="https://www.amazon.com/Miracle-Spirit-Christian-painting-watercolor/dp/B0CSP8RTTB?ref_=ast_sto_dp&amp;th=1">this print</a>, it looks like His eyes follow you lol. It has a few black ink spots but not noticable if you're not looking really closely. Highly recommend the print. Came rolled in a tube and delivered fast."
+    ["post_title"]=>
+    string(17) "I love this print"
+    ["post_excerpt"]=>
+    string(0) ""
+    ["post_status"]=>
+    string(7) "publish"
+    ["comment_status"]=>
+    string(6) "closed"
+    ["ping_status"]=>
+    string(6) "closed"
+    ["post_password"]=>
+    string(0) ""
+    ["post_name"]=>
+    string(17) "i-love-this-print"
+    ["to_ping"]=>
+    string(0) ""
+    ["pinged"]=>
+    string(0) ""
+    ["post_modified"]=>
+    string(19) "2025-02-10 09:13:31"
+    ["post_modified_gmt"]=>
+    string(19) "2025-02-10 02:13:31"
+    ["post_content_filtered"]=>
+    string(0) ""
+    ["post_parent"]=>
+    int(0)
+    ["guid"]=>
+    string(66) "http://dutapodlab.local.info/?post_type=spt_testimonial&#038;p=996"
+    ["menu_order"]=>
+    int(0)
+    ["post_type"]=>
+    string(15) "spt_testimonial"
+    ["post_mime_type"]=>
+    string(0) ""
+    ["comment_count"]=>
+    string(1) "0"
+    ["filter"]=>
+    string(3) "raw"
+  }
+  ["comment_count"]=>
+  int(0)
+  ["current_comment"]=>
+  int(-1)
+  ["found_posts"]=>
+  int(6)
+  ["max_num_pages"]=>
+  int(0)
+  ["max_num_comment_pages"]=>
+  int(0)
+  ["is_single"]=>
+  bool(false)
+  ["is_preview"]=>
+  bool(false)
+  ["is_page"]=>
+  bool(false)
+  ["is_archive"]=>
+  bool(false)
+  ["is_date"]=>
+  bool(false)
+  ["is_year"]=>
+  bool(false)
+  ["is_month"]=>
+  bool(false)
+  ["is_day"]=>
+  bool(false)
+  ["is_time"]=>
+  bool(false)
+  ["is_author"]=>
+  bool(false)
+  ["is_category"]=>
+  bool(false)
+  ["is_tag"]=>
+  bool(false)
+  ["is_tax"]=>
+  bool(false)
+  ["is_search"]=>
+  bool(false)
+  ["is_feed"]=>
+  bool(false)
+  ["is_comment_feed"]=>
+  bool(false)
+  ["is_trackback"]=>
+  bool(false)
+  ["is_home"]=>
+  bool(true)
+  ["is_privacy_policy"]=>
+  bool(false)
+  ["is_404"]=>
+  bool(false)
+  ["is_embed"]=>
+  bool(false)
+  ["is_paged"]=>
+  bool(false)
+  ["is_admin"]=>
+  bool(false)
+  ["is_attachment"]=>
+  bool(false)
+  ["is_singular"]=>
+  bool(false)
+  ["is_robots"]=>
+  bool(false)
+  ["is_favicon"]=>
+  bool(false)
+  ["is_posts_page"]=>
+  bool(false)
+  ["is_post_type_archive"]=>
+  bool(false)
+  ["query_vars_hash":"WP_Query":private]=>
+  string(32) "b817f93798b55bfc0bd20cbf97502003"
+  ["query_vars_changed":"WP_Query":private]=>
+  bool(false)
+  ["thumbnails_cached"]=>
+  bool(false)
+  ["allow_query_attachment_by_filename":protected]=>
+  bool(false)
+  ["stopwords":"WP_Query":private]=>
+  NULL
+  ["compat_fields":"WP_Query":private]=>
+  array(2) {
+    [0]=>
+    string(15) "query_vars_hash"
+    [1]=>
+    string(18) "query_vars_changed"
+  }
+  ["compat_methods":"WP_Query":private]=>
+  array(2) {
+    [0]=>
+    string(16) "init_query_flags"
+    [1]=>
+    string(15) "parse_tax_query"
+  }
+}
+
+2025-03-06, 17:01:10 --> End of logging variable ...  

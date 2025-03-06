@@ -19,18 +19,18 @@ $postID = 1080; // test page post ID
 <?php 
 
 // global $post;
+$args = [ 
+    'public'    => true,
+    '_builtin'  => false,
+];
 
-$postInstance = get_post( $postID );
+$output = 'names';
+$operator = 'and';
 
-$matchedResult = [];
-// Valid matched status. Found 3 item
-$matchedStatus = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $postInstance->post_content, $matchedResult);
+// $cptList = get_post_types( $args, $output, $operator );
+$cptList = get_post_types( ['public' => false, '_builtin'=> false], $output, $operator );
 
-
-// $attachedImgs = get_attached_media( 'image', $postID );
-
-// var_dump( $matchedResult[1] ); 
-var_dump( $imgList );
+var_dump( $cptList );
 
 ?>
 

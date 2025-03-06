@@ -7,14 +7,17 @@
 * This page template is used to display directly the problematic variables 
 */
 
+// 1. Debug class
 use DutapodCompanion\Includes\Init as Init;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
+
+// 2. Content object class 
 use DutapodCompanion\Includes\Controller\ScopeFrontend\ThemeCustomizer as ThemeCustomizer;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WooCommerceCustomizer as WooCommerceCustomizer;
 
 use DutapodCompanion\Helper\WpFrontend\ShortcodeManager as ShortcodeManager;
-
+use DutapodCompanion\Includes\Content\CustomPostType\RealTestimonial as RealTestimonial;
 
 global $post;
 
@@ -56,7 +59,18 @@ $pluginDebugger = Init::$FRONTEND_INSTANCES_LIST[ PluginDebugHelper::class ];
     <?php global $shortcode_tags; ?>
     <h5>List of all registered shortcodes : </h5>
 
-    <?php  var_dump( ShortcodeManager::getRegisteredShortcode() ); ?>       
+    <?php  
+    
+    $queryArgs = [
+        'post_type'         => 'spt_testimonial',
+        'posts_per_page'    => -1,
+    ];
+
+    $query = new WP_Query( $queryArgs );
+
+    var_dump( $query );
+    
+    ?>       
 
     <p>========== End of debugging area ================== </p>
 

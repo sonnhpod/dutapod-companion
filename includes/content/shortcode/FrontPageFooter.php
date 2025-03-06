@@ -1,13 +1,12 @@
 <?php 
 /**
- * @package vncslab-companion
+ * @package dutapod-companion
  * @version 1.0.1
  */
 
 namespace DutapodCompanion\Includes\Content\Shortcode;
 
 use DutapodCompanion\Includes\Init as Init;
-use DutapodCompanion\Includes\Base\Activator as Activator;
 use DutapodCompanion\Helper\PluginProperties as PluginProperties;
 use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 

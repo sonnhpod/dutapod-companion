@@ -33,6 +33,7 @@ use DutapodCompanion\Includes\Controller\ScopeFrontend\PageTemplatesController a
 // Move all Page instance to the PagesController class
 use DutapodCompanion\Includes\Controller\ScopeFrontend\PagesController as PagesController;
 use DutapodCompanion\Includes\Controller\ScopeFrontend\Shortcode\GeneralShortcode as GeneralShortcode;
+use DutapodCompanion\Includes\Content\CustomPostTypeController as CustomPostTypeController;
 
 // 2.3. WordPress WooCommerce custom post type
 use DutapodCompanion\Includes\Controller\ScopeFrontend\WcPagesController as WcPagesController;
@@ -197,6 +198,7 @@ final class Init{
             ThemeCustomizer::class,
             PageTemplatesController::class,
             GeneralShortcode::class,
+            CustomPostTypeController::class,
             PagesController::class,
             WcPagesController::class,
             WcShortcode::class,

@@ -23,6 +23,8 @@
             "DutapodCompanion\\Includes\\Base\\Settings\\Post\\": "includes/base/settings/post/",
             "DutapodCompanion\\Includes\\Content\\": "includes/content/",
             "DutapodCompanion\\Includes\\Content\\Block\\": "includes/content/block/",
+            "DutapodCompanion\\Includes\\Content\\CustomContent\\": "includes/content/custom-content/",
+            "DutapodCompanion\\Includes\\Content\\CustomPostType\\": "includes/content/custom-post-type/",
             "DutapodCompanion\\Includes\\Content\\Carousel\\": "includes/content/carousel/",
             "DutapodCompanion\\Includes\\Content\\Menu\\": "includes/content/menu/",
             "DutapodCompanion\\Includes\\Content\\Shortcode\\": "includes/content/shortcode/",
