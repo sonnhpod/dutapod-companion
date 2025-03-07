@@ -15,6 +15,10 @@ use DutapodCompanion\Helper\PluginDebugHelper as PluginDebugHelper;
 use DutapodCompanion\Includes\Base\BaseController as BaseController;
 use \WP_Query;
 
+/** 1. This is a controller class to handle the custom post type testimonial - created by the plugin Real Testimonial
+ * - Source information: https://wordpress.org/plugins/testimonial-free/
+ */
+
 class RealTestimonial extends BaseController{
 
     /** 1. Variables & constant for post properties */
@@ -67,8 +71,13 @@ class RealTestimonial extends BaseController{
         // add_action( 'wp', [ $this, 'get_All_Post_Item' ] );// OK
     }//register
 
-    /** 3.2. */
-    /** 3.2.1. Get all CPT post types item */
+    /** 3.2. Validation method */
+    public function is_Real_Testimonial_Free_Plugin_Installed(){
+
+    }//is_Real_Testimonial_Free_Plugin_Installed
+
+    /** 3.3. Manipulate custom post type created by the plugin Real Testimonial free */
+    /** 3.3.1. Get all CPT post types item */
     public function get_All_Post_Item(){
 
         // Cannot fully run the WP_Query class 

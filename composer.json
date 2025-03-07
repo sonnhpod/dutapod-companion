@@ -30,6 +30,7 @@
             "DutapodCompanion\\Includes\\Content\\Shortcode\\": "includes/content/shortcode/",
             "DutapodCompanion\\Includes\\Content\\Widget\\": "includes/content/widget/",
             "DutapodCompanion\\Includes\\Controller\\": "includes/controller/",
+            "DutapodCompanion\\Includes\\Controller\\ScopeAll\\": "includes/controller/scope-all/",
             "DutapodCompanion\\Includes\\Controller\\ScopeAdmin\\": "includes/controller/scope-admin/",
             "DutapodCompanion\\Includes\\Controller\\ScopeAdmin\\Page\\": "includes/controller/scope-admin/page/",
             "DutapodCompanion\\Includes\\Controller\\ScopeEditor\\": "includes/controller/scope-editor/",

@@ -76,10 +76,9 @@ $pluginDebugger = Init::$FRONTEND_INSTANCES_LIST[ PluginDebugHelper::class ];
         while( $query->have_posts() ){
             // Iterate through the $query object
             $query->the_post();
-            /** Each custom post type can be accessed through the global $post variable here. */ 
             $count++;
             echo '<p>------------------------------</p>';
-            // var_dump( $post );//OK
+            var_dump( $post );
         }
         wp_reset_postdata();
     }
