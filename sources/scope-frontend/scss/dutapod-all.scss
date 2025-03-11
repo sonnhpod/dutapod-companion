@@ -31,6 +31,32 @@ div#ast-desktop-header{
     }//div.ast-main-header-wrap
 }//div#ast-desktop-header
 
+// Target site title - Header builder 
+/*
+div#ast-desktop-header{
+    div.ast-main-header-wrap {
+        div.ast-primary-header-bar.ast-primary-header{
+            div.site-primary-header-wrap{
+                div.ast-builder-grid-row{
+                    div.site-header-section{
+                        div.ast-builder-layout-element.site-header-focus-item{
+                            div.site-branding.ast-site-identity{
+                                div.ast-site-title-wrap{
+                                   span.site-title{
+                                        display: none;
+                                   }//span.site-title
+                                }//div.ast-site-title-wrap
+                            }//div.site-branding.ast-site-identity
+                        }//div.ast-builder-layout-element.site-header-focus-item
+                    }//div.site-header-section
+                }//div.ast-builder-grid-row
+            }//div.site-primary-header-wrap
+        }//div.ast-primary-header-bar.ast-primary-header
+    }//div.ast-main-header-wrap
+}//div#ast-desktop-header
+
+*/
+
 /** 
 <a href="http://dutapodlab.local.info/" class="company-logo-reference">
 <img src="http://dutapodlab.local.info/wp-content/uploads/2025/01/logo-longtext-transparent.png"> 
